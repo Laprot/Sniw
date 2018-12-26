@@ -26,7 +26,7 @@ class ContactType extends AbstractType
                 'required'=>true
             ])
             ->add('prenom', TextType::class, [
-                'label'=>'Prenom *',
+                'label'=>'Prénom *',
                 'required'=>true
             ])
             ->add('code_postal',TextType::class, [
