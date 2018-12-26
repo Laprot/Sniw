@@ -58,12 +58,19 @@
 4. 1199px
 ************/
 
-@media only screen and (max-width: 1199px)
+@media only screen and (max-width: 1200px)
 {
 	.main_slider
 	{
-		min-height: 475px;
-		height: calc(100vw / 1.714);
+		/*min-height: 475px;
+		height: calc(100vw / 1.714);*/
+		width:auto;
+
+		height: 350px;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
+		margin-top: 150px;
 	}
 	.main_slider_content
 	{

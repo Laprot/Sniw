@@ -334,7 +334,8 @@ input[type=date], input[type=datetime-local], input[type=month], input[type=time
 
 textarea {
     overflow: auto;
-    resize: vertical
+    resize: vertical;
+    height:180px;
 }
 
 fieldset {
@@ -350,7 +351,6 @@ legend {
     max-width: 100%;
     padding: 0;
     margin-bottom: .5rem;
-    font-size: 1.5rem;
     line-height: inherit;
     color: inherit;
     white-space: normal
@@ -1936,8 +1936,8 @@ pre code {
 
 .form-control {
     display: block;
-    width: 100%;
-    padding: .375rem .75rem;
+    width: 250px;
+    padding: .375rem 0.75rem ;
     font-size: 1rem;
     line-height: 1.5;
     color: #495057;
@@ -2106,7 +2106,6 @@ select.form-control:focus::-ms-value {
 .form-check-input {
     position: absolute;
     margin-top: .25rem;
-    margin-left: -1.25rem
 }
 
 .form-check-inline {
@@ -8495,3 +8494,35 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 /*# sourceMappingURL=bootstrap.min.css.map */
+
+input[type="radio"] {
+    /* remove standard background appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* create custom radiobutton appearance */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    background-clip: content-box;
+    border: 2px solid lightgrey;
+    border-radius: 50%;
+}
+
+/* appearance for checked radiobutton */
+input[type="radio"]:checked {
+    background-color: black;
+}
+
+
+/* radio button taille font size responsive */
+
+
+@media (max-width: 767px) {
+
+    .col-form-label {
+        font-size: 11px;
+    }
+}

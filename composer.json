@@ -18,7 +18,7 @@
         "symfony/security-bundle": "4.1.*",
         "symfony/serializer-pack": "*",
         "symfony/swiftmailer-bundle": "^3.1",
-        "symfony/translation": "4.1.*",
+        "symfony/translation": "*",
         "symfony/twig-bundle": "4.1.*",
         "symfony/validator": "4.1.*",
         "symfony/web-link": "4.1.*",
@@ -30,7 +30,12 @@
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
-        "symfony/web-server-bundle": "4.1.*"
+        "symfony/web-server-bundle": "4.1.7",
+        "symfony/debug": "4.1.7",
+        "symfony/event-dispatcher": "4.1.7",
+        "symfony/http-kernel": "4.1.7",
+        "symfony/http-foundation": "4.1.7",
+        "symfony/routing": "4.1.7"
     },
     "config": {
         "preferred-install": {
@@ -74,7 +79,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.1.*"
+            "require": "4.2.*"
         }
     }
 }

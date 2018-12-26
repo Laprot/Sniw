@@ -1,58 +1,101 @@
-<!-- Newsletter -->
-
-<div class="newsletter">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
-                    <h4>Lettre d'informations</h4>
-                    <p>Abonnez-vous à notre newsletter en renseignant votre e-mail </p>
+<div class="background">
+    <div class="columns-container container resp-footer">
+        <div class="rte">
+            <hr>
+            <div class="row" style="margin-top:40px">
+                <div class="col-12 col-xl-3 ">
+                    <h5><span>VOS </br> GARANTIES</span></h5>
+                    <div class="item-img-others" id="center"><img
+                                src="images/footer/pict1.jpg"
+                                alt="bellefrance.jpg" width="104" height="92"/></div>
+                    <div class="item-html">SNIW à votre service depuis 1993 Une prestation complète</div>
+                </div>
+                <div class="col-12 col-xl-3 ">
+                    <h5><span>ENTREPOSITAIRE </br> AGREE ALCOOLS</span></h5>
+                    <div class="item-img-others" id="center"><img
+                                src="images/footer/pict2.jpg"
+                                alt="achats.jpg" width="104" height="92"/></div>
+                    <div class="item-html">Agrément pour l'entreposage des produits soumis à accises</div>
+                </div>
+                <div class="col-12 col-xl-3">
+                    <h5><span>GROUPAGE </br> CONTENEUR</span></h5>
+                    <div class="item-img-others" id="center"><img
+                                src="images/footer/pict3.jpg"
+                                alt="logistique.jpg" width="104" height="92"/></div>
+                    <div class="item-html">SNIW avec ses partenaires et filiales peut vous proposer les meilleures
+                        conditions de groupage et d’empotage de vos containers
+                    </div>
+                </div>
+                <div class="col-12 col-xl-3 ">
+                    <h5><span>FORMALITÉS DE DÉDOUANEMENT</span></h5>
+                    <div class="item-img-others" id="center"><img
+                                src="images/footer/pict4.jpg"
+                                alt="transit.jpg" width="104" height="92"/></div>
+                    <div class="item-html">Les partenaires SNIW peuvent prendre en charge toutes les formalités
+                        administratives
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <form action="post">
-                    <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
-                        <input id="newsletter_email" type="email" placeholder="Your email" required="required" data-error="Valid email is required.">
-                        <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">Soumettre</button>
+        </div>
+
+        <div class="newsletter-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="newsletter_text d-flex flex-column justify-content-center align-items-lg-start align-items-md-center text-center">
+                            <h4>Lettre d'informations</h4>
+                            <p>Abonnez-vous à notre newsletter en renseignant votre e-mail </p>
+                        </div>
                     </div>
-                </form>
+                    <div class="col-lg-6">
+                        <form action="post">
+                            <div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-lg-end justify-content-center">
+                                <input id="newsletter_email" type="email" placeholder="Votre email" required="required"
+                                       data-error="Valid email is required.">
+                                <button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300"
+                                        value="Submit">Soumettre
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- Footer -->
+
+        <div class="footer-container container">
+            <footer id="footer" class="container">
+                <div class="row">
+                    <section class="footer-block col-12 col-sm-4" id="block_footer_sniw">
+                        <h4>S.N.I.W</h4>
+                        <ul class="toggle-footer">
+                            <li class="item"> <a href="{{ path('societe') }}" title="SNIW, centrale d'achat export">S.N.I.W<br>Centrale d'achat export</a> </li>
+                            <li class="item"> <a href="{{ path('mentions') }}" title="Mentions légales">Mentions Légales </a> </li>
+                            <!--<li class="item"> <a href="https://centraleachatexport.com/content/3-Conditions-generales-de-ventes" title="Conditions générales de ventes">Conditions générales de ventes</a> </li>
+                            <li class="item"> <a href="https://centraleachatexport.com/content/1-transports" title="Transports">Transports</a> </li>-->
+                        </ul>
+                    </section>
+                    <section class="footer-block col-12 col-sm-4" id="block_footer_services">
+                        <h4>Prestations</h4>
+                        <ul class="toggle-footer">
+                            <li class="item"> <a href="{{ path('services') }}" title="Services">Services</a> </li>
+                            <li class="item"> <a href="{{ path('conseils') }}" title="Conseils">Conseils</a> </li>
+                            <li class="item"> <a href="{{ path('logistique') }}" title="Logistique">Logistique</a> </li>
+                        </ul>
+                    </section>
+                    <section class="footer-block col-12 col-sm-4" id="block_footer_info">
+                        <h4>CONTACT</h4>
+                        <ul class="toggle-footer">
+                            <li class="infos-company"> <a href="https://www.google.fr/maps/place/SNIW/@50.6064407,3.1317528,15z/data=!4m5!3m4!1s0x0:0x49033b1a71826484!8m2!3d50.6064407!4d3.1317528" title="infos">S.N.I.W , 4 rue Archimède, 59650  </br></br> Villeneuve-d'Ascq</a> </li>
+                            <li class="tel"> <a href="tel:+33320565155" title="tel">Appelez-nous au : </br></br> <span><i class="fa fa-phone"></i> +33 3 20 56 51 55</span> </a> </li>
+                            <li class="block-contactinfos">  <a href="mailto:sniw@sniw.fr" title="Email"> <span> <i class="fa ti-email"> </i> Email : sniw@sniw.fr  </span></a> </li>
+                        </ul>
+                    </section>
+                </div>
+            </footer>
         </div>
     </div>
 </div>
 
-<!-- Footer -->
 
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
-                    <ul class="footer_nav">
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="footer_nav_container">
-                    <div class="cr">©2018 All Rights Reserverd. This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>

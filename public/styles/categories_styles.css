@@ -115,12 +115,12 @@ p a:hover::after
 }
 ::selection
 {
-	background: #fde0db;
-	color: #FF6347;
+	background: #0078ff;
+	color: white;
 }
 p::selection
 {
-	background: #fde0db;
+	background: #0078ff;
 }
 h1{font-size: 72px;}
 h2{font-size: 40px;}
@@ -177,7 +177,7 @@ h6::selection
 }
 .form-control
 {
-	color: #db5246;
+	color: black;
 }
 section
 {

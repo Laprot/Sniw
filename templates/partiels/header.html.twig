@@ -8,8 +8,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="top_nav_left">Venez visitez notre site Flavors & Chefs  en cliquant ici :
-                        <a href="https://www.flavorsandchefs.com/">Flavors & Chefs</a>
+                    <div class="top_nav_left">Visitez notre site Flavors & Chefs ici :
+                        <a href="https://www.flavorsandchefs.com/" style="color:lightyellow">Flavors & Chefs</a>
                     </div>
                 </div>
                 <div class="col-md-6 text-right">
@@ -65,16 +65,16 @@
 
 
                             <input class="currency" type="search" placeholder="Rechercher" aria-label="Rechercher">
-                            <li class="currency"><a href="#"><i class="fa fa-search" aria-hidden="false"></i> </a></li>
+
 
 
                             <li class="account">
                                 <a href="#">
-                                    Connexion
+                                    Espace client
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="account_selection">
-                                    <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Connexion</a></li>
+                                    <li><a href={{ path('connexion') }}><i class="fa fa-sign-in" aria-hidden="true"></i>Connexion</a></li>
                                     <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>S'enregistrer</a></li>
                                 </ul>
                             </li>
@@ -92,20 +92,28 @@
             <div class="row">
                 <div class="col-lg-12 text-right">
                     <div class="logo_container">
-                        <a href="{{ path('home') }}"> <img class="img-responsive" src="{{ asset('images/sniwLogo.jpg') }}" style="width:85%"></a>
+                        <a href="{{ path('home') }}"> <img class="img-responsive" src="{{ asset('images/sniwLogo.jpg') }}" ></a>
                     </div>
                     <nav class="navbar">
-                        <ul class="navbar_menu">
+                        <ul class="navbar_menu tabs">
                             <li><a href="{{ path('home') }}">Accueil</a></li>
                             <li><a href="{{ path('catalogue') }}">Catalogue</a></li>
                             <li><a href="{{ path('societe') }}">La société</a></li>
-                            <li><a href="#">Prestations</a></li>
-                            <li><a href="#">Carrières</a></li>
+
+                            <li class="dropdown">
+                                <a href="#">Prestations</a>
+                                <div class="dropdown-content">
+                                    <a href="{{ path('logistique') }}">Logistique</a>
+                                    <a href="{{ path('services') }}">Services</a>
+                                    <a href="{{ path('conseils') }}">Conseils</a>
+                                </div>
+                            </li>
+
+
+                            <li><a href="{{ path('carriere') }}">Carrières</a></li>
                             <li><a href="{{ path('contact') }}">Contact</a></li>
                         </ul>
                         <ul class="navbar_user">
-                            <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i> </a></li>
-                            <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                             <li class="checkout">
                                 <a href="#">
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -126,7 +134,7 @@
 
 <div class="fs_menu_overlay"></div>
 <div class="hamburger_menu">
-    <div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
+    <div class="hamburger_close"> <i class="fa fa-times" aria-hidden="true"></i></div>
     <div class="hamburger_menu_content text-right">
         <ul class="menu_top_nav">
             <li class="menu_item has-children">
@@ -159,20 +167,37 @@
             -->
             <li class="menu_item has-children">
                 <a href="#">
-                    Connexion
+                    Espace client
                     <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="menu_selection">
-                    <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Se connecter</a></li>
+                    <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Connexion</a></li>
                     <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>S'enregistrer</a></li>
                 </ul>
             </li>
-            <li class="menu_item"><a href="#">home</a></li>
-            <li class="menu_item"><a href="#">shop</a></li>
-            <li class="menu_item"><a href="#">promotion</a></li>
-            <li class="menu_item"><a href="#">pages</a></li>
-            <li class="menu_item"><a href="#">blog</a></li>
-            <li class="menu_item"><a href="#">contact</a></li>
+
+
+
+
+
+            <li class="menu_item"><a href="{{ path('home') }}">Accueil</a></li>
+            <li class="menu_item"><a href="{{ path('catalogue') }}">Catalogue</a></li>
+            <li class="menu_item"><a href="{{ path('societe') }}">La société</a></li>
+            <li class="menu_item has-children">
+                <a href="#">
+                    Prestations
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="menu_selection">
+                    <li><a href="{{ path('logistique') }}"> Logistique</a></li>
+                    <li><a href="{{ path('services') }}"> Services</a></li>
+                    <li><a href="{{ path('conseils') }}"> Conseils</a></li>
+                </ul>
+            </li>
+
+
+            <li class="menu_item"><a href="{{ path('carriere') }}">Carrières</a></li>
+            <li class="menu_item"><a href="{{ path('contact') }}">Contact</a></li>
         </ul>
     </div>
 </div>

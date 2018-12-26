@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Connexion - SNIW, centrale d'achat export.{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+{% block body %}
+
+    <body>
+    <div class="background">
+        <div class="columns-container container societe_container">
+            <div class="rte">
+                <div class="row">
+                    <div class="col mt-3">
+
+                        <!-- Breadcrumbs -->
+
+                        <div class="breadcrumbs d-flex flex-row align-items-center">
+                            <ul>
+                                <li><a href="{{ path('home') }}" style="color:grey">Home</a></li>
+                                <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Connexion
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+
+{% endblock %}
