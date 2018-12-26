@@ -2,7 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Contact;
+
+use App\Entity\DemandeCompte;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -12,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContactType extends AbstractType
+class DemandeCompteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -54,8 +55,8 @@ class ContactType extends AbstractType
                 'required'=>true
             ])
             ->add('grossiste_bool',ChoiceType::class,[
-                'label' => 'Etes-vous grossiste ?',
-                'required' => false,
+                'label' => 'Etes-vous grossiste ? *',
+                'required' => true,
                 'choices'=> [
                     'Oui' => true,
                     'Non'=>false
@@ -74,6 +75,14 @@ class ContactType extends AbstractType
                 'placeholder' => false,
                 'expanded'=>true
             ])
+            ->add('pays_dest',TextType::class,[
+                'label' =>'Indiquez le pays de destination de la marchandise *',
+                'required'=>true,
+            ])
+
+
+
+
             ->add('demande',TextareaType::class, [
                 'label'=>'Votre demande : *',
                 'required'=>true
@@ -84,7 +93,7 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Contact::class,
+            'data_class' => DemandeCompte::class,
         ]);
     }
 }

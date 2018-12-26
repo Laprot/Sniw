@@ -3,10 +3,15 @@
 namespace App\Entity;
 
 
+
+
+
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-class Contact
+
+class DemandeCompte
 {
 
     /**
@@ -21,33 +26,33 @@ class Contact
     private $societe;
 
     /**
-    * @var string|null
-    * @Assert\NotBlank()
-    * @Assert\Length(
-    *     min=3,max=100,
-    *     minMessage = "Minimum 3 caractères sont requis",
-    *     maxMessage = "Vous avez atteint la limite de 100 caractères"
-    * )
-    */
+     * @var string|null
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min=3,max=100,
+     *     minMessage = "Minimum 3 caractères sont requis",
+     *     maxMessage = "Vous avez atteint la limite de 100 caractères"
+     * )
+     */
     private $nom;
 
     /**
-    * @var string|null
-    * @Assert\NotBlank()
-    * @Assert\Length(
-    *     min=3,max=100,
-    *     minMessage = "Minimum 3 caractères sont requis",
-    *     maxMessage = "Vous avez atteint la limite de 100 caractères"
-    * )
-    */
+     * @var string|null
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min=3,max=100,
+     *     minMessage = "Minimum 3 caractères sont requis",
+     *     maxMessage = "Vous avez atteint la limite de 100 caractères"
+     * )
+     */
     private $prenom;
 
     /**
-    * @var string|null
-    *     minMessage = "Minimum 3 caractères sont requis",
-    *     maxMessage = "Vous avez atteint la limite de 100 caractères"
-    * )
-    */
+     * @var string|null
+     *     minMessage = "Minimum 3 caractères sont requis",
+     *     maxMessage = "Vous avez atteint la limite de 100 caractères"
+     * )
+     */
     private $adresse;
 
     /**
@@ -58,6 +63,16 @@ class Contact
      * )
      */
     private $code_postal;
+
+
+    /**
+     * @var string|null
+     * @Assert\Length(min=2,max=30)
+     * @Assert\Type(type="string")
+     * @Assert\NotBlank()
+     */
+    private $pays_dest;
+
 
     /**
      * @var string|null
@@ -83,13 +98,13 @@ class Contact
     private $email;
 
     /**
-    * @var string|null
-    * @Assert\NotBlank()
-    * @Assert\Type (
-    *     type="numeric",
-    *     message = "Valeur non numérique"
-    * )
-    */
+     * @var string|null
+     * @Assert\NotBlank()
+     * @Assert\Type (
+     *     type="numeric",
+     *     message = "Valeur non numérique"
+     * )
+     */
     private $telephone;
 
     /**
@@ -223,7 +238,7 @@ class Contact
      */
     public function getPays()
     {
-        return $this->pays;
+       return $this->pays;
     }
 
     /**
@@ -305,6 +320,24 @@ class Contact
     public function setSupermarcheBool($supermarche_bool)
     {
         $this->supermarche_bool = $supermarche_bool;
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPaysDest()
+    {
+        return $this->pays_dest;
+    }
+
+    /**
+     * @param null|string $pays_dest
+     * @return Contact
+     */
+    public function setPaysDest($pays_dest)
+    {
+        $this->pays_dest = $pays_dest;
         return $this;
     }
 

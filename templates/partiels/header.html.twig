@@ -69,14 +69,61 @@
 
 
                             <li class="account">
+                                {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN")  %}
+
+
+
+                                <a href="{{ path('catalogue') }}">
+                                    Mon compte
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+
+                                    <ul class="account_selection">
+                                        <li><a href="#">Mes commandes </a></li>
+                                        <li><a href="#">Mes informations</a></li>
+
+                                        <li><a href={{ path('app_logout') }}><i class="fa fa-sign-in" aria-hidden="true"></i>Déconnexion</a></li>
+                                    </ul>
+                                {% endif %}
+
+                                {% if is_granted ("ROLE_ADMIN")   %}
+
+                                    <a href="{{ path('home') }}">
+
+                                        Compte admin
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+
+                                    <ul class="account_selection">
+                                        <li><a href="#">Dashboard </a></li>
+                                        <li><a href="#">Mes informations</a></li>
+                                        <li><a href={{ path('user_registration') }}><i class="fa fa-sign-in" aria-hidden="true"></i>Add client</a></li>
+                                        <li><a href={{ path('app_logout') }}><i class="fa fa-sign-in" aria-hidden="true"></i>Déconnexion</a></li>
+                                    </ul>
+
+                                {% endif %}
+
+                                {% if not is_granted ("ROLE_USER") %}
+
                                 <a href="#">
                                     Espace client
                                     <i class="fa fa-angle-down"></i>
                                 </a>
+
+
                                 <ul class="account_selection">
                                     <li><a href={{ path('connexion') }}><i class="fa fa-sign-in" aria-hidden="true"></i>Connexion</a></li>
-                                    <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>S'enregistrer</a></li>
+                                    <li><a href="{{ path('creation_compte') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>S'enregistrer</a></li>
                                 </ul>
+
+                                {% endif %}
+
+
+
+
+
+
+
                             </li>
                         </ul>
                     </div>
