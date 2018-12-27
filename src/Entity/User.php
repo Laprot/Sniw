@@ -29,6 +29,22 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @ORM\Column(type="string", length=64, unique=true)
      * @Assert\NotBlank()
      */
@@ -52,6 +68,21 @@ class User implements UserInterface
      * @ORM\Column(type="array")
      */
     private $roles;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $societe;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
 
     public function __construct() {
         $this->roles = array('ROLE_USER');
@@ -114,4 +145,41 @@ class User implements UserInterface
     public function eraseCredentials()
     {
     }
+
+    public function getSociete(): ?string
+    {
+        return $this->societe;
+    }
+
+    public function setSociete(string $societe): self
+    {
+        $this->societe = $societe;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
 }
