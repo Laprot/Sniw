@@ -51,8 +51,12 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Length(max=4096)
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "50",
+     *      minMessage = "Minimum 5 caractères sont requis",
+     *      maxMessage = "Vous avez dépassé la limite de 50 caractères autorisés",
+     * )
      */
     private $plainPassword;
 
@@ -83,6 +87,41 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $titre;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date_inscription;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $code_postal;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pays;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $telephone;
 
     public function __construct() {
         $this->roles = array('ROLE_USER');
@@ -178,6 +217,90 @@ class User implements UserInterface
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getTitre(): ?bool
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(?bool $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getDateInscription(): ?\DateTimeInterface
+    {
+        return $this->date_inscription;
+    }
+
+    public function setDateInscription(\DateTimeInterface $date_inscription): self
+    {
+        $this->date_inscription = $date_inscription;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?int
+    {
+        return $this->code_postal;
+    }
+
+    public function setCodePostal(?int $code_postal): self
+    {
+        $this->code_postal = $code_postal;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getPays(): ?string
+    {
+        return $this->pays;
+    }
+
+    public function setPays(?string $pays): self
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?int
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?int $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }

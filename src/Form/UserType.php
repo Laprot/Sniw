@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -16,6 +17,16 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('Titre',ChoiceType::class,[
+                'label' => 'Titre',
+                'required' => false,
+                'choices'=> [
+                    'M' => true,
+                    'F'=>false
+                ],
+                'placeholder' => false,
+                'expanded' =>true
+            ])
             ->add('societe', TextType::class, [
                 'label'=> 'Société *',
                 'required'=>true
@@ -28,14 +39,17 @@ class UserType extends AbstractType
                 'label'=>'Prénom *',
                 'required'=>true
             ])
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'label' => 'Email *'
+            ])
             ->add('username', TextType::class, [
-                'label' => 'Nom de compte'
+                'label' => 'Nom de compte *'
             ])
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Mot de passe'),
-                'second_options' => array('label' => 'Répéter le mot de passe'),
+                'required'=>true,
+                'first_options'  => array('label' => 'Mot de passe *'),
+                'second_options' => array('label' => 'Répéter le mot de passe *'),
             ))
         ;
     }

@@ -27,6 +27,7 @@ class RegistrationController extends Controller
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+            $user->setDateInscription(new \DateTime());
 
             // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
@@ -42,7 +43,7 @@ class RegistrationController extends Controller
         }
 
         return $this->render(
-            'admin/new_client.html.twig', [
+            'admin/client/new_client.html.twig', [
                 'form' => $form->createView(),
             ]
         );

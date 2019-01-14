@@ -26,7 +26,7 @@ class UserVoter extends Voter
             return false;
         }
 
-        if (!$subject instanceof UserType) {
+        if (!$subject instanceof User) {
             return false;
         }
 
@@ -43,7 +43,7 @@ class UserVoter extends Voter
         if ($this->security->isGranted('ROLE_ADMIN') === true) {
             return true;
         }
-        return $subject->getUser()->getId() === $user->getId();
+        return $subject->getId() === $user->getId();
 
     }
 }

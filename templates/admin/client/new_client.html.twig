@@ -1,0 +1,116 @@
+{% extends '../base.html.twig' %}
+
+
+{% block title %} Ajouter un client - SNIW, centrale d'achat export.{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+{% block body %}
+
+    <body>
+    <div class="background">
+        <div class="columns-container container societe_container">
+            <div class="rte">
+                <div class="row">
+                    <div class="col mt-3">
+
+                        <!-- Breadcrumbs -->
+
+                        <div class="breadcrumbs d-flex flex-row align-items-center">
+                            <ul>
+                                <li><a href="{{ path('home') }}" style="color:grey">Home</a></li>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="#" style="color:grey">Admin</a></li>
+                                <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Ajout client
+                                </li>
+                            </ul>
+                        </div>
+
+                        <form class="contact-form" method="post" >
+                            <fieldset>
+
+                                <div class="form-row">
+
+
+                                    {{ form_start(form) }}
+
+
+                                    <!--  Success Message  -->
+
+
+                                    {% if app.session.flashBag.has('success')  %}
+                                        <div class="form-group col-md-6">
+                                            {% for message in app.flashes('success') %}
+
+                                                <div class="alert alert-success">
+                                                    {{ message }}
+                                                </div>
+                                            {% endfor%}
+                                        </div>
+                                        <div class="form-group col-md-6"></div>
+                                    {% endif %}
+
+
+
+                                    <!-- Invalid data Message -->
+
+                                    {% if not form.vars.valid %}
+                                        <div class="form-group col-md-6">
+                                            <div class="alert alert-danger">
+                                                Champs invalides
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6"></div>
+                                    {% endif %}
+
+
+                                    <div class="form-group col-md-6">
+                                        {{ form_row(form.Titre) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ form_row(form.societe) }}
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {{ form_row(form.nom) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ form_row(form.prenom) }}
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        {{ form_row(form.email) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ form_row(form.username) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ form_row(form.plainPassword.first) }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ form_row(form.plainPassword.second) }}
+                                    </div>
+
+
+
+
+                                </div>
+
+                                <div class="mt-4 text-center">
+                                    <button id="review_submit"  class="red_button message_submit_btn trans_300"  > Enregistrer</button>
+                                </div>
+                                {{ form_end(form) }}
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
+
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+
+{% endblock %}

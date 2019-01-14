@@ -1,0 +1,141 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Les clients {% endblock %}
+
+{% block stylesheets %}
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Clients</title>
+        <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/buttons.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/select.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+    </head>
+
+{% endblock %}
+
+
+{% block body %}
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+
+        {% include 'admin/left_side.html.twig' %}
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Données clients</h2>
+                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Adresses clients</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- ============================================================== -->
+                    <!-- basic table  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Tous les clients - {{ users | length }} résultat(s)
+                            </h5>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered first">
+                                        <thead>
+                                        <tr style="background-color:lightgrey">
+                                            <th>ID</th>
+                                            <th>Email</th>
+                                            <th>Prénom</th>
+                                            <th>Nom</th>
+
+                                            <th> Adresse </th>
+                                            <th> Code Postal</th>
+                                            <th> Ville</th>
+                                            <th> Pays </th>
+                                            <th>Actions (Modifier / Supprimer)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for user in users %}
+                                            <tr>
+                                                <td>{{ user.id }}</td>
+
+                                                <td> {{ user.email }}</td>
+                                                <td> {{ user.prenom }} </td>
+                                                <td> {{ user.nom }}</td>
+                                                <td> {{ user.getAdresse() }}</td>
+                                                <td> {{ user.getCodePostal() }}</td>
+                                                <td> {{ user. ville }}</td>
+                                                <td> {{ user. pays }}</td>
+
+                                                <td>
+                                                    <div class="btn btn-group justified">
+
+
+                                                        <a class="ml-2 mr-2" href="{{ path('client_edit_adresse', {id: user.id}) }}">
+                                                            <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                                                        </a>
+
+                                                        <form method="post" action="{{ path('client_delete', {'id': user.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce client');">
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                                            <button class="btn btn-danger" ><i class="fas fa-times"></i></button>
+                                                        </form>
+
+
+                                                    </div>
+
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end data table multiselects  -->
+                    <!-- ============================================================== -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/admin/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="/admin/assets/libs/js/main-js.js"></script>
+
+{% endblock %}
