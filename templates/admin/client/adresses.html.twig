@@ -59,7 +59,7 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Tous les clients - {{ users | length }} résultat(s)
+                            <h5 class="card-header">Tous les clients - {{ count }} résultat(s)
                             </h5>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -114,6 +114,13 @@
                                         {% endfor %}
                                         </tbody>
                                     </table>
+                                    <div class="mt-4">
+                                        Affichage : {{ users | length  }} / {{ count }} résultats
+                                    </div>
+                                    <div class="" style="float:right">
+                                        {{ knp_pagination_render(users) }}
+                                    </div>
+
                                 </div>
 
                             </div>

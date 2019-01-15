@@ -38,6 +38,14 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 class="pageheader-title">Données clients</h2>
+
+
+
+
+
+
+
+
                             <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
@@ -47,6 +55,15 @@
                                     </ol>
                                 </nav>
                             </div>
+
+                            <div class="">
+
+                                <input class="form-control" id="search" type='search' placeholder="Rechercher" style="margin-right:30px;width:70%">
+                                <button class="btn btn-primary" style="float:right">
+                                    Rechercher
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -59,11 +76,11 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Tous les clients - {{ users | length }} résultat(s)
+                            <h5 class="card-header">Tous les clients -  {{ count }} résultat(s)
                             </h5>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered first">
+                                <div class="table-responsive"  >
+                                    <table class="table table-bordered first" >
                                         <thead>
                                             <tr style="background-color:lightgrey">
                                                 <th>ID</th>
@@ -109,9 +126,18 @@
                                                 </td>
 
                                             </tr>
+
                                         {% endfor %}
                                         </tbody>
+
                                     </table>
+                                    <div class="mt-4">
+                                        Affichage : {{ users | length  }} / {{ count }} résultats
+                                    </div>
+                                    <div class="" style="float:right">
+                                        {{ knp_pagination_render(users) }}
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -130,7 +156,42 @@
     <!-- end main wrapper -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+
+
+
+    <script>
+
+        $(document).ready(function() {
+            $('#search').keyup(function () {
+                $('#result-search').html('');
+
+                let prenom = $(this).val();
+
+                console.log(prenom);
+                if(prenom != "") {
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ path('client_show') }}',
+                        data: 'prenom=' + encodeURIComponent(prenom),
+
+                        success: function(data) {
+                            if(data != "") {
+                                $('#result-search').append(data);
+                            }
+                            else {
+                                document.getElementById('result-search').innerHTML = "<div style='font-size:10px;text-align:center;margin-top:20px' > Aucun utilisateur trouvé </div>"
+                            }
+                        }
+                    });
+                }
+            });
+
+        });
+
+    </script>
     <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <script src="/admin/assets/vendor/multi-select/js/jquery.multi-select.js"></script>

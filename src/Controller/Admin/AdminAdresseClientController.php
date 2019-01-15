@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\AdresseUserType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,13 +34,27 @@ class AdminAdresseClientController extends AbstractController
     /**
      * @Route("/admin/client/adresses/show", name="client_adresse_show")
      */
-    public function show()
+    public function show(PaginatorInterface $paginator, Request $request)
     {
         // Récupère toutes les adresses des utilisateurs
-        $users = $this->repository->findAll();
+        //$users = $this->repository->findAll();
+
+        //Pagination avec 10 users par page
+        $users = $paginator->paginate(
+            $this->repository->findAllVisibleQuery(),
+            $request->query->getInt('page', 1), 10
+        );
+
+
+        //Récupérer le nombre d'utilisateurs
+        $qb = $this->repository->createQueryBuilder('entity');
+        $qb->select('COUNT(entity)');
+        $count = $qb->getQuery()->getSingleScalarResult();
+
 
         return $this->render('admin/client/adresses.html.twig', [
             'users' => $users,
+            'count' => $count
         ]);
     }
 

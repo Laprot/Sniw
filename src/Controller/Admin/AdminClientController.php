@@ -6,7 +6,10 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\DBAL\Types\TextType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -34,14 +37,56 @@ class AdminClientController extends AbstractController
     /**
      * @Route("/admin/client/show", name="client_show")
      */
-    public function show()
+    public function show(PaginatorInterface $paginator, Request $request)
     {
         // Récupère tous les utilisateurs
-        $users = $this->repository->findAll();
+        //$users = $this->repository->findAll();
+
+        //Pagination avec 10 users par page
+        $users = $paginator->paginate(
+            $this->repository->findAllVisibleQuery(),
+            $request->query->getInt('page', 1), 10
+        );
+
+
+        //Récupérer le nombre d'utilisateurs
+        $qb = $this->repository->createQueryBuilder('entity');
+        $qb->select('COUNT(entity) ');
+        $count = $qb->getQuery()->getSingleScalarResult();
+
+
+        //Barre de recherche
+        if (isset($_GET['user'])) {
+            $user = (String)trim($_GET['user']);
+
+            $req = $this->repository->recherche($user);
+
+            foreach ($req as $r) {
+                ?>
+                <div style="margin-top: 20px 0; border-bottom: 2px solid #ccc">
+                    <?= $r['nom'] . " " . $r['prenom'] ?>
+                </div>
+                <?php
+            }
+        }
 
         return $this->render('admin/client/data-tables.html.twig', [
             'users' => $users,
+            'count' => $count,
         ]);
+    }
+
+
+
+
+    public function getTotalUser()
+    {
+        $qb = $this->repository->createQueryBuilder('entity');
+        $qb->select('COUNT(entity)');
+        $count = $qb->getQuery()->getSingleScalarResult();
+
+        return $count;
+
     }
 
     /**
@@ -112,7 +157,7 @@ class AdminClientController extends AbstractController
      */
     public function delete(Request $request, User $user)
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($user);
             $em->flush();
@@ -120,5 +165,6 @@ class AdminClientController extends AbstractController
 
         return $this->redirectToRoute('client_show');
     }
+
 
 }

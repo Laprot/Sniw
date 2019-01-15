@@ -102,15 +102,13 @@
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-muted"> Nombre d'inscriptions</h5>
+                                        <h5 class="text-muted"> Nombre total d'inscriptions</h5>
                                         <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">$28000</h1>
+                                            <h1 class="mb-1">{{ count }} clients</h1>
                                         </div>
-                                        <div class="metric-label d-inline-block float-right text-secondary font-weight-bold">
-                                            <span>-2.00%</span>
-                                        </div>
+
                                     </div>
-                                    <div id="sparkline-revenue4"></div>
+
                                 </div>
                             </div>
                         </div>
@@ -238,25 +236,27 @@
 
                             <!-- recent customer-->
 
+
+
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                 <div class="card">
-                                    <h5 class="card-header"> Dernières inscriptions</h5>
-                                    <div class="card-body p-0">
+                                    <h5 class="card-header"> Les 5 dernières inscriptions</h5>
+                                    <div class="card-body ">
                                         <div class="table-responsive">
 
                                                 <table class="table table-bordered first">
-                                                <thead class="bg-light">
+                                                <thead>
 
-                                                <tr class="border-0">
-                                                    <th class="border-0">ID</th>
-                                                    <th class="border-0"> Titre</th>
-                                                    <th class="border-0">Prénom</th>
-                                                    <th class="border-0"> Nom</th>
-                                                    <th class="border-0">Adresse e-mail</th>
-                                                    <th class="border-0">Société</th>
-                                                    <th class="border-0">Date d'inscription</th>
-                                                    <th class="border-0">Actions</th>
+                                                <tr style="background-color:lightgrey">
+                                                    <th>ID</th>
+                                                    <th> Titre</th>
+                                                    <th>Prénom</th>
+                                                    <th> Nom</th>
+                                                    <th>Adresse e-mail</th>
+                                                    <th>Société</th>
+                                                    <th>Date d'inscription</th>
+                                                    <th>Actions</th>
 
                                                 </tr>
                                                 </thead>
@@ -294,13 +294,18 @@
                                                     </td>
                                                 </tr>
                                                 {% endfor %}
-                                                <tr>
-                                                    <td colspan="9"><a href="{{ path('client_show') }}" class="btn btn-outline-light ">Tous les clients</a></td>
-                                                </tr>
+
                                                 </tbody>
 
-                                            </table>
 
+                                            </table>
+                                            <tr>
+                                                <td colspan="9">
+                                                    <div class="mt-4">
+                                                        <a href="{{ path('client_show') }}" class="btn btn-outline-light ">Tous les clients</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
                                         </div>
                                     </div>

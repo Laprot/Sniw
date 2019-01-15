@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\Test;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,6 +20,47 @@ class UserRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, User::class);
     }
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(): Query
+    {
+        return $this->findUserASC()->getQuery();
+    }
+    /**
+     * @return QueryBuilder
+     */
+
+    private function findUserASC(): QueryBuilder
+    {
+        //Retourne les utilisateurs dans l'odre décroissant par ID , du plus récent au plus ancien
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.id','DESC');
+    }
+
+
+    public function getLastFiveUsers($limit = 5) {
+        //Permet d'afficher les 'limits' dernières inscriptions
+        return $this->createQueryBuilder('u')
+            ->groupby('u.id')
+            ->orderBy('u.id','DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function recherche($user) {
+        return $this->createQueryBuilder('u')
+            ->where('u.nom = ?')
+            ->getQuery()
+            ->getResult();
+
+
+    }
+
+
+
 
     // /**
     //  * @return Test[] Returns an array of Test objects

@@ -36,10 +36,19 @@ class DashboardController extends AbstractController
     public function index()
     {
         // Récupère tous les utilisateurs
-        $users = $this->repository->findAll();
+        //$users = $this->repository->findAll();
+
+        //Récupère les 5 dernières inscriptions
+        $users = $this->repository->getLastFiveUsers();
+
+
+        $qb = $this->repository->createQueryBuilder('entity');
+        $qb->select('COUNT(entity) ' );
+        $count = $qb->getQuery()->getSingleScalarResult();
 
         return $this->render('admin/index.html.twig', [
-            'users' => $users,
+            'users' => $users ,
+            'count' => $count
         ]);
     }
 }
