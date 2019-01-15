@@ -1,0 +1,117 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Ajouter un produit {% endblock %}
+
+{% block stylesheets %}
+    <!-- Bootstrap CSS -->
+
+{% endblock %}
+
+
+{% block body %}
+<body>
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+
+
+<div class="dashboard-main-wrapper">
+    {% include 'admin/left_side.html.twig' %}
+    <div class="dashboard-wrapper">
+        <div class="container-fluid  dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Produits </h2>
+                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Catalogue</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Ajouter un nouveau produit</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader -->
+            <!-- ============================================================== -->
+
+
+            <div class="row">
+                <!-- ============================================================== -->
+                <!-- valifation types -->
+                <!-- ============================================================== -->
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <h5 class="card-header">Produit</h5>
+                        <div class="card-body">
+                            <div class="form-group col-md-6 container">
+
+                                <form method="post">
+                                    {{ form_start(form) }}
+                                    {{ form_row(form.filename) }}
+                                    {{ form_row(form.nom) }}
+                                    {{ form_row(form.reference) }}
+                                    {{ form_row(form.gencod) }}
+                                    {{ form_row(form.categorie) }}
+                                    {{ form_row(form.prix_base) }}
+                                    {{ form_row(form.prix_final) }}
+                                    {{ form_row(form.etat) }}
+
+
+                                    <div class="form-group row text-right">
+                                        <div class="col float-right col-sm-10 col-lg-9 offset-lg-0">
+                                            <button type="submit" class="btn btn-space btn-primary">Enregistrer</button>
+
+                                            {{ form_end(form) }}
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+                                </form>
+
+                            </div>
+                            <a href="{{ path('admin_dashboard') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end valifation types -->
+                <!-- ============================================================== -->
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- end main wrapper -->
+<!-- ============================================================== -->
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <!-- Main SCRIPTS -->
+    <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+
+    <script src="/admin/assets/libs/js/main-js.js"></script>
+    <script>
+        $('#form').parsley();
+    </script>
+{% endblock %}
+

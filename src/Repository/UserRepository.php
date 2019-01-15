@@ -26,13 +26,13 @@ class UserRepository extends ServiceEntityRepository
      */
     public function findAllVisibleQuery(): Query
     {
-        return $this->findUserASC()->getQuery();
+        return $this->findUserDESC()->getQuery();
     }
     /**
      * @return QueryBuilder
      */
 
-    private function findUserASC(): QueryBuilder
+    private function findUserDESC(): QueryBuilder
     {
         //Retourne les utilisateurs dans l'odre décroissant par ID , du plus récent au plus ancien
         return $this->createQueryBuilder('u')
@@ -50,6 +50,8 @@ class UserRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+    //En cours de développement
     public function recherche($user) {
         return $this->createQueryBuilder('u')
             ->where('u.nom = ?')

@@ -47,10 +47,10 @@
                         <div id="submenu-3" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chart-c3.html">C3 Charts</a>
+                                    <a class="nav-link" href="{{ path('produits_show') }}">Produits</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="chart-chartist.html">Chartist Charts</a>
+                                    <a class="nav-link" href="{{ path('produits_new') }}">Ajouter un produit</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="chart-charts.html">Chart</a>
@@ -84,7 +84,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if 'client_show' in app.request.attributes.get('_route') %} active {% endif %}" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Clients</a>
+                        <a class="nav-link {% if 'client_show'   in app.request.attributes.get('_route') %} active {% endif %}" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Clients</a>
                         <div id="submenu-5" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
