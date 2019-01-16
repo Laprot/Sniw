@@ -27,17 +27,17 @@ class ProduitRepository extends ServiceEntityRepository
      */
     public function findAllVisibleQuery(): Query
     {
-        return $this->findProduitDESC()->getQuery();
+        return $this->findProduitASC()->getQuery();
     }
     /**
      * @return QueryBuilder
      */
 
-    private function findProduitDESC(): QueryBuilder
+    private function findProduitASC(): QueryBuilder
     {
-        //Retourne les produits dans l'odre décroissant par ID , du plus récent au plus ancien
+        //Retourne les produits dans l'odre croissant par ID , du plus ancien au plus récent
         return $this->createQueryBuilder('p')
-            ->orderBy('p.id','DESC');
+            ->orderBy('p.id','ASC');
     }
 
 

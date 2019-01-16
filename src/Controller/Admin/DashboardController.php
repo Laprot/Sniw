@@ -38,6 +38,8 @@ class DashboardController extends AbstractController
         // Récupère tous les utilisateurs
         //$users = $this->repository->findAll();
 
+
+
         //Récupère les 5 dernières inscriptions
         $users = $this->repository->getLastFiveUsers();
 
@@ -51,4 +53,5 @@ class DashboardController extends AbstractController
             'count' => $count
         ]);
     }
+
 }

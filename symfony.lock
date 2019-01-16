@@ -101,6 +101,12 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v2.8.0"
     },
+    "league/csv": {
+        "version": "9.1.4"
+    },
+    "mgilet/notification-bundle": {
+        "version": "3.1"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },

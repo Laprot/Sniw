@@ -4,3 +4,7 @@
 
 app_logout:
     path: /logout
+
+mgilet_notification:
+    resource: "@MgiletNotificationBundle/Controller/"
+    prefix: /notifications
