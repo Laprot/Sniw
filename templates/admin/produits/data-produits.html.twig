@@ -89,9 +89,14 @@
                                         <tbody>
                                         {% for produit in produits %}
                                             <tr>
+
                                                 <td>{{ produit.id }}</td>
-                                                <td> {{ produit.filename }}</td>
-                                                <td> {{ produit.nom }}</td>
+                                                <td>
+                                                    <a href="{{ path('produits_edit', {id: produit.id}) }}"> <img src="{{ produit.fileName | imagine_filter('small')}}" ></a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ path('produits_edit', {id: produit.id}) }}">{{ produit.nom }} </a>
+                                                </td>
                                                 <td> {{ produit.reference }} </td>
                                                 <td> {{ produit.gencod }}</td>
                                                 <td> {{ produit.categorie }}</td>
@@ -120,6 +125,7 @@
                                                 </td>
 
                                             </tr>
+
 
                                         {% endfor %}
                                         </tbody>

@@ -8,3 +8,6 @@ app_logout:
 mgilet_notification:
     resource: "@MgiletNotificationBundle/Controller/"
     prefix: /notifications
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"

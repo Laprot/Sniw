@@ -15,7 +15,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity
  * @Notifiable(name="nom")
- * @UniqueEntity(fields="email", message="Email déjà utilisé")
  * @UniqueEntity(fields="username", message="Username déjà utilisé")
  */
 class User implements UserInterface,NotificationInterface
@@ -23,12 +22,11 @@ class User implements UserInterface,NotificationInterface
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=64, unique=true)
+     * @ORM\Column(type="string", length=64)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
@@ -51,7 +49,7 @@ class User implements UserInterface,NotificationInterface
     }
 
     /**
-     * @ORM\Column(type="string", length=64, unique=true)
+     * @ORM\Column(type="string", length=64, unique=true,nullable=true)
      * @Assert\NotBlank()
      */
     private $username;
@@ -80,7 +78,7 @@ class User implements UserInterface,NotificationInterface
     private $roles;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $societe;
 
@@ -110,7 +108,7 @@ class User implements UserInterface,NotificationInterface
     private $adresse;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $code_postal;
 
@@ -128,6 +126,11 @@ class User implements UserInterface,NotificationInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $telephone;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Groupe", inversedBy="clients")
+     */
+    private $groupe;
 
     public function __construct() {
         $this->roles = array('ROLE_USER');
@@ -263,12 +266,12 @@ class User implements UserInterface,NotificationInterface
         return $this;
     }
 
-    public function getCodePostal(): ?int
+    public function getCodePostal(): ?string
     {
         return $this->code_postal;
     }
 
-    public function setCodePostal(?int $code_postal): self
+    public function setCodePostal(?string $code_postal): self
     {
         $this->code_postal = $code_postal;
 
@@ -299,12 +302,12 @@ class User implements UserInterface,NotificationInterface
         return $this;
     }
 
-    public function getTelephone(): ?int
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
-    public function setTelephone(?int $telephone): self
+    public function setTelephone(?string $telephone): self
     {
         $this->telephone = $telephone;
 
@@ -409,5 +412,17 @@ class User implements UserInterface,NotificationInterface
     public function removeNotifiableNotification(NotifiableNotification $notifiableNotification)
     {
         // TODO: Implement removeNotifiableNotification() method.
+    }
+
+    public function getGroupe(): ?Groupe
+    {
+        return $this->groupe;
+    }
+
+    public function setGroupe(?Groupe $groupe): self
+    {
+        $this->groupe = $groupe;
+
+        return $this;
     }
 }

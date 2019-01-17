@@ -1,0 +1,654 @@
+id;titre;societe;prenom;nom;email;password;telephone;ville;pays;code_postal;adresse
+2;1;;François;Delhaye;fdelhaye@sniw.fr;32e664e7550e9326a13cd9a3c36d1712;663612333;Villeneuve d'Ascq;France;59650;4 rue Archimede
+698;1;Super LU SAS;Philippe;Lu;superlu97150@gmail.com;bf92de6b22e8ccd5f48001d477a5ee95;590296450;Saint-Martin;France;97150;rue Tah Bloudy Concordia
+699;1;Super LU SAS;Philippe;Lu;superlu97150@gmail.com;bf92de6b22e8ccd5f48001d477a5ee95;590296450;Saint-Martin;Saint Martin;97150;rue Tah Bloudy Concordia
+700;1;;Bruno;Jacquart;b-jacquart@laposte.net;38be5f8ecba18be51dd0bddd625deec4;632428001;Fleurbaix-Laventie;France;62840;Fleurbaix-Laventie
+701;1;;Bruno;Jacquart;b-jacquart@laposte.net;38be5f8ecba18be51dd0bddd625deec4;632428001;Laventie;France;62840;Laventie
+10;1;COURTAGE EXPRESS EURASIE;Zengguang;DAI;c-e-eurasie@hotmail.com;0472d326c9303dae3b17e06ee75a4aee;330 658 051 600;Vernon;France;27200;14 rue du Docteur Burnet
+11;1;Damala Sarl;Dama;Diawara;damala.cg@gmail.com;2f0a30931530cbb2766ce0fa07cfc7bf;;;;;
+14;1;SNIW;Giorgi;Levanino;giorgi@sniw.fr;2d2b40f2474710e27ab24d7549ca4065;320565155;VILLENEUVE D'ASCQ;France;59650;4 rue Archimede, Batiment B
+702;1;SNIW;Giorgi;Levanino;giorgi@sniw.fr;2d2b40f2474710e27ab24d7549ca4065;320565155;VILLENEUVE D'ASCQ;France;59650;4 rue Archimede, Batiment B
+15;1;Société REGAL;Hitesh;-;hitesh@regal-congo.com;3d0191c3754e1efc003020d3e950a47d;+242 22 294 45 00;POINTE NOIRE;Congo, Republic;-;BP 603, AVENUE MOE VANGOULA, EVECHE, CENTRE VILLE
+16;1;Société REGAL;Brahat;-;regalbzv@regal-congo.com;3d0191c3754e1efc003020d3e950a47d;+242 22 281 16 46;BRAZZAVILLE;Congo, Republic;-;BP 1193,  AVENUE A.CABRAL
+17;2;CARIBBEAN SUPERMARKET SA ;Linda;Al Rayes ;CaribbeanMkt@aol.com;f411f856a9a62e0b0303ae537af3353c;(509) 3111-3333 ;Petion-Ville;Haiti;-;Rue Metellus 51
+18;1;Peloustore;Olivier;Pembélé Ndombasi;olivier.ndombasi@peloustore.cd;7d05bf68d992ee38688aad4099b5885b;243 816 160 429;Kinshasa;Congo, Dem. Republic;-;36 Bd du 30 juin
+19;1;Shop & Save;Monsieur;Nizar;shopandsave@sofiagroup.net;b50008176b54207f59a5252405168519;243 904 747 470;Kinshasa;Congo, Dem. Republic;11001;Avenue Basoko no.25,
+703;1;Shop & Save;Monsieur;Nizar;shopandsave@sofiagroup.net;b50008176b54207f59a5252405168519;243 850 503 030;Kinshasa;Congo, Dem. Republic;-;Avenue de la paix no.25,
+704;1;Shop & Save;Monsieur;Nizar;shopandsave@sofiagroup.net;b50008176b54207f59a5252405168519;243 904 747 470;Kinshasa;Congo, Dem. Republic;11001;Avenue de la Paix no.25,
+20;1;SOMEXPORT;Robert;Petijean;robert.petitjean@somexport.com;0390c970a8d05b7ce7afb755a3f4ffd9;+ 33 4 91 32 37 87;MArseille;France;13008;11 Rue Mermoz
+21;1;Superette La corniche;Mahamadou;Diawara;diawara@hotmail.com;95334c24edb9e259fa540bb4593b94fe;+223 76 44 20 64;Bamako;Mali;-;Magnabougou
+22;1;Oussama Seghir;Oussama;Seghir;oussama-seghir@hotmail.fr;23d6ff2bc38d736781ccb2eddc5289d0;+221 77 602 47 48;Dakar;Senegal;-;Dakar
+23;1;SAMEX;Solly;Levi;solly@monlineuk.com;061eab9154250b9877b0c384cac069c8;4,42074E+11;Lomé;Togo;-;Lomé
+24;1;ASIA EUROPE;Frédéric;Ciura;t1@asiaeuropetrade.biz;2bdb4202942b18e7fa0d71908ad09095;-2743189;Liège;Belgium;4000;25 Rue de Rotterdam
+25;1;Agdal Group;Sidien;Agdal;sidien@yahoo.fr;a18d98b69112e39b88fbd242e487f813;22796100100;Niamey ;Niger;5025;114 B
+26;1;MADIS;Hassanatou;Wone;Assywone@gmail.com;91840eb99c5d87fa8f2e7eec1d7fb056;2,21776E+11;Dakar;Senegal;-;64 Cite des Enseignants Mamelles
+27;2;Talismanic GmbH;Louisa;Tardieu;mail@olivie.at;0acf8371a5e81c5527c967bb285daa13;+43 660 393 24 31;Vienne;Austria;1080;Lerchenfelderstr. 48
+28;1;GAD;Thierry;Chaizemartin;t.chaizemartin@gmail.com;a5c329a34c3e344b8207438a85b60516;+33 6 05 68 66 19;Choisy le Roi;Gabon;94600;2 rue des Cosmonautes
+29;0;Bigdeal;Pape;Ndao;bigdeal.senegal@yahoo.fr;1122eca6c00acbe3ee613ac2041190dd;+33 7 70 34 77 02;Dakar;Senegal;-;Dakar
+705;1;SNIW;Jean-Luc;Champaud;jl.champaud@sniw.fr;72e793d388872421b53acd744d23d6ad;+33 3 20 56 51 55;Villeneuve d'Asq;France;59650;4 rue Archimède
+30;1;SNIW;Jean-Luc;Champaud;jl.champaud@sniw.fr;72e793d388872421b53acd744d23d6ad;+33 3 20 56 51 55;Paris;France;59650;4 rue Archimède
+31;1;IBou Diop;Ibou;Diop;iboudiop74@gmail.com;0d230256bb350fdb195bd25fc6c3f431;+33 6 96 17 92 42;Dakar;Senegal;-;Dakar
+32;1;LE PETIT DEPOT;Yannick;Guedon;yannick.guedon.sg@gmail.com;874ab80abade37754fc0bf357ede5c87;;;;;
+33;1;AKS;Ramzy;Saleh;salehramzi@hotmail.fr;0e12e0ac93dd5fde5b854ac55b20851f;+221 77 638 16 12;Dakar;Senegal;-;Dakar
+34;1;VETIVER;Richard;Rosine;richardrosine@gmail.com;8e31b51e96e27f970e8427cd3e5dcb65;+33 6 96 74 28 28;Ducos;Martinique;97224;Centre Commercial de la Source
+35;1;Eétablissements Khalil;Esmad;Soufane;etskhalil@yahoo.fr;596aa58dc2d431a045e39356d96db0ab;+224 664 29 91 91;Conakry;Guinea;-;Commune Matam BP 6036
+36;1;FOODLAND;Mike;Soufane;foodland_supermarket@yahoo.fr;2b546bb6fcb09ef2976d4b9db6ee0bef;23288707777;Freetown;Sierra Leone;-;Aberdeen Road
+37;1;ITL Santa Lucia;Gabriel;Ngnilapong;mktggaby@gmail.com;20c2194e9dccfcf678e33948a08c07e3;+237 696 25 25 96;Yaoundé;Cameroon;237;Kondengui
+38;1;Mayotte;C;Girardier;cgirardier@orange.fr;8729483c0a18e9165a90d430721fbefa;+33 6 62 34 54 64;Mayotte;Mayotte;-;Mayotte
+39;1;MACODIS;C;GIr;wihan0805@icloud.com;be557b2211ca596e6ac8a533728eeaf6;+33 6 62 34 54 64;Mayotte;Mayotte;97600;Mayotte
+40;1;;Xavier;Mandrin;MX974@hotmail.com;3a893946c63f3fa4a2d1eef1c0b48a67;33 692 841 644;Saint Benoit;Reunion Island;97470;135, chemin chatel cratère
+41;2;SARL Le Flamboyant;Maite;Ott;maiteott@yahoo.fr;0630cba13273566df44fa0e61912aaa1;33 689 838 646;Faa;French Polynesia;98702;tahiti-faaa
+42;1;;Jacky;Gombaud-Saintonge;discount2achat@orange.fr;83c1575b4ade3bdb223dc6f1b1954960;+33 590 91 72 30;ABYMES;Guadeloupe;97139;ZA PETIT-PEROU
+43;1;PROXIDIS;Alexandre;LAI ONG TEUNG;a.lot@proxidis.re;6598d7862b435ae594b381684dfc1241;+262 6 92 37 22 07;Saint-Denis;Reunion Island;97400;2 Boulevard de Saint-François
+44;1;Deshayes Trading;Marc;Alain;deshaiestrading@orange.fr;47f22b3b43f6de72002e8b14b5e59d68;+33 6 69 69 00 68;Hauteville;France;51290;25 rue Haute
+45;1;ETS SANOU;Komi;Sanou;etssanou@yahoo.fr;9bb32e9b06fcfbc6d6dbf9df5d17eb82;+228 90 05 20 80;Lomé;Togo;-;Bd de la réconciliation,  ancienne Pharmacie du Millénaire, 04BP30.
+46;1;PAN AFRICA General Trading Corporation;Bassirou;Diallo;bassiroukolinke@yahoo.com;a5c329a34c3e344b8207438a85b60516;2,31777E+11;Monrovia;Liberia;-;Old & New Matadi Junction
+47;1;JAMBO;Umesh;-;purchase@groupejambo.net;288751aee4e7617476f26682c83ff005;2,44E+11;Lubumbashi;Congo, Dem. Republic;-;N° 528 Avenue Mama Yemo
+48;1;AGL FOOD TRADING;Krispel;Avi;krispel3@netvision.net.il;8d5dfb0c19daee07bf67709ddfe7f2d8;+972 50 5618995;Herzliya;Israel;4647900;3 Rashi st
+49;1;OPTIMLOG;Guillaume;Leroy;optimlog.kigali@gmail.com;9d7e3aaae3c33838c50f4119e2bc3385;33 789 923 752;Kigali;Rwanda;-; KG Avenue 7
+50;1;BIGDEAM GROSSISTE;Pape;Ndao;senegal.bigdeal@gmail.com;4bd49a666069ade7a69a4a3c84f8911f;+33 7 52 88 77 12;Dakar;Senegal;-;Dakar
+51;2;LEO & CO;Rithy;Ouch;leoandco@hotmail.fr;308e469502b9be3a549c2e12ef867907;+33 6 61 92 36 06;Paris;France;75011;125 Bd de Charonne
+52;1;UPM;Mayez;El Halaby;mayezrafat@yahoo.fr;0d4f32902edb7a076bfc973b1fd36bd1;3 322 374 679 665;Bamako;Mali;-;bamako aci 2000
+53;1;MEVIS DISTRIBUTION;Grégoire;Nguema;mauneguema@gmail.com;1da93cd3616817aabba06a224967cafb;24106265382;Libreville;Gabon;0;Bp 13842
+54;2;Express 210;Cynthia;de Santis;alessia.jm@hotmail.com;4062fca2bf9cdc9becc9c256fe931cbe;32 493 198 585;Fontaine l'Evêque;France;6140;Cité des résistants, 42
+55;1;ADR CENTER;Aymeric;Kedote;adrcsasu@gmail.com;accb13188fb07781ecb7aa2e23a3254b;33 769 817 298;Abidjan;Ivory Coast;-;Abidjan
+56;1;ZC Import Export;Zohir;Chekroun;zohirchekroun@hotmail.fr;eeab6f516340e6fd7797edfb6f88c773;33 762 137 370;Oujda;Morocco;60000;Lot chabbab 22rnHay el qods
+57;1;Gendarmerie au Gabon;Patrick;SAILER;actdistachats@yahoo.fr;4c67a8f2dcb8f7b04d5148192b86fc00;+241 01 44 74 20;Libreville;Gabon;200;SP 70176
+58;1;Xian Lin Ltd;Xian;Lin;xianlin4321@gmail.com;bf694e0a3d1188ee5fb67c2283427801;+862 16279 88 885;Shangaï;China;200040;Shanghai Center, 1376 West Nanjing Road
+59;2;NFAF Trading;Agnès;Noma;Agnes@nfaf-trading.com;b40de5473141e76b365fa4d6bebbaf11;639 178 152 605;Pasay City;Philippines;1300;Unit 201 IPMC Building #64 Don Benito Hernandez St.
+60;1;Saïdi Al Baraka;Lahcen ;Bizriken;bizriken.lahcen2013@gmail.com;b0aad2c78bda4bb4ee3f31b69a3d64c7;2,12622E+11;Fès;Morocco;30000;N° 7 Rue de Tanger Quartier Atlas
+61;1;H&P Euro Ltd;Jack;Au;handptrade@gmail.com;3dec911ff242cd4ba1ba86d43b1411f6;4,46764E+11;Chine;China;521000;Chine
+62;2;PLES Management;Anass;El Yakoubi;anass.elyakoubi@gmail.com;f1ce9d1903539e4fdc80a40566fe74c1;+32 486 56 66 83;Moscou;Russian Federation;512000;Russie
+63;1;MMAW;Nigalt;HACH;mmaw1972@hotmail.com;f2651c19cc2781dbe8921de425886e37;+2141 06 97 90 90;Libreville;Gabon;521000;Libreville
+64;2;SOMIVIN;Liliane;LAM;somivin@free.fr;d9299f4fddf9fa82fc33a30f81e63aef;+33 6 73 01 56 33;Thiais;France;94320;10 Allée Tenessee Williams
+65;1;EZAMA;Mahamadi;Zangre;ste_ezama@yahoo.fr;ae1c330b9530bb2b2640f2bb09981001;+226 70 21 26 95;Ouadagoudou;Burkina Faso;-;Av de la Liberté
+66;1;ITD;David;Kinde;david.itd976@gmail.com;4cb09e9583d402fee5c2ce083c686051;+33 6 39 25 91 68;Mamoudzou;Mayotte;97600;1 rue des écoles primaires
+67;1;SERRUTOP;Ghislain;Itoba;paul.itoba1@gmail.com;a5e04352fbcb7fb37fe3c0444ab2cdb0;2,42068E+11;Brazzaville;Congo, Republic;-;108 rue Kintele Ouenze
+68;1;FIDJI;Bryan;Curtis;curtis.bryan68@gmail.com;cd609b8f88ba2a19463d0b451c9345a6;6 796 750 000;FIDJI;Fiji;-;FIDJI
+69;1;FRENCH SIGNATURE PTE LTD;Antoine;Rouland;account@frenchsignature.sg;e8d03702e442e2aa706b8e226ed8eb3b;97733619;Singapour;Singapore;179094;1 North bridge road 15-02
+70;1;Jean Hugues Depigny;Jean-Hugues;Depigny;yangpeiyi@wiaxis.com;5f2854335a229a28e58f869ac26265bf;+33 6 28 52 44 36;Toulouse;France;31000;20 rue Jean d'Alembert
+71;1;Quentin Depigny;Quentin;Depigny;quentin.depigny@gmail.com;d600f26f9e7fce4ba3351cadfce4e686;8,61369E+12;Shangai;China;521000;Shangaï
+72;1;PAK Distribution;Georges;Walpole;pak.distribution@orange.fr;f9f0b818249fe2640e4f26a7e1b5048f;+33 690 76 31 77;Sint François;Guadeloupe;97118;St François
+73;1;Sahel Business Consulting;Ibrahim;Hissein Taha;ibrahim@sbc-tchad.com;0ed04332e124e78d23b42e9a339defef;+235 66 27 04 96;N'Djamena;Chad;-;BP:2551 ,N'Djamena  Rep. du Tchad
+74;1;PIERREFIN;Patrick;Artigolle;partigolle@cavepierrefin.com;7cbe9f1e2f93c7acc3c1d56518f0e5d3;33 634 875 054;Pierrefeu du Var;France;83390;5 Rue Jean Aicard Quartier du Gré
+75;1;SAPAME;Patrick;Snège;snegepatrick@hotmail.com;550c302974f2bdd6497a53e4b2691aa3;+33 6 75 12 83 61;Abidjan;Ivory Coast;-;-
+76;1;MONOSHOP;Alfred;Giraud;lemonoshop@yahoo.fr;bd666d55bfc10ff0e4ae446b906f65c3;+33 5 90 27 65 28;Marigot;Saint Barthelemy;97133;Marigot
+77;1;Maison Keldi;Mohamed;Keldi;mohamed@maison-keldi.com;1a2ba535e6cf63da10ea7ce2bf43e36b;+ 269 73 20 36;Moroni;Comoros;84646;B.P 847
+78;2;SUNRISE;Sonia;Apele;apelesonia@yahoo.fr;8352197d7e5cdcfbef8a8bfbbf851237;+242 05 553 05 73;Pointe Noire;Congo, Republic;-;Av. J. Opancault Z.I Foire
+79;1;Aline Tahiti;Marc;Stulhfauth;direction@alinetahiti.pf;31f0639a3e56f22fc50bec185c9623e2;+689 47 58 58 ;Papeete;French Polynesia;98713;Punaavia
+80;1;ICL;Farhat;Fahrat;farhat.limex@hotmail.fr;3348f38717d47216a34fe6726b35d4e6;234 810 000 064;Bangui;Central African Republic;19420;Avenue Boganda 18
+81;2;PM Distribution;Sophie;Moutonnet;pmdistribution02@gmail.com;b640fdc52f13dd3bd5aa765a4ad35e70;+33 6 03 86 72 63;Montigny-Lengrain;France;2290;1 grande rue
+82;2;MAA Wholesale;Mary;XXX;info@maa-wholesale.com;7e8feb996ab5825ef454c4ecbaca896d;441 563 549 595;Kilmarnock;United Kingdom;KA1 ABY;Block 14
+83;2;Celia Pargny;Célia;Pargny;celiartefact@hotmail.fr;e28cd0ce1813ad57d8982b58513c5f7e;635237592;Marbélia;France;29601;Marbélia en espagne
+84;2;Stéphanie Mamberti;Stéphanie;Mamberti;fransa@fransa.fr;5341264bd68e608ec7198ca44b1b8f30;+33 4 91 71 43 43;Marseille;France;13002;26 rue la Cathédrale
+85;2;Krishna;Vinita;Barnier;kevinbarnier@yahoo.fr;e55d9520009bf48fc65fcd98d50aaa97;+33 6 90 46 44 80;Saint Martin;Saint Martin;97150;Immeuble la Galliote
+86;1;Samaké;Vadim;Samaké;samake.vadim@yahoo.fr;5533fc8e79e349ac5a866c1c3815c0f1;+33 6 33 08 38 14 ;Notre Dame de Monts;France;85690;38 rue de la barre
+87;2;Mariam Grubbe;Mariam;Grubbe;mariam.grubbe@icloud.com;5509996ba21af39ccffc743310e1eaad;22670251425;Ouadagoudou;Burkina Faso;2;02 BP 5486
+88;1;MIX MAX;Hans;Wang;hanswang@mixmax.cn;25af803e2c1b665ada53f5ae7340b69e;651523635;Chendu;France;51000;Chine
+89;1;Abdoulaye Ahmat;Abdoulaye;Ahmat;etsabdoulayeaht@yahoo.fr;d44f47cd069aac7048e3c9288c69c8e0;+235 99 55 59 99;N'Djamena;Chad;521000;Marché Central
+90;1;HUMEID;Ali Saïd;Humeid;humeid.82@gmail.com;29f99cecb40d78855f128478e21e0dc9;;;;;
+91;1;HUMEID;Ali Saïd;Humeid;humeid.82@gmail.com;29f99cecb40d78855f128478e21e0dc9;+269 335 11 81;Moroni;Comoros;521000;BP 7866
+92;2;CHEICKHNA;Aldianabangou;Cissé;cisshabibatou@yahoo.fr;e7c04351f46149874380ece88462fa44;22377115065;Bamako;Mali;521000;s
+93;1;Abode Trading;Chakrii;Apinya;chakrii@abodetrading.com;3ef47273d35e86f42798bc30d48b3377;+66 86 771 5844 41;Bangkok;Thailand;66850;Lertpanya Building, 9th Floor, Soi Lertpanya, Sri-Ayudhaya Road,
+706;1;Ibrahima Sow;Ibrahima;Sow;sowibra74@gmail.com;4f2aa53766991934864714d8f2c5495b;+221 77 650 78 88;Dakar;Senegal;99999;Dakar
+707;1;Ibrahima Sow;Ibrahima;Sow;sowibra74@gmail.com;4f2aa53766991934864714d8f2c5495b;;dakar;Senegal;99999;ouest foire villa n 4
+708;1;Ibrahima Sow;Ibrahima;Sow;sowibra74@gmail.com;4f2aa53766991934864714d8f2c5495b;+221 77 650 78 88;Dakar;France;99999;Dakar
+709;1;;Ignace;Sawadogo Sibiri;sibiris@yahoo.fr;2643fd1183a78d691fb864b6f35f2b76;+226 77 37 71 71;Ouagadougou;Burkina Faso;521000;Ouagadougou
+96;1;CARPA;Chaouky;Wizani;carpa@orange.sn;94950bc5699423afdb7a866325bbe107;+221 33 822 52 35;Dakar;Senegal;-;34, Rue Galandou Diouf
+97;1;SOCIMCO (Société d'importation et de commerce);Mohamed;Bitar;bitar81@yahoo.fr;ed490dca8ef3278426c027c167eddb3d;+236 75 50 32 10;Bangui;Central African Republic;-;Av. Barthélémy Boganda
+98;1;Centrale Coop Bénin;Pascal Damien;de Souza;centralecoop@yahoo.fr;6238de3f4b5794fc0119c2ec8d6eeec4;+229 21 33 04 98;Cotonou;Benin;-;Quartier Sodjeatinme - Akpakpa
+99;1;SCATIA;Farhat;Assaad;zulu.chebli@live.fr;fead1f10277c865f1fec7655567f8eab;+237 678 04 06 06;Douala;Cameroon;-;Douala
+100;1;Galate Monotex;Léonard;Salanon;societegalate1@yahoo.fr;097f8f7f671580220481b9c8d3a26dd6;+33 7 52 40 40 91;Cotonou;Benin;-;Cotonou
+101;1;AL GAMIL;Abdoulrahim;Gamil;souad@algamil.net;2c181719bcc75794447a2314ad73b30d;+253 77 76 89 32;Djibouti;Djibouti;-;Z.I.S. GABODE
+102;1;JB et Fils;Jack;Barsouna;jacomini3@yahoo.fr;c19d0ff94cbcdbeb34919c2f5cc744ae;+228 903 60 78;Lomé;Togo;-;Immeuble Khalif
+103;1;Mariam Grubbe;Charles;Nikiema;charles_nikiema@yahoo.it;7a61c12a8b6e73ad083885406d68a020;393 470 064 323;Ouadagoudou;Burkina Faso;-;02 BP 5486
+104;1;EVERYDAY INTERNATIONAL LLC;Christophe;Tessier;christophe.tessier@ntymail.com;8401d45325c23d5607c2439c89148e60;97611461557;Oulan Bator;Mongolia;21035;Enkhtaivan avenue, 14th khoroo
+105;1;Fresh & More;Konstantin;Grinovs;k.grinovs@gmail.com;71af6cc8ba546e9559364b233928a979;37 129 585 491;Riga;Latvia;LV-5200;Riga
+106;1;WeTrade;Abdelmajid ;Ben Tanfous;btanfousmejid@gmail.com;76667cb5570797f2905456d60de02510;+216 55 911 303;Tunis;Tunisia;-;Charguia
+107;2;Berthe Ting;Berthe;Ting;berthet976@gmail.com;add68ee9ee89a1007d2a39cc158ef9b9;+33 6 01 20 12 45;-;Taiwan;52100;-
+108;1;Louis Tong;Louis;Tong;r.louisblanc@gmail.com;71739cef2aacf6935836cc5d7ace4381;85223662332;Hong Kong;HongKong;-;G/F, Mirador Mansion, 54 Nathan Road
+109;1;Harrods;Stephens;Williams;info@harrods-group.com;d6347edda52ca0d132620dc375e92dc4;4 407 522 199 847;Londres;United Kingdom;-;London
+110;1;MID CONTINENTAL;Amr;Araissy;amr@mcilb.com;6a8cdbe958134ccb956039942cb93442;9613676967;Jnah, Beirut;Lebanon;-;Adnan Hakim Street ,  Mubarak Building, -2 floor,
+111;1;COMDIS;Serge;Ibanez;mmkermel@yahoo.fr;9b15b21b4b288c61c4d8f55181dcf09c;2,21776E+11;Dakar;Senegal;-;BP 3208
+112;2;MERWIS;Emily;Ogou;milysone@hotmail.fr;9c132391d904a9ad25391729cbe152fc;+229 95 85 66 44;Cotonou;Benin;-;Cotonou
+113;1;Lebwrat;Ahmed;M;ahmed.mrtn@yahoo.fr;67c2eb88ca96cad361c2407cfe1699fb;+222 633 34 35;Nouakchott;Mauritania;-;BP 5142
+114;1;Lamus;Andrey;Zhuralev;7650761@gmail.com;e071ba7536742ff8f05898e846df1230;+74 95 78 11 637;Moscou;Russian Federation;127562;Altufyevskoe schosse, dom 22 B
+115;1;Tamana Market;Ravinder;Singh;sono4you@gmail.com;aa81bb90e2e4f1d9613d67e687a98e31;+41 78 647 99 09;Genève;Switzerland;1201;37, Rue De Neuchatel 1201, Genève Suisse
+116;1;KTEPLUS;Kuassi Théodore;Atindehou;kteplusbenin@hotmail.com;054a1d6f69559146acb1a2bbb0b31924;+229 95 95 73 53;Cotonou;Benin;-;02 BP 253
+117;1;Giant Supermarket;John;Wiltor;giantsupermarket@yahoo.com;4056b52efbd3a56b777c4a4ca9382ad5;50929474450;Port au Prince;Haiti;46;68 Oge
+118;2;BOUTIKS;Jocelyne;Arginthe;arginthe.rn@wanadoo.fr;5d70bf38a77d798a9829b366cb9fa25b;292 692 690 296;Saint Benoit;Reunion Island;97470;Chemin de l'Abondance
+119;1;Samexport;Francisco;Rubio;samexport@maharajah.fr;9780db50a6257a78038aed2aa71de41f;+33 1 40 46 06 17;Mamoudzou;Mayotte;-97600;-
+120;1;La Samaritaine;David;Zognrah;lasamarit@yahoo.fr;44620023312ceb84b7187170c151a746;+228 90 53 363;Lomé;Togo;-;Rond point Akossombo BP 7551
+122;1;Cash Sergent;Eddy;Esther;cashsergent971@gmail.com;2f2aa3ebbf1565179accc7b2ad88e2cf;+33 6 90 49 38 87 ;Le Moule;Guadeloupe;97160;rue Artisans Zac de Sergent - BP 168  Le Moule
+123;1;Lagon;Philippe;Worick;phillipe.worick@wanadoo.fr;43375597a0aa39150efde9728ce86e32;+33 6 90 59 85 50;Sainte-Anne;Guadeloupe;97180;Bd Eugesippe Ibene
+124;1;LDC;Saysouly;Chasane;saysouly.c@ldc.la;37e23bca308c6b0a197e7ef079879d9b;85 621 771 725;Vientiane;Laos;-;Route 18,
+125;1;Bio Natural;Fatah;Abu;bio-naturalbeveragecoltd@hotmail.com;07fcd35ede8b4e8ebeb6a79ac11d86d5;66949697081;Bangkok;Thailand;10210;242/251-252 Moo 3, Song - Pra - Pha Road, See - Gun Subdistrict
+126;1;;Djamel;Merrir;d.merrir@gmail.com;e2809e0363b2912258828687960f9b44;+212 66 371 93 65;Maroc;Morocco;52100;Maroc
+127;1;La Sorbetière;Alain;Josse;sorbetiere@lagoon.nc;6afe2494976d1fe26f9799d53378dedf;687781824;Nouméa;New Caledonia;98807;BP 8077
+128;1;Mode Harmony s.r.o.;Patrick;Bouhanik;p.bouhanik@gmail.com;d8add48bb50b474b49a7ac9a6e6e83e9;;;;;
+129;1;Mgboko United Investments;E O;Esabia;mgboko_united@hotmail.com;d4f52c1fe0e1c8edc566a3ac18936ca9;2209901249;Serrekunda;Gambia;-;24 Fillan Street, Dippakunda
+130;1;SDPC;Yves;Motton;yves.motton@sdpc-international.fr;8aa339ee9d5d5d7b7ba2f0cbd3ff46f5;+ 33 9 52254546;Bordeaux;France;33800;42 rue de Tauzia
+131;1;M2A Export;Mazen;Jaber;mjaber@m2a-export.com;a3ea34ef175c9074e17f94ddb9c5f0b5;+33 1 45 02 03 04;Paris;France;75116;53 avenue Victor Hugo
+132;1;Geochri IKE;Christos;Xanthopoulos;geochrx@otenet.gr;599539b7d9042e97018ce56edcad76d3;302 108 974 660;Vari;Greece;16672;Papazoglou 7
+133;1;Euromarket;Arslan;Turcay;contact@euromarket-france.fr;e6742cdf5aaba946485528274cd22811;33 326 508 138;Cormontreuil;France;51300;39 rue des blancs monts
+134;1;Ets AYMANE;Aymane;Anjami;ajamiaymane@hotmail.fr;a7516a7a64425350d68cdf1ed938b854;33 663 833 589;Abidjan;Ivory Coast;-;Abidjan
+135;1;Touba Alimentation;Bintou;Ndiaye;minimarchekeurkhadim@gmail.com;7e4cd28e6c7f158350aec59277a54db5;221 338 354 281;Dakar;Senegal;11813;-
+136;2;;Nadia;Djinadou;nadiadjinadou@yahoo.fr;a6fb57dac0c3e98147ac1d48f4dd8c1e;+33 6 95 37 36 01;Antony;France;92160;3 Parvis du Breuil
+137;1;Futurma SAS;Elimane ;Hanne;contact@futurma.fr;fffcd997efa72773da8f7e7249d5457e;+33 7 69 12 60 62;Paris;France;75019;16/20 boulevard de la Commanderie
+138;1;;Patrice;Zannou;patrice.zannou@hotmail.fr;d4f20ea09c23f3f466fcbe9a6abefe0b;+229 97 68 69 86;Cotonou;Benin;-;Cotonou
+139;1;CECA GADIS;Joseph;Noga;j.noga@cecagadis.com;69cd9e520fb6181e99af9d609a17ad86;+241 01 76 21 08;Libreville;Gabon;-;BP 89
+140;2;CRIXGWADA DISCOUNT;Christine;Lenox;crixgwadadiscount@yahoo.fr;7ebb31a398329d2433c17908e9960441;+33 6 90 76 88 42;Le Moule;Guadeloupe;97160;1282 Route de Sainte-Marguerite
+141;1;;Candan;Cleber;candan.cleber@gmail.com;0a3cacbdeba749394680802671f9f516;33 664 237 373;Pondichéry;India;521 521;-
+142;1;INIT;Laurent;Poyen;lpoyen@caribsup.com;b7d67bee3563b6c880e56edfdb71ed1f;;;;;
+143;1;;Mohamed;Isselmou;maryseisselmou@gmail.com;3e6312e43ca4ccc661fa69aafcd31d3d;+241 02 53 41 41;Libreville;Gabon;52100;BP
+144;2;;Khady;Ndiaye;ndiaye.khady1@gmail.com;0d230256bb350fdb195bd25fc6c3f431;33 629 170 695;Melun;France;77000;22 rue de l'industrie
+145;1;C trade FZC;David;Chauvet;hamzajman@gmail.com;ac52c3f8daa3a4c20c8f8d8243d505ab;9,71564E+11;Sharjah;United Arab Emirates;54180;Po box
+146;1;Zeina SARL;Fadel;Zeina;fzeina@hotmail.fr;49fbec09faa7ca3cc0ed557d0e59fd17;96170842510;Beyrouth  ;Lebanon;99999;Rue mar elias
+147;2;Traoré Santé;Madine;Koiba;madinak@hotmail.fr;2009460e6e5dc3dd48ea6a14c451f913;+33 6 64 66 18 32;Bamako;Mali;99999;BP
+148;1;;David;Wallabrègue;sidawa@gmail.com;08cb38375ae76e4d5cdf8badb946ab79;+221 77 33 61 85;Dakar;France;52100;BP
+149;1;Superette de la Foire;Alioune;Badara Ly;aliouly81@gmail.com;a2d4be96be5f50bca8851183b93600d3;+221 77 426 55 62;Dakar;Senegal;-;Près la Foire
+150;1;Maxi H;Hassan;Katibi;hkatibi@hotmail.com;bf3ec6acccfce7b62d45ce17352aaeea;24106848484;Port Gentil;Gabon;-;-
+151;1;Groupe New Trade Invest;Guilherme;Quissoca;groupnewtradeinvest@gmail.com;40c255bea04228677531e75925698e75;32483078816;Bruxelles;Belgium;1020;rue Stuyvenbergh 5
+152;1;;Sochet;Oeung;sochet2017@gmail.com;34e01594a98db40b8112f7cc43c72554;+855 12 955 558;Phnom Penh;Cambodia;52100;-
+153;1;Au Bon Marché de Thies;Alain;Colson;aubonmarchethies@gmail.com;05ddafb4cc871c5309eb62a0097bd237;+221 77 56 91 072;Thies;Senegal;-;Thies
+154;2;Prisunic;Pascale;Khalil;pascalekn@hotmail.com;d71f1c96bde662fcaaad0ff53f440f0d;+221 77 549 24 24;Thies;Senegal;-;Thies
+155;2;CBA Ltd;Elisabeth;Pascal;elizabeth-pascal@cbamauritius.com;0c1de848fc6742b68a5ff1be18af5349;+230 54 21 43 55;Port Louis;Mauritius;-;49 Labourdonnais Street
+156;1;;Coly;Demba;dembacolyba@hotmail.fr;0d230256bb350fdb195bd25fc6c3f431;34 653 140 503;Dakar;Senegal;-;Dakar
+157;1;;Nicolas;Corbay;nicolas@mundoshop.org;3714b02931c08020632744c12fb8838b;;;;;
+158;1;Sodipral;Mohamed;Cheikh;cheikh.sodipral@gmail.com;1dbaf34db6424ed24558c3bb0f5ad0a0;22 226 638 330;Nouakchott;Mauritania;-;-
+159;1;METCO SARL;Yacine ;Mahiddine;sarl.metco@gmail.com;160229178fed742245ad1d7c0b8191c7;+33 6 44 10 29 14;-;Algeria;52100;-
+160;1;IMPORT-AFRIC SARL;Aurélien Bonaventure ;MPILI;importafric66@gmail.com;0cb3758aa8d6228c9b0fe5023064d922;+242 06 696 93 10;Brazzaville;Congo, Republic;-;40,Rue les Allouettes
+161;1;MACODIS;Christophe;Girardier;mayhalal@hotmail.fr;fef141af7e982ab2885352292a3acf42;+33 6 62 34 54 64;Longoni;Mayotte;52100;Longoni
+162;2;Isa Shopping;Isabelle;Jankowiak;les-meilleurs-tarifs@orange.fr;621653ef1d63015d8d0f38a3c0afa93c;+33 6.60.81.96.27;GRANDE SYNTHE;France;59760;APPARTEMENT 11 RESIDENCE VICTORIA
+163;1;Nagadef;Junior;Robert;contact@nagadef.com;bf340b4a0e791681005efcdf409595fc;+33 6 69 58 64 62;Les Mureaux;France;78130;12 Allée de Picardie
+164;1;International A.O.P;Stéphane;Paquemar;stephanepaquemar@internationalaop.com;39dfaf99c32eb39d4e87063627d807b9;+33 4 42 55 02 08;Salon de Provence;France;13300;22 rue Pontis
+165;2;;Hélène;Simoens;helene.simoes@transgourmet.fr;39a7fa317ac3375f14860a6ea32a4aae;+33 6 16 68 05 05;Rungis Cedex;France;94658;9, boulevard du Delta
+166;2;SADIDYA;Fatou Mata;Campaoré;sadydia@yahoo.fr;2c8d8bf0932226583dc7f40c02bdcec4;+226 70 25 24 58;Oudagoudou;France;52100;Ouadagoudou
+167;1;LARIVE Alimentation;Innocent;Kiemeka;kiemekalarive@yahoo.com;1378e48a015ace4527ddbdbcf52c5acb;+33 6 24 58 35 70;Yaoundé;Cameroon;-;Yaoundé
+710;1;LARIVE Alimentation;Innocent;Kiemeka;kiemekalarive@yahoo.com;1378e48a015ace4527ddbdbcf52c5acb;+33 6 73 14 04 31;Yaoundé;Cameroon;-;Yaoundé
+168;1;Concorde Lomé;Max;Agbodjan;imaxito@hotmail.com;712cd75a7f24404491ee65ec6e1baeff;+33 6 26 47 38 97;Paris;France;75018;-
+169;1;;Cheikh;Badiane;badianecb@gmail.com;baf45e5549e19c59c888c95afa279f20;+33 7 70 34 77 02;Dakar;Senegal;-;-
+170;1;;Patrick;Zitte;zpat974@gmail.com;693015bd7583ab26d58fe55643b9b71b;33 692 044 574;Saint Denis;Reunion Island;97400;Réunion
+171;1;Hasar Trade LLC;Arslanbaatar;Ganzorig;aganzorig_ch@yahoo.com;7efc8309466849b05e9ea1baabb3688f;-99991651;Ulaanbaatar;Mongolia;15141;Suite 34, Baga Toiruu 11 Khoroo 4, Chingeltei District
+172;1;MON PRIX;Abdou Razak;N'Diaye;monprix2014@gmail.com;bc0c89d14a46efa348e180f75625b35c;+221 33.860.51.40;Dakar;Senegal;-;Ouakam
+173;1;;Yann;Mabika;mabika_yann@yahoo.com;6914b32445dc63f82f1bca851ee1f418;+33 9 86 38 36 59;Pointe Noire;Congo, Dem. Republic;-;Pointe Noire
+174;1;;Hussein;Daoud;dakar@midexpress.fr;d30d497c42d33ff3450bd7a0efd27e90;2,21777E+11;Orly;France;94394;Rue du Négoce
+175;2;;Enrafati;Djihadi;enrafati.enra@gmail.com;8729483c0a18e9165a90d430721fbefa;639291765;SADA;Mayotte;97640;Rue Younoussa Bamana Comojou
+714;2;;Enrafati;Djihadi;enrafati.enra@gmail.com;8729483c0a18e9165a90d430721fbefa;639291765;SADA;Mayotte;97640;Rue Younoussa Bamana Comojou
+176;2;EIRL FOOD DISTRIBUTION;Marie;Jean-Marie;eirl.fooddistribution@gmail.com;df40f0361ac4ae01b13b4c984279f4e2;+33 6 93 60 71 42;Le Port;Reunion Island;97420;24 Rue Heinrich Finck
+177;2;Bama service;Thoibati;Fahardine;thoibati.bama-service@orange.fr;6ecbf8a78ba55da0d090f55384ceacce;+33 6 39 00 37 43;Bandraboua;Mayotte;97650;BP 36 Dzoumogné 97650 Bandraboua Mayotte
+178;1;Aicha Import Export;Moussa;Kamara;moussakamara@sasaicha.com;0d230256bb350fdb195bd25fc6c3f431;+33 6 19230532;Marseille;France;13001;10 Rue de la République 13001 Marseille France
+179;2;Xelcom Market;Aminata;Ndong;ndongamina51@gmail.com;0d230256bb350fdb195bd25fc6c3f431;2,21774E+11;Dakar;Senegal;-;Liberte 6 Extension n°166
+180;2;Api boutiques;Mimi;Diop;apiboutiquethies3@gmail.com;1122eca6c00acbe3ee613ac2041190dd;2,2178E+11;Thiès;Senegal;-;Route de Montrolland
+181;1;BUROTEC;Ritesh;BUROTEC;achats@burotec.biz;06d382687418e48449f0c5be6911ab70;+242 05 537 14 51;Pointe Noire;Congo, Republic;-;98, Bld Charles de Gaulle
+711;1;BUROTEC;Ritesh;BUROTEC;achats@burotec.biz;06d382687418e48449f0c5be6911ab70;+242 05 537 14 51;Pointe-Noire;Congo, Republic;-;98, Bld Charles de Gaulle
+182;1;SHADYCO;Abdel;Rahman;ramyco@bluewin.ch;1742df853dc166100c1a7bde477952a0;41763838928;Genève;Switzerland;5210;Satigny
+183;1;;Hassen;Abidat;Hassen.abidat@yahoo.fr;95e16c54562174fa99b014f8963eeaa2;+33 6 89 21 24 90;Grenoble;France;38000;-
+184;1;Dar Rakim & Compagnie; ;Chelli;dar_rakim@hotmail.com;724b7e0a57741b02adc66f098e6645f6;+223 76 55 59 55;Bamako;Mali;-;lafiabougou rue 291 porte 37
+185;1;;Boubacar;BAthily;boubacar.bathily@yahoo.com;6339d385c76ee252fc36f9b320d2eeab;22379444546;Bamako;Mali;-;
+186;1;Phone;Carrel;Dias;carreldiasolua@gmail.com;67c47245e2336fb3c4bea84ce7b1dfc0;-2435;Mississauga;Canada;L5M 0P5;3050 Erin Centre Blvd
+187;1;TAKWID GROUP!;Desmond;Takwi;dtakwi@gmail.com;a47f28f23449de7ea94a685b97c4c4c8;237 661 428 989;Bamenda;Cameroon;-;UG Floor, Commercial Avenue, Azire Credit Union Building
+188;1;Dombe market;Nicaise;Koumba;nicaise07nkoumba@gmail.com;3e6312e43ca4ccc661fa69aafcd31d3d;24 106 957 273;Libreville;Gabon;6126;
+189;1;Pas à Pas;Matthieu;Rouquier;matthieurouquier@gmail.com;7efc8309466849b05e9ea1baabb3688f;97 688 117 490;Oulan Bator;Mongolia;-;
+190;1;Snackrate;Kyle;Roarke;kyle@snackcrate.com;0266cca2d29ef16fc41a9e827cec4f78;+1.850.748.3878;Pensacola;United States;32501;201 E. Wright St.,  Pensacola,
+191;1;ALIM EXPRESS TRADE;Moussa;Seck;alimexpress35@gmail.com;d35311a050767c4f232acbe97317549d;+33 6 71 07 90 08;Nouackschott;Mauritania;-;-
+192;2;Supérette des Délices;Julie;Brosch;superette.delices@gmail.com;4dc0abf5edadc0d62d75fa84f50d969f;+33 6 92 63 75 24;La plaine des Palmistes;Reunion Island;97431;-
+193;1;AMP Courses;Eugène;Pamphyle;ampcourses@wanadoo.fr;1ce29f2de479196f441d1328c8a062d3;+33 6 96 82 61 86;Fort de France;Martinique;-;-
+194;2;Noor International;Nisrine;Bark;nisrine@noor-international.fr;0200cc436132161624cb88b5d52a6202;+33 6 46 89 02 24;Sannois;France;95110;Immeuble ACCET
+195;1;Sakanal;Serigne Madické;Seck;info@sakanal.sn;41c64947dc41fbc1b13b4d775dd8bb29;+221 77 567 20 67;Dakar;Senegal;-;Comptoir Commercial Sope Nabi
+196;1;EDK Oil;Ibrahima;Diop;ibrahima.diop@edkoil.com;3f30b8163a4c7764b485d92d6f27d94d;+221 78 546 87 66;Dakar Medina;Senegal;-;78M, cité des magistrats
+197;1;DFC GUYANE;Joseph;Renzil;d.f.c.guyane@orange.fr;7c8edf655c5951c9ddab24fa96d6b422;+33 5 94 30 24 75;Cayenne;Guyana;97300;37 rue Ernest Prévôt
+198;1;Zahara;Ibrahima;Fofana;fofbusness@gmail.com;e7c04351f46149874380ece88462fa44;+223 66 92 25 45;Bamako;Mali;-;-
+199;1;SCOI;Ischem;Karmaly;ikarmaly@scoi.mg;6e14aa7b94de8270522659ee778669da;+ 261 32 07 881 14;Ebene;Mauritius;72201;Hotel Avenue Ground Floor
+200;1;Delimart;Sébastien;Boulos;sebastien.boulos@delimarthaiti.com;1b442f33c885f67ffc56dbbc783c0a8f;15 612 519 715;Port au Prince;Haiti;-;-
+201;1;AC Horizon;Arnaud;Crépin;achorizon@gmail.com;6817013112dc25b51cc5cebac55b939d;33 604 023 319;Canteleu;France;76830;88 chemin de Croisset
+202;1;Bon Appetit;Thierry;Claude;chyler06@gmail.com;7d3941e00a1e9e6a033c9b3b0c9b4a3d;12 093 675 930;Lodi;United States;95240;1012 w lodi Ave
+203;1;SAS Cadixx;Larbi;Zerouki;Sas.cadixx@gmail.com;9f1a7bb0e8c6516fc587fad77d58f42d;+33 6 64 56 77 28;Roubaix;France;59200;25 Bd de la République
+204;1;Exporteo;Maxime;Tong;maxime.tong@importeo.fr;9224a603fadfad321bab393004fd6f2b;+33 1 48 34 98 98;Aubervilliers;France;93300;Local 227 70 Avenue Victor Hugo
+205;1;SCIMAS;Elias;Azar;eliasazar.scimas@gmail.com;ebdcd51cc19c85c5a111a15b3dc8a964;+226 25 30 71 55;Ouadagoudou;Burkina Faso;226;01 BP 724 OUAGA 01
+206;1;Paros Intendance;Stéohane;Degaugue;info@paros-intendance.com;76ea2cc4be2f752bbd5ddb8ef63094cf;306 970 827 108;Parikia / Paros;Greece;84400;Ekatontapilianis Square
+713;1;;Sam;Khiar;smlkhiar@live.fr;1fe374a97b628670fcb4486a7f717ba8;+33 6 32 45 56 65;Paris;France;75020;Paris
+207;1;;Sam;Khiar;smlkhiar@live.fr;1fe374a97b628670fcb4486a7f717ba8;+33 6 63 45 65 74;Alger;Algeria;52100;
+208;1;NK Consulting;Nicolas;Kulakowski;n.kulakowski@nkonsulting.ch;5420c77003b55c8486beacfda35e9d9f;33 624 378 811;Paris;France;75008;7 Avenue Franklin Roosevelt
+209;2;Willefert;Irena;Willefert;pas.willefert@club-internet.fr;fef52ab26302545c13f80e1e7eef07cd;4,20732E+11;hranice ;Czech Republic;75301;RADNICNI 31
+210;2;Sinofram;Celine;Hu;celinehu75@gmail.com;58406e02a340395d04d6e777cfb4320b;33 760 519 509;Paris;France;75008;-
+211;2;BOK;Khamissa;Babkir;babikir_khamissa@hotmail.com;ab5e059180059707f7870f2671fa315d;23566100200;N'Djamena;Chad;-;-
+212;2;Olaife;Makessa;Sounguet;makessa.sounguet@gmail.com;4b00e5224c1807ae42ac18b224dede02;+241 07 53 24 00;Libreville;Gabon;7554;Avorbam
+213;1;Computer and communication SARL;Moustaph;Traoré;t.moustaph@yahoo.fr;e7c04351f46149874380ece88462fa44;22 376 410 508;Bamako;Mali;223;-
+214;1;;Firas;El Mawla;elmawla.firas@gmail.com;3f480f2ba5355cdbfa6aa1d4f4d4d2c4;9613171758;Tripoli;Libya;-;-
+215;1;;Boubacar;Macalou;bmacalou@orange.fr;6339d385c76ee252fc36f9b320d2eeab;+33 6 12 58 69 62;Dakar;Senegal;-;
+216;1;TASCH GROUP;Zhongzheng;Zhou;z.zhou@taschgroup.com;1fcc8074a3b19e6ba4ee7abec4c40a01;+33 6 51 58 20 00;Paris;France;75008;
+217;1;Chawadel's Development;Ali Mohamed;Chadily;chawadels.dev@gmail.com;3c63ba1c498b1f7d62f782096e0127a6;+253 77 78 53 82;Djibouti;Djibouti;-;Downtown
+218;1;PROSUMA;Rehman;Kassam;rkassam@prosuma.ci;7172187a29381b884b76a299b4c7757b;+225 21 22 32 32;Abidjan;Ivory Coast;-;Rue des Carrossiers – Zone 3 -
+219;1;;Alaa;Alsharbati;Ala.alsharbati@gmail.com;1bdab86db31b0e43fdb5e9eda479a229;+33 6 64 46 63 06;Gaza;Palestinian Territories;-;-
+220;1;All Import;André Yueng Kwai;André Yueng Kwai;yk1962andre@gmail.com;bb8e449f1c9702faa378a84319cddc8b;687 859 254;Paita;New Caledonia;98890;14 lot ma plaine Ondemia Paita
+221;1;;Quynh;Nguyen;quynh241079@yahoo.com;aee519f00087ff6f017365ed73cac94f;84903883246;Ho Chi Minh City;Vietnam;700000;19/2 Doan Thi Diem, Ward 1
+222;1;Daika;Michel;Rey;reymichel@me.com;1e6d6d5f53b8e7a08c11e59c9ae63d94;+33 7 51 23 89 23;Moroni;Comoros;-;-
+223;1;DIFS;Thierry;Sutour;thierrysutour.ts@gmail.com;d5ad243286411457e8f9cc289fd16483;22521259090;Abidjan;Ivory Coast;-;Zone 4 rue du canal
+224;1;SARL SIX;-;Six;tina_market@yahoo.com;f51b7359b9dd9f4863c4a1f208f35bd6;687 460 502;Nouméa;New Caledonia;98800;66 Rue Georges Lecques
+225;2;Prima;Astrid;Accalogoun;sagnas1@gmail.com;410c7ffe73fcf2eb83ede6bd88560375;+33 6 34 39 40 21;Cortonou;Benin;-;-
+226;1;La Boulangère iSRAÊL;Laurent;Albou;laboulangere.israel@gmail.com;534c5dc06e92e4d5740a4624b779962f;+33 1 77 50 13 33;Tel Aviv;Israel;1000000;-
+227;1;Magasin Rocky;Alain;Khodidas;magasin.rocky@gmail.com;3901f6ac68e8d127363aed5dd51c5dac;+33 6 39 60 80 97;Mamoudzou;Mayotte;97600;-
+228;1;IMOULA FOODS SARL;Ali;Aboukas;yerres.distribution@hotmail.fr;8b73594b26ddb7ce1629dd8629614120;33 684 271 289;ait melloul agadir;Morocco;86150;-
+229;0;Business Developpement;Vepkhia;Tsetskhladze;info@b-d.ge;e9d778e0f1333bef0f701c79e47b43ee;995 570 504 578;Batumi;Georgia;0;Kevan Tsamebuli Lane-2
+230;1;;Ilia ;Sharikadze;ilia@nikora.ge;e9d778e0f1333bef0f701c79e47b43ee;(+995) 595 959 696;Tbilissi;Georgia;159;Tbilisi
+231;1;Association Z'anana;Paul Armand;Hoareau;hommenature153624@gmail.com;8729483c0a18e9165a90d430721fbefa;+33 6 92 78 02 07;Saint Joseph;Mayotte;97400;11 C rue Louis Blériot
+232;1;;El Hadji Mamdou Chérif;Salla;emcs8866@gmail.com;0d230256bb350fdb195bd25fc6c3f431;221 772 151 966;Dakar;Senegal;12783;8,Fassage Louveau
+233;1;Y NGUYEN CO., LTD;Thi Ly;Nguyen;alyvnam@gmail.com;39dfaf99c32eb39d4e87063627d807b9;8438996461;Ho Chi Minh Ville;Vietnam;521000;16 Rue Bach Dang
+234;2;France at home;Sandra;Ira;Info@franceathome.com.au;0c81fe63257b3a95f00aff478b516a8d;61439692433;Craigieburn;Australia;3064;27 Wyperfeld Avenue
+235;1;CDCI;Oussama;Najar;o.najar@cdci.ci;7a9d4549024eb1da0da2679f91b560b3;+225 59 86 24 66;Abidjan;Ivory Coast;-;-
+236;1;Fama Saloum Sarl;Saloum;Fall;saloum.fall@famasaloum.com;0d230256bb350fdb195bd25fc6c3f431;;;;;
+237;2;;Béatrice;Doumbia;beatrice.doumbia@laposte.net;e7c04351f46149874380ece88462fa44;+33 7 81 31 60 82;Bamako;Mali;-;-
+238;1;Gizz Dodo Supermarket;Vanessen;Singaravelloo;gizz@orange.mu;c14dba8b3c2508a1611d8c9456b7b095;23 852 554 699;Albion;Mauritius;-;-
+239;2;Sodiacam;Olga;Mbila;o.mbila@sodiacam.com;db20244ad7d79cc55fcac0fffbb115a3;+237 699 31 38 58;Douala;Cameroon;-;582, Blvd Leclerc
+240;1;Supermarché la Gaulette;Paul;Chin Koon;lgs.paul@intnet.mu;c14dba8b3c2508a1611d8c9456b7b095;+238 451 52 18;La Gaulette;Mauritius;-;Royal Road 1903
+716;1;Supermarché la Gaulette;Paul;Chin Koon;lgs.paul@intnet.mu;c14dba8b3c2508a1611d8c9456b7b095;+238 451 52 18;La Gaulette;Mauritius;-;Royal Road 1903
+241;1;International Foodies;Antoni;Negosanti;internationalfoodies7@gmail.com;8861446796e7f41836f920cb45e12899;687 263 978;Nouméa;New Caledonia;98800;17 rue de la recherche Magenta
+242;1;WINNERS;Devesh;Sookaloo;winprb@winners.mu;f4884b0cc1050ac5e253b6a523dc7715;23 057 895 080;Grand Baie;Mauritius;-;Royal Road, B13
+243;1;King Savers;Kavi;Doolub;kavidoolub@yahoo.com;96646734808c844ee58ec2743b57918c;+230 52 54 19 78;Grand Baie;Mauritius;-;Centre Commercial Mont Choisy
+244;2;;Isabelle;Henique;cati@cati91.fr;12cfe52deebc3d9eb267e2a2c2e87c7c;33 169 721 480;Fleury Mérogis;France;91700;Rue Clément Ader
+246;1;Nocimex; Talal;Seghir;talase@wanadoo.fr;6e2fa4bea41674ecfa5255f7ef57386d;+33 6 80 03 25 03;DAKAR;Senegal;SN;-
+717;2;LGM Market;Sylvie;Rofes;ys11@orange.fr;af1ceeb1cbc9645176fe5d2d4ff10503;2,42054E+11;Pointe Noire;Congo, Republic;-;Rue de la ferme
+718;2;LGM Market;Sylvie;Rofes;ys11@orange.fr;af1ceeb1cbc9645176fe5d2d4ff10503;0;BRAZZAVILLE;Congo, Republic;0;116 AVENUE DE FRANCE
+247;2;LGM Market;Sylvie;Rofes;ys11@orange.fr;af1ceeb1cbc9645176fe5d2d4ff10503;2,42054E+11;BRAZZAVILLE;Congo, Republic;-;116 AVENUE DE FRANCE
+248;1;;Liyang;Liu;achat@edtexpress.com;f7280c1b399b7023f488ba1e6f0e26c8;+33 6 17 98 72 84;Paris;France;75001;15 rue d'Argenteuil
+249;1;Shippay;Zakaria;Boumarouane;z.boumarouane@gmail.com;e29c8db16063ce398ee5ca41535ed9be;2,12677E+11;Rabat;Morocco;10140;Amal 2 bloc A num 630 CYM
+250;1;Fortis Distribution;Pierre;Vantinis;fortisdistri68@gmail.com;e29c8db16063ce398ee5ca41535ed9be;+33 7 86 20 92 16;PAris;France;52100;-
+251;1;Market Paris;Sinala;Neang;n.sinala@hotmail.fr;75b2bb403021596e7c929124e1d34a21;+33 6 95 49 44 89;Mitry Mory ;France;77290;29 avenue de Londres
+252;2;U Group;Christine;Laigre;manager@u-groupsarl.com;a250d10b432b8cabbf8f31e4ccc7ab98;33 146 865 416;Chevilly Larue;France;94560;16 rue du séminaire
+253;2;Goods To Deal;Anna;Dell'oso;contact@goodstodeal.com;eac4312b016048c0ea268f3a1cf73326;+33 7 82 66 57 18;Bagnols en Forêt;France;83600;870 Chemin de Vauloube
+254;1;Eurodelices;Abdelbahri;Benbrahim;a.benbrahim@eurodelices.com;00a4b9b038a34ff5e2115814766bf674;+33 1 46 86 90 40;Rungis Cedex;France;94586;1 rue de la Corderie
+255;1;Proxi Market;Jerry;Cozema;jerrycozema@yahoo.fr;fcfb7e1cf669bdb5cc601ad28a12a04b;+33 6 90 56 15 46;Morne-à-l'Eau;Guadeloupe;97111;7 lotissement houdan
+256;1;VEST;Zeynep;YILDIZ;zeynep@vest.com.tr;4f91ab7010a668f1ed2ea64cb6876bf6;902 165 949 168;İSTANBUL;Turkey;52100;ŞERİFALİ MH.TURCAN  -
+257;1;PSC Consulting;Bertrand;Schmitt;bertrand@psconsultingtrading.com;8861446796e7f41836f920cb45e12899;+687 77 35 60;Nouméa Cedex;New Caledonia;98857;6 rue de Valbonne
+258;1;Havila-Land SARL;Septime Perpétue;Alavo;septimealavo@gmail.com;410c7ffe73fcf2eb83ede6bd88560375;22 961 235 959;Cotonou;Benin;-;missebo
+259;2;;Lisbeth;Mauger;romalylea@gmail.com;1e0848c8232dd31557ec713885a705cc;18322823617;Houston;United States;77058;2425 sage road 77056 Houston Etats Unis
+260;1;SODISFAB;Rosan;Boudhou;sodisfab@gmail.com;34dad0ff77ec5be5cdd4b66754004555;33 690 481 548;Morne à l'Eau;Guadeloupe;97111;-
+261;1;Bullseyeph;Kevin;Hoffert;kaahoffert@ymail.com;3079806b7cd55617d71b65fa5c6e0ea0;6,39176E+11;Pasig;Philippines;5210;Evangelista Street
+262;1;;Patrick;MBELE;patmbele75@yahoo.fr;7e38e4e828e37124b9448a63fcce6ff8;24106020230;Libreville;Gabon;-;BP 7091
+263;1;Supermarché Divkaran;Karan;Pritmani;karanpritmani@yahoo.com;60ec41f5bed6002ee40681a05d0e96b0;237 677 967 518;Douala;Cameroon;-;B.P 1951
+264;1;Union Central;Yan;Zhang;union.central.annecy@gmail.com;5ea12b7eb96a83a4e1d67974047775de;33669166685;Annecy le Vieux;France;74940;60, route du périmètre
+265;1;Gourmet Cuisine Hong-Kong;Jérôme;Heuzé;jerome.h@gourmetcuisine.com.hk;5eef3d7f19cde67c204764dac842f22d;85224941979;Hong-Kong;HongKong;-;38 Kwai Fung Crescent
+266;1;ANGLISS GOURMET PARTNER;Régis;Heuzé;regis@gourmetpartner.com.sg;e94dd6c9c80dfbafc83dc7ca2e359669;6 598 225 463;Singapour;Singapore;128420;232 Pandan Loop
+267;1;Géant Niger;Charbel;el Hage;geantniger@hotmail.com;d5461282bd2d250bfc629155b8f6f7f4;22 798 881 111;Niamey;Niger;-;-
+268;1;;Mohamed;Labass;mohamed.labass@gmail.com;e7c04351f46149874380ece88462fa44;+33 6 66 44 22 94;Bamako;Mali;-;-
+269;2;;Séverine;Leboube;sevleboube@aol.com;7d3941e00a1e9e6a033c9b3b0c9b4a3d;+33 6 62 61 63 54;San Francisco;United States;52100;San Francisco
+270;1;Ingedis SARL;Serge;Torralba;imgedis@lagoon.nc;8861446796e7f41836f920cb45e12899;687773484;Nouméa;New Caledonia;98846;16 rue Prosper Mérimée Magenta
+271;1;Fidei Sarl;Mamy;Randrianasolo;fidei.sarl@outlook.com;6e14aa7b94de8270522659ee778669da;;;;;
+272;2;Europroduct;Elisabeth;Brodzeli;e.brodzeli@europroduct.ge;af854d1434546e138cc36dc7b1737e9c;995 599 009 909;Tbilissi;Georgia;189;2 rue Gagra,
+273;2;Abed Trading;Sarah;Abed;abedsarah@hotmail.fr;aee52ce3956a566bcf729ea5ce9cba12;+33 7 77 91 03 78;Nouakchott;Mauritania;-;-
+274;1;Nosoco Togo;Omran;Tarraf;omran.tarraf@gmail.com;fa2893810d36bdfb98eefe00adec5799;22822211511;Lomé;Togo;07BP14389;15 Av SYLVANUS OLYMPIO (EX RUE DU COMMERCE)
+275;1;ZGAPARI;Giorgi;Arsenidze;arsenidzegeorge@gmail.com;af854d1434546e138cc36dc7b1737e9c;+995 555 22 22 11;Tbilissi;Georgia;189;17 rue Tchitchinadze
+276;1;XOil Congo;Frédéric;Anne;fanne@xoil-congo.com;b2eca40461a4cb643eb291f2e8b06fa8;+242 05 355 9191;Pointe NOire;Congo, Republic;-;Immeuble SDV
+277;1;Plunkett Group Of Companies;Chung;Lung;export1.departmental@zoho.com;8ef27b11d8eb005a8de3cc3146972ddd; +1-566-578-7622;San Bernardino;United States;92410;3216 Roosevelt Wilson Lane
+278;1;La Sahélienne;Oumar;Toure;o_toure2004@yahoo.fr;e7c04351f46149874380ece88462fa44;+33 6 11 86 88 75;Bamako;Mali;-;BP 1487
+279;1;CAFE MATIC;Omar;Belhaouane;contact@cafe-matic.com;1103f929c1454a732238e8d4914022b7;+ 33 7 51 55 48 56;Villeneuve d'Ascq;France;59650;Appartement 1
+280;1;;Jibril;Toure;djibril3fr@gmail.com;f0f80c43e2e85eff311adfb56d520ba4;+33 6 58 46 98 69;Metz;France;57000;13 Rue des Robert
+281;2;SUPERETTE HAAMENE;Rina;Atger;aelbattah@gmail.com;bafcffba4c633f95bbc0fdc5e2841849;68987700537;Papeete;France;98148;-
+282;1;;Alain;Mwenda ilunga;mwenda_alain@yahoo.fr;842c0183ebc42edca5281cb26bc6af80;352 621 468 013;Licasi;Congo, Dem. Republic;-;Av de la Mine
+283;1;Tiansheng Source Trading Co,.Ltd;Qu;Lei;magictreelay@gmail.com;7c0776161d7f08dfcc0a50480bc6929e;31644599458;Fuzhou;China;521000;Dongbindadao 68#, Fuzhou city, China
+284;1;DF Distribution;Fred;Ahyee;fredahyeej@gmail.com;410c7ffe73fcf2eb83ede6bd88560375;22 997 117 175;Cotonou;Benin;-;-
+285;1;;André;Pamphile;pamphileaa@wanadoo.fr;b1101ea52ddcdb9db6ec2e5f88febfaa;+596 696 45 59 12;3 Ilets;Martinique;97229;-
+719;2;SOMACO;Aya;Amara;somacongoo@gmail.com;6914b32445dc63f82f1bca851ee1f418;+242 04 400 00 04;Pointe-Noire;Congo, Republic;-;Avenue Marien Nguabi
+286;2;SOMACO;Aya;Amara;somacongoo@gmail.com;6914b32445dc63f82f1bca851ee1f418;+242 04 000 00 07;Pointe-Noire;Congo, Republic;-;Avenue Marien Nguabi
+287;1;;Farez;Cassam;Sophiata.souffou@yahoo.com;c3aa74dd2c20fdd0d149a4be91160247;+33 639 66 98 01;Chrirongui;Mayotte;97620;BP 45 CHIRONGUI
+288;1;Just Perfect;Mikael;Brami;mikael@just-perfect.fr;7a9d4549024eb1da0da2679f91b560b3;+ 33 6 98 95 44 77;Paris;France;75017;26 rue Cardinet
+289;1;Pirchou Dakar;Riad;karaouni;vmax2roues@hotmail.com;0a35ef2cd58a34071adc887f43f14032;+33 6 86 66 60 07;Saint-Denis;France;93200;151 Avenue du Président Wilson
+290;1;W&V Trading Company Limited;Khim;Pondara;pondarakhim@yahoo.com;7f429b76e806228fc916b623aad98044;855 012 923 730;Phnom Penh;Cambodia;52100;26e0 Rue 88
+291;1;Phenix;Thi Bich Huong;Nguyen;vumarielou2003@gmail.com;96d14e67be6caa81e6428380abe56c20;33 652 485 855;St Meen le Grand;France;35290;7 rue Suzanne Valadon
+292;1;ECS;Roberto;Marra;rmarra@ecs.mc;171864e6333594f8e6fe7ff0bfde3938;+377 97.98.72.82;Monaco;Monaco;98000;Gildo Pastor Center
+293;2;Audouin;Caroline;Audouin;orac1982@yahoo.fr;410694cbe8997544cb45a2ef31c2711b;68987253613;Punaauia;French Polynesia;98704;Les hauts Matahiarii lots 24
+294;2;ALGOMA INT Ltd;Michelle;-;michelle@algomainternational.com;5eef3d7f19cde67c204764dac842f22d;85 239 564 575;Hong Kong;HongKong;-;-
+295;1;Via Group;Vivien;Tsomambet;viargroup@gmail.com;62a9010f053bb29efa5c6ba2e5d2cc28;+242 06 999 85 68;Brazzaville;Congo, Republic;-;J 260Moungali 3 OCH
+296;1;IYH Import;Eyal;Assaraf;eyal@iyh-imports.com;f8002b724af9eb393e6cd59a898a72b6;9,72584E+11;raanana;Israel;0;ar sinai 24
+297;1;COFRACE;Pierre;Nouaille;pierre.nouaille@cofrace.com;337488d58749fe3f7d96154611166b22;+33 6.09.04.88.88;Tripoli;Libya;-;-
+298;1;Chez Francis et Sylvie;Francis;Dren;f.dren@btinternet.com;12a284fa1545164133effab9d186e436;8 458 385 347;Londres;United Kingdom;-;-
+299;2;Tsenahub;Karina;Chan Marie;karinalalanirina@yahoo.fr;bbbcdf321138565f473cd32569759623;2,21773E+11;Dakar;Senegal;-;-
+300;1;Bysance Group;Pascal H;Coussa;byzance.int.group@gmail.com;85aecd4ddf32525e17500d40ff9a391a;9613307703;Beyrouth;Lebanon;900011;Downsouks Allenby Street
+301;1;Moni Shop;Toussaint;Ndombassi;toussaint.monishop@gmail.com;b6413fdb26cfcb776cef00ac8a47509a;2,43824E+11;Kinshasa;Congo, Dem. Republic;-;Avenue Kasa-Wubu n°17
+302;1;Société Générale de Négoce;Pape;Ndao;societegeneraledenegoce@gmail.com;f0c31456c7c5708aa44b10c12a81ffef;+33 7 70 34 77 02;Dakar;Senegal;-;-
+303;1;NYX Group;Florian;Passera;florian@nyxdistributing.com;34c8c5891165a01e911fa3ac342eca16;+590 6 90 88 45 05;Saint Martin;Saint Martin;97150;Immeuble Centre d'affaires 17 rue Frederick Arrondell
+304;1;R-Market;Joël;Mbianjeu;tysneg@yahoo.fr;60ec41f5bed6002ee40681a05d0e96b0;2,37691E+11;Douala;Cameroon;-;BP 1235
+305;1;Blue Gate Trading Company Limited;Hassan;Bokhan;hassan.bokhari@bgt-ltd.com;c22a7a4ce459cd2b9ec8e3f62f1be1a0;+33 6 02 09 23 50;Ho Chi Minh City;Vietnam;700000;69/24 Tan Chanh Hiep
+306;1;Sunny Food Supermarket;Steven;Huang;s.sunnyfood@gmail.com;73e9e6560934e6460fbb1dbd31dd988f;1720699;Philipsburg;Saint Martin;-;#30-34 AT.Illidge Rood
+307;1;Marché Gourmand;Hussein;Kojok;kojokhussein@hotmail.com;1f99f9ce30a18492061751d59da19bb3;+242 06 511 87 71;Pointe Noire;Congo, Republic;-;Rond Pind Benji
+308;1;;Jean Félix;Tang;jeanfelix.tang@gmail.com;5081a647056f07ba82be52e1472e806a;+33 6 59 30 84 86;Boulogne;France;92100;-
+309;1;Aska Import Export;Samy;Djouhri;djouhrisamy@gmail.com;0436216b268875a16e2fb003a9bed64c;13 059 277 836;Miami Beach;United States;33139;400 south pointe dr
+310;1;Star Express;Jie;Yang;buaayang.j@gmail.com;9a90a11348c3cd0034cbbd25f3542943;+33 6 63 84 06 05;La Madeleine;France;59110;-
+311;1;Yerevan City. Alex holding;Christian;de Nale;christian.denale@yahoo.com;5bd1ad9c7e93a2c29e3b5b8483574ecd;37494437738;Erevan;Armenia;5210;Tichina Street. 3rd lane 2/2
+312;1;;Charles;Breleur;charles.breleur@gmail.com;67c47245e2336fb3c4bea84ce7b1dfc0;+33 6 19 51 95 85;Bagneux;France;92200;-
+313;1;FNB INTERNATIONAL;Venance;Pere;v.pere@lcalogisticsgroup.com;d5ce1b7531b300072f6444e8af6d1c96;22890128281;Lomé;Togo;60265;148 Rue Koubengou Doumassesse
+314;1;L’Épicerie du Levant;Bernard;Kastler;bernard.kastler@epiceriedulevant.com;d5ce1b7531b300072f6444e8af6d1c96;+228 93 46 77 77;Lomé;Togo;52;-
+315;1;;Monir;Hamed;monirhamed@hotmail.fr;70d16581cc435c32c6e13e5cac97c73f;+33 6 17 94 63 17;Doha;Qatar;-;-
+316;1;Noupa House;Limial;Harding;noupatel@gmail.com;1378e48a015ace4527ddbdbcf52c5acb;2,37676E+11;Yaoundé;Cameroon;-;-
+317;2;;Camille;Hamelle;C.Hamelle@whi.de;e0d57e158dbf4747da77e5a288b0407f;+49 40 333 12 225;Hambourg;Germany;52100;-
+318;1;;Walia;Ashwani;worldexim17@gmail.com;9df923351f1defcdef4da613bb7d7b47;16472914228;Mississaugs;Canada;L4T1B2;555 Derry Road East, Apartment 310
+319;1;Group Sangue;John Mickael;Sangue;sanguejm@mail.pf;410694cbe8997544cb45a2ef31c2711b;+689 87 376 531;Tahiti;French Polynesia;-;Tahiti
+320;2;;Emilie;Felder;emilie.felder18@gmail.com;b6413fdb26cfcb776cef00ac8a47509a;+41 76 341 73 02;Genève;Switzerland;1205;3 rue de la Muse
+720;1;Global Foodies SAL Overseas;Nadine;Mamlouk;nadine@globalfoodies-lb.com;2c15093fe38b416333140da0bc72be66;96176625107;Port Gentil;Gabon;285;MARCHE BALISE
+721;1;Global Foodies SAL Overseas;Nadine;Mamlouk;nadine@globalfoodies-lb.com;2c15093fe38b416333140da0bc72be66;;port-gentil;Gabon;285;gabon
+722;1;Global Foodies SAL Overseas;Nadine;Mamlouk;nadine@globalfoodies-lb.com;2c15093fe38b416333140da0bc72be66;;port-gentil;Gabon;2087;gabon
+723;1;Global Foodies SAL Overseas;Nadine;Mamlouk;nadine@globalfoodies-lb.com;2c15093fe38b416333140da0bc72be66;96176625107;Port Gentil;Gabon;285;MARCHE BALISE
+724;1;Global Foodies SAL Overseas;Nadine;Mamlouk;nadine@globalfoodies-lb.com;2c15093fe38b416333140da0bc72be66;96176625107;libreville;Gabon;15192;PORT GENTIL
+725;1;Global Foodies SAL Overseas;Nadine;Mamlouk;nadine@globalfoodies-lb.com;2c15093fe38b416333140da0bc72be66;24105981398;libreville;French Southern Territories;15192;ZI oloumi
+726;1;CEDRESCO;Jérôme;Hajjar;compta1@jawad.fr;153605814f9e62e48529dbfffa90b414;+33 1 58 42 42 90;Rungis;France;94638;222 allée des violettes fl 440
+323;1;Mundo Investments Ltd;John;Heidgen;johnheidgen@gmail.com;9d7e3aaae3c33838c50f4119e2bc3385;25 078 622 235;Kigali;Rwanda;-;KN 5 road no. 36 Gasabo District
+324;1;ALRNA For Food Imports;Jalal;Dira;jalal.dira@gmail.com;3901a9a679a73430363e258ff3e9b49b;+33 6 80 74 22 57;Tripoli;Libya;21;street 17 febrary n°285
+325;1;AM Industries;Emmanuel;Vincent Sully;evincentsully@amindustries.org;8797f702487a13693cfbaf23a0956d1e;0596 51 38 38;Fort de France;Martinique;-;-
+326;1;Meat Team;Frédéric;Basset;fb@meatteam.com;2c15093fe38b416333140da0bc72be66;+33 6 11 53 24 31;Fontainebleau;France;77300;29 Rue Guerin
+327;1;RestoShop;Shamsire;Goulamaly;shamsire@yahoo.fr;6e14aa7b94de8270522659ee778669da;+33 6 33 52 02 57;Antananarivo;Madagascar;-;-
+328;2;Alliance Service;Denise;Koulibaly;Denisekoulibaly@gmail.com;e7c04351f46149874380ece88462fa44;22371001300;Bamako;Mali;223;Cite Bms parcelle C/23
+329;2;La Tienda Francesa;Marie-Pierre;Dié Sanchez;mariepierrediesanchez@hotmail.fr;fac8b8320b04c1265069b603681a3170;+33 6 38 43 83 49;Mexico City;France;11500;Presa Santa Teresa 134
+330;1;Balneola;Farid;Youcef;fyoucef@balneola.fr;da45901c8b34b68ed57a4252466305d5;+33 6 51 78 76 70;Lille;France;59800;670 Av de la République
+331;2;;Sylvana;Yazbeck;cyazbeck@msn.com;45a6f7bf22c54348507401880ae31bf1;96170600221;Rabier;Lebanon;-;Plaza
+332;2;ML Vision;Miya;Luntadila;miyaluntadila@gmail.com;8f957dc4cd21e817bca2f6e13a1af780;33 788 482 829;Yverdon les bains;Switzerland;1400;Villette 21
+333;2;Magasin Antidote;Sitara;Hassam Alibay;sitaratidote@icloud.com;b697f9cd709e8159b024fb6c57b08498;;;;;
+334;2;AGA BOUTIQUE;Fatou;Geye;gueyefatou777@gmail.com;f0c31456c7c5708aa44b10c12a81ffef;33 662 161 966;Dakar;Senegal;99;Castor Derkle
+335;2;Sunny Food Supermarket;Isabella;Huang;3078033283@qq.com;016dcc11f78c161617f5a4a753c41643;7215220823;Philipsburg;Saint Martin;-;#30-34 AT.Illidge Rood
+336;1;Leugim;Fernando;Pena;fpe@tinet.org;cf8d8f728a06ccd81d828c4190c7ca1b;;;;;
+337;2;AYIWA;Demba;Ndiaye;ayiwashop@gmail.com;0d230256bb350fdb195bd25fc6c3f431;33 637 903 105;Evry;France;91000;47 Boulevard de l'Yerres A23
+338;1;DBM CO;Benjamin;Mbog;mbogben@yahoo.fr;60ec41f5bed6002ee40681a05d0e96b0;;;;;
+339;1; La Baguette French Bakery;Mohammed;Ali Abdallah;labaguettecompany@gmail.com;2a78bfffe43cd851284b8513da157080;2,11911E+11;Juba;Sudan;-;Pass University of Juba
+340;1;;Gerson;Agbemavor;mawugan@hotmail.com;d5ce1b7531b300072f6444e8af6d1c96;+32 474 50 36 49;Lomé;Togo;-;Rue 84 Maison 97
+341;1;HQ Company;Thanh Hai;DANG;willdangthanhhai@gmail.com;39dfaf99c32eb39d4e87063627d807b9;+33 7 83 74 78 91;Hanoï;Vietnam;521000;22 ruelle 335
+342;1;Laucale SA;Albert;Goldenberg;algoldk@gmail.com;41f134262393daed3188f10144af0df3;352 661 358 017;Luxembourg;Luxemburg;5210;-
+343;1;SCOA Lapointe;Patrick;Nakad;sales@lapointe.ng;df1533cf4600b7a474e0df116cf7abc4;2,34809E+12;Lagos;Nigeria;-;akin olugbade 4A
+344;1;Supermarché MONT SINAI;Koti;Comlanvi Pius;gpartenaire@yahoo.fr;410c7ffe73fcf2eb83ede6bd88560375;22996215576;Cotonou;Benin;-;Kadjehoun 5541
+345;2;MARCOPOLIS;Maria;Dellau;dellaudagloria@hotmail.fr;6914b32445dc63f82f1bca851ee1f418;2,42068E+11;Pointe Noire;Congo, Republic;-;-
+346;2;Mas Trading Co;Marie-Claire;Gasana;sogeimport@gmail.com;c033972af938d351d0308cf69da2ac1b;25 777 735 767;Bujumbura;Burundi;-;10 Avenue de l'Oua
+728;2;Mas Trading Co;Marie-Claire;Gasana;sogeimport@gmail.com;c033972af938d351d0308cf69da2ac1b;25 777 735 767;Bujumbura;Burundi;-;10 Avenue de l'Oua
+347;1;Le Champion (SAMEX);Lucien;-;achat.lechampion@samextg.com;98f519b28d36fd854d550de89d637e4f;+228 91 55 55 95;Lomé;Togo;-;-
+348;1;DT Wine and Beverage;David;Thery;d.thery@orange.fr;8dd1bd798966b4d4914cb61f0750a545;+33 6 90 552 559;Saint Barthélémy;Saint Barthelemy;97133;Le Rocher, Public
+349;1;BENELUX BUSINESS INTERNATIONAL NORTH SOUTH (BBINS);Lucien;Specchia;beneluxbins@gmail.com;684860e192c4bd6a4360d0796f458d2f;+33 6 38 63 06 75;Saint Hubert;Belgium;6870;Aérodrome de Saint Hubert 3
+350;1;Sissako Libre-Service;Adama;Sissako;sissako.boukary@yahoo.fr;e7c04351f46149874380ece88462fa44;33 610 803 072;Bamako;Mali;-;Marché Medine
+351;1;Premium Brands;Karim;Elkarouni;karim.elkarouni@gmail.com;39dfaf99c32eb39d4e87063627d807b9;+33 7 82 30 59 79;Nogent sur Oise;France;60180;28 Avenue de la Rotonde
+352;1;CDCI;Gilles;Tailhardat;gilles.tailhardat@cdci.ci;d5ad243286411457e8f9cc289fd16483;+225 21 24 26 82;Abidjan;Ivory Coast;-;Port Treichville - 01
+353;1;Les Moulins Réunis du Midi;Lucien;Carletti;lucien.carletti@lesmoulinsreunisdumidi.com;fcabe9122071c97842184c6914131884;+33 4 93 32 69 74;MArseille;France;13001;2 rue de Beausset
+354;1;Groupe Max Holdings Limited;Yijun ;Ding;brigitteding@foxmail.com;f7280c1b399b7023f488ba1e6f0e26c8;33 618 701 911;Pekin;China;521000;-
+355;1;City Oil SARL;Ousmane;Bathily;cogetrainternational@gmail.com;e7c04351f46149874380ece88462fa44;+223 76 57 72 72;Bamako;Mali;-;BPE 428
+356;2;Imporium City;Bel;Zhao;zhaoruoyu@imp-city.com;3565a8ddc4405162914e29eb44b441db;8,6214E+11;Shangaï;China;201702;Qingpu District,201702
+357;1;CARNAVAL SAS;Gilles;Graimont;ggraimont@wanadoo.fr;172e111f279f676c649dcee5d735dc06;+33 6 67 68 69 66;Paris;France;75016;16 avenue Kléber
+358;2;Le Flamboyant;Maïté;Ott;sarl.leflamboyant@mail.pf;7f89f900104f5b7877f1ddfdfa5260b7;68940570094;Pamatai;French Polynesia;98702;Pamatai
+359;1;Marocana;Rachid;Mallah;rachid.mallah@gmail.com;8861446796e7f41836f920cb45e12899;687735234;Nouméa;New Caledonia;98800;13 bis rue Merano
+360;1;Zebratrading;Mohammed Aly;Balde;zebatrading8511@gmail.com;d02715519d2da3a838138e64b922cc31;2,45955E+11;Bissau;Guinea-Bissau;-;-
+361;1;H2O;Franck;Ouedraogo;ouedraogofranck@gmail.com;9c4488b73c37fa5fe022d0ef7600bf51;22671177676;Ouadagoudou;Burkina Faso;1;01 BP 5125
+362;1;Abdourahmana;Ali daher;Abdourahman;abdourahman.a@gmail.com;3c63ba1c498b1f7d62f782096e0127a6;2,52635E+11;Djibouti;Somalia;9999;-
+363;1;Exim Congo SA;Christian;Makaya-Boueya;christian.mbd@gmail.com;6914b32445dc63f82f1bca851ee1f418;2,42051E+11;Pointe Noire;Congo, Republic;-;-
+364;1;CARIBBEAN FOOD DISTRIBUTION Ltd;Raymond;Kooji;info@caribbeanfooddistribution.com;c1bb473be1481380477134bbbe1dc245;7215814376;The Valley;Anguilla;-;PO box 20
+365;1;Trade Development of kish;Danial;Bougheiri;danial@td-kish.com;96f92e11bf45a70269b5e2dfcdd24428;989 382 896 132;Kish;Iran;52100-52100;-
+366;1;NPG;Pascal;Guiho;guiho_pascal@orange.fr;10e96d4d3c7c996116d31204ba97f235;+33 6 46 86 18 29;Nantes;France;44300;Rue Joseph Barrau
+367;1;Mega Savers Ltd;Carl;Provenzal;carlprovenzal@gmail.com;8d5bff3337d7a252a8283d8b7f5374f3;+1 264-498-8080;The Valley;Anguilla;-;-
+368;1;Olivier Diamant;Ghasszn;Sarrouh;eliesarrouh@gmail.com;a250d10b432b8cabbf8f31e4ccc7ab98;+961 38 12 1012;Beyrouth;Lebanon;-;-
+369;1;Aziz Market;Abdoul Aziz Baba;Halid;halid5_abdoulaziz@yahoo.com;5e3733573d519526e861bf7c9d34d4ee;22796878783;Zinder;Niger;-;-
+370;1;World TR;Kevin;Truong;truongnk@gmail.com;39dfaf99c32eb39d4e87063627d807b9;-944010916;Hanoï;Vietnam;521000;25 Hoang Van Thai,
+371;2;Association la Maison de l'Entrepreneur;Angélique;Rodrigues Mendes;maisondelentrepreneur34@gmail.com;0d230256bb350fdb195bd25fc6c3f431;+33 6 26 98 31 33;Perpignan;France;66000;74 chemin des Vignes
+372;1;Howse Financial Services LLC;Anthony;Howse;anthony@schoolbuxx.com;1b9f6a14c3996f8081666823a4b99731;15208004027;Maricopa;United States;85138;36522 W Costa Blanca Dr
+373;1;;Adama;Coulibaly;acoulibaly4@hotmail.fr;e7c04351f46149874380ece88462fa44;+33 6 85 53 52 92;Bamako;Mali;-;-
+374;2;KOUNOMORI;Carole;Kanaan;carole.kanaan@kounomori.com;1c05bc972aa4dc90d728cf0e13f6986c;+33 6 16 11 12 28;Paris;France;75004;1 rue Pernelle
+375;1;8MP CONCEPT S.C.S;Pascal;Doyen;doyenpa@gmail.com;10f7da5172879b39adafbeba948dce96;32488770759;Bruxelles;Belgium;5210;-
+376;1;Takwid Group;Desmond;Takwi;dtakwi@takwidgroup.com;a47f28f23449de7ea94a685b97c4c4c8;2,37652E+11;Bamenda;Cameroon;0;PO Box 561
+377;1;SOBELU;Bernard Francis;Faye;francis0804@gmail.com;0d230256bb350fdb195bd25fc6c3f431;33682307684;Lille;France;59000;-
+379;2;Tienda Francesa;Marie Pierre;Dié Sanchez;Info@latiendafrancesa.mx;fac8b8320b04c1265069b603681a3170;;Mexico;Mexico;11500;134 Présa Santa Térésa
+380;1;TopShine;Thakur;Haresh;cosmos.bzv@gmail.com;62a9010f053bb29efa5c6ba2e5d2cc28;2,42066E+11;Brazzaville;Congo, Republic;555;53,Rue Makoko , Poto - Poto
+381;2;NAKARA;Elongo;Mbolela;aisse54@gmail.com;e7c04351f46149874380ece88462fa44;+33 7 81 26 99 06;Bamako;Mali;-;-
+382;1;A2b Poly Services;Amin;Abbad;a2bpoly@gmail.com;10f7da5172879b39adafbeba948dce96;32487876563;Brussel;Belgium;1090;108 avenue Odon warland
+383;1;BANEFF COMMERCE;Dean;Banev;baneffcommerce@gmail.com;64f1f04829dec6bb2741ab8787b4ff4c;33 676 045 315;Sofia;Bulgaria;5210;-
+384;1;ADR Center;Aymeric;Kedote;aymked@adrcsasu.com;d5ce1b7531b300072f6444e8af6d1c96;33 769 817 298;Lomé;Togo;-;-
+727;1;K par K Libre Service;Rokiatou O;Koumare;dca.mobilium@gmail.com;e7c04351f46149874380ece88462fa44;+223 77 02 14 14;Bamako;Mali;-;-
+385;1;K par K Libre Service;Rokiatou O;Koumare;dca.mobilium@gmail.com;e7c04351f46149874380ece88462fa44;+223 20 21 18 20;bamako;Mali;12000;sotuba
+386;1;Mahmood SPRL;Hanin;Asbin;arahilgroup@outlook.be;64f25248ef954760924ec02b6332abd4;32489158710;Liège;France;40000;Boulevard Piercot, 52
+387;1;Kupela SARL;Xalbat;Seosse Oxarango;xalbat.seosse@kupela.fr;8f0c2263173f7f4e1db23482b4e8857c;33 777 811 509;Anglet;France;64600;12 Allée des artisans
+388;2;Abchasem;Fati;Tahirou;tahiroufs@yahoo.fr;153f6d96a623fac7fb7ee85e3d3bca11;33 753 354 644;Soissons;France;2200;-
+389;1;SARL la Liberté;Michel;Relma;michel.permal-ellama@orange.fr;b4023997e399b878d7effd18a822c8ac;33 692 614 109;La Possession;Reunion Island;97419;14 rue de la Liberté
+390;1;Chendler Ltd;Jérémie;Chendler;jeremiechendler@gmail.com;7f429b76e806228fc916b623aad98044;85581501560;Phnom Penh;Cambodia;52100;69 Street 178
+391;1;Hold'in;Gauthier;Legrix;gauthier@hold-in.fr;69d4c945f6fad7fa3ae425b1471719cb;+33 7 89 21 33 90;Baie-Mahault;Guadeloupe;97122;ZAC de Houëlbourg, Jarry
+392;1;Ets 2A Trade;Aboubacar;Ahmat Izeringo;aboubakarizeringo@yahoo.fr;e4d6810461ff53c889112914baed1e77;23562604948;N'Djamena;Chad;99000;BP 252
+393;1;Big Export Group;Gregory;Raccommandato;sales@bigexportgroup.com;fb99e7a8d8b487f81ebd90bfff25dfd3;447 947 955 656;London;United Kingdom;N1 7GU;20-22 Wenlock Road
+394;1;Au bon prix;Paco;Wege;pacowege@gmail.com;c033972af938d351d0308cf69da2ac1b;25771359677;Bujumbura;Burundi;-;25 bd du 28 novembre
+395;1;Boucherie de Concordia;Jean-Paul;Artero;boucheriedeconcordia@gmail.com;d4d6b56f2865d0b43f7af8a4bb4b0d1a;+33 6 90 22 20 46;Concordia;Saint Martin;97150;30 rue de Concordia
+396;1;John Lewis Plc;David;Fernandes;info@johnlewis-purchasing.co.uk;ff6038dd0c03a3149794771c1be153cd;447 404 592 161;Londres;United Kingdom;SW1E 5NN;171 Victoria Street
+397;1;Hassan Import Export;Mohamed;Hassan;info@hassanimportexport.com;4cae95c19f4301842c9c483453f7074d;+33 6 43 46 75 59;Montpellier;France;34000;36 rue de Porto
+398;1;GULLIVER KOMERC DOO;Oleh;Hordiienko;vine.division@gmail.com;ee0225fb722191915f970c6dbcb108e2;38976641664;Skopje;Macedonia;1000;st.Pero Nakov118a
+399;1;French My World;Alexis;Rebaudet;alexis.rebaudet@gmail.com;0c1f6c7bb3138a00b5f7bff9becaac0f;33 612 500 611;Vaugneray;France;69670;6 route du Pont Pinay
+400;1;Interface Trade Facilities;Gauthier;Megali;info@itfsprl.com;03aa0e9bb4d0ac1e2e4c40481e2e1109;32484680104;Charleroi;Belgium;6000;1 rue du Commerce Boite 73
+401;1;KT;Didier Hervé;Tizié;dhtizie@gmail.com;b3a4945785c6af08d3eb96e8c886b314;33 664 978 464;Ronchin;France;59790;-
+402;1;Happy Kook;Koko;Hounkpedji-Amuzuga;amuzugak@live.fr;dad800ca9894cf39997c8d82985199bc;;LOME;Togo;228;TOKOIN ELAVAGNO
+729;1;Happy Kook;Koko;Hounkpedji-Amuzuga;amuzugak@live.fr;dad800ca9894cf39997c8d82985199bc;97443303;LOME;Togo;00 228;TOKOIN ELAVAGNO
+403;1;International Sourcing & Marketing;Ahmad;Araissy;ahmadarayssi@gmail.com;ca3a7f53bd452e5d6f7f9cc40e251527;9613638732;Beyrouth;Lebanon;-;9 Anis Nsouli Street
+404;1;Délices de France AB;Stéphane;Mitteau;smitteau@hotmail.fr;8b011d52dba1697927ee2ee184f93a86;46767635522;JÄRFÄLLA;Sweden;17740;Blockvägen 1
+405;1;Nooro;Williams;Andrianavalona;williams@nooro.mg;6e14aa7b94de8270522659ee778669da;+261 34 74 392 33;Antananarivo;Madagascar;103;Nooro Tower
+406;1;NAPOLEON 24H/24;Abdou;Omar Abdallah;abdou.omar@napoleon-dj.com;3c63ba1c498b1f7d62f782096e0127a6;+253 21 354819;Djibouti;Djibouti;1426;3 Bd de Gaulle
+407;1;Restaurant le Bouchon;Michel;Vanhove;resto@lebouchon-ks.com;0be71adaf09bfdc112fbba02d351a797;+386 49 957 888;Prishtinë;Slovenia;SI-5210;Rr Fazli Grejçevci
+408;2;Supermarché Riviéra;Rita;Hani;ritouna@gmail.com;aee52ce3956a566bcf729ea5ce9cba12;22248484767;Nouakchott;Mauritania;4904;ilot k 78
+409;1;;David;Babake;babakedave@gmail.com;d5ce1b7531b300072f6444e8af6d1c96;22892270156;Lomé;Togo;-;-
+410;1;Ets Ibrahim Nabiga;Ibrahim;Nabiga;inabiga51@gmail.com;dcd152e844d626447cbf5c7446c86c1a;22799092930;Niamey;Niger;227;Yantala ny8 0001
+411;1;ACS2-sarl;Wakid;Turk;turkwalid@gmail.com;a33c2907cf643f711a40ec230c1ba791;22373080808;Bamako;Mali;2476;54 St 958 Zone Industrielle
+412;2;Ets Amadou Moumouni Salamatou;Salamatou;Adamou;djermakoye@yahoo.fr;dcd152e844d626447cbf5c7446c86c1a;22 794 940 015;Niamey;Niger;-;Francophonie Niamey Niger
+413;1;;Mei;Luo-wu;luowumei1020@icloud.com;17915be24312d92568216b525f8f5bc0;590 690 889 892;Marigot;Saint Martin;-;-
+414;1;LEE's Market;Chi Yung;Lee;paulleesmarket@gmail.com;831bc08d33d710ad866a4fbfa6f9f4bd;33 590 590 262 577;Baie-Mahault;Guadeloupe;97122;Angles rues Nobel et Ferdinant Forest
+415;1;Hong Distribution;Ruifen;Hong;hong-ruifen@orange.fr;117654040a104cff1a1b9526eb0d459d;;;;;
+416;1;CWS Belle France Inc;Bernard;Chan;cwsbellefrance@gmail.com;67c47245e2336fb3c4bea84ce7b1dfc0;+1 438-793 1759;Brossard;Canada;J4Y 2R2;3455 rue Isabelle
+417;2;Belavie SARL;Béatrice;Tomela;centrale_dachat@yahoo.fr;60ec41f5bed6002ee40681a05d0e96b0;+33 6 98 64 22 88;Douala;Cameroon;12965;-
+418;1;Faso Café;Zakaria;Pafadman;fasocafe@hotmail.fr;1d011c6ee3ece276050823189b29bd6a;22661000056;Oudagoudou;Burkina Faso;4;8285
+419;1;Laurent Impex;Laurent;Té;laurent@western.edu.kh;0b5f13c32adb05b2fa87ccb783c258c6;+855 23 990 699;Phnom Penh;Cambodia;52100;45 rue 608
+420;1;Freezdom;Lohan;Nimias;lohan.nimias@gmail.com;367e71c9523201faf909ae890d68736e;33 690 415 862;Baie-Mahault;Guadeloupe;97122;-
+421;1;Transport Taile;Medhy;Taile;tailemedhy@yahoo.fr;ae39c4b196b7fd1881a7b9be7efd434f;+33 6 93023300;Saint André;Reunion Island;97440;8 lot Lacaussade
+422;1;EDK Oil;Papa Mamour;Guido;mamour.guiro@edkoil.com;3f30b8163a4c7764b485d92d6f27d94d;;;;;
+423;1;D-LIVE;Romuald;Brute;romualdbrute8@gmail.com;f734523471f17ae1dd44d9698fa5586a;+33 690 24 5294;Saint-Anne;Guadeloupe;97180;Louisiane
+424;2;Miniprix Shop;Linda;Aby;miniprix.benin@gmail.com;410c7ffe73fcf2eb83ede6bd88560375;33 618 774 487;Fosses;France;95470;13 rue du buisson rond
+425;2;;Marie;Grondin;grondin.marie.genevieve@gmail.com;8b470d21c5ef5d013ed9ed91008ba29b;33693973450;Saint Joseph;Reunion Island;97480;57 b rue justinien vitry
+426;1;SODIMEX;Laurent;Caravel;lcaravel@sodimex.us;0436216b268875a16e2fb003a9bed64c;18 637 038 623;NORTH MIAMI;United States;33181;13499 BISCAYNE BOULEVARD #205
+427;2;Kiss Shop;Valerica;Kiss;office.kisshop@gmail.com;38b5ed0237fe8c466843cc86ea1219c5;40720565260;Voluntari;Romania;77191;Sos. Pipera Tunari 1h
+428;1;TAAROUF;Moctar Jemal;Khattary;khattary@yahoo.fr;aee52ce3956a566bcf729ea5ce9cba12;22226302857;Nouakchott;Mauritania;99;BP 7
+429;1;Discount Market;Yunus;Karadag;Yunus_karadag002@hotmail.com;e7c04351f46149874380ece88462fa44;+223 76 23 26 13;Bamako;Mali;52100;ACI 2000
+430;1;OGARIT GROUP Le Levant;Fadi;Alam;fadi.alam@ogaritgroup.com;d5ce1b7531b300072f6444e8af6d1c96;+228 99 91 42 42;Lomé;Togo;52100;229, Bd. du 13 Janvier
+431;1;Importadora y Comercial Tolosa y Venegas Limitada;Juan Carlos;Tolosa;jtolosa@tolven.cl;79c590043a5d44f3ce8195ac5c2a10fe;56942737751;Punta Arenas;Chile;620-5210;Ignacio Carrera Pinto 160
+432;2;;Claire;Magro;claire.magro@hotmail.fr;b220880c3893dabc31f956769e064333;61418139193;Sydney;Australia;5210;-
+433;1;LAFPO;Pascal;Bylebil;direction@lafpo.fr;f7c99f1f7a10a0a0b4515fe6b3ddbe0c;+33 7 81 46 70 13;Tournus;France;71700;24, rue Désiré Mathivet
+434;1;Osaka Light;Hasan;Uysal;osakalight@gmail.com;0d230256bb350fdb195bd25fc6c3f431;+221 33-821-1889;Dakar;Senegal;-;44, Malick Sy
+435;2;Market Paris;Dary;Kry;market.paris@yahoo.com;7f429b76e806228fc916b623aad98044;+33 6 95 49 44 89;Mitry Mory;France;77290;29 Avenue de Londres
+436;1;;Кцыуавпкпупкупку;цкпкцпццупкцп;progs_return@mail.ru;db2d52231b00837f2aa02b5b1da6fb2e;;;;;
+437;1;;Harold;d'Almeida;haroldharveyl@gmail.com;410c7ffe73fcf2eb83ede6bd88560375;+33 6 50 38 37 10;Cotonou;Benin;-;-
+438;1;DistribConcept;Inoussa;Sorgho;isorgho@hotmail.com;9c4488b73c37fa5fe022d0ef7600bf51;+226 70 35 01 36;Ouadagoudou;Burkina Faso;226;Ouaga secteur 46
+439;1;Sabanniere trading sarl;Auguy;Kabongo Lubadi;kaugustin2013@yahoo.fr;b6413fdb26cfcb776cef00ac8a47509a;2,43991E+11;kinshasa;Congo, Dem. Republic;243;158 Avenue Tchuapa
+440;1;Galerie Tata;Hamahallah;Haibouna;hm.haibouna@galerietata.mr;aee52ce3956a566bcf729ea5ce9cba12;+222 45 29 38 39;Nouakchott;Mauritania;1962;Av. Charles De Gaulle - lot 544 Nouakchott-Mauritanie
+441;1;;Enzo;Zaccaria;enzoz@hotmail.com;f133237e8fac183e3802284de6b9432d;85366207261;Macau;China;521000;-
+442;1;Hayastan spr;Nihat;Caglan;nihat_caglan@hotmail.com;ee0f72d36f26ac155c2c99f171853765;32486663372;Bruxelles;Belgium;1090;Rue Leopold 1 nr 459/461
+443;1;;Ibson;Gueye;ibsongueye@free.fr;0d230256bb350fdb195bd25fc6c3f431;+33 6 51 04 11 50;Dakar;Senegal;-;-
+444;2;Le Défi Humanitaire;Anne;Guadagna;ledefiexport@outlook.com;97c398a53f6755bff8841e6421afd00a;33678188864;Lyon;France;69004;29 rue Perron
+445;1;FASO RAAGA SARL;Michaël;Koffi;kikison88@gmail.com;9c4488b73c37fa5fe022d0ef7600bf51;22625334548;Oudagoudou;Burkina Faso;11023;Avenue de la Cathédrale
+730;1;FASO RAAGA SARL;Michaël;Koffi;kikison88@gmail.com;9c4488b73c37fa5fe022d0ef7600bf51;22625334548;Ouagadougou;Burkina Faso;11023;Avenue de la cathedrale
+446;1;JPR International;Jean-Luc;Jammal;jprinternational@wanadoo.fr;9c4488b73c37fa5fe022d0ef7600bf51;33 609 630 366;Rungis;France;94500;Av de Lille
+731;2;Legiscal;Sarah;Paiman;secretariat@legiscal.com;8861446796e7f41836f920cb45e12899;687925931;Mont-dore;New Caledonia;98870;Port de Nouméa
+447;2;Legiscal;Sarah;Paiman;secretariat@legiscal.com;8861446796e7f41836f920cb45e12899;;mont-dore;New Caledonia;98874;2305 route de la coulée mont-dore
+732;2;Legiscal;Sarah;Paiman;secretariat@legiscal.com;8861446796e7f41836f920cb45e12899;;mont-dore;New Caledonia;98874;2305 route de la coulée mont-dore
+448;1;Ushindi;-;Mukantaganzwa;etsushindi@gmail.com;6e743f006ecb2e2ccbe2ed8e4bca792a;2,50789E+11;Goma;Congo, Dem. Republic;-;Nord Kivu
+449;1;Djuntu LAD;Souleyma;Teixeira;teixeirasouleyman@gmail.com;8d41f9196829b0a51d257b333fb01ca4;33 631 921 075;Hayange;France;57700;9 rue de la Seine
+450;2;Latina SAM;Alexandra;Denjean;a.denjean@latina.mc;171864e6333594f8e6fe7ff0bfde3938;+377 97 77 83 04;Monaco;Monaco;98000;42 Quai Jean-Charles Rey
+451;1;Sainte Marie Bazar;Hong Mei;Cheng;gwenny-zhu@hotmail.fr;ac79a458c7c2d6d2c8f977b55cff4eed;+33 6 92 61 75 70;Sainte Marie;Reunion Island;97438;32 bis rue de la République
+733;1;Sainte Marie Bazar;Hong Mei;Cheng;gwenny-zhu@hotmail.fr;ac79a458c7c2d6d2c8f977b55cff4eed;+33 6 92 61 75 70;Sainte Marie;Reunion Island;97438;30 rue de la République
+452;1;Entreprise IMK;Khaled;Ibrahim;entrepriseimk@gmail.com;dcd152e844d626447cbf5c7446c86c1a;+33 7 55 77 46 70;Niamey;Niger;-;BP 13 703
+453;1;Ruvunda Market;Sandro;Shyaka;etssandroshyaka888@gmail.com;6e743f006ecb2e2ccbe2ed8e4bca792a;2,43994E+11;Goma;Congo, Dem. Republic;-;9 av du Port
+454;1;Eden;Dominique;Bourgeois;plaisir98600@gmail.com;061ad5e82882c65f00e810c5457e6a3a;681721867;Mata Utu;Wallis and Futuna;98600;BP 202
+455;1;Tony Shop;Nadim;Khizar;nadim.khizar@hotmail.fr;acba5b494e4a562e80699fbdefd104ab;33 666 445 905;Creil;France;60100;14 rue Gambetta
+456;1;Pharma Paris;Christophe;Chau;chau@pharmaparis.fr;7f429b76e806228fc916b623aad98044;33 620 299 112;Antony;France;93120;-
+457;1;Kyriakidis Food Company;Léonidas;Kyriakidis;leo_kyriakidis@hotmail.com;ee0f72d36f26ac155c2c99f171853765;32474902000;Bruxelles;Belgium;1020;-
+458;1;ATC;Gaëtan;Crenn;contact@atcsxm.com;76d8bd679cdf1ef4cdee1ac027778e94;;;;;
+459;1;ACE;Wenjun;Ru;violainwen@gmail.com;f7280c1b399b7023f488ba1e6f0e26c8;+1 646-509-7559;New York;United States;11354;33-70 Price Street, Suite #905 Flushing
+460;1;Aldo Line;Robert;Komaklo;robko65@gmail.com;410c7ffe73fcf2eb83ede6bd88560375;22994319825;Cotonou;Benin;229;94319825
+461;1;Business Global SAS;Robert;Mirabel;contact@businessglobal-sas.com;5958eae5450e87d5808e8bed895c87de;+33 1 84 88 78 65;SAint Denis;France;93200;70 Boulevard Anatole France
+462;2;Sabores de Francia;Myriam;Lahaille;mlahaille@gmail.com;92441d3c0c7e134feebb2f8b4f483861;5,22227E+11;Puebla;Mexico;72850;Privada Sabinas 10
+463;0;LPC Trading;Louis;Pan;lpctrading@outlook.com;87d21e612b055415efb4bbbcc21f64f0;8 617 875 436 366;Gangzhou;China;521000;Room B108
+464;2;;Mariana;Rafion;mariata.rafion@hotmail.fr;8729483c0a18e9165a90d430721fbefa;+33 7 69 23 09 82;Koungou;Mayotte;97600;52, Rue Sidki Coco
+465;1;Bans Telecom;Richard;Koukpohounsi ;kouk.richard@yahoo.fr;d5ad243286411457e8f9cc289fd16483;33 755 486 318;Paris;France;75010;51 rue du Faubourg Saint Martin
+466;1;;Nouri;Sia;siabatout@hotmail.fr;cbe0d73bf0c642b508c3e2cd251f2c85;+33 7 81 30 49 02;Marseille;France;13008;11 rue Léon Paulet
+467;1;M2A Export;Mazen;Jaber;mjaber@advens-france.com;fdd409d4723ae97bef0e2a58e3b3eba2;+33 1 45 02 03 04;Malabo;Equatorial Guinea;52100;Malabo
+468;1;STAR GATE GENERAL TRADING ;Mohamed Saeed;AL CALILY ALAMERI;sg.trading@outlook.com;c728b2c7c7ca97e84098d0c34be6a5ab;9,71529E+11;Abu Dhabi;United Arab Emirates;413;ELECTRA STREET
+469;2;ISPC;Djeliba;Hecq;dhecq@ispc.sc;c5c5398af23f0399ddb76abcdbe87b84;2484389206;Mahé;Seychelles;52100;Siba
+470;1;EDIPAS;Nabil;Bourgi;nabsoliban54@gmail.com;ef3c082521a63c8a58d728c6b23c48e9;+221 77 757 26 04;Dakar;Senegal;-;15 av Bourguiba Liberté
+471;1;SNIW;François;Delhaye;sniw@sniw.fr;32e664e7550e9326a13cd9a3c36d1712;33663612333;Villeneuve d'Ascq;France;59650;4 rue Archimede
+472;1;;Hado;Youma;heyoumane@yahoo.fr;fb4dee076cd4483315f81091e5d35a90;33 627 750 807;Pulnoy;France;54425;2 allée du Morvan
+473;2;Psaro Hypermarchés;Melissa;Anciaux;melissa@psaro.com;edba9e68c1b6b6e5bc44bf7f29b4afa3;243 851 083 006;Lubumbashi;Congo, Dem. Republic;-;n°17, Chaussée M'ZEE KABILA
+474;2;;Stéphanie;Albert;stephanie888francee@yahoo.fr;09a0432b30a60cecf44b3037810f03c8;33 143 995 737;Créteil;France;94000;7 rue du Port
+475;1;SARL de Laliberte;Michel;Permal Ellama;sarlaliberte@orange.fr;66c5991f7d590a7b47d65df798d133fc;+33 262 42 11 01;La, Possession;Reunion Island;97419;14 rue de la Liberté Rivière des galets
+476;1;Sicomex;Mohamed;Alamine;grand.bazard@outlook.com;d5ad243286411457e8f9cc289fd16483;22503280280;Abidjan;France;52100;Abidjan Zone 4
+477;1;Bakongo Ltd;Ngoy;Kabongo;bakongoltd@live.com;edba9e68c1b6b6e5bc44bf7f29b4afa3;243 815 250 075;Lubumbashi;Congo, Dem. Republic;-;-
+478;1;AL KAWSARA;Balla;Diong;balladiong95@gmail.com;ef3c082521a63c8a58d728c6b23c48e9;+33 7 51 58 92 18;Dakar;Senegal;-;Sacré Coeur 3
+479;1;BEST CHOICE SUP;Dan;Francessca;menabelard19@hotmail.fr;34315c81821f15bea879c7d41fdf1f4e;590 690 770 959;Marigot;Saint Martin;97150;Route de Grand Casern
+480;1;Noble Ingredients, Ltd;Jacques;Dahan;jacques@cluizel.us;cd64fc810acac0d18e5b99ea7f05e510;+1 856.719.0800;West Berlin;United States;8091;575 Rte 73N. bldg D
+481;2;Le caillou import;Michelle;Pham;mnguyen.lp@icloud.com;0aeb5d23890d2fcdedc4f1f99ec41cc0;687925931;Mont-Dore;New Caledonia;98874;2305 route de la coulé
+734;2;Le caillou import;Michelle;Pham;mnguyen.lp@icloud.com;0aeb5d23890d2fcdedc4f1f99ec41cc0;687925931;Mont-Dore;New Caledonia;98874;2305 route de la coulé
+482;1;Golden Group;Ali;Mohammadi;ali.mohammadi@goldengroup.fr;b05a276caac0299d1fe4c9a9d5da62ff;9,89123E+11;Tourcoing;France;59200;9 bis Av de la Marne
+483;1;;Ali;Mohammadi;ali.mohammadi@goldegroup.fr;18c153bb0ca9b743e1c6b1d5cc6d4c78;+33 3 20 75 89 98;Doha;Qatar;52100;-
+484;1;Phénix Market;Oumar;Kanté;kanteoumar12@gmail.com;e7c04351f46149874380ece88462fa44;22 376 166 464;Bamako;Mali;-;Yrimadio NC
+485;1;;Claire;Lucchiari;claire.lucchiari@outlook.fr;76d8bd679cdf1ef4cdee1ac027778e94;590 690 577 107;Saint-Martin;Saint Martin;97150;Appt 7 / 129 résidence Jessica
+486;1;SAS Marziki;Mohamed;Marziki;mohamedattoumani@wanadoo.fr;cf75b0650fb620f28931a27b83b0ac5a;+33 6 39 19 40 60;Demnebi;Mayotte;97660;1 place de la Mairie
+487;1;Complexe Carrefour;Mohamed;Ezdine;ezdine.ould.mohamed@gmail.com;1e000ee7742c943521dbf268e1010e08;+33 6 65 15 21 60;Nouakchott;Mauritania;-;-
+488;1;Lux Trade SARL;Expédit;Sonounameto;expedit1@gmail.com;7fa80730d18cc5891cd630e080705bc7;22 997 895 862;Cotonou;Benin;-;119 Cove
+735;1;;Mazen;Jaber;advens@gmail.com;65a2e337204bac890368e5398eabc8f0;2615659;cabo verde;Cape Verde;0;praia - santiago - cabo verde
+489;1;;Mazen;Jaber;advens@gmail.com;65a2e337204bac890368e5398eabc8f0;2615659;PRAIA;Cape Verde;0;praia - santiago - cabo verde
+490;1;;Abdoulaziz;Salifou;salifouabdoulaziz@gmail.com;dcd152e844d626447cbf5c7446c86c1a;22790900202;Niamey;Niger;-;-
+491;1;STM Trader;Simon;Zhu;stm-trader@hotmail.com;66c5991f7d590a7b47d65df798d133fc;+262 692 61 75 70;Sainte Marie;France;97438;-
+492;2;;Sylvie Rofes;Sylvie Rofes;bruno@sreveur-teo2.net;59d8c25c37092ca485bd5548f65b5da4;;;;;
+493;1;Ndongo Solutions;Ndongo;Dieng;ndongodieng@gmail.com;ef3c082521a63c8a58d728c6b23c48e9;+221 33 991 63 03;Dakar;Senegal;-;Dalifor villa n°44
+494;1;Gay Impex;Vijay;Tejwani;ste.gayimpex@gmail.com;5f2055fff26b326b8b57a319f0660458;2,43811E+11;Kinshasa;Congo, Dem. Republic;-;Quartier de Gombé
+495;1;TAF Eurl;Fayçal;Tabet;tabetaouel@yahoo.fr;9f1a7bb0e8c6516fc587fad77d58f42d;-425;Tiemcem;Algeria;13000;87 lot Ain defla chetouane
+496;1;CSG;Arsène;Schall;arsene.schall@orange.fr;d5ce1b7531b300072f6444e8af6d1c96;+33 6 61 59 59 69;Lomé;Togo;-;Rue Msom Pakoo
+497;1;CCPF;Souleymane;Ouedraogo;eos.ccpf@yahoo.fr;1d011c6ee3ece276050823189b29bd6a;+33 6 37 80 82 71;Ouadagoudou;Burkina Faso;11;BP 357
+498;2;Pet's World;Saritra;Bhugawn;sarita.kury@gmail.com;c14dba8b3c2508a1611d8c9456b7b095;23058195691;Trou Aux Biches;Mauritius;21508;Résidence Fleury Sur Mer, Appt B 01
+736;1;Hergy Distribution;Fabrice; Tsirivana Wai Kuan;fabricewai@hotmail.com;6e14aa7b94de8270522659ee778669da;2,61323E+11;Antalaha;Madagascar;206;Lot zki 222 sect 06
+499;1;Hergy Distribution;Fabrice; Tsirivana Wai Kuan;fabricewai@hotmail.com;6e14aa7b94de8270522659ee778669da;2,61323E+11;Antalaha;Madagascar;206;Lot zki 222 sect 06
+500;1;;Arsène;Schall;delalizo@hotmail.com;c7cc9f3501dcff565d3976ee67743630;+33 6 61 59 59 69;Lomé;Togo;-;Adidogomé Gblinkomegan
+501;2;Nanjing Esther;Esther;Cai;caijianhong92@gmail.com;f7280c1b399b7023f488ba1e6f0e26c8;+33 6 31 36 11 61;Paris;France;75005;10 Rue du Fouarre
+502;1;One Shot Distribution;Georges;Assimilalo;oneshotdistributionnc@gmail.com;c3556dacadafa88c625b798af9a791ca;687892091;Paita;New Caledonia;98890;161b, rue des badamiers-Savannah 98890 Paita
+503;1;Holidays Market;Arnaud;Bellon;arnosenegal@yahoo.fr;0d230256bb350fdb195bd25fc6c3f431;2,21776E+11;Saly;Senegal;-;-
+504;2;LA LUMIÈRE DIVINE SARL;Etiennette;Dossou;lalumieredivine@ymail.com;7fa80730d18cc5891cd630e080705bc7;22997182026;Cotonou;Benin;-;Fidjrosé Kpota
+505;1;Dolo Froid;Pangale;Dialo;pangale.dolo@dolofroid.com;e7c04351f46149874380ece88462fa44;+223 69 50 28 49;Bamako;Mali;-;-
+506;1;Uncle Sam Gabon;Sam;Khayat;info@unclesamgabon.com;4b00e5224c1807ae42ac18b224dede02;+241 01 72 51 32;Libreville;Gabon;-;Oloumi, en face de la DGDI
+507;1;Mori Mex;Morad;Hacen;moradmt@yahoo.fr;aee52ce3956a566bcf729ea5ce9cba12;22 222 676 640;Nouakchott;Mauritania;222;75 tvz
+508;1;Mayotte Développement Durable;Jean-Charles;Jannot;boisbourgogne@yahoo.fr;8729483c0a18e9165a90d430721fbefa;2,6264E+11;Mamoudzou;Mayotte;97600;7 rue Sakwani Passamainty
+509;1;LLCIMPORT.TA;Laurent;Imbert;imbertlaurent13@yahoo.fr;bafcffba4c633f95bbc0fdc5e2841849;;;;;
+510;1;Cosmética 2000;Issifou;Sidikou;alphacosmetic2000@yahoo.fr;153f6d96a623fac7fb7ee85e3d3bca11;22796535550;Niamey;Niger;11687;-
+511;1;;Benoit;Poulin;bpoulin40@gmail.com;5958eae5450e87d5808e8bed895c87de;+33 6 61 62 16 81;Ballanvilliers;France;91160;12 avenue du château
+512;1;Atom;Samba;Syllla;samba@atominternational.com;6e14aa7b94de8270522659ee778669da;+33 1 48 84 35 35;Rungis;France;90233;94 Rue de Châteaurenard
+513;2;Freats;Paula;Victoriano;admin@freats.com.au;0c81fe63257b3a95f00aff478b516a8d;61403642980;Sidney;Australia;5210;-
+514;1;WAAKS;Mickaël;Euloga;mickael.euloga@waaks.fr;d9b0771f6ad9c0719bf4d48f95861cd1;+33 6 96 10 25 22;Le Robert;Martinique;97231;66 rue du courbaril 97231 Le Robert
+737;1;WAAKS;Mickaël;Euloga;mickael.euloga@waaks.fr;d9b0771f6ad9c0719bf4d48f95861cd1;+33 6 96 10 25 22;Le Robert;Martinique;97231;66 rue du courbaril
+515;1;Boutiks;Marcel;Calicharane;a.calicharane@gmail.com;66c5991f7d590a7b47d65df798d133fc;+33 2 62 23 27 93;Saint-André;Reunion Island;97440;1029 av Bourbon
+516;1;;Arhur;Maurice;art.maurice@wanadoo.fr;66c5991f7d590a7b47d65df798d133fc;+33 2 62 59 74 41;Le Tampon;Reunion Island;97430;286 rue Jules Bertaut
+517;1;Kafodis;Stéphane;Gautier;gautier120474@gmail.com;f230f89a639f618a265dd5c70b0fb6a9;+33 6 14 66 90 82;Petit-Bourg;Guadeloupe;97170;Chemin de Caféière
+519;1;Mediatique International;Raphaël;Dembélé;rdembele@hotmail.com;d5ad243286411457e8f9cc289fd16483;+ 225 87 52 17 98;Abidjan;Ivory Coast;-;127 Residence Soleil 3. Angre 8eme Tranche. Abidjan.Cote d'Ivoire
+520;1;MAGUIRAGA & FRERES;Cheick Tidiani;Maguiraga;maguiragafreres@gmail.com;e7c04351f46149874380ece88462fa44;+223  66919192;Bamako;Mali;-;Badalabougou Sema Rue 129 Porte 101
+521;1;OML;Ludovic;Cecconi;ludovic.cecconi@gmail.com;2c15093fe38b416333140da0bc72be66;24102543721;Port Gentil;Gabon;52100;BP 382
+522;1;WAL;Rachid;Adechian;olayemiolayemi@yahoo.fr;7fa80730d18cc5891cd630e080705bc7;22 997 878 189;Cotonou;Benin;-;Cotonou Missebo
+523;1;Paris Négoce;Omar;Traoré;oumar0512@yahoo.com;e7c04351f46149874380ece88462fa44;+33 6 49 65 10 18;le Blanc-Mesnil;France;93150;72 bis Rue Victor Hugo
+524;1;Sénédis;Mohamed;Bourgi;mobour@orange.sn;ef3c082521a63c8a58d728c6b23c48e9;2,21776E+11;Dakar;Senegal;-;36 rue Joseph Gomis
+525;1;New Viet Diary;Daniel;Nguyen;daniel.nguyen@newviet.vn;39dfaf99c32eb39d4e87063627d807b9;+33 6 35 14 12 97;Ho Chi Minh-Ville;Vietnam;521000;145 Ton That Dam Street, , Ho Chi Minh-Ville
+526;2;Asia Europe Trade;Cléo;Lismonde;t5@asiaeuropetrade.biz;8f0c2263173f7f4e1db23482b4e8857c;3242535989;Liège;Belgium;4000;25 rue de Rotterdam
+527;1;Clapjack;Jacques;Hélard;jhmoramora@hotmail.com;6e14aa7b94de8270522659ee778669da;2,61329E+11;Antananarivo;Madagascar;101;Lot siae 17 ambondrona
+528;1;;oumat;Traoré;mali@gmail.com;e7c04351f46149874380ece88462fa44; +33 6 49 65 10 18;Le Blanc Mesnil;France;93100;Av Jean Mouilin
+529;1;Taif Parfumerie;Amar;Bathie;abathie90@hotmail.com;ef3c082521a63c8a58d728c6b23c48e9;2,21777E+11;Dakar;Senegal;49;Sendaga
+530;1;Gros Gros Market;Christopher;Montoya;pilou13010@hotmail.com;9f1a7bb0e8c6516fc587fad77d58f42d;+33 7 62 68 69 00;Marseille;France;13010;47 chemin rural de la Valbarelle
+531;1;;Ntsika;Gilchrist;junior.ntsika@yahoo.fr;8d337147eb402c1d9c9aaab401979c1f;33 767 537 479;Brazzaville;Congo, Republic;-;-
+532;1;HUB DISTRIBUTION;Jean-Claude;Matondo;jeanclaude.matondo@gmail.com;8d337147eb402c1d9c9aaab401979c1f;+242 05 350 13 48;Brazzaville;Congo, Republic;52100;-
+533;1;Agora Market;Philémon;Ngabanda;agora976@orange.fr;e1fd9f1c6c1aa40f7eb5e16862249bfa;269623489;Mamoudzou;France;97600;2 les Hauts des Jardins du Collège
+738;1;Agora Market;Philémon;Ngabanda;agora976@orange.fr;e1fd9f1c6c1aa40f7eb5e16862249bfa;269623489;Mamoudzou;France;97600;2 les ht des jardins du collège
+739;1;Agora Market;Philémon;Ngabanda;agora976@orange.fr;e1fd9f1c6c1aa40f7eb5e16862249bfa;639657891;GRAND COURONNE ( à côté de ROUEN );France;76530;101 ter Avenue Henri Peyrusse
+534;2;RIKZ;Rikz;Abi nassif;rikz@hotmail.fr;4b00e5224c1807ae42ac18b224dede02;+33 6 12 71 17 42;Marseille;France;13005;61,Bd Jeanne d’Arc
+535;2;Linketa;Augustine;Kom;contactlinketa@yahoo.com;3a3871ebf0172cd2b1b38978f1625f6a;33 603 780 199;Neuilly sur Seine;France;92522;176 avenue Charles de Gaulle
+536;2;Fatty Fish SARL;Xin;Cheng;fattyfishsarl@gmail.com;f7280c1b399b7023f488ba1e6f0e26c8;33 695 378 558;Paris;France;75014;5 Rue Maurice Loewy
+537;1;Ekobiz;Charles Arno;Ekoume;ca.ekoume@gmail.com;6be8d85f5aa67eb4e41a219bb0683d95;33755169599;La Garenne Colombes;France;92250;1 Avenue Joseph Froment
+538;1;Okeanos Cruise;Laurent;Vaillard;contact@okeanos-cruise.com;c5c5398af23f0399ddb76abcdbe87b84;33 660 981 037;Eden Island;Seychelles;52100;Marina Eden Island CD 12
+539;1;Magasin Mafeyi;Bruno;Ben;benbrunob@yahoo.fr;d5ce1b7531b300072f6444e8af6d1c96;3 322 890 112 468;Lomé;Togo;1082;BP 1082
+540;1;Othy iIvest Sarl.AU;Achraf;Iben Jellal;othyinvest1@gmail.com;e29c8db16063ce398ee5ca41535ed9be;2,12661E+11;Kénitra;Morocco;14000;-
+541;2;Le boucher Inc;Frédérique;Pinet;leboucher.inc@gmail.com;f456615fb01df1531f7c88f4a9540a6e;14734563232;L'anse Epine;Grenada;-;-
+542;1;Sunrise;Emile;Mouanga;emile_mouanga@ymail.com;6914b32445dc63f82f1bca851ee1f418;+33 7 80 86 66 83;Pointe-Noire;Congo, Republic;-;1, Avenue Opangault z.i. – Foire
+543;1;Mix Nuts;Moussa;Wouhaibi;mix-nuts@hotmail.fr;d5ad243286411457e8f9cc289fd16483;+225 04 16 4 6 46;Abidjan;Ivory Coast;18;18 BP 3127
+544;1;sarl Blys DISCOUNT MARKET;Ludovic;Samson;blys@orange.fr;f1a904e52fe3b567567d894d4dba874d;33690721212;Terre de haut;Guadeloupe;97137;263 rue De Coquelet
+545;1;;Patrick;Maillot;maillot7346@gmail.com;aaa6401aee649c6861b614a45c087ece;33 692 759 474;Salazie;Reunion Island;97433;67 avenue Georges Pompidou
+546;1;Boutiques Parisiennes;Tom Idriss;Mahamat;mahamattom1@gmail.com;01099fb46f0d590f281a130f0ee8f8d7;23566271250;N'Djamena;Chad;-;Bo 5845
+547;1;Fresh & Co;Sidi Yaya;Cissé;prodistri-cisse@hotmail.fr;e7c04351f46149874380ece88462fa44;+223 66 74 22 17;Bamako;Mali;-;Commune de Kalabancoro
+548;1;;Adama;Sanogo;damadjelika2010@yahoo.com;e7c04351f46149874380ece88462fa44;+33 7 68 71 61 51;Franconville;France;95130;1 rue du Lavoir
+549;1;Bac'Or;Basar;Aladi;haladi.bacar@yahoo.fr;8729483c0a18e9165a90d430721fbefa;33 639 066 070;Mamoudzou;Mayotte;97600;12 rue mnadzi moja baracane Mamiudzou
+550;1;Ets tonton nzau;Roger;Nzau nzita;elephantroger@hotmail.com;b6413fdb26cfcb776cef00ac8a47509a;32466129485;Anvers;Belgium;2060;Korte dijkstraat 33
+551;2;Celebrity Chefs Iberia;Maria;Martinho;mail@celebritychefsiberia.pt;232dd2357934f096049c657a059fd95c;3,51963E+11;Almada;Portugal;2800-149;Rua da Liberdade, 32B
+552;1;International Trading Center;Issa;Diomandé;worldrinks.rehan@gmail.com;d5ad243286411457e8f9cc289fd16483;+225 48 31 49 53;Abidjan;Ivory Coast;6;Cocody Quartier II Plateaux Sicogi Villa 16
+553;2;Loulou Market;Hawa;Boudouri;hboudouri@gmail.com;8729483c0a18e9165a90d430721fbefa;+33 6 39 02 67 71;Tsoundzou;Mayotte;97600;9 impasse Longchamps
+554;2;SLE B.V;Stef;Heijnen;stef@debucon.com;ddf2a496baf811a1937aa2f3166a3198;31773520680;Vento;Netherlands;5629 LN;Magalhaesweg 8D
+555;1;Gustavson Diffusion;Eddie;Gustavson;gustavsongroup@gmail.com;5e1df14ad4954fddace6a4c38588c4fe;+33 7 89 02 80 12;Brazzaville;France;99000;1989 rue Mbemba Hippolitte
+556;2;Albatros;Christelle;Guillou;cguillou2@gmail.com;82beaf3a16d0c22d5cd877e63803032d;33 613 975 314;Sotteville les Rouen;France;76300;BP 72
+557;1;ELAD;Aziz;Benmaazouz;aziz.benmaazouz@yahoo.fr;e29c8db16063ce398ee5ca41535ed9be;33 661 069 200;El Maarif;Morocco;52100;38, Rue Socrate,  Résidence Trianon 5ème Étage Appt. N°41
+558;1;XPRO COMPANY;Ibrahim;Chehou;chehou.chehou@yahoo.fr;60ec41f5bed6002ee40681a05d0e96b0;2,37678E+11;Douala;Cameroon;5586;Yassa
+559;1;Grace Market;Jean-Claude;Kamani;jclokamani@gmail.com;b6413fdb26cfcb776cef00ac8a47509a;2,43814E+11;Kinshasa;Congo, Dem. Republic;-;12 route de Matadi
+560;1;Pandore;Valerio;Castiglia;pandoresprl@yahoo.com;10f7da5172879b39adafbeba948dce96;+32 4 86 65 52 60;Lessines;Belgium;7860;22, Rue General Freyberg
+561;1;Lanka Global Import Export SAS;Tharani;Pethuruppillai;r-tharani24@hotmail.com;9a6fc634c4bf046ca7b202b3cc1ae46f;+33 6 62 17 08 53;Ermont;France;95120;64 rue des Floralies
+562;1;ACDA;Fabrice;Granger;atce.granger@orange.fr;f230f89a639f618a265dd5c70b0fb6a9;+33 6 90 49 35 35;Baie Mahault;Guadeloupe;97122;33 ZAC De Houelbourg Sud
+563;1;I'M EXPORT;Cheick;Dembélé;fmcheick@gmail.com;e7c04351f46149874380ece88462fa44;33 751 533 495;Bamako;Mali;-;-
+564;1;2000 Supermarket;Miao;Zhang;miaoz1122@gmail.com;9d7e3aaae3c33838c50f4119e2bc3385;2,50784E+11;Kigali;Rwanda;-;KN 82 Street
+565;2;Prime Cente 21;Ahou Angele;Blois;primecenter21@gmail.com;e7c04351f46149874380ece88462fa44;+223 76 47 23 43;Bamako;Mali;4979;Orokorobougou p.46 R.46
+566;1;Breizhfood;Julien;Rouzé;breizhfood.vn@gmail.com;7a7abcef1a81b460aefcb1ad1dda2247;8,41656E+11;Hanoï;Vietnam;100000;Doi Can
+567;2;World Market;Jackeline;Paiola;worldmarketeurope@outlook.com;b42f00acf321a500d4af6445da3079f9;+41 22 360 81 29;Genève;Switzerland;1227;49 rue Caroline
+568;2;A vendre de tout pour tous;Sandrine;Grandjean;waughmarko@hotmail.com;10f7da5172879b39adafbeba948dce96;;;;;
+569;1;Appro Zagaya;Pascal;Petit;contact@appro-zagaya.fr;1d84cc760f003e37cfad53b2f75fba3d;596 696 071 629;Le Marin;Martinique;97290;17 cité Diaka
+570;1;Équilibriste SARL PIGIER COTE D'IVOIRE;Jacques Alain;Koffi;jacquesalainkoffi@gmail.com;d5ad243286411457e8f9cc289fd16483;22549565699;Abidjan;Ivory Coast;-;-
+571;1;Faso Raaga SARL;Reinatou;Bagayan;fasoraaga@gmail.com;1d011c6ee3ece276050823189b29bd6a;2278997270;Ouadagoudou;Burkina Faso;8;BP 11023
+572;1;Spanish Food Prodespa.s.l.;Ricardo;Vidal Solana;ricardovidal@prodespa.es;f57e743492248a86d5e0a288a7a046a2;;;;;
+573;0;Thala Import Export;Karin;Ouali;thala2018@yahoo.com;7f75b85a7e3bea72bf6633eb1bd71c73;15149733108;Montréal;Canada;H2A 1S5;3775 rue Everett
+574;1;Tonypack;Ibrahim;Tanir;tibo.tnr@hotmail.com;10f7da5172879b39adafbeba948dce96;32466069617;Bruxelles;Belgium;1000;-
+575;2;Ambient;Camelia;Pop;speak_low@yahoo.com;35fdcd0ccf8008edf734508f5eb9f345;32493116595;Anderlecht;Belgium;1070;65, Rue du Serment
+576;1;Aplurielles;Ginel;Maurice;gm@aplurielles.com;18b53097abe2cfebfbfb544f1a93a463;33 785 482 623;Claye Souilly;France;77410;3 allée des Rosiers
+577;1;Max1 Distribution;Peter;Chalamist;pchalamish@gmail.com;6833f63a4244954a0c73778227260783;15856331093;Rochester;United States;14619;168 Sherwood
+578;1;Dotaco;Didi;Tajedine;tajedine@hotmail.com;4c48d57ac2876d2a3ac3238f06dfd2cf;22236305673;Nouakchott;Mauritania;-;E-Nord
+579;1;Shamsa Distribution SARL;Giorgios;Kokkos;georgios@steshamsa.com;60ec41f5bed6002ee40681a05d0e96b0;2,37656E+11;Douala;Cameroon;3178;Boul Amadou Ahidjo
+580;1;Barde SARL;Barde;Sohel;bardesohel@gmail.com;b6413fdb26cfcb776cef00ac8a47509a;2,43892E+11;Kinshasa;Congo, Dem. Republic;243;Av.de mbugi mayi c/gombe
+581;2;NEC PLUS;Christelle;Cauet;christelle.cauet@sgpm.fr;f230f89a639f618a265dd5c70b0fb6a9;+33 590 26 92 45;Jarry Cedex;Guadeloupe;97191;Rue François Fresneau
+582;1;FRITZ Supermarché;Fritz;Singoubrayaden ;sfritz@orange.fr;0a74f09d94b3165c20f3cce459731620;+33 5.90.38.00.95;Trois Riviéres;France;97114;-
+583;1;El Bravo l'Epicerie de la Place;Mathieu;Aubin;caroaubin@icloud.com;8dd1bd798966b4d4914cb61f0750a545;+33 6 90 57 60 36;Saint Barthélémy;Saint Barthelemy;97133;Anse Cayes
+584;1;Discount Market;Abdoulaye;Doucouré;adouc21@hotmail.com;e7c04351f46149874380ece88462fa44;22376232613;Bamako;Mali;-;-
+585;1;French Dairy corporate services sdn bhd;Pierre;Grenier;fdcs.asia@gmail.com;08b795a7dd1bb6583780de78b60cc39a;60 146 112 189;Kuala Lumpur;Malaysia;50480;unit 25-9, Menara 1MK, 1 jalan kiara, Mont kiara
+586;2;DIA;Fatou;Diop;bostaurus1@yahoo.fr;ef3c082521a63c8a58d728c6b23c48e9;+221 77 540 98 11;Dakar;Senegal;20000;-
+587;1;Mon Panier;Yawo;Dodzro;yawovi4@hotmail.com;d5ce1b7531b300072f6444e8af6d1c96;32483252310;Zellik ;Belgium;1731;Breughelpark 1
+588;1;Bams Marché;Ibrahim;Dioumanera;bame7753@gmail.com;e7c04351f46149874380ece88462fa44;;;;;
+589;2;IMT;Valérie;Lagarde;info@imtfrance.com;5958eae5450e87d5808e8bed895c87de;+33 4 92 92 18 98;Mouan Sartoux;France;6370;ZI de l’argile
+590;1;Le Panier Français;Jean-Pierre;Brunet;jbrunet@lepanierfrancais.com;d92f7885751cd3f4a72471c81898bd90;16 307 850 904;Downers Grove;United States;60559;2508 Wisconsin Avenue
+591;1;Beka Trading Company;Benjamin;Kakat;benjaminkakat@gmail.com;1f7f7d7d487366f98d3829e92d07a8c8;+994 12 492 69 35;Bakou;Azerbaijan;AZ1001;Istiglallyat Street 45
+592;1;None;Stephen;Durst;steve.james.hurst@gmail.com;4b00e5224c1807ae42ac18b224dede02;3,51283E+11;Monchique;Portugal;8550-367;Casa Stoneman, Foz da Sernada,
+593;2;Ma-Impex;Radi;Bouzia;radi@heembloemex.nl;7aa3f540dec0c293af1bb49587098ce9;33645375141;Haarlem;Netherlands;2031 CC;Oudweg 147
+741;2;Ma-Impex;Radi;Bouzia;radi@heembloemex.nl;7aa3f540dec0c293af1bb49587098ce9;+31 6 45375141;Haarlem;Netherlands;2031CC;Oudweg 147
+594;2;Midane;Amal;Laksaybi;amallaksaybi@gmail.com;ee0f72d36f26ac155c2c99f171853765;32483236644;Bruxelles;France;10600;Rue Fernand Bernier 1
+595;2;RM Market;Malda;Bavoukanana;bavoukananam@yahoo.fr;62a9010f053bb29efa5c6ba2e5d2cc28;2,42067E+11;Brazzaville;Congo, Republic;0;30 rue Bandas
+596;1;;Mohamed;Briki;mohamedbriki@live.ca;67c47245e2336fb3c4bea84ce7b1dfc0;15148065100;Montréal;Canada;H2l3l4;-
+750;1;ETIF;Djara;Ouedraogo;djaraouedraogo8@gmail.com;9c4488b73c37fa5fe022d0ef7600bf51;+226 25 30 85 42;Ouadagoudou;Burkina Faso;-;01 BP 1316
+597;1;ETIF;Djara;Ouedraogo;djaraouedraogo8@gmail.com;9c4488b73c37fa5fe022d0ef7600bf51;+226 25 30 85 42;Ouadagoudou;Burkina Faso;-;01 BP 1316
+598;1;M.K Little Mini Mart;Michael;Kaili;michael@e-prosforesmas.com;873a94e3fad3268ab098a10acd3449c5;35796111152;Larnaca;Cyprus;6028;64 Tasou Mitsopoulou,
+599;1;Gaster;Stéphane;Roussier;stephane@gaster.fr;dfa3abd1445960b1ba93a952d64c91a2;+33 6 80 92 92 08;Paris;France;75016;-
+600;1;JPR International;Jean-Luc;Jamal;jprinternational@orange.fr;d7cd15faf111b162bd6fe0064c611a9a;+33 6 09 63 03 66;Chevilly Larue;France;94587;69 rue de Lille
+742;1;JPR International;Jean-Luc;Jamal;jprinternational@orange.fr;d7cd15faf111b162bd6fe0064c611a9a;+33 6 09 63 03 66;Chevilly Larue;France;94587;69 S rue de Lille
+601;2;Euro Bouffe Marie-B. Robelin;Marie B;Robelin;mbrobelin@yahoo.ca;67c47245e2336fb3c4bea84ce7b1dfc0;+1 438-495-3871;Mascouche;Canada;J7K 3C2;2031 rue Odette
+602;2;Euro Bouffe Marie-B. Robelin;Marie B;Robelin;mbrobelin@yahoo.ca;67c47245e2336fb3c4bea84ce7b1dfc0;+1 438-495-3871;Mascouche;Canada;J7K 3K2;2031 rue Odette
+603;1;Snowworld;Slava;Vasiliev;slava@snowworld.ru;5787781df0bc6bb7b0d0dda24cf6d260;79265217894;Moscou;Russian Federation;121471;Ryabinovaya St 43 A,
+604;1;Resoma Bénin;Gilbert;Cakposse;gcakpos@gmail.com;7fa80730d18cc5891cd630e080705bc7;22995193491;Cotonou;Benin;229;COTONOU S/C 08 BP 0258 TRI POSTAL COTONOU
+605;2;Gloodies;Jenna;Della Chiesa;j.dellachiesa@hotmail.com;fa5547109befaba8adb1d1b78abfc3cd;;;;;
+606;2;Uterma SA;Nathalie;Vermeire;nathalie.vermeire@utemasa.com;91f98c8757277679368a0e2016d99ecb;+32 71 44 03 63;Gosselies;Belgium;6041;rue de la Machine 30
+607;1;Dassakaf;Dany;Rakotomalala;danynantenaina@gmail.com;6e14aa7b94de8270522659ee778669da;2,61331E+11;ORLY;France;94390;AEIC Zone Cargo - Rue du négoce Bât.287 - B.P. 809 - 94390 ORLY
+608;1;Snackrate;Lucas;Laurent;lucas@snackcrate.com;0266cca2d29ef16fc41a9e827cec4f78;+1 850 346-6410;Pensacola;United States;32501;201 E. Wright St.
+609;1;HALDEO-ENERGY SARL;Alphonse Dossa;Houndjenoukon;houndjenoukonda@gmail.com;410c7ffe73fcf2eb83ede6bd88560375;22997170464;Cotonou;Benin;-;Akpakpa, irede Lot 202
+610;1;Timarghad Ltd;Abdellah;Bourich;abdellah@timarfood.com;9955677f53dbf7a0faf89039e170723d;9,66548E+12;Riad;Saudi Arabia;22354;14275, Al Sulay District
+611;1;DiFREN Pty Ltd;Fred;Barbe;contact@difren.co.za;48ce7829683ac40ec8cafab68772ade3;27728033647;Johannesbourg;South Africa;2011;-
+612;1;HKS Management Services Ltd;Sunil M;Hassamai;hkssha@gmail.com;0528182dc917e11978792e2b4244e29e;+230 697 53 89;Vacoas;Mauritius;-;18, Floréal Road
+613;1;Keliah Entreprise;Laurent;Dipp;lrdipp@gmail.com;14aca12bee6c2a5af372c3a5cfbed8cf;+33 7 80 81 40 51;Saint Cirgues;France;43380;Le Bourg
+614;1;Client Mr Laurent Dipp;Client Laurent;Dipp;client@ldipp.com;ef3c082521a63c8a58d728c6b23c48e9;+33 7 80 81 40 51;Dakar;Senegal;-;Dakar
+615;2;Euro Africa Trading Company;CArol;Tola;carol.tola@euroafrica-tc.com;c5c5398af23f0399ddb76abcdbe87b84;+33 7 82 74 14 84;Vélizy-Villacoublay ;France;78457;2 square Ernest Defay
+616;1;Georges' Food;Georges;Aflak;georgesaflak@live.fr;a250d10b432b8cabbf8f31e4ccc7ab98;96171839068;Beyrouth;Lebanon;99;Jounieh
+617;1;;Fabrice; Chan Kai Hou;fabrice.ckh@orange.fr;61d43c2c9454950e414769b73e59e89c;262 692 171 183;Sainte Clotilde;Reunion Island;97490;-
+751;1;Kingui Commerce;Mahamadou;Moussa Diawara;kinguicommerce@gmail.com;e7c04351f46149874380ece88462fa44;76618914;Bamako;Mali;E572;Magnambougou rural pres du Canal
+618;1;Kingui Commerce;Mahamadou;Moussa Diawara;kinguicommerce@gmail.com;e7c04351f46149874380ece88462fa44;76618914;Bamako;Mali;E572;Magnambougou rural pres du Canal
+619;1;DISPEYI S.A.R.L;Charles;Amsès;dispeyi@gmail.com;8729483c0a18e9165a90d430721fbefa;+282 639 27 95 30;Mamoudzou;Mayotte;97600;-
+620;1;Mike Tavarès;Mike;Tavarès de castro;miketavares.dcom@gmail.com;117654040a104cff1a1b9526eb0d459d;59 464 929 000;Montjoly;French Guiana;97354;apt 460 bat 28 residence les Ames Claires
+621;1;IDISA;Issihaka;Abdillah;issihaka.abdillah@gmail.com;8729483c0a18e9165a90d430721fbefa;262 639 699 761;Bandraboua ;Mayotte;97650;44, rue du Dispensaire HANDREMA
+622;1;Lobo Rojo Distribuidora;Benoit;Rudloff;loborojodistribuidora@gmail.com;de984597f36ab293e953dd3e76db1d1f;595 986 627 236;Coronel Oviedo;Paraguay;4000;Ruta 2 a 300 metros de la Rotonda
+623;1;Every Day;Khongorzul;Nyamgavaa;khongorzul.nya@bridgegroup.mn;37c10bbf059aa4d1ce15e327a6ce85cc;+976 11 462906;Ulan Bathor;Mongolia;210351;Bayanzurkh district 14th khoroo Peace Avenue
+624;1;Africa Import;Zouhair;Chaaban;cedis.gabon@yahoo.fr;3e6312e43ca4ccc661fa69aafcd31d3d;+241 07 32 77 77;Libreville;Gabon;-;BP 2897
+625;1;Coccimarket;Thibaut;Robec;thibaut.robec@wanadoo.fr;76b11b457e3e5e817caba824891a814a;+590 690 49-8700;Cul de sac;Saint Martin;-;-
+626;1;Magasin 2;Georges;Aflak;georgesaflak2@live.fr;a250d10b432b8cabbf8f31e4ccc7ab98;96171839068;Beyrouth;Lebanon;99;-
+627;1;;Oumar;Gesse;gesse@arc.sn;70ca31cd08779773e00ad6997f4dbb73;+221 77 769 54 02;Thies;Senegal;-;-

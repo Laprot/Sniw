@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -20,6 +22,7 @@ class Produit
     /**
      * @ORM\Id()
      * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -71,6 +74,61 @@ class Produit
      * @ORM\Column(type="boolean")
      */
     private $etat;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $manufacturer;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $profondeur;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $weight;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $quantite;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $minimal_quantity;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $unité;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $prix_unite;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $short_description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $feature;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $upc;
 
     public function getId(): ?int
     {
@@ -202,6 +260,138 @@ class Produit
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
+        return $this;
+    }
+
+    public function getManufacturer(): ?string
+    {
+        return $this->manufacturer;
+    }
+
+    public function setManufacturer(?string $manufacturer): self
+    {
+        $this->manufacturer = $manufacturer;
+
+        return $this;
+    }
+
+    public function getProfondeur(): ?string
+    {
+        return $this->profondeur;
+    }
+
+    public function setProfondeur(?string $profondeur): self
+    {
+        $this->profondeur = $profondeur;
+
+        return $this;
+    }
+
+    public function getWeight(): ?string
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(?string $weight): self
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    public function getQuantite(): ?string
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(?string $quantite): self
+    {
+        $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    public function getMinimalQuantity(): ?string
+    {
+        return $this->minimal_quantity;
+    }
+
+    public function setMinimalQuantity(?string $minimal_quantity): self
+    {
+        $this->minimal_quantity = $minimal_quantity;
+
+        return $this;
+    }
+
+    public function getUnité(): ?string
+    {
+        return $this->unité;
+    }
+
+    public function setUnité(?string $unité): self
+    {
+        $this->unité = $unité;
+
+        return $this;
+    }
+
+    public function getPrixUnite(): ?string
+    {
+        return $this->prix_unite;
+    }
+
+    public function setPrixUnite(?string $prix_unite): self
+    {
+        $this->prix_unite = $prix_unite;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->short_description;
+    }
+
+    public function setShortDescription(?string $short_description): self
+    {
+        $this->short_description = $short_description;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getFeature(): ?string
+    {
+        return $this->feature;
+    }
+
+    public function setFeature(?string $feature): self
+    {
+        $this->feature = $feature;
+
+        return $this;
+    }
+
+    public function getUpc(): ?string
+    {
+        return $this->upc;
+    }
+
+    public function setUpc(?string $upc): self
+    {
+        $this->upc = $upc;
+
         return $this;
     }
 

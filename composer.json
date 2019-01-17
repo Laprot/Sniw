@@ -8,6 +8,7 @@
         "friendsofsymfony/user-bundle": "^2.1",
         "knplabs/knp-paginator-bundle": "^2.8",
         "league/csv": "^8.0",
+        "liip/imagine-bundle": "^2.1",
         "mgilet/notification-bundle": "^3.1",
         "pugx/autocompleter-bundle": "^1.4",
         "sensio/framework-extra-bundle": "^5.1",

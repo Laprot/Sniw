@@ -29,7 +29,7 @@ class UserType extends AbstractType
             ])
             ->add('societe', TextType::class, [
                 'label'=> 'Société *',
-                'required'=>true
+                'required'=>false
             ])
             ->add('nom', TextType::class, [
                 'label'=> 'Nom *',
