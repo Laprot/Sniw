@@ -54,14 +54,29 @@ class ImportProduit extends Command
         foreach($results as $row) {
             $produit = new Produit();
 
-            $produit->setId($row['id']);
+            $produit->setUpc($row['upc']);
             $produit->setFilename($row['filename']);
+            $produit->setEtat($row['etat']);
+            $produit->setGencod($row['gencod']);
+            $produit->setPrixFinal($row['prix_final']);
+            $produit->setPrixBase($row['prix_base']);
             $produit->setNom($row['nom']);
             $produit->setReference($row['reference']);
+            $produit->setId($row['id']);
+            $produit->setShortDescription($row['short_description']);
+            $produit->setQuantite($row['quantite']);
+            $produit->setManufacturer($row['manufacturer']);
             $produit->setCategorie($row['categorie']);
-            $produit->setPrixBase($row['prix_base']);
-            $produit->setPrixFinal($row['prix_final']);
-            $produit->setEtat($row['etat']);
+            $produit->setUnite($row['unite']);
+            $produit->setPrixUnite($row['prix_unite']);
+            $produit->setProfondeur($row['profondeur']);
+            $produit->setWeight($row['weight']);
+            $produit->setFeature($row['feature']);
+            $produit->setMinimalQuantity($row['minimal_quantity']);
+
+
+
+
 
             $this->em->persist($produit);
 

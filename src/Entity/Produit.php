@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -129,6 +131,16 @@ class Produit
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $upc;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Categorie", mappedBy="id_produit")
+     */
+    private $id_categorie;
+
+    public function __construct()
+    {
+        $this->id_categorie = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -391,6 +403,34 @@ class Produit
     public function setUpc(?string $upc): self
     {
         $this->upc = $upc;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getIdCategorie(): Collection
+    {
+        return $this->id_categorie;
+    }
+
+    public function addIdCategorie(Categorie $idCategorie): self
+    {
+        if (!$this->id_categorie->contains($idCategorie)) {
+            $this->id_categorie[] = $idCategorie;
+            $idCategorie->addIdProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdCategorie(Categorie $idCategorie): self
+    {
+        if ($this->id_categorie->contains($idCategorie)) {
+            $this->id_categorie->removeElement($idCategorie);
+            $idCategorie->removeIdProduit($this);
+        }
 
         return $this;
     }
