@@ -137,6 +137,11 @@ class Produit
      */
     private $id_categorie;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Manufacturer", inversedBy="produits")
+     */
+    private $id_manufacturer;
+
     public function __construct()
     {
         $this->id_categorie = new ArrayCollection();
@@ -431,6 +436,18 @@ class Produit
             $this->id_categorie->removeElement($idCategorie);
             $idCategorie->removeIdProduit($this);
         }
+
+        return $this;
+    }
+
+    public function getIdManufacturer(): ?Manufacturer
+    {
+        return $this->id_manufacturer;
+    }
+
+    public function setIdManufacturer(?Manufacturer $id_manufacturer): self
+    {
+        $this->id_manufacturer = $id_manufacturer;
 
         return $this;
     }
