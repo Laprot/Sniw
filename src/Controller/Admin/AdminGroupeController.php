@@ -86,22 +86,9 @@ class AdminGroupeController extends AbstractController
             ]);
         }
 
-        $qb = $this->repository->createQueryBuilder('entity');
-        $qb->select('COUNT(entity) ');
-        $count = $qb->getQuery()->getSingleScalarResult();
-
-
-        $users = $paginator->paginate(
-           $this->getDoctrine()
-                ->getRepository(User::class)
-                ->findAll(),
-            $request->query->getInt('page', 1), 10
-        );
         return $this->render('admin/groupe/groupe_edit.html.twig', [
             'groupe' => $groupe,
-            'form' => $form->createView(),
-            'users'=> $users,
-            'count'=>$count
+            'form' => $form->createView()
         ]);
     }
 

@@ -81,7 +81,6 @@ class Groupe
         if (!$this->id_client->contains($idClient)) {
             $this->id_client[] = $idClient;
         }
-
         return $this;
     }
 
@@ -111,7 +110,7 @@ class Groupe
     /**
      * @param mixed $id_client
      */
-    public function setIdClient($id_client)
+    public function setIdClient($id_client = null)
     {
         $this->id_client = $id_client;
     }

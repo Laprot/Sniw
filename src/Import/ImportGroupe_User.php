@@ -54,14 +54,37 @@ class ImportGroupe_User extends Command
         $io->progressStart(iterator_count($results));
 
         foreach($results as $row) {
-            $user = new User();
+            $user = $this->em->getRepository(User::class)->find($row['id_client']);
+            $groupe = $this->em->getRepository(Groupe::class)->find($row['id_group']);
+
+
+
+            //Problème importation si un user est null on ajoute
+            if($user === null) {
+                $user= new User();
+                $user->setId($row['id_client']);
+                $user->setEmail('erreur@gmail.com');
+                $user->setPassword('erreur');
+                $user->setPrenom('erreur');
+                $user->setNom('erreur');
+                $this->em->persist($user);
+            }
+
+
+            $user->addIdGroupe($groupe);
+            $this->em->persist($user);
+
+
+
+
+
+           /* $user = new User();
             $user->setId($row['id_client']);
 
             $groupe = new Groupe();
-            $groupe->setId($row['id_group']);
+            $groupe->addIdClient($row['id_group']);*/
 
 
-            $this->em->persist($groupe);
 
 
             $metadata = $this->em->getClassMetaData(get_class($groupe));
@@ -77,7 +100,7 @@ class ImportGroupe_User extends Command
 
         $this->em->flush();
 
-        $io->success('Import des groupes complété !');
+        $io->success('Import user_id => groupe_id complété !');
     }
 
 
