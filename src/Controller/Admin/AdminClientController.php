@@ -55,6 +55,7 @@ class AdminClientController extends AbstractController
         $count = $qb->getQuery()->getSingleScalarResult();
 
 
+
         //Barre de recherche
         if (isset($_GET['user'])) {
             $user = (String)trim($_GET['user']);

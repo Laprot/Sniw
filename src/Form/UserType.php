@@ -2,7 +2,9 @@
 // src/FormUserType.php
 namespace App\Form;
 
+use App\Entity\Groupe;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,6 +33,13 @@ class UserType extends AbstractType
                 'label'=> 'Société *',
                 'required'=>false
             ])
+            ->add('id_groupe', EntityType::class, [
+                'class'=> Groupe::class,
+                'label' => 'Accès groupe(s) *',
+                'multiple'=>true,
+                'expanded'=>true,
+                'choice_label' => 'nom',
+            ])
             ->add('nom', TextType::class, [
                 'label'=> 'Nom *',
                 'required'=>true
@@ -43,7 +52,8 @@ class UserType extends AbstractType
                 'label' => 'Email *'
             ])
             ->add('username', TextType::class, [
-                'label' => 'Nom de compte *'
+                'label' => 'Nom de compte *',
+                'required'=>false
             ])
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,

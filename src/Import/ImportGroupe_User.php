@@ -8,17 +8,19 @@
 
 namespace App\Import;
 
-use App\Entity\Produit;
-use Doctrine\ORM\EntityManagerInterface;
-use League\Csv\Reader;
+
+use App\Entity\Groupe;
+use App\Entity\User;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Id\AssignedGenerator;
+use Doctrine\ORM\EntityManagerInterface;
+use League\Csv\Reader;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class ImportProduit extends Command
+class ImportGroupe_User extends Command
 {
 
     /**
@@ -35,7 +37,7 @@ class ImportProduit extends Command
 
     protected function configure() {
         $this
-            ->setName('csv:import')
+            ->setName('csv:import:groupe_user')
             ->setDescription('Imports CSV file')
         ;
     }
@@ -44,7 +46,7 @@ class ImportProduit extends Command
         $io = new SymfonyStyle($input,$output);
         $io->title('Import du flux ...');
 
-        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/products.csv');
+        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/groupes_csv/ps_customer_group.csv');
 
         $reader->setDelimiter(';');
         $results = $reader->fetchAssoc();
@@ -52,22 +54,21 @@ class ImportProduit extends Command
         $io->progressStart(iterator_count($results));
 
         foreach($results as $row) {
-            $produit = new Produit();
+            $user = new User();
+            $user->setId($row['id_client']);
 
-            $produit->setId($row['id']);
-            $produit->setFilename($row['filename']);
-            $produit->setNom($row['nom']);
-            $produit->setReference($row['reference']);
-            $produit->setCategorie($row['categorie']);
-            $produit->setPrixBase($row['prix_base']);
-            $produit->setPrixFinal($row['prix_final']);
-            $produit->setEtat($row['etat']);
+            $groupe = new Groupe();
+            $groupe->setId($row['id_group']);
 
-            $this->em->persist($produit);
 
-            $metadata = $this->em->getClassMetaData(get_class($produit));
+            $this->em->persist($groupe);
+
+
+            $metadata = $this->em->getClassMetaData(get_class($groupe));
             $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metadata->setIdGenerator(new AssignedGenerator());
+
+
 
             $io->progressAdvance();
         }
@@ -76,7 +77,7 @@ class ImportProduit extends Command
 
         $this->em->flush();
 
-        $io->success('Import des produits complété !');
+        $io->success('Import des groupes complété !');
     }
 
 

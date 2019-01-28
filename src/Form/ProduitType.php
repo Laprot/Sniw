@@ -18,9 +18,18 @@ class ProduitType extends AbstractType
             ->add('reference')
             ->add('categorie')
             ->add('gencod',null, [
-                'label' => 'Gencode (EAN13)'
+                'label' => 'Gencod (EAN13)'
             ])
             ->add('description')
+            ->add('short_description')
+            ->add('profondeur')
+            ->add('manufacturer')
+            ->add('weight')
+            ->add('unite')
+            ->add('prix_unite')
+            ->add('feature')
+            ->add('upc')
+
             ->add('prix_base')
             ->add('prix_final')
             ->add('etat',ChoiceType::class, [

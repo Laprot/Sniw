@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Les produits {% endblock %}
+{% block title %} Les groupes {% endblock %}
 
 {% block stylesheets %}
     <head>
@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Données produits</h2>
+                            <h2 class="pageheader-title">Données groupes</h2>
 
 
 
@@ -51,7 +51,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Produits</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Groupes</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -67,7 +67,7 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Tous les produits -  {{ count }} résultat(s)
+                            <h5 class="card-header">Tous les groupes -  {{ count }} résultat(s)
                             </h5>
                             <div class="card-body">
                                 <div class="table-responsive"  >
@@ -75,47 +75,31 @@
                                         <thead>
                                         <tr style="background-color:lightgrey">
                                             <th>ID</th>
-                                            <th>Image</th>
-                                            <th>Nom</th>
-                                            <th>Référence</th>
-                                            <th> Gencod</th>
-                                            <th> Catégorie</th>
-                                            <th>Prix de base</th>
-                                            <th>Prix final</th>
-                                            <th> Etat</th>
+                                            <th>Nom du groupe</th>
+                                            <th>Date de création</th>
                                             <th>Actions (Modifier / Supprimer)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for produit in produits %}
+                                        {% for groupe in groupes %}
                                             <tr>
 
-                                                <td>{{ produit.id }}</td>
-                                                <td>
-                                                    <a href="{{ path('produits_edit', {id: produit.id}) }}"> <img src="{{ produit.fileName | imagine_filter('small')}}" ></a>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ path('produits_edit', {id: produit.id}) }}">{{ produit.nom }} </a>
-                                                </td>
-                                                <td> {{ produit.reference }} </td>
-                                                <td> {{ produit.gencod }}</td>
-                                                <td> {{ produit.categorie }}</td>
-                                                <td> {{ produit.getPrixBase() }}</td>
-                                                <td> {{ produit.getPrixFinal()}}</td>
-                                                <td>
-                                                    {{ produit.getEtat() ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}
-                                                </td>
+                                                <td>{{ groupe.id }}</td>
+
+                                                <td> {{ groupe.nom }} </td>
+                                                <td> {{  groupe.getCreatedAt() ? groupe.getCreatedAt()|date('Y-m-d H:i:s') : '' }}</td>
+
                                                 <td>
                                                     <div class="btn btn-group justified">
 
 
-                                                        <a class="ml-2 mr-2" href="{{ path('produits_edit', {id: produit.id}) }}">
+                                                        <a class="ml-2 mr-2" href="{{ path('groupe_edit', {id: groupe.id}) }}">
                                                             <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
                                                         </a>
 
-                                                        <form method="post" action="{{ path('produits_delete', {'id': produit.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce produit');">
+                                                        <form method="post" action="{{ path('groupe_delete', {'id': groupe.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce groupe');">
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ groupe.id) }}">
                                                             <button class="btn btn-danger" ><i class="fas fa-times"></i></button>
                                                         </form>
 
@@ -132,10 +116,10 @@
 
                                     </table>
                                     <div class="mt-4">
-                                        Affichage : {{ produits | length  }} / {{ count }} résultats
+                                        Affichage : {{ groupes | length  }} / {{ count }} résultats
                                     </div>
                                     <div class="" style="float:right">
-                                        {{ knp_pagination_render(produits) }}
+                                        {{ knp_pagination_render(groupes) }}
                                     </div>
 
                                 </div>

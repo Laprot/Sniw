@@ -2315,3 +2315,62 @@ h5 > span {
 .radio label input[type="radio"]:disabled + .cr {
 	opacity: .5;
 }
+
+
+
+
+
+.histoires__cards {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 20px;
+	grid-row-gap: 70px; }
+@media screen and (max-width: 768px) {
+	.histoires__cards {
+		grid-template-columns: 1fr; } }
+
+.histoires__card {
+	background-color: #454545; }
+
+.histoires__card-content {
+	margin: 0px 20px 40px 30px; }
+
+.histoires__card-p {
+	text-transform: uppercase;
+	margin-top: 30px; }
+
+.histoires__card-p:after {
+	border-bottom: 1px solid white;
+	content: '';
+	width: 20px;
+	display: inline-block;
+	margin-left: 10px;
+	height: 3px; }
+
+.histoires__card-title {
+	font-size: 1.2em;
+	width: 80%;
+	margin-bottom: 50px;
+	font-weight: bold;
+	display: block; }
+
+.histoires__card-infos {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between; }
+
+.histoires__card-genre {
+	font-size: 0.9em;
+	text-transform: uppercase; }
+
+.histoires__card-author {
+	font-size: 0.9em;
+	text-transform: uppercase; }
+
+.histoires__card-img {
+	width: 100%; }

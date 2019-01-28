@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Mgilet\NotificationBundle\Entity\NotifiableNotification;
 use Mgilet\NotificationBundle\Entity\NotificationInterface;
@@ -21,6 +22,7 @@ class User implements UserInterface,NotificationInterface
 {
     /**
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -50,7 +52,6 @@ class User implements UserInterface,NotificationInterface
 
     /**
      * @ORM\Column(type="string", length=64, unique=true,nullable=true)
-     * @Assert\NotBlank()
      */
     private $username;
 
@@ -128,12 +129,15 @@ class User implements UserInterface,NotificationInterface
     private $telephone;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Groupe", inversedBy="clients")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Groupe", inversedBy="id_client")
      */
-    private $groupe;
+    private $id_groupe;
+
+
 
     public function __construct() {
         $this->roles = array('ROLE_USER');
+        $this->id_groupe = new ArrayCollection();
     }
 
     // other properties and methods
@@ -414,15 +418,60 @@ class User implements UserInterface,NotificationInterface
         // TODO: Implement removeNotifiableNotification() method.
     }
 
-    public function getGroupe(): ?Groupe
+    /**
+     * @return Collection|Groupe[]
+     */
+    public function getIdGroupe(): Collection
     {
-        return $this->groupe;
+        return $this->id_groupe;
     }
 
-    public function setGroupe(?Groupe $groupe): self
+    public function addIdGroupe(Groupe $idGroupe): self
     {
-        $this->groupe = $groupe;
+        if (!$this->id_groupe->contains($idGroupe)) {
+            $this->id_groupe[] = $idGroupe;
+            $idGroupe->addIdClient($this);
+        }
 
         return $this;
     }
+
+    public function removeIdGroupe(Groupe $idGroupe): self
+    {
+        if ($this->id_groupe->contains($idGroupe)) {
+            $this->id_groupe->removeElement($idGroupe);
+            $idGroupe->removeIdClient($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        $s = ' '.$this->nom;
+        return $s;
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * @param mixed $id_groupe
+     */
+    public function setIdGroupe($id_groupe)
+    {
+        $this->id_groupe = $id_groupe;
+    }
+
+
+
+
+
+
+
 }

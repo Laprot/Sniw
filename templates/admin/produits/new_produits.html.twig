@@ -56,6 +56,8 @@
 
                                 <form method="post">
                                     {{ form_start(form) }}
+
+                                    {{ form_row(form.etat) }}
                                     {{ form_row(form.filename) }}
                                     {{ form_row(form.nom) }}
                                     {{ form_row(form.reference) }}
@@ -63,7 +65,16 @@
                                     {{ form_row(form.categorie) }}
                                     {{ form_row(form.prix_base) }}
                                     {{ form_row(form.prix_final) }}
-                                    {{ form_row(form.etat) }}
+
+                                    {{ form_row(form.description) }}
+                                    {{ form_row(form.short_description) }}
+                                    {{ form_row(form.profondeur) }}
+                                    {{ form_row(form.manufacturer) }}
+                                    {{ form_row(form.weight) }}
+                                    {{ form_row(form.unite) }}
+                                    {{ form_row(form.prix_unite) }}
+                                    {{ form_row(form.feature) }}
+                                    {{ form_row(form.upc) }}
 
 
                                     <div class="form-group row text-right">

@@ -13,7 +13,7 @@ class Groupe
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -24,14 +24,20 @@ class Groupe
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="groupe")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $clients;
+    private $created_at;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="id_groupe")
+     */
+    private $id_client;
 
     public function __construct()
     {
-        $this->clients = new ArrayCollection();
+        $this->id_client = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -50,34 +56,65 @@ class Groupe
         return $this;
     }
 
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
     /**
      * @return Collection|User[]
      */
-    public function getClients(): Collection
+    public function getIdClient(): Collection
     {
-        return $this->clients;
+        return $this->id_client;
     }
 
-    public function addClient(User $client): self
+    public function addIdClient(User $idClient): self
     {
-        if (!$this->clients->contains($client)) {
-            $this->clients[] = $client;
-            $client->setGroupe($this);
+        if (!$this->id_client->contains($idClient)) {
+            $this->id_client[] = $idClient;
         }
 
         return $this;
     }
 
-    public function removeClient(User $client): self
+    public function removeIdClient(User $idClient): self
     {
-        if ($this->clients->contains($client)) {
-            $this->clients->removeElement($client);
-            // set the owning side to null (unless already changed)
-            if ($client->getGroupe() === $this) {
-                $client->setGroupe(null);
-            }
+        if ($this->id_client->contains($idClient)) {
+            $this->id_client->removeElement($idClient);
         }
 
         return $this;
     }
+
+    public function __toString()
+    {
+        $s = ' '.$this->nom;
+        return $s;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $id_client
+     */
+    public function setIdClient($id_client)
+    {
+        $this->id_client = $id_client;
+    }
+
+
 }

@@ -30,8 +30,8 @@
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link"> Dashboard </a></li>
-                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link"> Client </a></li>
+                                    <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link"> Dashboard </a></li>
+                                    <li class="breadcrumb-item"><a href="{{ path('client_show') }}" class="breadcrumb-link"> Client </a></li>
                                     <li class="breadcrumb-item active" aria-current="page"> Modifier un client </li>
                                 </ol>
                             </nav>
@@ -64,7 +64,7 @@
                                     {{ form_row(form.username) }}
                                     {{ form_row(form.plainPassword.first, { 'label' : 'Nouveau mot de passe', 'required' : false , 'attr': { 'placeholder': false} })  }}
                                     {{ form_row(form.plainPassword.second, { 'label' : 'Répéter le nouveau mot de passe', 'required' : false , 'attr': { 'placeholder': false} })  }}
-
+                                    {{ form_row(form.id_groupe) }}
 
                                     <div class="form-group row text-right">
                                         <div class="col float-right col-sm-10 col-lg-9 offset-lg-0">

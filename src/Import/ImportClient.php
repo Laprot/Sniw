@@ -11,6 +11,8 @@ namespace App\Import;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Reader;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Id\AssignedGenerator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -65,9 +67,12 @@ class ImportClient extends Command
             $user->setCodePostal($row['code_postal']);
             $user->setAdresse($row['adresse']);
 
-
-
             $this->em->persist($user);
+
+
+            $metadata = $this->em->getClassMetaData(get_class($user));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
 
             $io->progressAdvance();
         }

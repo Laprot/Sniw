@@ -43,3 +43,21 @@ services:
             - "@doctrine.orm.entity_manager"
           tags:
             - { name : console.command }
+
+
+    console_command.csv_importgroupe:
+          class: App\Import\ImportGroupe
+          arguments:
+            - "@doctrine.orm.entity_manager"
+          tags:
+            - { name : console.command }
+
+
+    console_command.csv_importgroupe_user:
+          class: App\Import\ImportGroupe_User
+          arguments:
+            - "@doctrine.orm.entity_manager"
+          tags:
+            - { name : console.command }
+
+

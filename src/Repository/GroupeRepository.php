@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Groupe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -18,6 +20,25 @@ class GroupeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Groupe::class);
     }
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(): Query
+    {
+        return $this->findGroupeASC()->getQuery();
+    }
+    /**
+     * @return QueryBuilder
+     */
+
+    private function findGroupeASC(): QueryBuilder
+    {
+        //Retourne les utilisateurs dans l'odre décroissant par ID , du plus récent au plus ancien
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.id','ASC');
+    }
+
 
     // /**
     //  * @return Groupe[] Returns an array of Groupe objects

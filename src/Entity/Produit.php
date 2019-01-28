@@ -103,7 +103,7 @@ class Produit
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $unité;
+    private $unite;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -323,14 +323,14 @@ class Produit
         return $this;
     }
 
-    public function getUnité(): ?string
+    public function getUnite(): ?string
     {
-        return $this->unité;
+        return $this->unite;
     }
 
-    public function setUnité(?string $unité): self
+    public function setUnite(?string $unite): self
     {
-        $this->unité = $unité;
+        $this->unité = $unite;
 
         return $this;
     }

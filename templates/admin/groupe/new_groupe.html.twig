@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Modifier un produit {% endblock %}
+{% block title %} Ajouter un groupe {% endblock %}
 
 {% block stylesheets %}
     <!-- Bootstrap CSS -->
@@ -31,8 +31,8 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ path('produits_show') }}" class="breadcrumb-link">Produits</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Modifier un produit</li>
+                                    <li class="breadcrumb-item"><a href="{{ path('groupe_show') }}" class="breadcrumb-link">Groupes</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Ajouter un nouveau groupe</li>
                                 </ol>
                             </nav>
                         </div>
@@ -50,31 +50,13 @@
                 <!-- ============================================================== -->
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                        <h5 class="card-header">Produit : {{ produit.nom }}</h5>
+                        <h5 class="card-header">Produit</h5>
                         <div class="card-body">
                             <div class="form-group col-md-6 container">
+
                                 <form method="post">
                                     {{ form_start(form) }}
-                                    {{ form_row(form.etat) }}
-                                    {{ form_row(form.filename) }}
                                     {{ form_row(form.nom) }}
-                                    {{ form_row(form.reference) }}
-                                    {{ form_row(form.gencod) }}
-                                    {{ form_row(form.categorie) }}
-                                    {{ form_row(form.prix_base) }}
-                                    {{ form_row(form.prix_final) }}
-
-
-
-                                    {{ form_row(form.description) }}
-                                    {{ form_row(form.short_description) }}
-                                    {{ form_row(form.profondeur) }}
-                                    {{ form_row(form.manufacturer) }}
-                                    {{ form_row(form.weight) }}
-                                    {{ form_row(form.unite) }}
-                                    {{ form_row(form.prix_unite) }}
-                                    {{ form_row(form.feature) }}
-                                    {{ form_row(form.upc) }}
 
 
                                     <div class="form-group row text-right">
@@ -94,7 +76,7 @@
                                 </form>
 
                             </div>
-                            <a href="{{ path('produits_show') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
+                            <a href="{{ path('admin_dashboard') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
                         </div>
                     </div>
                 </div>
@@ -119,7 +101,7 @@
     <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-    <script src="/admin/assets/vendor/parsley/parsley.js"></script>
+
     <script src="/admin/assets/libs/js/main-js.js"></script>
     <script>
         $('#form').parsley();

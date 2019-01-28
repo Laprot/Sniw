@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Modifier un produit {% endblock %}
+{% block title %} Modifier un groupe {% endblock %}
 
 {% block stylesheets %}
     <!-- Bootstrap CSS -->
@@ -25,14 +25,14 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="pageheader-title">Produits </h2>
+                        <h2 class="pageheader-title">Groupes </h2>
                         <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ path('produits_show') }}" class="breadcrumb-link">Produits</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Modifier un produit</li>
+                                    <li class="breadcrumb-item"><a href="{{ path('groupe_show') }}" class="breadcrumb-link">Groupes</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Modifier un groupe</li>
                                 </ol>
                             </nav>
                         </div>
@@ -50,31 +50,12 @@
                 <!-- ============================================================== -->
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                        <h5 class="card-header">Produit : {{ produit.nom }}</h5>
+                        <h5 class="card-header">Groupe : {{ groupe.nom }}</h5>
                         <div class="card-body">
                             <div class="form-group col-md-6 container">
                                 <form method="post">
                                     {{ form_start(form) }}
-                                    {{ form_row(form.etat) }}
-                                    {{ form_row(form.filename) }}
                                     {{ form_row(form.nom) }}
-                                    {{ form_row(form.reference) }}
-                                    {{ form_row(form.gencod) }}
-                                    {{ form_row(form.categorie) }}
-                                    {{ form_row(form.prix_base) }}
-                                    {{ form_row(form.prix_final) }}
-
-
-
-                                    {{ form_row(form.description) }}
-                                    {{ form_row(form.short_description) }}
-                                    {{ form_row(form.profondeur) }}
-                                    {{ form_row(form.manufacturer) }}
-                                    {{ form_row(form.weight) }}
-                                    {{ form_row(form.unite) }}
-                                    {{ form_row(form.prix_unite) }}
-                                    {{ form_row(form.feature) }}
-                                    {{ form_row(form.upc) }}
 
 
                                     <div class="form-group row text-right">
@@ -89,9 +70,16 @@
 
                                     </div>
 
-
-
                                 </form>
+
+                                <h5> Clients membre de ce groupe</h5>
+                                {% for user in groupe.getIdClient() %}
+
+
+                                    <ul>
+                                        <li><a href="{{ path('client_edit', {id: user.id}) }}">{{ user.nom }}</a></li>
+                                    </ul>
+                                {% endfor %}
 
                             </div>
                             <a href="{{ path('produits_show') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
