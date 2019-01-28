@@ -73,7 +73,7 @@ class ImportManufacturer extends Command
 
         $this->em->flush();
 
-        $io->success('Import des groupes complété !');
+        $io->success('Import des fabricants complété !');
     }
 
 

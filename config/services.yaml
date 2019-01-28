@@ -60,4 +60,11 @@ services:
           tags:
             - { name : console.command }
 
+    console_command.csv_import_manu:
+          class: App\Import\ImportManufacturer
+          arguments:
+            - "@doctrine.orm.entity_manager"
+          tags:
+            - { name : console.command }
+
 
