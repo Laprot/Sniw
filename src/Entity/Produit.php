@@ -63,7 +63,7 @@ class Produit
     private $categorie;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $prix_base;
 
@@ -123,9 +123,19 @@ class Produit
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $feature;
+    private $feature = [
+        'Conditionnement' => '',
+        'Unite_par_carton' => '',
+        'NB_carton_palette' => '',
+        'DLV_garantie'=>'',
+        'DLV_Theorique' =>'',
+        'Unite_par_couche' => '',
+        'Produits_bio' => '',
+        'Produits_nouveaux'=> '',
+        'Produits_belle_france'=> ''
+    ];
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -141,6 +151,7 @@ class Produit
      * @ORM\ManyToOne(targetEntity="App\Entity\Manufacturer", inversedBy="produits")
      */
     private $id_manufacturer;
+
 
     public function __construct()
     {
@@ -388,12 +399,12 @@ class Produit
         return $this;
     }
 
-    public function getFeature(): ?string
+    public function getFeature(): ?array
     {
         return $this->feature;
     }
 
-    public function setFeature(?string $feature): self
+    public function setFeature(?array $feature): self
     {
         $this->feature = $feature;
 
@@ -451,6 +462,16 @@ class Produit
 
         return $this;
     }
+
+
+    /**
+     * @param mixed $id_categorie
+     */
+    public function setIdCategorie($id_categorie)
+    {
+        $this->id_categorie = $id_categorie;
+    }
+
 
 
 

@@ -64,7 +64,7 @@ class AdminProduitController extends AbstractController
     /**
      * @Route("/admin/produits/new", name="produits_new")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function new(Request $request)
     {
         // 1) build the form
         $produit = new Produit();
@@ -73,7 +73,8 @@ class AdminProduitController extends AbstractController
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // 4) save the User!
+
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($produit);
             $entityManager->flush();
@@ -101,6 +102,8 @@ class AdminProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('produits_show', [
@@ -126,6 +129,4 @@ class AdminProduitController extends AbstractController
 
         return $this->redirectToRoute('produits_show');
     }
-
-
 }

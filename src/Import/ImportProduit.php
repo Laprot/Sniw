@@ -8,6 +8,7 @@
 
 namespace App\Import;
 
+use App\Entity\Manufacturer;
 use App\Entity\Produit;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Reader;
@@ -44,7 +45,7 @@ class ImportProduit extends Command
         $io = new SymfonyStyle($input,$output);
         $io->title('Import du flux ...');
 
-        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/products.csv');
+        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/ps_products.csv');
 
         $reader->setDelimiter(';');
         $results = $reader->fetchAssoc();
@@ -59,23 +60,32 @@ class ImportProduit extends Command
             $produit->setEtat($row['etat']);
             $produit->setGencod($row['gencod']);
             $produit->setPrixFinal($row['prix_final']);
-            $produit->setPrixBase($row['prix_base']);
+            $produit->setPrixUnite($row['prix_unite']);
             $produit->setNom($row['nom']);
             $produit->setReference($row['reference']);
             $produit->setId($row['id']);
             $produit->setShortDescription($row['short_description']);
-            $produit->setQuantite($row['quantite']);
-            $produit->setManufacturer($row['manufacturer']);
+
+
+            $idmanu = $this->em->getRepository(Manufacturer::class)->findOneBy(['id' => [$row['id_manufacturer']]]);
+            $produit->setIdManufacturer($idmanu);
+
+
+
             $produit->setCategorie($row['categorie']);
             $produit->setUnite($row['unite']);
             $produit->setPrixUnite($row['prix_unite']);
             $produit->setProfondeur($row['profondeur']);
             $produit->setWeight($row['weight']);
-            $produit->setFeature($row['feature']);
+
+
+            $features = ['1' => ($row['feature0']),
+                        '2'=>($row['feature1']), '3'=>($row['feature2']) , '4'=>($row['feature3']) , '5'=>($row['feature4']) ];
+
+            $produit->setFeature($features);
+
+
             $produit->setMinimalQuantity($row['minimal_quantity']);
-
-
-
 
 
             $this->em->persist($produit);

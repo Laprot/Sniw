@@ -99,4 +99,11 @@ class Manufacturer
 
         return $this;
     }
+
+
+    public function __toString()
+    {
+        $s = $this->nom ;
+        return $s;
+    }
 }
