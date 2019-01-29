@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Les groupes {% endblock %}
+{% block title %} Les fabricants {% endblock %}
 
 {% block stylesheets %}
     <head>
@@ -37,17 +37,15 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Données groupes</h2>
+                            <h2 class="pageheader-title">Données fabricants   </h2>
 
-
-                            <h5> <a class="nav-link" href="{{ path('groupe_new') }}"> <i class="fas fa-plus"></i> Ajouter un groupe </a> </h5>
-
+                            <h5> <a class="nav-link" href="{{ path('fabricant_new') }}"> <i class="fas fa-plus"></i> Ajouter un fabricant </a> </h5>
                             <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Groupes</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Fabricants</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -63,39 +61,37 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Tous les groupes -  {{ count }} résultat(s)
-                            </h5>
+                            <h5 class="card-header">Tous les fabricants -  {{ count }} résultat(s)</h5>
+
                             <div class="card-body">
                                 <div class="table-responsive"  >
                                     <table class="table table-bordered first" >
                                         <thead>
                                         <tr style="background-color:lightgrey">
                                             <th>ID</th>
-                                            <th>Nom du groupe</th>
-                                            <th>Date de création</th>
+                                            <th>Nom</th>
+                                            <th>Adresses</th>
                                             <th>Actions (Modifier / Supprimer)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for groupe in groupes %}
+                                        {% for fabricant in fabricants %}
                                             <tr>
 
-                                                <td>{{ groupe.id }}</td>
-
-                                                <td> {{ groupe.nom }} </td>
-                                                <td> {{  groupe.getCreatedAt() ? groupe.getCreatedAt()|date('Y-m-d H:i:s') : '' }}</td>
-
+                                                <td>{{ fabricant.id }}</td>
+                                                <td> {{ fabricant.nom }} </td>
+                                                <td> <p class="text-center"> -- </p>  </td>
                                                 <td>
-                                                    <div class="btn btn-group justified">
+                                                    <div class="btn btn-group justified text-center">
 
 
-                                                        <a class="ml-2 mr-2" href="{{ path('groupe_edit', {id: groupe.id}) }}">
+                                                        <a class="ml-2 mr-2" href="{{ path('fabricant_edit', {id: fabricant.id}) }}">
                                                             <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
                                                         </a>
 
-                                                        <form method="post" action="{{ path('groupe_delete', {'id': groupe.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce groupe');">
+                                                        <form method="post" action="{{ path('fabricant_delete', {'id': fabricant.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce fabricant');">
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ groupe.id) }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ fabricant.id) }}">
                                                             <button class="btn btn-danger" ><i class="fas fa-times"></i></button>
                                                         </form>
 
@@ -112,10 +108,10 @@
 
                                     </table>
                                     <div class="mt-4">
-                                        Affichage : {{ groupes | length  }} / {{ count }} résultats
+                                        Affichage : {{ fabricants | length  }} / {{ count }} résultats
                                     </div>
                                     <div class="" style="float:right">
-                                        {{ knp_pagination_render(groupes) }}
+                                        {{ knp_pagination_render(fabricants) }}
                                     </div>
 
                                 </div>

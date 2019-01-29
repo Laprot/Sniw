@@ -1,0 +1,221 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Modifier un fabricant {% endblock %}
+
+{% block stylesheets %}
+    <!-- Bootstrap CSS -->
+
+{% endblock %}
+
+
+{% block body %}
+<body>
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+
+
+<div class="dashboard-main-wrapper">
+    {% include 'admin/left_side.html.twig' %}
+    <div class="dashboard-wrapper">
+        <div class="container-fluid  dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Fabricants </h2>
+                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                        <div class="page-breadcrumb">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link"> Dashboard </a></li>
+                                    <li class="breadcrumb-item"><a href="{{ path('fabricant_show') }}" class="breadcrumb-link"> Clients </a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"> Modifier un fabricant </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader -->
+            <!-- ============================================================== -->
+
+
+            <div class="row">
+                <!-- ============================================================== -->
+                <!-- valifation types -->
+                <!-- ============================================================== -->
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <h5 class="card-header"> Fabricant : {{ fabricant.nom }} </h5>
+                        <div class="card-body">
+                            <div class="form-group col-md-6 container">
+                                <form method="post">
+                                    {{ form_start(form) }}
+
+                                    {{ form_row(form.id) }}
+                                    {{ form_row(form.nom) }}
+
+
+                                    <div class="form-group row text-right">
+                                        <div class="col float-right col-sm-10 col-lg-9 offset-lg-0">
+                                            <button type="submit" class="btn btn-space btn-primary">Enregistrer</button>
+
+                                            {{ form_end(form) }}
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+                                </form>
+
+                            </div>
+                            <a href="{{ path('fabricant_show') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="container-fluid  dashboard-content">
+                    <!-- ============================================================== -->
+                    <!-- pageheader -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+
+                                <h5> Produits  </h5>
+                                <div class="">
+
+                                    <input class="form-control" id="search" type='search' placeholder="Rechercher" style="margin-right:30px;width:70%">
+                                    <button class="btn btn-primary" style="float:right">
+                                        Rechercher
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end pageheader -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- basic table  -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">
+                                </h5>
+                                <div class="card-body">
+                                    <div class="table-responsive"  >
+                                        <table class="table table-bordered first" >
+                                            <thead>
+                                            <tr style="background-color:lightgrey">
+                                                <th>ID</th>
+                                                <th>Image</th>
+                                                <th>Nom</th>
+                                                <th>Référence</th>
+                                                <th> Gencod</th>
+                                                <th> Catégorie</th>
+                                                <th>Prix de base</th>
+                                                <th>Prix final</th>
+                                                <th> Etat</th>
+                                                <th>Actions (Modifier / Supprimer)</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for produit in fabricant.getProduits() %}
+                                                <tr>
+
+                                                    <td>{{ produit.id }}</td>
+                                                    <td>
+                                                        <a href="{{ path('produits_edit', {id: produit.id}) }}"> <img src="{{ produit.fileName | imagine_filter('small')}}" ></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ path('produits_edit', {id: produit.id}) }}">{{ produit.nom }} </a>
+                                                    </td>
+                                                    <td> {{ produit.reference }} </td>
+                                                    <td> {{ produit.gencod }}</td>
+                                                    <td> {{ produit.categorie }}</td>
+                                                    <td> {{ produit.getPrixBase() }}</td>
+                                                    <td> {{ produit.getPrixFinal()}}</td>
+                                                    <td>
+                                                        {{ produit.getEtat() ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn btn-group justified">
+
+
+                                                            <a class="ml-2 mr-2" href="{{ path('produits_edit', {id: produit.id}) }}">
+                                                                <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                                                            </a>
+
+                                                            <form method="post" action="{{ path('produits_delete', {'id': produit.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce produit');">
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
+                                                                <button class="btn btn-danger" ><i class="fas fa-times"></i></button>
+                                                            </form>
+
+
+                                                        </div>
+
+                                                    </td>
+
+                                                </tr>
+
+
+                                            {% endfor %}
+                                            </tbody>
+
+
+                                        </table>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end data table multiselects  -->
+                        <!-- ============================================================== -->
+                    </div>
+                </div>
+
+                <!-- ============================================================== -->
+                <!-- end valifation types -->
+                <!-- ============================================================== -->
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- end main wrapper -->
+<!-- ============================================================== -->
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <!-- Main SCRIPTS -->
+    <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/admin/assets/vendor/parsley/parsley.js"></script>
+    <script src="/admin/assets/libs/js/main-js.js"></script>
+    <script>
+        $('#form').parsley();
+    </script>
+{% endblock %}
+

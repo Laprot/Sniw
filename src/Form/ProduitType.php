@@ -37,7 +37,7 @@ class ProduitType extends AbstractType
             ->add('unite')
             ->add('prix_unite')
             ->add('feature', null ,[
-                'label' => 'Fonctionnalités'
+                'label' => 'Caractéristiques'
             ])
             ->add('upc')
 

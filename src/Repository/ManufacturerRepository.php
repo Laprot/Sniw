@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Manufacturer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Manufacturer|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +20,26 @@ class ManufacturerRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Manufacturer::class);
     }
+
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(): Query
+    {
+        return $this->findManufacturerASC()->getQuery();
+    }
+    /**
+     * @return QueryBuilder
+     */
+
+    private function findManufacturerASC(): QueryBuilder
+    {
+        //Retourne les utilisateurs dans l'odre décroissant par ID , du plus récent au plus ancien
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.nom','ASC');
+    }
+
 
     // /**
     //  * @return Manufacturer[] Returns an array of Manufacturer objects
