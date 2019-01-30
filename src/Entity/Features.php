@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,16 @@ class Features
      * @ORM\Column(type="integer", nullable=true)
      */
     private $position;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Produit", inversedBy="features")
+     */
+    private $produits;
+
+    public function __construct()
+    {
+        $this->produits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -63,6 +75,37 @@ class Features
         $this->id = $id;
     }
 
+    /**
+     * @return Collection|Produit[]
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
 
+    public function addProduit(Produit $produit): self
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        if ($this->produits->contains($produit)) {
+            $this->produits->removeElement($produit);
+        }
+
+        return $this;
+    }
+
+
+    public function __toString()
+    {
+        $s = $this->nom;
+        return $s;
+    }
 
 }

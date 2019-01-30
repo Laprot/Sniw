@@ -122,20 +122,6 @@ class Produit
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $feature = [
-        'Conditionnement' => '',
-        'Unite_par_carton' => '',
-        'NB_carton_palette' => '',
-        'DLV_garantie'=>'',
-        'DLV_Theorique' =>'',
-        'Unite_par_couche' => '',
-        'Produits_bio' => '',
-        'Produits_nouveaux'=> '',
-        'Produits_belle_france'=> ''
-    ];
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -152,10 +138,61 @@ class Produit
      */
     private $id_manufacturer;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Features", mappedBy="produits")
+     */
+    private $features=[];
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $conditionnement;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $unite_par_carton;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nb_carton_palette;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $dlv_garantie;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $dlv_theorique;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $unite_par_couche;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $produit_bio;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $produit_nouveau;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $produit_belle_france;
+
 
     public function __construct()
     {
         $this->id_categorie = new ArrayCollection();
+        $this->features = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -399,17 +436,6 @@ class Produit
         return $this;
     }
 
-    public function getFeature(): ?array
-    {
-        return $this->feature;
-    }
-
-    public function setFeature(?array $feature): self
-    {
-        $this->feature = $feature;
-
-        return $this;
-    }
 
     public function getUpc(): ?string
     {
@@ -470,6 +496,142 @@ class Produit
     public function setIdCategorie($id_categorie)
     {
         $this->id_categorie = $id_categorie;
+    }
+
+    /**
+     * @return Collection|Features[]
+     */
+    public function getFeatures(): Collection
+    {
+        return $this->features;
+    }
+
+    public function addFeature(Features $feature): self
+    {
+        if (!$this->features->contains($feature)) {
+            $this->features[] = $feature;
+            $feature->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeature(Features $feature): self
+    {
+        if ($this->features->contains($feature)) {
+            $this->features->removeElement($feature);
+            $feature->removeProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function getConditionnement(): ?string
+    {
+        return $this->conditionnement;
+    }
+
+    public function setConditionnement(?string $conditionnement): self
+    {
+        $this->conditionnement = $conditionnement;
+
+        return $this;
+    }
+
+    public function getUniteparCarton(): ?string
+    {
+        return $this->unite_par_carton;
+    }
+
+    public function setUniteparCarton(?string $unite_par_carton): self
+    {
+        $this->unite_par_carton = $unite_par_carton;
+
+        return $this;
+    }
+
+    public function getNbCartonPalette(): ?string
+    {
+        return $this->nb_carton_palette;
+    }
+
+    public function setNbCartonPalette(?string $nb_carton_palette): self
+    {
+        $this->nb_carton_palette = $nb_carton_palette;
+
+        return $this;
+    }
+
+    public function getDlvGarantie(): ?string
+    {
+        return $this->dlv_garantie;
+    }
+
+    public function setDlvGarantie(?string $dlv_garantie): self
+    {
+        $this->dlv_garantie = $dlv_garantie;
+
+        return $this;
+    }
+
+    public function getDlvTheorique(): ?string
+    {
+        return $this->dlv_theorique;
+    }
+
+    public function setDlvTheorique(?string $dlv_theorique): self
+    {
+        $this->dlv_theorique = $dlv_theorique;
+
+        return $this;
+    }
+
+    public function getUniteParCouche(): ?string
+    {
+        return $this->unite_par_couche;
+    }
+
+    public function setUniteParCouche(?string $unite_par_couche): self
+    {
+        $this->unite_par_couche = $unite_par_couche;
+
+        return $this;
+    }
+
+    public function getProduitBio(): ?bool
+    {
+        return $this->produit_bio;
+    }
+
+    public function setProduitBio(?bool $produit_bio): self
+    {
+        $this->produit_bio = $produit_bio;
+
+        return $this;
+    }
+
+    public function getProduitNouveau(): ?bool
+    {
+        return $this->produit_nouveau;
+    }
+
+    public function setProduitNouveau(?bool $produit_nouveau): self
+    {
+        $this->produit_nouveau = $produit_nouveau;
+
+        return $this;
+    }
+
+    public function getProduitBelleFrance(): ?bool
+    {
+        return $this->produit_belle_france;
+    }
+
+    public function setProduitBelleFrance(?bool $produit_belle_france): self
+    {
+        $this->produit_belle_france = $produit_belle_france;
+
+        return $this;
     }
 
 

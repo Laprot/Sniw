@@ -55,6 +55,10 @@ class ImportProduit extends Command
         foreach($results as $row) {
             $produit = new Produit();
 
+
+            //Import des informations
+
+
             $produit->setUpc($row['upc']);
             $produit->setFilename($row['filename']);
             $produit->setEtat($row['etat']);
@@ -66,11 +70,8 @@ class ImportProduit extends Command
             $produit->setId($row['id']);
             $produit->setShortDescription($row['short_description']);
 
-
             $idmanu = $this->em->getRepository(Manufacturer::class)->findOneBy(['id' => [$row['id_manufacturer']]]);
             $produit->setIdManufacturer($idmanu);
-
-
 
             $produit->setCategorie($row['categorie']);
             $produit->setUnite($row['unite']);
@@ -79,10 +80,43 @@ class ImportProduit extends Command
             $produit->setWeight($row['weight']);
 
 
-            $features = ['1' => ($row['feature0']),
-                        '2'=>($row['feature1']), '3'=>($row['feature2']) , '4'=>($row['feature3']) , '5'=>($row['feature4']) ];
+            //Import des caractéristiques
+            //strpos pour trouver le mort dans la colonne
+            //Si mot trouvé, on remplace le mot avec le "-"  par rien pour récupérer juste la valeur
+            // /!\ toujours vérifier le fichier ps_products.csv
+           foreach ($row as $k=>$v ) {
+               //Conditionnement
+                if (\strpos($row[$k], 'Conditionnement') !== false) {
+                    $cond = str_replace("Conditionnement-", "",$row[$k]);
+                    $produit->setConditionnement($cond);
+                }
+                //Unité par carton
+               if (\strpos($row[$k], 'Unité par carton') !== false) {
+                   $cond1 = str_replace("Unité par carton-", "",$row[$k]);
+                   $produit->setUniteparCarton($cond1);
+               }
+               //Nombre carton palette
+               if (\strpos($row[$k], 'NB carton/palette') !== false) {
+                   $cond2 = str_replace("NB carton/palette-", "",$row[$k]);
+                   $produit->setNbCartonPalette($cond2);
+               }
+               //DLV garantie
+               if (\strpos($row[$k], 'DLV Garantie') !== false) {
+                   $cond3 = str_replace("DLV Garantie-", "",$row[$k]);
+                   $produit->setDlvGarantie($cond3);
+               }
+               //DLV théorique
+               if (\strpos($row[$k], 'DLV Théorique') !== false) {
+                   $cond4 = str_replace("DLV Théorique-", "",$row[$k]);
+                   $produit->setDlvTheorique($cond4);
+               }
 
-            $produit->setFeature($features);
+               //reste à faire
+
+               //...........
+            }
+
+
 
 
             $produit->setMinimalQuantity($row['minimal_quantity']);
@@ -90,6 +124,7 @@ class ImportProduit extends Command
 
             $this->em->persist($produit);
 
+            //Permet de ne pas incrémenter l'id automatiquement
             $metadata = $this->em->getClassMetaData(get_class($produit));
             $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metadata->setIdGenerator(new AssignedGenerator());

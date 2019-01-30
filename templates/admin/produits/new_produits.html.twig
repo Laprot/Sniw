@@ -50,18 +50,24 @@
                 <!-- ============================================================== -->
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                        <h5 class="card-header">Produit</h5>
-                        <div class="card-body">
+                        <h5 class="card-header">Produit
+
+                        </h5>
+                            <div class="card-body">
+
                             <div class="form-group col-md-6 container">
+
 
                                 <form method="post">
                                     {{ form_start(form) }}
 
+                                    <h5 class="text-center"> Informations </h5>
                                     {{ form_row(form.etat) }}
                                     {{ form_row(form.filename) }}
                                     {{ form_row(form.nom) }}
                                     {{ form_row(form.reference) }}
                                     {{ form_row(form.gencod) }}
+                                    {{ form_row(form.upc) }}
                                     {{ form_row(form.categorie) }}
                                     {{ form_row(form.prix_base) }}
                                     {{ form_row(form.prix_final) }}
@@ -73,8 +79,22 @@
                                     {{ form_row(form.weight) }}
                                     {{ form_row(form.unite) }}
                                     {{ form_row(form.prix_unite) }}
-                                    {{ form_row(form.feature) }}
-                                    {{ form_row(form.upc) }}
+                                    <hr>
+                                    <h5 class="text-center"> Caractéristiques </h5>
+
+
+                                    {{ form_row(form.conditionnement) }}
+                                    {{ form_row(form.unite_par_carton) }}
+                                    {{ form_row(form.nb_carton_palette) }}
+                                    {{ form_row(form.dlv_garantie) }}
+                                    {{ form_row(form.dlv_theorique) }}
+                                    {{ form_row(form.unite_par_couche) }}
+                                    {{ form_row(form.produit_bio) }}
+                                    {{ form_row(form.produit_nouveau) }}
+                                    {{ form_row(form.produit_belle_france) }}
+
+
+
 
 
                                     <div class="form-group row text-right">
