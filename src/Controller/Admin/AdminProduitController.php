@@ -7,6 +7,8 @@ use App\Entity\Produit;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
 
+use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Id\AssignedGenerator;
 use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -75,6 +77,7 @@ class AdminProduitController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
 
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($produit);
             $entityManager->flush();
@@ -102,6 +105,10 @@ class AdminProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $metadata = $this->em->getClassMetaData(get_class($produit));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
 
 
             $this->getDoctrine()->getManager()->flush();

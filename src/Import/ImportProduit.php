@@ -57,8 +57,6 @@ class ImportProduit extends Command
 
 
             //Import des informations
-
-
             $produit->setUpc($row['upc']);
             $produit->setFilename($row['filename']);
             $produit->setEtat($row['etat']);
@@ -78,6 +76,7 @@ class ImportProduit extends Command
             $produit->setPrixUnite($row['prix_unite']);
             $produit->setProfondeur($row['profondeur']);
             $produit->setWeight($row['weight']);
+            $produit->setMinimalQuantity($row['minimal_quantity']);
 
 
             //Import des caractéristiques
@@ -119,7 +118,7 @@ class ImportProduit extends Command
 
 
 
-            $produit->setMinimalQuantity($row['minimal_quantity']);
+
 
 
             $this->em->persist($produit);

@@ -15,7 +15,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  * @UniqueEntity(fields="nom", message="Nom déjà utilisé")
  * @UniqueEntity(fields="reference", message="Référence déjà utilisé")
- * @UniqueEntity(fields="Gencod", message="Gencod déjà utilisé")
  * @Vich\Uploadable
  */
 class Produit

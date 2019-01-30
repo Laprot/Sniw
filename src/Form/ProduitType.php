@@ -48,7 +48,7 @@ class ProduitType extends AbstractType
             ->add('nom')
             ->add('reference')
             ->add('categorie')
-            ->add('gencod',null, [
+            ->add('Gencod',null, [
                 'label' => 'Gencod (EAN13)'
             ])
             ->add('description')
