@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Ajouter un produit {% endblock %}
+{% block title %} Ajouter une catégorie {% endblock %}
 
 {% block stylesheets %}
     <!-- Bootstrap CSS -->
@@ -25,14 +25,14 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="pageheader-title">Produits </h2>
+                        <h2 class="pageheader-title">Catégories </h2>
                         <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ path('produits_show') }}" class="breadcrumb-link">Produits</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Ajouter un nouveau produit</li>
+                                    <li class="breadcrumb-item"><a href="{{ path('categorie_show') }}" class="breadcrumb-link">Caractéristiques</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Ajouter une nouvelle catégorie</li>
                                 </ol>
                             </nav>
                         </div>
@@ -50,44 +50,17 @@
                 <!-- ============================================================== -->
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                        <h5 class="card-header">Produit </h5>
-                            <div class="card-body">
-
+                        <h5 class="card-header">Caractéristiques</h5>
+                        <div class="card-body">
                             <div class="form-group col-md-6 container">
 
                                 <form method="post">
                                     {{ form_start(form) }}
-
-                                    <h5 class="text-center"> Informations </h5>
-                                    {{ form_row(form.etat) }}
-                                    {{ form_row(form.filename) }}
+                                    {{ form_row(form.id) }}
+                                    {{ form_row(form.id_parent) }}
                                     {{ form_row(form.nom) }}
-                                    {{ form_row(form.reference) }}
-                                    {{ form_row(form.Gencod) }}
-                                    {{ form_row(form.upc) }}
-                                    {{ form_row(form.categorie) }}
-                                    {{ form_row(form.prix_base) }}
-                                    {{ form_row(form.prix_final) }}
 
-                                    {{ form_row(form.description) }}
-                                    {{ form_row(form.short_description) }}
-                                    {{ form_row(form.profondeur) }}
-                                    {{ form_row(form.id_manufacturer) }}
-                                    {{ form_row(form.weight) }}
-                                    {{ form_row(form.unite) }}
-                                    {{ form_row(form.prix_unite) }}
-                                    <hr>
-                                    <h5 class="text-center"> Caractéristiques </h5>
 
-                                    {{ form_row(form.conditionnement) }}
-                                    {{ form_row(form.unite_par_carton) }}
-                                    {{ form_row(form.nb_carton_palette) }}
-                                    {{ form_row(form.dlv_garantie) }}
-                                    {{ form_row(form.dlv_theorique) }}
-                                    {{ form_row(form.unite_par_couche) }}
-                                    {{ form_row(form.produit_bio) }}
-                                    {{ form_row(form.produit_nouveau) }}
-                                    {{ form_row(form.produit_belle_france) }}
 
                                     <div class="form-group row text-right">
                                         <div class="col float-right col-sm-10 col-lg-9 offset-lg-0">

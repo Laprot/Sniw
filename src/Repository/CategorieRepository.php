@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Categorie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Gedmo\Tree\Traits\Repository\ORM\NestedTreeRepositoryTrait;
+
 
 /**
  * @method Categorie|null find($id, $lockMode = null, $lockVersion = null)

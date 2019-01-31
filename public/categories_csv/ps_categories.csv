@@ -1,0 +1,31 @@
+id;nom;id_parent;lvl;lft;rgt;position
+
+
+1;Racine;0;0;1;1248;0
+
+
+2;Accueil;1;1;2;1247;0
+
+
+6261;Hypermarché & Supermarché;2;2;3;858;0
+6262;Horeca;6948;4;5;30;0
+6263;Test;6948;4;31;38;1
+6264;Test produits importés;6948;4;39;78;2
+6265;Produits Frais;6948;4;225;304;4
+6266;Produits Secs;6271;4;599;686;0
+6267;Produits frais;6948;4;305;420;5
+6268;Sec;6948;4;79;224;3
+6269;shampoing test;6948;4;421;512;6
+6270;Surgelés;6948;4;521;596;8
+6271;Surgelé CHR;6261;3;598;803;1
+6272;Buffet sucré - salé;6261;3;804;857;2
+6273;Crèmerie;6948;4;513;520;7
+6274;Apéritifs & snacks;6262;5;16;17;2
+6275;Biscuits Individuels;6262;5;14;15;1
+6276;Epicerie salée;6262;5;18;29;3
+6277;Animalerie;6262;5;6;13;0
+6278;Sauce froide;6263;5;32;33;0
+6279;Epicerie sucrée;6263;5;34;35;1
+6280;Bazar;6264;5;40;41;0
+6281;Boucherie;6264;5;42;49;0
+6282;Patisserie;6264;5;50;57;0
