@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Features;
 use App\Entity\Manufacturer;
 use App\Entity\Produit;
@@ -11,12 +12,14 @@ use App\Form\Type\ManufacturerType;
 use App\Form\FeaturesType;
 
 
+use App\Repository\CategorieRepository;
 use App\Repository\ManufacturerRepository;
 use Doctrine\DBAL\Types\ArrayType;
 use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -47,7 +50,22 @@ class ProduitType extends AbstractType
             ->add('filename')
             ->add('nom')
             ->add('reference')
-            ->add('categorie')
+            ->add('id_categorie',EntityType::class,[
+                'required' =>false,
+                'attr' => ['id' => 'data-value'],
+                'class' => Categorie::class,
+                'choice_label' => 'nom',
+                'expanded' => true,
+                'multiple' => true,
+                'group_by' => 'id_parent',
+                'label' => 'Catégorie',
+                'query_builder' => function (CategorieRepository $c) {
+                        $queryBuilder = $c->createQueryBuilder('c');
+                        $query = $queryBuilder
+                            ->where($queryBuilder->expr()->isNotNull('c.id_parent'));
+                        return $query;
+                }
+            ])
             ->add('Gencod',null, [
                 'label' => 'Gencod (EAN13)'
             ])

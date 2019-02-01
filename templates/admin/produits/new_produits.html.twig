@@ -4,6 +4,8 @@
 
 {% block stylesheets %}
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/jstree/style.min.css" />
+
 
 {% endblock %}
 
@@ -52,7 +54,6 @@
                     <div class="card">
                         <h5 class="card-header">Produit </h5>
                             <div class="card-body">
-
                             <div class="form-group col-md-6 container">
 
                                 <form method="post">
@@ -65,7 +66,6 @@
                                     {{ form_row(form.reference) }}
                                     {{ form_row(form.Gencod) }}
                                     {{ form_row(form.upc) }}
-                                    {{ form_row(form.categorie) }}
                                     {{ form_row(form.prix_base) }}
                                     {{ form_row(form.prix_final) }}
 
@@ -89,6 +89,15 @@
                                     {{ form_row(form.produit_nouveau) }}
                                     {{ form_row(form.produit_belle_france) }}
 
+                                    <hr>
+                                    <h5 class="text-center"> Associations </h5>
+
+
+                                    {{ form_row(form.id_categorie) }}
+
+
+
+
                                     <div class="form-group row text-right">
                                         <div class="col float-right col-sm-10 col-lg-9 offset-lg-0">
                                             <button type="submit" class="btn btn-space btn-primary">Enregistrer</button>
@@ -96,15 +105,8 @@
                                             {{ form_end(form) }}
 
                                         </div>
-
-
-
                                     </div>
-
-
-
                                 </form>
-
                             </div>
                             <a href="{{ path('admin_dashboard') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
                         </div>
@@ -136,5 +138,8 @@
     <script>
         $('#form').parsley();
     </script>
+
+
+
 {% endblock %}
 

@@ -128,7 +128,7 @@ class Produit
     private $upc;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Categorie", mappedBy="id_produit")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="id_produit")
      */
     private $id_categorie;
 
@@ -190,7 +190,6 @@ class Produit
 
     public function __construct()
     {
-        $this->id_categorie = new ArrayCollection();
         $this->features = new ArrayCollection();
     }
 
@@ -448,33 +447,19 @@ class Produit
         return $this;
     }
 
-    /**
-     * @return Collection|Categorie[]
-     */
-    public function getIdCategorie(): Collection
+
+    public function getIdCategorie(): ?Categorie
     {
         return $this->id_categorie;
     }
 
-    public function addIdCategorie(Categorie $idCategorie): self
+    public function setIdCategorie(?Categorie $id_categorie): self
     {
-        if (!$this->id_categorie->contains($idCategorie)) {
-            $this->id_categorie[] = $idCategorie;
-            $idCategorie->addIdProduit($this);
-        }
-
+        $this->id_categorie = $id_categorie;
         return $this;
     }
 
-    public function removeIdCategorie(Categorie $idCategorie): self
-    {
-        if ($this->id_categorie->contains($idCategorie)) {
-            $this->id_categorie->removeElement($idCategorie);
-            $idCategorie->removeIdProduit($this);
-        }
 
-        return $this;
-    }
 
     public function getIdManufacturer(): ?Manufacturer
     {
@@ -489,13 +474,6 @@ class Produit
     }
 
 
-    /**
-     * @param mixed $id_categorie
-     */
-    public function setIdCategorie($id_categorie)
-    {
-        $this->id_categorie = $id_categorie;
-    }
 
     /**
      * @return Collection|Features[]

@@ -25,7 +25,7 @@ class Categorie
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Produit", inversedBy="id_categorie")
+     * @ORM\OneToMany(targetEntity="App\Entity\Produit", mappedBy="id_categorie")
      */
     private $id_produit;
 
@@ -246,6 +246,15 @@ class Categorie
         return $this;
     }
 
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+    public function getFormField(){
+        return $this;
+    }
 
 
 }
