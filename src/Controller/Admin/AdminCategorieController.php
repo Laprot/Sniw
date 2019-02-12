@@ -55,7 +55,6 @@ class AdminCategorieController extends AbstractController
         $qb->select('COUNT(entity) ');
         $count = $qb->getQuery()->getSingleScalarResult();
 
-
         return $this->render('admin/categorie/categories.html.twig', [
             'categories' => $categories,
             'count' => $count,
@@ -65,37 +64,12 @@ class AdminCategorieController extends AbstractController
 
 
     /**
-     * @Route("/admin/categorie/{id}/edit", name="categorie_edit", methods="GET|POST")
-     */
-    public function edit(Request $request, Categorie $categorie)
-    {
-        $form = $this->createForm(CategorieType::class, $categorie);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $metadata = $this->em->getClassMetaData(get_class($categorie));
-            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
-            $metadata->setIdGenerator(new AssignedGenerator());
-
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('features_show', [
-                'id' => $categorie->getId()
-            ]);
-        }
-
-        return $this->render('admin/produits/features/features_edit.html.twig', [
-            'categorie' => $categorie,
-            'form' => $form->createView()
-        ]);
-    }
-
-    /**
      * @Route("/admin/categorie/new", name="categorie_new")
      */
     public function register(Request $request)
     {
+
+        $categories = $this->repository->findAll();
         // 1) build the form
         $categorie = new Categorie();
         $form = $this->createForm(CategorieType::class, $categorie);
@@ -126,9 +100,38 @@ class AdminCategorieController extends AbstractController
         return $this->render(
             'admin/categorie/categorie_new.html.twig', [
                 'form' => $form->createView(),
+                'categories'=>$categories
             ]
         );
     }
+
+    /**
+     * @Route("/admin/categorie/{id}", name="categorie_edit", methods="GET|POST")
+     */
+    public function edit(Request $request, Categorie $categorie)
+    {
+        $form = $this->createForm(CategorieType::class, $categorie);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $metadata = $this->em->getClassMetaData(get_class($categorie));
+            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
+            $metadata->setIdGenerator(new AssignedGenerator());
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('features_show', [
+                'id' => $categorie->getId()
+            ]);
+        }
+
+        return $this->render('admin/categorie/categorie_edit.html.twig', [
+            'categorie' => $categorie,
+            'form' => $form->createView()
+        ]);
+    }
+
 
     /**
      * @Route("/admin/categorie/{id}/delete", name="categorie_delete", methods="DELETE")

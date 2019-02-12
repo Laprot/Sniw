@@ -8,6 +8,7 @@
 
 namespace App\Import;
 
+use App\Entity\Categorie;
 use App\Entity\Manufacturer;
 use App\Entity\Produit;
 use Doctrine\ORM\EntityManagerInterface;
@@ -71,7 +72,10 @@ class ImportProduit extends Command
             $idmanu = $this->em->getRepository(Manufacturer::class)->findOneBy(['id' => [$row['id_manufacturer']]]);
             $produit->setIdManufacturer($idmanu);
 
-            $produit->setCategorie($row['categorie']);
+
+            $categorie = $this->em->getRepository(Categorie::class)->findOneBy(['id' => [$row['categorie']]]);
+            $produit->setIdCategorie($categorie);
+
             $produit->setUnite($row['unite']);
             $produit->setPrixUnite($row['prix_unite']);
             $produit->setProfondeur($row['profondeur']);

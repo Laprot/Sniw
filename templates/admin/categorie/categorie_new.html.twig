@@ -5,6 +5,7 @@
 {% block stylesheets %}
     <!-- Bootstrap CSS -->
 
+
 {% endblock %}
 
 
@@ -57,8 +58,58 @@
                                 <form method="post">
                                     {{ form_start(form) }}
                                     {{ form_row(form.id) }}
-                                    {{ form_row(form.id_parent) }}
                                     {{ form_row(form.nom) }}
+
+
+                                    {% for categorie in categories %}
+                                        {% if categorie.getIdParent() == null %}
+
+
+
+                                        {{ form_row(form.id_parent, {'attr': {'class': 'tree-item'}}) }}
+
+                                        {% endif %}
+                                    {% endfor %}
+
+
+                                    {% block checkbox_hierarchy_widget %}
+                                        <ul class="listless spaced-listless" id="mainList">
+                                            {% for choiceOrOptionGroup,children in form.vars.id %}
+                                                {% if children is iterable %}
+                                                    <ul>
+                                                        {% for child,choiceView in children %}
+                                                            <li>
+                                                                <label class="checkbox">
+                                                                    {{ form_widget(form.offsetGet(child)) }}
+                                                                    {{ form.offsetGet(child).vars.label }}
+                                                                </label>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% else %}
+
+                                                    {# If not first loop, close previous <li> #}
+                                                    {% if not loop.first %}
+                                                        </li>
+                                                    {% endif %}
+
+                                                    <li>
+                                                    <label class="checkbox">
+                                                        {{ form_widget(form.offsetGet(choiceOrOptionGroup)) }}
+                                                        {{ form.offsetGet(choiceOrOptionGroup).vars.label }}
+                                                    </label>
+                                                {% endif %}
+
+                                                {# Last of the loop, there will be an open <li>, close it. #}
+                                                {% if loop.last %}
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+
+
+                                    {% endblock %}
+
 
 
 
@@ -109,5 +160,7 @@
     <script>
         $('#form').parsley();
     </script>
+
+
 {% endblock %}
 

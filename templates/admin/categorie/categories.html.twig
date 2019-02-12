@@ -71,35 +71,26 @@
                                             <th>ID</th>
                                             <th>Nom</th>
                                             <th>Position</th>
-                                            <th> Sous Catégorie</th>
                                             <th>Actions (Modifier / Supprimer)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         {% for categorie in categories %}
+
+
+                                            <!-- Boucle if pour afficher que les parents -->
+
+
                                             {% if categorie.getIdParent() == null %}
 
                                             <tr>
                                                 <td> {{ categorie.id }} </td>
-                                                <td><a href="{{ categorie.nom }}">{{ categorie.nom }}</a></td>
+
+                                                <td><a href="{{ path('categorie_edit', {id: categorie.id}) }}">{{ categorie.nom }}</a></td>
 
 
                                                 <td> {{ categorie.position }} </td>
-                                                {% if categorie.children|length > 0 %}
-                                                    <td>
-                                                        {% for categorie in categorie.children %}
-                                                            <li>
-                                                                <a href="{{ categorie.id }}">{{ categorie.nom }}</a>
 
-                                                            </li>
-                                                        {% endfor %}
-
-                                                    </td>
-
-
-
-
-                                                {% endif %}
                                                 <td>
 
 

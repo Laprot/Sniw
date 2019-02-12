@@ -56,10 +56,7 @@ class Produit
      */
     private $Gencod;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $categorie;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -242,17 +239,7 @@ class Produit
         return $this;
     }
 
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
 
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
 
     public function getPrixBase(): ?string
     {

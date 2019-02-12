@@ -151,6 +151,7 @@
                                                 <div class="histoires__card-content">
                                                     <p class="histoires__card-p">Produit</p>
                                                     <span><a href="{{ path('produits_show', {id: produit.id}) }}" class="histoires__card-title"> {{ produit.nom }}</a></span>
+                                                    <p style="color:white"> {{ produit.reference }}</p>
                                                     <div class="histoires__card-infos">
                                                     </div>
                                                 </div>
@@ -159,7 +160,7 @@
                                         {% endfor %}
                                     </div>
                                     <div class="" style="float:right">
-                                        {{ knp_pagination_render(produits) }}
+
                                     </div>
 
                                     <!-- Product 2 -->

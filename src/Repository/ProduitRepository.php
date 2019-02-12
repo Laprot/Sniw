@@ -41,6 +41,18 @@ class ProduitRepository extends ServiceEntityRepository
     }
 
 
+
+    public function recherche($chaine) {
+        return $this->createQueryBuilder('u')
+
+            ->andWhere('u.nom like :chaine')
+            ->orderBy('u.id')
+            ->setParameter('chaine',$chaine)
+            ->getQuery()
+            ->getResult();
+    }
+
+
     // /**
     //  * @return Produit[] Returns an array of Produit objects
     //  */

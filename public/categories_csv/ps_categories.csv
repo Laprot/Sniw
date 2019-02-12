@@ -1,14 +1,11 @@
 id;nom;id_parent;lvl;lft;rgt;position
 
 
+
 1;Racine;0;0;1;1248;0
-
-
 2;Accueil;1;1;2;1247;0
-
-
 6261;Hypermarché & Supermarché;2;2;3;858;0
-6262;Horeca;6948;4;5;30;0
+6262;Horeca;2;2;5;30;0
 6263;Test;6948;4;31;38;1
 6264;Test produits importés;6948;4;39;78;2
 6265;Produits Frais;6948;4;225;304;4

@@ -52,19 +52,11 @@ class ProduitType extends AbstractType
             ->add('reference')
             ->add('id_categorie',EntityType::class,[
                 'required' =>false,
-                'attr' => ['id' => 'data-value'],
-                'class' => Categorie::class,
-                'choice_label' => 'nom',
-                'expanded' => true,
-                'multiple' => true,
-                'group_by' => 'id_parent',
-                'label' => 'Catégorie',
-                'query_builder' => function (CategorieRepository $c) {
-                        $queryBuilder = $c->createQueryBuilder('c');
-                        $query = $queryBuilder
-                            ->where($queryBuilder->expr()->isNotNull('c.id_parent'));
-                        return $query;
-                }
+                'placeholder'=> false,
+                'class'=> Categorie::class,
+                'multiple'=> false,
+                'expanded'=> true,
+                'label'  => 'Catégorie'
             ])
             ->add('Gencod',null, [
                 'label' => 'Gencod (EAN13)'

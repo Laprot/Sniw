@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
+use App\Form\RechercheProduitType;
 use App\Repository\ProduitRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
@@ -32,19 +34,45 @@ class CatalogueController extends AbstractController
     /**
      * @Route("/catalogue", name="catalogue")
      */
-    public function index(PaginatorInterface $paginator, Request $request)
+    public function index(Request $request)
     {
-        //$produits = $this->repository->findAll();
-
-
-        $produits = $paginator->paginate(
-            $this->repository->findAllVisibleQuery(),
-            $request->query->getInt('page', 1), 12
-        );
-
+        $produits = $this->repository->findAll();
 
         return $this->render('catalogue/catalogue.html.twig',[
             'produits' => $produits
+            ]
+        );
+    }
+
+
+    public function rechercheAction() {
+        $form = $this->createForm(RechercheProduitType::class);
+        return $this->render('partiels/recherche.html.twig',[
+                'form' => $form->createView()
+            ]
+        );
+    }
+
+    /**
+     * @Route("/recherche", name="recherche")
+     */
+    public function rechercheTraitementAction(Request $request) {
+
+
+        $form = $this->createForm(RechercheProduitType::class);
+
+        $form->handleRequest($request);
+
+
+        if($request->getMethod() == 'POST'){
+            $produits = $this->repository->recherche($form['recherche']->getData());
+        } else {
+            throw $this->createNotFoundException('La page n\'existe pas');
+        }
+
+
+        return $this->render('catalogue/catalogue.html.twig',[
+                'produits' => $produits
             ]
         );
     }

@@ -57,7 +57,7 @@ class Categorie
 
     /**
      * @Gedmo\TreeRoot
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="Categorie")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
     private $root;

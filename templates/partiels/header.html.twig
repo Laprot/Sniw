@@ -63,12 +63,14 @@
 
                             <!-- Barre de recherche -->
 
-
-                            <input class="currency" type="search" placeholder="Rechercher" aria-label="Rechercher">
-
+                            <li class="currency"> {{ render(controller('App\\Controller\\CatalogueController::rechercheAction')) }}
+                            </li>
 
 
                             <li class="account">
+
+
+
                                 {% if is_granted("ROLE_USER") and not is_granted("ROLE_ADMIN")  %}
 
 
