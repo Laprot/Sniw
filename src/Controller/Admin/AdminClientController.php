@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Form\RechercheClientType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -36,59 +37,34 @@ class AdminClientController extends AbstractController
 
     /**
      * @Route("/admin/client/show", name="client_show")
+     * @Route ("/admin/client/recherche", name="recherche_client", methods="GET|POST")
      */
     public function show(PaginatorInterface $paginator, Request $request)
     {
         // Récupère tous les utilisateurs
         //$users = $this->repository->findAll();
 
+        $form = $this->createForm(RechercheClientType::class);
+        $form->handleRequest($request);
+
+        $query = $this->repository->recherche($form['rechercheClient']->getData());
         //Pagination avec 10 users par page
         $users = $paginator->paginate(
-            $this->repository->findAllVisibleQuery(),
+            $query,
             $request->query->getInt('page', 1), 10
         );
 
-
         //Récupérer le nombre d'utilisateurs
-        $qb = $this->repository->createQueryBuilder('entity');
-        $qb->select('COUNT(entity) ');
-        $count = $qb->getQuery()->getSingleScalarResult();
-
-
-
-        //Barre de recherche
-        if (isset($_GET['user'])) {
-            $user = (String)trim($_GET['user']);
-
-            $req = $this->repository->recherche($user);
-
-            foreach ($req as $r) {
-                ?>
-                <div style="margin-top: 20px 0; border-bottom: 2px solid #ccc">
-                    <?= $r['nom'] . " " . $r['prenom'] ?>
-                </div>
-                <?php
-            }
-        }
+        $count = count($query);
+        //$count = $this->repository->countRecherche();
 
         return $this->render('admin/client/data-tables.html.twig', [
             'users' => $users,
             'count' => $count,
+            'form' => $form->createView()
         ]);
     }
 
-
-
-
-    public function getTotalUser()
-    {
-        $qb = $this->repository->createQueryBuilder('entity');
-        $qb->select('COUNT(entity)');
-        $count = $qb->getQuery()->getSingleScalarResult();
-
-        return $count;
-
-    }
 
     /**
      * @Route("/admin/{id}/edit", name="client_edit", methods="GET|POST")
@@ -166,6 +142,18 @@ class AdminClientController extends AbstractController
 
         return $this->redirectToRoute('client_show');
     }
+
+    /*
+
+    public function rechercheAction() {
+        $form = $this->createForm(RechercheClientType::class);
+        return $this->render('admin/client/recherche.html.twig',[
+                'form' => $form->createView()
+            ]
+        );
+    }
+
+*/
 
 
 }

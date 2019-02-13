@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Form\AdresseUserType;
+use App\Form\RechercheAdresseType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
@@ -47,9 +48,7 @@ class AdminAdresseClientController extends AbstractController
 
 
         //Récupérer le nombre d'utilisateurs
-        $qb = $this->repository->createQueryBuilder('entity');
-        $qb->select('COUNT(entity)');
-        $count = $qb->getQuery()->getSingleScalarResult();
+        $count = $this->repository->countRecherche();
 
 
         return $this->render('admin/client/adresses.html.twig', [
@@ -98,4 +97,43 @@ class AdminAdresseClientController extends AbstractController
         return $this->redirectToRoute('client_adresse_show');
     }
 
+
+    public function rechercheAction() {
+        $form = $this->createForm(RechercheAdresseType::class);
+        return $this->render('admin/client/recherche_adresse.html.twig',[
+                'form' => $form->createView()
+            ]
+        );
+    }
+
+
+    /**
+     * @Route("/admin/client/adresse/recherche", name="recherche_adresse")
+     */
+    public function rechercheTraitementAction(PaginatorInterface $paginator,Request $request) {
+        $form = $this->createForm(RechercheAdresseType::class);
+        $form->handleRequest($request);
+
+
+        if($request->getMethod() == 'POST'){
+            $users = $paginator->paginate(
+                $this->repository->rechercheAdresse($form['rechercheAdresse']->getData()),
+                $request->query->getInt('page', 1), 10
+            );
+
+            //Compte le nombre d'éléments recherchés
+            $count = count($users);
+
+        } else {
+            throw $this->createNotFoundException('La page n\'existe pas');
+        }
+
+
+        return $this->render('admin/client/adresses.html.twig',[
+
+                'users' => $users,
+                'count' =>$count
+            ]
+        );
+    }
 }

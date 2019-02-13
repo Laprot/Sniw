@@ -52,17 +52,17 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Clients</li>
+                                        <li class="breadcrumb-item active"><a href="{{ path('client_show') }}" class="breadcrumb-link">Clients </a></li>
                                     </ol>
                                 </nav>
                             </div>
 
-                            <div class="">
-
-                                <input class="form-control" id="search" type='search' placeholder="Rechercher" style="margin-right:30px;width:70%">
-                                <button class="btn btn-primary" style="float:right">
-                                    Rechercher
-                                </button>
+                            <div class="mt-4">
+                                <form action="{{ path('recherche_client') }}" method="post">
+                                    {{ form_start(form) }}
+                                    {{ form_widget(form.rechercheClient, { 'attr': { 'class' : "form-control",'placeholder': "Rechercher par ID, nom , prénom, mail ou société"} }) }}
+                                    {{ form_end(form) }}
+                                </form>
                             </div>
 
                         </div>
@@ -135,9 +135,12 @@
                                     <div class="mt-4">
                                         Affichage : {{ users | length  }} / {{ count }} résultats
                                     </div>
-                                    <div class="" style="float:right">
-                                        {{ knp_pagination_render(users) }}
-                                    </div>
+                                <div class="" style="float:right">
+
+                                    {{ knp_pagination_render(users) }}
+
+
+                                </div>
 
                                 </div>
 
@@ -160,39 +163,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-
-
-
-    <script>
-
-        $(document).ready(function() {
-            $('#search').keyup(function () {
-                $('#result-search').html('');
-
-                let prenom = $(this).val();
-
-                console.log(prenom);
-                if(prenom != "") {
-                    $.ajax({
-                        type: 'GET',
-                        url: '{{ path('client_show') }}',
-                        data: 'prenom=' + encodeURIComponent(prenom),
-
-                        success: function(data) {
-                            if(data != "") {
-                                $('#result-search').append(data);
-                            }
-                            else {
-                                document.getElementById('result-search').innerHTML = "<div style='font-size:10px;text-align:center;margin-top:20px' > Aucun utilisateur trouvé </div>"
-                            }
-                        }
-                    });
-                }
-            });
-
-        });
-
-    </script>
     <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <script src="/admin/assets/vendor/multi-select/js/jquery.multi-select.js"></script>

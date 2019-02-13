@@ -42,12 +42,34 @@ class ProduitRepository extends ServiceEntityRepository
 
 
 
-    public function recherche($chaine) {
+    public function findAllAvailable() {
+        return $this->createQueryBuilder('u')
+            ->where('u.etat = 1')
+            ->getQuery()
+            ->getResult();
+    }
+/*
+    public function byCategorie($categorie) {
         return $this->createQueryBuilder('u')
 
-            ->andWhere('u.nom like :chaine')
+            ->andWhere('u.categorie = :categorie')
+            ->andWhere('u.etat = 1')
             ->orderBy('u.id')
-            ->setParameter('chaine',$chaine)
+            ->setParameter('categorie',$categorie)
+            ->getQuery()
+            ->getResult();
+    }
+
+*/
+
+    public function recherche($chaine) {
+        return $this->createQueryBuilder('u')
+            ->andWhere("u.nom like :chaine")
+            ->andWhere('u.etat = 1')
+            ->orWhere('u.reference like :chaine')
+            ->orWhere('u.Gencod like :chaine')
+            ->orderBy('u.id')
+            ->setParameter('chaine','%'.$chaine.'%')
             ->getQuery()
             ->getResult();
     }

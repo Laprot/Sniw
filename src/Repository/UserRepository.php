@@ -51,14 +51,40 @@ class UserRepository extends ServiceEntityRepository
     }
 
 
-    //En cours de développement
-    public function recherche($user) {
+    public function recherche($chaine)
+    {
         return $this->createQueryBuilder('u')
-            ->where('u.nom = ?')
+            ->andWhere('u.nom like :chaine')
+            ->orWhere('u.prenom like :chaine')
+            ->orWhere('u.email like :chaine')
+            ->orWhere('u.societe like :chaine')
+            ->orderBy('u.id')
+            ->setParameter('chaine', '%' . $chaine . '%')
             ->getQuery()
             ->getResult();
+    }
 
 
+    public function rechercheAdresse($chaine) {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.nom like :chaine')
+            ->orWhere('u.prenom like :chaine')
+            ->orWhere('u.email like :chaine')
+            ->orWhere('u.adresse like :chaine')
+            ->orWhere('u.code_postal like :chaine')
+            ->orWhere('u.ville like :chaine')
+            ->orWhere('u.pays like :chaine')
+            ->orderBy('u.id')
+            ->setParameter('chaine','%'.$chaine.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function countRecherche(){
+        return $this->createQueryBuilder('a')
+            ->select('COUNT(a.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Produit;
 use App\Form\RechercheProduitType;
 use App\Repository\ProduitRepository;
@@ -34,12 +35,19 @@ class CatalogueController extends AbstractController
     /**
      * @Route("/catalogue", name="catalogue")
      */
-    public function index(Request $request)
+    public function index()
     {
-        $produits = $this->repository->findAll();
+        //Affiche que les produits disponibles (etat = 1)
+        $produits = $this->repository->findAllAvailable();
+
+
+
+        //Catégories
+        $categories = $this->em->getRepository(Categorie::class)->findAll();
 
         return $this->render('catalogue/catalogue.html.twig',[
-            'produits' => $produits
+            'produits' => $produits,
+            'categories' => $categories
             ]
         );
     }
@@ -53,12 +61,15 @@ class CatalogueController extends AbstractController
         );
     }
 
+
+
+
     /**
      * @Route("/recherche", name="recherche")
      */
     public function rechercheTraitementAction(Request $request) {
 
-
+        $categories = $this->em->getRepository(Categorie::class)->findAll();
         $form = $this->createForm(RechercheProduitType::class);
 
         $form->handleRequest($request);
@@ -72,7 +83,8 @@ class CatalogueController extends AbstractController
 
 
         return $this->render('catalogue/catalogue.html.twig',[
-                'produits' => $produits
+                'produits' => $produits,
+                'categories'=> $categories
             ]
         );
     }

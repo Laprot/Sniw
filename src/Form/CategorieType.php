@@ -18,22 +18,23 @@ class CategorieType extends AbstractType
         $builder
             ->add('id')
             ->add('nom')
-            ->add('id_parent', EntityType::class, array(
-                'label' => 'Catégorie parente',
-                'required'  =>  false,
-                'class' => Categorie::class,
-                'choice_label'  => function(Categorie $categorie){
-                    return $categorie->getNom();
-                },
-                'multiple'  => false,
-                'expanded'  => true,
-                'placeholder' => false,
-                'query_builder' => function(EntityRepository $er){
-                    return $er
-                        ->createQueryBuilder('u')
-                        ->addOrderBy('u.lft','ASC');
-                },
-            ));
+            ->add('id_parent',EntityType::class,[
+                    'required' =>false,
+                    'attr' => ['id' => 'data-value'],
+                    'class' => Categorie::class,
+                    'choice_label' => 'nom',
+                    'expanded' => false,
+                    'multiple' => false,
+                    'group_by' => 'id_parent',
+                    'label' => 'Catégorie parente',
+                    'query_builder' => function (CategorieRepository $c) {
+                        $queryBuilder = $c->createQueryBuilder('c');
+                        $query = $queryBuilder
+                            ->where($queryBuilder->expr()->isNotNull('c.id_parent'))
+                            ->orderBy('c.id_parent', 'ASC');
+                        return $query;
+                    }
+            ]);
 
     }
 
