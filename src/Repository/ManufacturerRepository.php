@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Manufacturer;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\Query;
@@ -25,9 +26,18 @@ class ManufacturerRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function findAllVisibleQuery(): Query
+    public function findAllVisibleQuery(Search $search): Query
     {
-        return $this->findManufacturerASC()->getQuery();
+        $query= $this->findManufacturerASC();
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere("u.id like :chaine")
+                ->orWhere('u.nom like :chaine')
+                ->orderBy('u.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
     }
     /**
      * @return QueryBuilder

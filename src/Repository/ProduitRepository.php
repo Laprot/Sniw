@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Produit;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -25,10 +26,23 @@ class ProduitRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function findAllVisibleQuery(): Query
+    public function findAllVisibleQuery(Search $search): Query
     {
-        return $this->findProduitASC()->getQuery();
+        $query= $this->findProduitASC();
+
+        if($search->getRechercher()) {
+           $query = $query
+                ->andWhere("u.nom like :chaine")
+                ->andWhere('u.etat = 1')
+                ->orWhere('u.reference like :chaine')
+                ->orWhere('u.Gencod like :chaine')
+                ->orderBy('u.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
     }
+
+
     /**
      * @return QueryBuilder
      */
@@ -36,8 +50,8 @@ class ProduitRepository extends ServiceEntityRepository
     private function findProduitASC(): QueryBuilder
     {
         //Retourne les produits dans l'odre croissant par ID , du plus ancien au plus récent
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.id','ASC');
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.id','ASC');
     }
 
 

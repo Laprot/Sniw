@@ -4,7 +4,9 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Produit;
+use App\Entity\Search;
 use App\Form\ProduitType;
+use App\Form\SearchType;
 use App\Repository\ProduitRepository;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -40,25 +42,21 @@ class AdminProduitController extends AbstractController
      */
     public function show(PaginatorInterface $paginator, Request $request)
     {
-        // Récupère toutes les adresses des utilisateurs
-        //$users = $this->repository->findAll();
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
+
 
         //Pagination avec 10 produits par page
         $produits = $paginator->paginate(
-            $this->repository->findAllVisibleQuery(),
+            $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page', 1), 10
         );
 
-
-        //Récupérer le nombre de produits
-        $qb = $this->repository->createQueryBuilder('entity');
-        $qb->select('COUNT(entity)');
-        $count = $qb->getQuery()->getSingleScalarResult();
-
-
         return $this->render('admin/produits/data-produits.html.twig', [
             'produits' => $produits,
-            'count' => $count
+            'form' => $form->createView(),
+            'count' => $produits->getTotalItemCount()
         ]);
     }
 

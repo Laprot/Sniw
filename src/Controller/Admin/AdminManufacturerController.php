@@ -4,7 +4,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Manufacturer;
+use App\Entity\Search;
 use App\Form\ManufacturerType;
+use App\Form\SearchType;
 use App\Repository\ManufacturerRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\DBAL\Types\TextType;
@@ -43,25 +45,22 @@ class AdminManufacturerController extends AbstractController
      */
     public function show(PaginatorInterface $paginator, Request $request)
     {
-        // Récupère tous les groupes
-        //$users = $this->repository->findAll();
+
+
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
 
         //Pagination avec 20 fabricants par page
         $fabricants = $paginator->paginate(
-            $this->repository->findAllVisibleQuery(),
+            $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page', 1), 20
         );
 
-
-        //Récupérer le nombre de fabricants
-        $qb = $this->repository->createQueryBuilder('entity');
-        $qb->select('COUNT(entity) ');
-        $count = $qb->getQuery()->getSingleScalarResult();
-
-
         return $this->render('admin/fabricant/fabricants.html.twig', [
             'fabricants' => $fabricants,
-            'count' => $count,
+            'count' => $fabricants->getTotalItemCount(),
+            'form'=>$form->createView()
         ]);
     }
 

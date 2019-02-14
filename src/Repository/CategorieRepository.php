@@ -3,10 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\Categorie;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Gedmo\Tree\Traits\Repository\ORM\NestedTreeRepositoryTrait;
 
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Categorie|null find($id, $lockMode = null, $lockVersion = null)
@@ -21,6 +24,31 @@ class CategorieRepository extends ServiceEntityRepository
         parent::__construct($registry, Categorie::class);
     }
 
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(Search $search): Query
+    {
+        $query= $this->findGroupeASC();
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere('u.id like :chaine')
+                ->orWhere('u.nom like :chaine')
+                ->orderBy('u.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
+    }
+    /**
+     * @return QueryBuilder
+     */
+
+    private function findGroupeASC(): QueryBuilder
+    {
+        //Retourne les utilisateurs dans l'odre décroissant par ID , du plus récent au plus ancien
+        return $this->createQueryBuilder('u');
+    }
     // /**
     //  * @return Categorie[] Returns an array of Categorie objects
     //  */

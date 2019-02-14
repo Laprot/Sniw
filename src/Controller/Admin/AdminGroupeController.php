@@ -4,8 +4,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Groupe;
+use App\Entity\Search;
 use App\Entity\User;
 use App\Form\GroupeType;
+use App\Form\SearchType;
 use App\Form\UserType;
 use App\Repository\GroupeRepository;
 use App\Repository\UserRepository;
@@ -46,22 +48,20 @@ class AdminGroupeController extends AbstractController
         // Récupère tous les groupes
         //$users = $this->repository->findAll();
 
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
+
         //Pagination avec 10 groupes par page
         $groupes = $paginator->paginate(
-            $this->repository->findAllVisibleQuery(),
+            $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page', 1), 10
         );
 
-
-        //Récupérer le nombre de groupe
-        $qb = $this->repository->createQueryBuilder('entity');
-        $qb->select('COUNT(entity) ');
-        $count = $qb->getQuery()->getSingleScalarResult();
-
-
         return $this->render('admin/groupe/groupes.html.twig', [
             'groupes' => $groupes,
-            'count' => $count,
+            'form' => $form->createView(),
+            'count' => $groupes->getTotalItemCount(),
         ]);
     }
 

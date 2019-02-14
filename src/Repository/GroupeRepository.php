@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Groupe;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -24,9 +25,18 @@ class GroupeRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function findAllVisibleQuery(): Query
+    public function findAllVisibleQuery(Search $search): Query
     {
-        return $this->findGroupeASC()->getQuery();
+        $query= $this->findGroupeASC();
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere('u.id like :chaine')
+                ->orWhere('u.nom like :chaine')
+                ->orderBy('u.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
     }
     /**
      * @return QueryBuilder

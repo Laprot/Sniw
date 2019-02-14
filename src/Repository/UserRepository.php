@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Search;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -21,24 +22,58 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+
     /**
      * @return Query
      */
-    public function findAllVisibleQuery(): Query
+    public function findAllVisibleQuery(Search $search) : Query
     {
-        return $this->findUserDESC()->getQuery();
-    }
-    /**
-     * @return QueryBuilder
-     */
+        $query= $this->findVisibleQuery();
 
-    private function findUserDESC(): QueryBuilder
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere('u.nom like :chaine')
+                ->orWhere('u.prenom like :chaine')
+                ->orWhere('u.email like :chaine')
+                ->orWhere('u.id like :chaine')
+                ->orWhere('u.societe like :chaine')
+                ->orderBy('u.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
+    }
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQueryAdresse(Search $search) : Query
     {
-        //Retourne les utilisateurs dans l'odre décroissant par ID , du plus récent au plus ancien
+        $query= $this->findVisibleQuery();
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere('u.id like :chaine')
+                ->orWhere('u.email like :chaine')
+                ->orWhere('u.prenom like :chaine')
+                ->orWhere('u.nom like :chaine')
+                ->orWhere('u.code_postal like :chaine')
+                ->orWhere('u.adresse like :chaine')
+                ->orWhere('u.ville like :chaine')
+                ->orWhere('u.pays like :chaine')
+                ->orderBy('u.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
+    }
+
+
+
+    private function findVisibleQuery(): QueryBuilder
+    {
         return $this->createQueryBuilder('u')
             ->orderBy('u.id','DESC');
     }
-
 
     public function getLastFiveUsers($limit = 5) {
         //Permet d'afficher les 'limits' dernières inscriptions
@@ -51,7 +86,7 @@ class UserRepository extends ServiceEntityRepository
     }
 
 
-    public function recherche($chaine)
+    public function recherche($search)
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.nom like :chaine')
@@ -59,7 +94,7 @@ class UserRepository extends ServiceEntityRepository
             ->orWhere('u.email like :chaine')
             ->orWhere('u.societe like :chaine')
             ->orderBy('u.id')
-            ->setParameter('chaine', '%' . $chaine . '%')
+            ->setParameter('chaine', '%' . $search . '%')
             ->getQuery()
             ->getResult();
     }
@@ -86,6 +121,9 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+
+
 
 
 

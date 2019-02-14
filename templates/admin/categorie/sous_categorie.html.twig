@@ -45,11 +45,12 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Catégories</li>
+                                        <li class="breadcrumb-item"><a href="{{ path('categorie_show') }}" class="breadcrumb-link">Catégories</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">{{ categorie.nom }}</li>
+
                                     </ol>
                                 </nav>
                             </div>
-
 
 
 
@@ -79,17 +80,11 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for categorie in categories %}
+                                        {% for categorie in categorie.children %}
+                                            {% if categorie.getIdParent()|length > 0 %}
 
-
-                                            <!-- Boucle if pour afficher que les parents -->
-
-
-                                            {% if categorie.getIdParent() == null %}
-
-                                            <tr>
+                                                <tr>
                                                 <td> {{ categorie.id }} </td>
-
                                                 <td><a href="{{ path('sous_categorie', {id: categorie.id}) }}">{{ categorie.nom }}</a></td>
 
 
@@ -113,7 +108,6 @@
                                                     </div>
 
                                                 </td>
-
 
                                             {% endif %}
 

@@ -2,8 +2,9 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Search;
 use App\Entity\User;
-use App\Form\RechercheClientType;
+use App\Form\SearchType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -37,30 +38,25 @@ class AdminClientController extends AbstractController
 
     /**
      * @Route("/admin/client/show", name="client_show")
-     * @Route ("/admin/client/recherche", name="recherche_client", methods="GET|POST")
      */
     public function show(PaginatorInterface $paginator, Request $request)
     {
         // Récupère tous les utilisateurs
         //$users = $this->repository->findAll();
 
-        $form = $this->createForm(RechercheClientType::class);
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
         $form->handleRequest($request);
 
-        $query = $this->repository->recherche($form['rechercheClient']->getData());
         //Pagination avec 10 users par page
         $users = $paginator->paginate(
-            $query,
+            $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page', 1), 10
         );
 
-        //Récupérer le nombre d'utilisateurs
-        $count = count($query);
-        //$count = $this->repository->countRecherche();
-
         return $this->render('admin/client/data-tables.html.twig', [
             'users' => $users,
-            'count' => $count,
+            'count' => $users->getTotalItemCount(),
             'form' => $form->createView()
         ]);
     }
@@ -146,7 +142,7 @@ class AdminClientController extends AbstractController
     /*
 
     public function rechercheAction() {
-        $form = $this->createForm(RechercheClientType::class);
+        $form = $this->createForm(SearchType::class);
         return $this->render('admin/client/recherche.html.twig',[
                 'form' => $form->createView()
             ]

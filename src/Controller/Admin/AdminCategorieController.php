@@ -5,10 +5,11 @@ namespace App\Controller\Admin;
 
 use App\Entity\Categorie;
 
+use App\Entity\Search;
 use App\Form\CategorieType;
 
 
-
+use App\Form\SearchType;
 use App\Repository\CategorieRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\DBAL\Types\TextType;
@@ -44,21 +45,31 @@ class AdminCategorieController extends AbstractController
     /**
      * @Route("/admin/categorie/show", name="categorie_show")
      */
-    public function show()
+    public function show(PaginatorInterface $paginator,Request $request)
     {
 
-        $categories = $this->repository->findAll();
-        $categories_parent = $this->repository->find('id_parent');
 
-        //Récupérer le nombre de catégories
-        $qb = $this->repository->createQueryBuilder('entity');
-        $qb->select('COUNT(entity) ');
-        $count = $qb->getQuery()->getSingleScalarResult();
+
+
+        //$categories_parent = $this->repository->find('id_parent');
+
+
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
+
+
+        $categories = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1), 10
+        );
+
 
         return $this->render('admin/categorie/categories.html.twig', [
             'categories' => $categories,
-            'count' => $count,
-            'categories_parent' => $categories_parent
+            'form' => $form->createView(),
+            'count' => $categories->getTotalItemCount()
+           // 'categories_parent' => $categories_parent
         ]);
     }
 
@@ -105,11 +116,46 @@ class AdminCategorieController extends AbstractController
         );
     }
 
+
     /**
-     * @Route("/admin/categorie/{id}", name="categorie_edit", methods="GET|POST")
+     * @Route("/admin/categorie/sous_cat/{id}", name="sous_categorie")
+     */
+    public function sous_categorie(PaginatorInterface $paginator,Request $request, Categorie $categorie) {
+
+        //$categories_parent = $this->repository->find('id_parent');
+
+
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
+
+
+        $categories = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1), 10
+        );
+
+
+        return $this->render('admin/categorie/sous_categorie.html.twig', [
+            'categories' => $categories,
+            'form' => $form->createView(),
+            'categorie' =>$categorie,
+            'count' => $categories->getTotalItemCount()
+            // 'categories_parent' => $categories_parent
+        ]);
+
+
+
+    }
+
+
+    /**
+     * @Route("/admin/categorie/{id}/edit", name="categorie_edit", methods="GET|POST")
      */
     public function edit(Request $request, Categorie $categorie)
     {
+
+        $categories = $this->repository->findAll();
         $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
 
@@ -121,17 +167,17 @@ class AdminCategorieController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('features_show', [
+            return $this->redirectToRoute('fabricant_show', [
                 'id' => $categorie->getId()
             ]);
         }
 
         return $this->render('admin/categorie/categorie_edit.html.twig', [
             'categorie' => $categorie,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'categories' =>$categories
         ]);
     }
-
 
     /**
      * @Route("/admin/categorie/{id}/delete", name="categorie_delete", methods="DELETE")

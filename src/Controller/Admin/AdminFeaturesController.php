@@ -4,7 +4,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Features;
+use App\Entity\Search;
 use App\Form\FeaturesType;
+use App\Form\SearchType;
 use App\Repository\FeaturesRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\DBAL\Types\TextType;
@@ -43,17 +45,20 @@ class AdminFeaturesController extends AbstractController
     public function show(PaginatorInterface $paginator, Request $request)
     {
 
-        $features = $this->repository->findAll();
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
 
-        //Récupérer le nombre de features
-        $qb = $this->repository->createQueryBuilder('entity');
-        $qb->select('COUNT(entity) ');
-        $count = $qb->getQuery()->getSingleScalarResult();
-
+        //Pagination avec 10 groupes par page
+        $features = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1), 10
+        );
 
         return $this->render('admin/produits/features/features.html.twig', [
             'features' => $features,
-            'count' => $count,
+            'count' => $features->getTotalItemCount(),
+            'form' =>$form->createView()
         ]);
     }
 

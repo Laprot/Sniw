@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Features;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Features|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +22,34 @@ class FeaturesRepository extends ServiceEntityRepository
         parent::__construct($registry, Features::class);
     }
 
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(Search $search): Query
+    {
+        $query= $this->findFeatures();
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere("u.nom like :chaine")
+                ->orWhere('u.id like :chaine')
+                ->orderBy('u.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
+    }
+
+
+    /**
+     * @return QueryBuilder
+     */
+
+    private function findFeatures(): QueryBuilder
+    {
+        //Retourne les produits dans l'odre croissant par ID , du plus ancien au plus récent
+        return $this->createQueryBuilder('u');
+    }
 
 
 

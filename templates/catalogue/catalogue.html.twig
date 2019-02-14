@@ -19,6 +19,8 @@
                     </ul>
                 </div>
 
+
+
                 <!-- Sidebar -->
 
                 <div class="sidebar">
@@ -102,6 +104,13 @@
 
                                 <!-- Product Sorting -->
 
+                                <div class="container">
+                                    {{ form_start(form) }}
+                                    <div class="row">
+                                        {{ form_row(form.rechercher) }}
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
                                 <div class="product_sorting_container product_sorting_container_top">
                                     <ul class="product_sorting">
                                         <li>
@@ -114,6 +123,7 @@
                                             </ul>
                                         </li>
                                         <li>
+
                                             <span>Show</span>
                                             <span class="num_sorting_text">6</span>
                                             <i class="fa fa-angle-down"></i>
@@ -146,7 +156,9 @@
                                     <!-- Product 1 -->
 
                                     <div class="histoires__cards">
-                                        {% for produit in produits %}
+
+                                            {% for produit in produits %}
+
                                             <div class="histoires__card">
 
                                                 <img class="histoires__card-img" src="{{ produit.fileName }}">
@@ -160,7 +172,9 @@
                                                 </div>
                                             </div>
 
-                                        {% endfor %}
+
+                                            {% endfor %}
+
                                     </div>
                                     <div class="" style="float:right">
 

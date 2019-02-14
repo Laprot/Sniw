@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Search;
 use App\Entity\User;
 use App\Form\AdresseUserType;
 use App\Form\RechercheAdresseType;
+use App\Form\SearchType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Component\Pager\PaginatorInterface;
@@ -40,20 +42,25 @@ class AdminAdresseClientController extends AbstractController
         // Récupère toutes les adresses des utilisateurs
         //$users = $this->repository->findAll();
 
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
+
         //Pagination avec 10 users par page
         $users = $paginator->paginate(
-            $this->repository->findAllVisibleQuery(),
+            $this->repository->findAllVisibleQueryAdresse($search),
             $request->query->getInt('page', 1), 10
         );
 
 
         //Récupérer le nombre d'utilisateurs
-        $count = $this->repository->countRecherche();
+        //$count = $this->repository->countRecherche();
 
 
         return $this->render('admin/client/adresses.html.twig', [
             'users' => $users,
-            'count' => $count
+            'form'=> $form->createView(),
+            'count' => $users->getTotalItemCount()
         ]);
     }
 

@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Entity\Produit;
+use App\Entity\Search;
 use App\Form\RechercheProduitType;
+use App\Form\SearchType;
 use App\Repository\ProduitRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Imagine\Exception\Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,57 +38,69 @@ class CatalogueController extends AbstractController
     /**
      * @Route("/catalogue", name="catalogue")
      */
-    public function index()
+    public function index(PaginatorInterface $paginator,Request $request)
     {
-        //Affiche que les produits disponibles (etat = 1)
-        $produits = $this->repository->findAllAvailable();
+
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
+
+        //Pagination avec 10 users par page
 
 
+        $produits = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1), 10
+        );
 
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
 
-        return $this->render('catalogue/catalogue.html.twig',[
+        return $this->render('catalogue/catalogue.html.twig', [
             'produits' => $produits,
-            'categories' => $categories
-            ]
-        );
+            'count' => $produits->getTotalItemCount(),
+            'form' => $form->createView(),
+            'categories'=>$categories
+        ]);
+
     }
 
 
+
     public function rechercheAction() {
-        $form = $this->createForm(RechercheProduitType::class);
+
+        $form = $this->createForm(SearchType::class);
+
         return $this->render('partiels/recherche.html.twig',[
                 'form' => $form->createView()
             ]
         );
     }
-
-
-
-
     /**
-     * @Route("/recherche", name="recherche")
+     * @Route("/catalogue", name="recherche")
      */
-    public function rechercheTraitementAction(Request $request) {
 
-        $categories = $this->em->getRepository(Categorie::class)->findAll();
-        $form = $this->createForm(RechercheProduitType::class);
-
+    /*
+    public function rechercheTraitementAction(Request $request)
+    {
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
         $form->handleRequest($request);
 
+        $produits = $this->repository->findAllVisibleQuery($search);
 
-        if($request->getMethod() == 'POST'){
-            $produits = $this->repository->recherche($form['recherche']->getData());
-        } else {
-            throw $this->createNotFoundException('La page n\'existe pas');
-        }
+
+        $categories = $this->em->getRepository(Categorie::class)->findAll();
+
 
 
         return $this->render('catalogue/catalogue.html.twig',[
                 'produits' => $produits,
-                'categories'=> $categories
+                'form' => $form->createView(),
+                'categories' => $categories
             ]
         );
+
     }
+*/
 }
