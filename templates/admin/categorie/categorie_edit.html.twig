@@ -59,11 +59,8 @@
                                         {{ form_row(form.id) }}
                                         {{ form_row(form.nom) }}
 
-
                                         {% for categorie in categories %}
                                             {% if categorie.getIdParent() == null %}
-
-
 
                                                 {{ form_row(form.id_parent, {'attr': {'class': 'tree-item'}}) }}
 
@@ -95,9 +92,7 @@
                 <!-- end valifation types -->
                 <!-- ============================================================== -->
             </div>
-
         </div>
-
     </div>
 </div>
 <!-- ============================================================== -->

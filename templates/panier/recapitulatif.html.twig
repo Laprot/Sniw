@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carrières - SNIW , centrale d'achat export.{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Votre panier</li>
+
+                    </ul>
+                </div>
+                <h2> Récapitulatif de la commande </h2>
+                <table class="table mt-5">
+                    <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Description</th>
+                        <th>Prix/Carton</th>
+                        <th>Nb de carton(s)</th>
+                        <th>Total</th>
+                        <th> Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for produit in produits  %}
+                    <tr>
+                        <td> <img src="{{ asset('images/croquette.jpg') }}"></td>
+                        <td> {{ produit.nom }}</td>
+                        <td> {{ produit.getPrixFinal() }}€</td>
+                        <td><input name="quantite" onchange="this.form.submit()"></td>
+
+
+                        <td>$2,350.00</td>
+                        <td><i class="fa fa-trash"></i></td>
+                    </tr>
+
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <div class="col-md-6">
+
+
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table">
+                            <tr>
+                             <td> Volume</td>
+                             <td> 123 m³</td>
+                            </tr>
+                            <tr>
+                                <td> Poids</td>
+                                <td> 1255 T</td>
+                            </tr>
+
+                            <tr>
+                                <td>Total</td>
+                                <td> 125553 €</td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+
+                </div>
+
+                <div class="mt-4 text-center">
+                    <button id="review_submit"  class="red_button message_submit_btn trans_300"  > Envoyer</button>
+                </div>
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

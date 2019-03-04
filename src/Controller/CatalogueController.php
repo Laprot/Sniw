@@ -56,7 +56,7 @@ class CatalogueController extends AbstractController
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
 
-        return $this->render('catalogue/catalogue.html.twig', [
+        return $this->render('catalogue/cataloguetest.html.twig', [
             'produits' => $produits,
             'count' => $produits->getTotalItemCount(),
             'form' => $form->createView(),
@@ -64,6 +64,7 @@ class CatalogueController extends AbstractController
         ]);
 
     }
+
 
 
 

@@ -22,6 +22,13 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+    public function findArray($array) {
+        return $this->createQueryBuilder('u')
+            ->where('u.id IN (:array)')
+            ->setParameter('array', $array)
+            ->getQuery()
+            ->getResult();
+    }
 
     /**
      * @return Query

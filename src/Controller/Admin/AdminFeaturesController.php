@@ -33,7 +33,6 @@ class AdminFeaturesController extends AbstractController
 
     public function __construct(FeaturesRepository $repository, ObjectManager $em)
     {
-
         $this->repository = $repository;
         $this->em = $em;
     }
@@ -44,7 +43,6 @@ class AdminFeaturesController extends AbstractController
      */
     public function show(PaginatorInterface $paginator, Request $request)
     {
-
         $search = new Search();
         $form = $this->createForm(SearchType::class,$search);
         $form->handleRequest($request);
@@ -72,7 +70,6 @@ class AdminFeaturesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $metadata = $this->em->getClassMetaData(get_class($feature));
             $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metadata->setIdGenerator(new AssignedGenerator());
@@ -83,7 +80,6 @@ class AdminFeaturesController extends AbstractController
                 'id' => $feature->getId()
             ]);
         }
-
         return $this->render('admin/produits/features/features_edit.html.twig', [
             'feature' => $feature,
             'form' => $form->createView()
@@ -102,9 +98,6 @@ class AdminFeaturesController extends AbstractController
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-
-
             $metadata = $this->em->getClassMetaData(get_class($feature));
             $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
             $metadata->setIdGenerator(new AssignedGenerator());
@@ -114,10 +107,8 @@ class AdminFeaturesController extends AbstractController
             $entityManager->persist($feature);
             $entityManager->flush();
 
-
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
-
             return $this->redirectToRoute('features_show');
         }
 
@@ -138,9 +129,6 @@ class AdminFeaturesController extends AbstractController
             $em->remove($feature);
             $em->flush();
         }
-
         return $this->redirectToRoute('features_show');
     }
-
-
 }

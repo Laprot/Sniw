@@ -2,13 +2,20 @@
 
 {% block title %} Hypermarché/Supermarché - SNIW, centrale d'achat export.{% endblock %}
 
-{% block body %}
-    <body>
 
-    <div class="background">
-        <div class="columns-container container carriere-container">
-            <div class="rte">
-                <div class="col product_section clearfix">
+{% block stylesheet %}
+
+{% endblock %}
+{% block body %}
+<body>
+
+
+<div class="background">
+    <div class="columns-container container carriere-container">
+        <div class="rte">
+            <div class="col product_section clearfix">
+
+
 
                 <!-- Breadcrumbs -->
 
@@ -23,15 +30,10 @@
 
                 <div class="sidebar">
                     <div class="sidebar_section">
-
                         <div class="sidebar_title">
-                            <h5>Catégorie</h5>
+                            <h5>Product Category</h5>
                         </div>
-
                         <ul class="sidebar_categories">
-                            {% for categorie in categories %}
-                            <li> {{ categorie.nom }}</li>
-                            {% endfor %}
                             <li><a href="#">Men</a></li>
                             <li class="active"><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Women</a></li>
                             <li><a href="#">Accessories</a></li>
@@ -107,7 +109,7 @@
                                 <div class="container">
                                     {{ form_start(form) }}
                                     <div class="row">
-                                        {{ form_row(form.rechercher) }}
+                                        {{ form_row(form.rechercher) }} <span style="margin-left:40px"> Il y a {{ count }} produit(s) </span>
                                     </div>
                                     {{ form_end(form) }}
                                 </div>
@@ -123,7 +125,6 @@
                                             </ul>
                                         </li>
                                         <li>
-
                                             <span>Show</span>
                                             <span class="num_sorting_text">6</span>
                                             <i class="fa fa-angle-down"></i>
@@ -151,62 +152,118 @@
 
                                 <!-- Product Grid -->
 
-                                <div class="product-grid" >
+                                <div class="product-grid">
 
-                                    <!-- Product 1 -->
+                                    <!-- Products -->
 
-                                    <div class="histoires__cards">
+                                    {% for produit in produits %}
+                                        {% if is_granted('ROLE_USER') %}
+                                            <div class="product-item men">
+                                                <div class="product discount product_filter">
+                                                    <div class="product_image text-center mt-2">
+                                                        <img src="{{ asset('images/croquette.jpg') }}" style="width:70%;" alt="{{ produit.nom }}">
+                                                    </div>
+                                                    <div class="product_info">
+                                                        <h6 class="product_name" style="text-align:left;font-weight: bold"><a href="single.html">{{ produit.nom }}</a></h6>
+                                                        <div class="product_price" style="text-align:left;color:#f2bf00;font-size:11px"> {{ produit.getIdManufacturer() }}</div>
 
-                                            {% for produit in produits %}
+                                                        <div class="product_price" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
 
-                                            <div class="histoires__card">
 
-                                                <img class="histoires__card-img" src="{{ produit.fileName }}">
+                                                        <div class="product_price" style="font-size:11px;color:#C4C2C2"> Prix unitaire : <span style="font-size:16px;color:black">{{ produit.getPrixFinal() }}€ HT </span></div>
+                                                        <div class="product_price" style="font-size:10px;text-align:right;color:#777777"> Carton de {{ produit.getUniteParCarton() }} produit(s)</div>
+                                                    </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
 
-                                                <div class="histoires__card-content">
-                                                    <p class="histoires__card-p">Produit</p>
-                                                    <span><a href="{{ path('produits_show', {id: produit.id}) }}" class="histoires__card-title"> {{ produit.nom }}</a></span>
-                                                    <p style="color:white"> {{ produit.reference }}</p>
-                                                    <p style="color:yellow"> {{ produit.getIdManufacturer() }}</p>
-                                                    <p style="color:white"> {{ produit.conditionnement }}</p>
-                                                    <p style="color:pink;font-size:16px"> Prix unitaire : {{ produit.getPrixFinal() }}€ HT</p>
-                                                    <p style="color:white"> Carton de {{ produit.getUniteParCarton() }} produit(s)</p>
-                                                    <p style="color:white"> <button>Ajouter au panier </button></p>
-                                                    <div class="histoires__card-infos">
+                                                    <div class="wrapper-qty text-center">
+
+                                                        <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get">
+                                                        <span class="labelQty" style="float:left;margin-left:10px;font-size:12px">Quantit&eacute; :</span>
+                                                        <br><input name="quantite" class="addQty" style="width: 60%;height:20px;float: left;margin-left: 10px;">
+
+                                                            <button type="submit"> envoyer</button>
+                                                        </form>
+
+
                                                     </div>
                                                 </div>
+
+                                                <div class="col-sm-6">
+
+                                                    <div class="wrapper-qty text-center">
+                                                        <a href="{{ path('panier') }}"><img src="{{ asset('images/add-to-cart.png') }}" style="width:50%;margin-top:10px"> </a>
+                                                    </div>
+
+                                                </div>
+
+                                                </form>
+                                                {% else %}
+                                                    <div class="product-item men" style="height:280px">
+                                                        <div class="product discount product_filter" style="height:260px">
+                                                            <div class="product_image text-center mt-2">
+                                                                <img src="{{ asset('images/croquette.jpg') }}" style="width:70%;" alt="{{ produit.nom }}">
+                                                            </div>
+                                                            <div class="product_info">
+                                                                <h6 class="product_name" style="text-align:left;font-weight: bold"><a href="single.html">{{ produit.nom }}</a></h6>
+                                                                <div class="product_price" style="text-align:left;color:#f2bf00;font-size:11px"> {{ produit.getIdManufacturer() }}</div>
+
+                                                                <div class="product_price" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
+
+
+                                                        {% endif %}
+
+
                                             </div>
 
 
-                                            {% endfor %}
 
-                                    </div>
 
-                                    <div class="product-grid">
-
-                                        <!-- Product 1 -->
-
-                                        <div class="product-item men">
-                                            <div class="product discount product_filter">
-                                                <div class="product_image">
-                                                    <img src="images/product_1.png" alt="">
-                                                </div>
-                                                <div class="favorite favorite_left"></div>
-                                                <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-                                                <div class="product_info">
-                                                    <h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-                                                    <div class="product_price">$520.00<span>$590.00</span></div>
-                                                </div>
-                                            </div>
-                                            <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
                                         </div>
 
-                                        <div class="" style="float:right">
+
+                                        <!-- Bouton ajouter panier au cas ou
+                                        <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+
+                                        -->
 
                                     </div>
+                                    {% endfor %}
 
-                                    <!-- Product 2 -->
+
+
+
+                                    <!-- Product 4 -->
+
+
+                                    <!-- Product 5 -->
+
+
+
+                                    <!-- Product 6 -->
+
+
+                                    <!-- Product 7 -->
+
+
+                                    <!-- Product 8 -->
+
+
+                                    <!-- Product 9 -->
+
+
+
+                                    <!-- Product 10 -->
+
+
+                                    <!-- Product 11 -->
+
+
+                                    <!-- Product 12 -->
+
+
                                 </div>
+
                                 <!-- Product Sorting -->
 
                                 <div class="product_sorting_container product_sorting_container_bottom clearfix">
@@ -244,16 +301,30 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+
+    <!-- Benefit -->
+
+
+
 
 
     <!-- Footer -->
     {% include 'partiels/footer.html.twig' %}
+
         </div>
     </div>
+
+</div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="styles/bootstrap4/popper.js"></script>
+<script src="styles/bootstrap4/bootstrap.min.js"></script>
+<script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="plugins/easing/easing.js"></script>
+<script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="js/categories_custom.js"></script>
 </body>
-
-</html>
-
 
 {% endblock %}

@@ -97,15 +97,14 @@ class Features
         if ($this->produits->contains($produit)) {
             $this->produits->removeElement($produit);
         }
-
         return $this;
     }
-
 
     public function __toString()
     {
         $s = $this->nom;
         return $s;
     }
+
 
 }

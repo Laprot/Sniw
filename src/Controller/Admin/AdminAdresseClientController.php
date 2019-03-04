@@ -42,6 +42,7 @@ class AdminAdresseClientController extends AbstractController
         // Récupère toutes les adresses des utilisateurs
         //$users = $this->repository->findAll();
 
+
         $search = new Search();
         $form = $this->createForm(SearchType::class,$search);
         $form->handleRequest($request);
@@ -135,12 +136,11 @@ class AdminAdresseClientController extends AbstractController
             throw $this->createNotFoundException('La page n\'existe pas');
         }
 
-
         return $this->render('admin/client/adresses.html.twig',[
-
                 'users' => $users,
                 'count' =>$count
             ]
         );
+
     }
 }

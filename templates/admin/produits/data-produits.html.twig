@@ -122,6 +122,9 @@
                                                 <td>
                                                     <a href="{{ path('produits_edit', {id: produit.id}) }}"> <img src="{{ produit.fileName | imagine_filter('small')}}" ></a>
                                                 </td>
+
+
+
                                                 <td>
                                                     <a href="{{ path('produits_edit', {id: produit.id}) }}">{{ produit.nom }} </a>
                                                 </td>
@@ -135,7 +138,6 @@
                                                 </td>
                                                 <td>
                                                     <div class="btn btn-group justified">
-
 
                                                         <a class="ml-2 mr-2" href="{{ path('produits_edit', {id: produit.id}) }}">
                                                             <button class="btn btn-warning"><i class="fas fa-pen"></i></button>

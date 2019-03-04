@@ -1377,7 +1377,7 @@ section
 	font-size: 12px;
 	margin-left: 10px;
 	color: #b5aec4;
-	text-decoration: line-through;
+
 }
 .product_bubble
 {
@@ -1443,7 +1443,7 @@ section
 }
 .add_to_cart_button
 {
-	width: 100%;
+	width: 100% !important;
 	visibility: hidden;
 	opacity: 0;
 	-webkit-transition: all 0.3s ease;
