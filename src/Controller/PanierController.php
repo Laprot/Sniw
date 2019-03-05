@@ -35,33 +35,55 @@ class PanierController extends AbstractController
         $this->em = $em;
     }
 
+    public function menu(Request $request) {
+        $session = $request->getSession();
+        if(!$session->has('panier')) {
+            $articles = 0;
+        }
+        else {
+            $articles = count($session->get('panier'));
+        }
+
+
+        return $this->render('panier/affichage.html.twig', [
+            'articles' => $articles
+        ]);
+
+    }
+
+
 
 
 
     /**
       * @Route("/ajouter/{id}", name="ajouter")
       */
-    public function ajouterAction($id, Request $request) {
+    public function ajouterAction($id, Request $request)
+    {
         $session = $request->getSession();
 
-        if(!$session->has('panier')) {
+
+        if (!$session->has('panier')) {
             $session->set('panier', []);
         }
         $panier = $session->get('panier');
 
-        if(array_key_exists($id,$panier)) {
-            if($request->query->get('quantite') != null) {
-                $panier[$id] = $request->query->get('quantite');
+
+
+
+            if (array_key_exists($id, $panier)) {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $request->query->getInt('quantite');
+                }
+            } else {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $request->query->getInt('quantite');
+                } else {
+                    $panier[$id] = 1;
+                }
             }
-        }
-        else {
-            if($request->query->get('quantite') != null) {
-                $panier[$id] = $request->query->get('quantite');
-            }
-            else {
-                $panier[$id] = 1 ;
-            }
-        }
+
+
 
         $session->set('panier',$panier);
 
@@ -100,8 +122,19 @@ class PanierController extends AbstractController
         return $this->render('panier/livraison.html.twig');
     }
 
+    /**
+     * @Route("/supprimer/{id}", name="supprimer")
+     */
+    public function supprimer($id,Request $request) {
+        $session = $request->getSession();
 
-    public function supprimer($id) {
+        $panier= $session->get('panier');
+        if(array_key_exists($id,$panier)) {
+            unset($panier[$id]);
+            $session->set('panier',$panier);
+        }
+
+        return $this->redirect($this->generateUrl('panier'));
 
     }
 

@@ -182,8 +182,7 @@
                                                         <span class="labelQty" style="float:left;margin-left:10px;font-size:12px">Quantit&eacute; :</span>
                                                         <br><input name="quantite" class="addQty" style="width: 60%;height:20px;float: left;margin-left: 10px;">
 
-                                                            <button type="submit"> envoyer</button>
-                                                        </form>
+
 
 
                                                     </div>
@@ -192,12 +191,13 @@
                                                 <div class="col-sm-6">
 
                                                     <div class="wrapper-qty text-center">
-                                                        <a href="{{ path('panier') }}"><img src="{{ asset('images/add-to-cart.png') }}" style="width:50%;margin-top:10px"> </a>
+                                                       <input type="image"src="{{ asset('images/add-to-cart.png') }}" style="width:50%;margin-top:10px">
                                                     </div>
 
                                                 </div>
 
-                                                </form>
+                                            </form>
+
                                                 {% else %}
                                                     <div class="product-item men" style="height:280px">
                                                         <div class="product discount product_filter" style="height:260px">

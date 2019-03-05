@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Carrières - SNIW , centrale d'achat export.{% endblock %}
+{% set totalHT = 0 %}
+
+
+{% block title %}Commande - SNIW , centrale d'achat export.{% endblock %}
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
@@ -17,6 +20,7 @@
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
                         <li><a href="{{ path('home') }}">Home</a></li>
+                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('catalogue') }}">Catalogue</a></li>
                         <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Votre panier</li>
 
                     </ul>
@@ -35,23 +39,38 @@
                     </thead>
                     <tbody>
 
+                    {% if produits|length ==0 %}
+                    <tr>
+                        <td colspan="6" class="text-center"> Votre panier est vide </td>
+                    </tr>
+
+                    {% endif %}
                     {% for produit in produits  %}
                     <tr>
                         <td> <img src="{{ asset('images/croquette.jpg') }}"></td>
-                        <td> {{ produit.nom }}</td>
-                        <td> {{ produit.getPrixFinal() }}€</td>
-                        <td><input name="quantite" onchange="this.form.submit()"></td>
 
+                        <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get">
+                            <td> {{ produit.nom }}</td>
+                            <td> {{ produit.getPrixFinal() }}€</td>
+                            <td>
+                               <input name="quantite" type="text" value="{{ panier[produit.id] }}" onchange="this.form.submit()" >
+                            </td>
 
-                        <td>$2,350.00</td>
-                        <td><i class="fa fa-trash"></i></td>
+                            <td> {{ produit.getPrixFinal() * panier[produit.id] }}€</td>
+                            <td><a href="{{ path('supprimer' , {'id' : produit.id}) }}"><i class="fa fa-trash"></i></a></td>
+                        </form>
                     </tr>
+
+                        {% set totalHT = totalHT + (produit.getPrixFinal() * panier[produit.id]) %}
+
 
                     {% endfor %}
 
 
                     </tbody>
                 </table>
+
+                {% if produits|length !=0 %}
 
                 <div class="row">
                     <div class="col-md-6">
@@ -70,8 +89,8 @@
                             </tr>
 
                             <tr>
-                                <td>Total</td>
-                                <td> 125553 €</td>
+                                <td>Total HT</td>
+                                <td style="font-weight: bold;font-size:22px"> {{ totalHT }}€</td>
                             </tr>
                         </table>
 
@@ -80,13 +99,30 @@
 
                 </div>
 
+
+
                 <div class="mt-4 text-center">
                     <button id="review_submit"  class="red_button message_submit_btn trans_300"  > Envoyer</button>
                 </div>
+
+                {% endif %}
 
                 {% include 'partiels/footer.html.twig' %}
             </div>
         </div>
     </div>
     </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+
+    <script>
+
+    </script>
+
+
 {% endblock %}
+
+
+
+

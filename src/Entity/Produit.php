@@ -64,7 +64,7 @@ class Produit
     private $prix_base;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float", length=255)
      */
     private $prix_final;
 
@@ -253,12 +253,12 @@ class Produit
         return $this;
     }
 
-    public function getPrixFinal(): ?string
+    public function getPrixFinal(): ?float
     {
         return $this->prix_final;
     }
 
-    public function setPrixFinal(string $prix_final): self
+    public function setPrixFinal(float $prix_final): self
     {
         $this->prix_final = $prix_final;
 
