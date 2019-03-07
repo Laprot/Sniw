@@ -3,6 +3,7 @@
 namespace App\Controller\CompteClient;
 
 use App\Entity\User;
+use App\Form\AdresseUserType;
 use App\Form\UserType;
 use App\Security\AppAccess;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,6 +35,29 @@ class CompteClientController extends AbstractController
             ]);
         }
         return $this->render('compte/infos.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/infos/adresse/{id}/edit", name="edit_adresse", methods="GET|POST")
+     */
+    public function adresse(Request $request, User $user)
+    {
+        $this->denyAccessUnlessGranted(AppAccess::USER_EDIT, $user);
+        $form = $this->createForm(AdresseUserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success','Votre adresse a bien été modifié');
+            return $this->redirectToRoute('edit_adresse', [
+                'id' => $user->getId()
+            ]);
+        }
+        return $this->render('compte/adresse.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);

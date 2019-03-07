@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez-nous - SNIW, centrale d'achat export.{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container societe_container">
+            <div class="rte">
+                <div class="row">
+                    <div class="col mt-3 resp-head">
+
+                        <!-- Breadcrumbs -->
+
+                        <div class="breadcrumbs d-flex flex-row align-items-center">
+                            <ul>
+                                <li><a href="{{ path('home') }}">Home</a></li>
+                                <li> <i class="fa fa-angle-right"></i><a href="{{ path('catalogue') }}">Catalogue</a></li>
+
+                                <li> <i class="fa fa-angle-right"></i><a href="{{ path('panier') }}">Votre panier</a></li>
+                                <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i> Adresse </li>
+
+                            </ul>
+                        </div>
+
+
+                        <div class="row">
+                            <h6> Adresse actuelle du compte : <a href="{{ path('edit_adresse', {id:user.id}) }}" style="color:black">{{ user.nomAdresse }}</a></h6>
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col" style="background-color:#fbfbfb;border:1px solid #d8d8d8" >
+                                <h4 class="mt-4" style="color:black"> Adresse de livraison  </h4>
+                                    <hr>
+                                    <ul>
+                                        <li> {{ user.prenom }} {{ user.nom }}</li>
+                                        <li> {{ user.adresse }}</li>
+                                        <li> {{ user.getCodePostal() }} {{ user.ville }}</li>
+                                        <li> {{ user.pays }} </li>
+                                        <li> {{ user.telephone }}</li>
+                                        <li class="mt-2"><a class="btn-mj btn-succ mb-3" href="{{ path('livraison', {id : user.id}) }}" style="float:right;color:white"> Mettre à jour <i class="fa fa-refresh" aria-hidden="true"></i> </a> </li>
+                                    </ul>
+                            </div>
+
+
+                            <div class="col ml-4" style="background-color:#fbfbfb;border:1px solid #d8d8d8" >
+                                <h4 class="mt-4" style="color:black"> Adresse de facturation  </h4>
+                                <hr>
+                                <ul>
+                                    <li> {{ user.prenom }} {{ user.nom }}</li>
+                                    <li> {{ user.adresse }}</li>
+                                    <li> {{ user.getCodePostal() }} {{ user.ville }}</li>
+                                    <li> {{ user.pays }} </li>
+                                    <li> {{ user.telephone }}</li>
+                                    <li class="mt-2"><a class="btn-mj btn-succ mb-3" href="{{ path('livraison', {id : user.id}) }}" style="float:right;color:white"> Mettre à jour <i class="fa fa-refresh" aria-hidden="true"></i> </a> </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col">
+                                <a class="btn-mj btn-def" href="{{ path('panier', {id: user.id}) }}" style="color:white"> <i class="fa fa-angle-double-left"></i> Continuer mes achats </a>
+                            </div>
+                            <div class="col">
+                                <a class="btn-mj btn-def" href="{{ path('transport') }}" style="color:white;float:right"> Envoyer ma demande <i class="fa fa-angle-double-right"></i>  </a>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

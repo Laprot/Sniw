@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% set totalHT = 0 %}
+
+
+{% block title %}Commande - SNIW , centrale d'achat export.{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('catalogue') }}">Catalogue</a></li>
+
+                    </ul>
+                </div>
+
+
+                <div class="row mt-4">
+                    <div class="col" style="background-color:#fbfbfb;border:1px solid #d8d8d8;margin-bottom:20px" >
+
+                        <!--  Success Message  -->
+
+
+                        {% if app.session.flashBag.has('success')  %}
+
+                                {% for message in app.flashes('success') %}
+
+                                    <div class="alert alert-success mt-2">
+                                        <i class="fa fa-check" aria-hidden="true"></i> {{ message }}
+                                    </div>
+                                {% endfor%}
+
+                        {% endif %}
+
+                        <div class="row">
+
+                            <div class="col mt-4 mb-4 text-center">
+                                <img src="{{ asset('images/img_transport.jpg') }}">
+                            </div>
+
+                            <div class="col" style="margin-top:80px;float:left">
+                                <p style="font-size:12px"> Bonjour, merci pour votre demande et votre confiance.
+                                </p>
+
+                                <p style="font-size:12px">
+                                Un conseiller commercial va rapidement prendre contact avec vous pour finaliser les modalités de votre demande.
+                                </p>
+
+                                <p style="font-size:12px;color:black">A très bientôt sur SNIW, centrale d'achat export. </p>
+
+                                <p style="font-size:12px">
+                                Cordialement, l'équipe commerciale.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="row mt-4">
+                    <div class="col">
+                        <a class="btn-mj btn-def" href="{{ path('catalogue') }}" style="color:white"> <i class="fa fa-angle-double-left"></i> Voir l'historique de mes commandes </a>
+                    </div>
+
+                </div>
+
+
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+
+    <script>
+
+    </script>
+
+
+{% endblock %}
+
+
+
+

@@ -83,6 +83,7 @@
                                     <ul class="account_selection">
                                         <li><a href="#">Mes commandes </a></li>
                                         <li><a href="{{ path('edit_profil', {id: app.user.id}) }}">Mes informations</a></li>
+                                        <li><a href={{ path('edit_adresse', {id: app.user.id}) }}>Mes adresses</a></li>
 
                                         <li><a href={{ path('app_logout') }}><i class="fa fa-sign-in" aria-hidden="true"></i>Déconnexion</a></li>
                                     </ul>

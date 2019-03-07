@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% set totalHT = 0 %}
+
+
+{% block title %}Commande - SNIW , centrale d'achat export.{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('catalogue') }}">Catalogue</a></li>
+                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('panier') }}">Votre panier</a></li>
+
+
+                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('adresses', {id: app.user.id}) }}">Adresse</a></li>
+
+                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('transport') }}">Transport</a></li>
+                        <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Confirmation</li>
+
+                    </ul>
+                </div>
+                <h2> Confirmez votre demande </h2>
+                <table class="table mt-5 border">
+                    <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Description</th>
+                        <th>Prix/Carton</th>
+                        <th>Nb de carton(s)</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% if produits|length ==0 %}
+                        <tr>
+                            <td colspan="6" class="text-center"> Votre panier est vide </td>
+                        </tr>
+
+                    {% endif %}
+                    {% for produit in produits  %}
+                        <tr>
+                            <td> <img src="{{ asset('images/croquette.jpg') }}"></td>
+
+                            <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get">
+                                <td> {{ produit.nom }}</td>
+                                <td> {{ produit.getPrixFinal() }}€</td>
+                                <td>
+                                    {{ panier[produit.id] }}
+                                </td>
+
+                                <td> {{ produit.getPrixFinal() * panier[produit.id] }}€</td>
+                            </form>
+                        </tr>
+
+                        {% set totalHT = totalHT + (produit.getPrixFinal() * panier[produit.id]) %}
+
+
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+
+                {% if produits|length !=0 %}
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table border border-black">
+                                <tr class="border">
+                                    <td class="border"> Frais de port</td>
+                                    <td style="font-size:12px"> Calculés et transmis lors du traitement de votre demande.</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="border">Total HT</td>
+                                    <td style="font-weight: bold;font-size:22px"> {{ totalHT }}€</td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col" style="background-color:#fbfbfb;border:1px solid #d8d8d8" >
+                            <h4 class="mt-4" style="color:black"> Adresse de livraison  </h4>
+                            <hr>
+                            <ul>
+                                <li> {{ user.prenom }} {{ user.nom }}</li>
+                                <li> {{ user.adresse }}</li>
+                                <li> {{ user.getCodePostal() }} {{ user.ville }}</li>
+                                <li> {{ user.pays }} </li>
+                                <li> {{ user.telephone }}</li>
+                                <li class="mt-2"><a class="btn-mj btn-succ mb-3" href="{{ path('livraison', {id : user.id}) }}" style="float:right;color:white"> Mettre à jour <i class="fa fa-refresh" aria-hidden="true"></i> </a> </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="col ml-4" style="background-color:#fbfbfb;border:1px solid #d8d8d8" >
+                            <h4 class="mt-4" style="color:black"> Adresse de facturation  </h4>
+                            <hr>
+                            <ul>
+                                <li> {{ user.prenom }} {{ user.nom }}</li>
+                                <li> {{ user.adresse }}</li>
+                                <li> {{ user.getCodePostal() }} {{ user.ville }}</li>
+                                <li> {{ user.pays }} </li>
+                                <li> {{ user.telephone }}</li>
+                                <li class="mt-2"><a class="btn-mj btn-succ mb-3" href="{{ path('livraison', {id : user.id}) }}" style="float:right;color:white"> Mettre à jour <i class="fa fa-refresh" aria-hidden="true"></i> </a> </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="row mt-4">
+                        <div class="col">
+                            <a class="btn-mj btn-def" href="{{ path('catalogue') }}" style="color:white"> <i class="fa fa-angle-double-left"></i> Continuer mes achats </a>
+                        </div>
+                        <div class="col">
+                            <a class="btn-mj btn-def" href="{{ path('validation') }}" style="color:white;float:right"> Confirmez votre demande <i class="fa fa-angle-double-right"></i>  </a>
+                        </div>
+                    </div>
+
+                {% endif %}
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+
+    <script>
+
+    </script>
+
+
+{% endblock %}
+
+
+
+

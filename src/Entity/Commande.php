@@ -29,17 +29,7 @@ class Commande
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $client;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $societe;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $total;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -60,6 +50,67 @@ class Commande
      * @ORM\Column(type="integer", nullable=true)
      */
     private $poids;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commandes")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $utilisateur;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $valider;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $commande = [];
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $code_postal;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pays;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $message;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email;
 
     public function getId(): ?int
     {
@@ -90,18 +141,6 @@ class Commande
         return $this;
     }
 
-    public function getClient(): ?string
-    {
-        return $this->client;
-    }
-
-    public function setClient(?string $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
     public function getSociete(): ?string
     {
         return $this->societe;
@@ -110,18 +149,6 @@ class Commande
     public function setSociete(?string $societe): self
     {
         $this->societe = $societe;
-
-        return $this;
-    }
-
-    public function getTotal(): ?int
-    {
-        return $this->total;
-    }
-
-    public function setTotal(?int $total): self
-    {
-        $this->total = $total;
 
         return $this;
     }
@@ -170,6 +197,150 @@ class Commande
     public function setPoids(?int $poids): self
     {
         $this->poids = $poids;
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?User
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?User $utilisateur): self
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    public function getValider(): ?bool
+    {
+        return $this->valider;
+    }
+
+    public function setValider(?bool $valider): self
+    {
+        $this->valider = $valider;
+
+        return $this;
+    }
+
+    public function getCommande(): ?array
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?array $commande): self
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(?string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getCodePostal(): ?string
+    {
+        return $this->code_postal;
+    }
+
+    public function setCodePostal(?string $code_postal): self
+    {
+        $this->code_postal = $code_postal;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getPays(): ?string
+    {
+        return $this->pays;
+    }
+
+    public function setPays(?string $pays): self
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?string $message): self
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

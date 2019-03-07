@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% set totalHT = 0 %}
+
+
+{% block title %}Commande - SNIW , centrale d'achat export.{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('catalogue') }}">Catalogue</a></li>
+                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('panier') }}">Votre panier</a></li>
+
+                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('adresses', {id: app.user.id}) }}">Adresse</a></li>
+                        <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Transport</li>
+
+                    </ul>
+                </div>
+
+
+                <div class="row mt-4">
+                    <div class="col " style="background-color:#fbfbfb;border:1px solid #d8d8d8;margin-bottom:20px" >
+
+                        <div class="row">
+
+                            <div class="col mt-4 mb-4 text-center">
+                                <img src="{{ asset('images/img_transport.jpg') }}">
+                            </div>
+
+                            <div class="col" style="margin-top:100px;float:left">
+                                <p style="font-size:12px"> Le transport n'est pas calculé dans cette transmission de commande.
+                                    Il fera l'objet d'une étude prenant en compte votre destination, le poids, le volume et la nature des produits commandés.
+                                    Ce montant, et les conditions de livraison vous seront transmis pour accord avant que nous puissions traiter votre commande.
+                                </p>
+                                <p style="font-size:12px;color:black">Cordialement, l'équipe commerciale.</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                    <div class="row mt-4">
+                    <div class="col">
+                        <a class="btn-mj btn-def" href="{{ path('catalogue') }}" style="color:white"> <i class="fa fa-angle-double-left"></i> Continuer mes achats </a>
+                    </div>
+                    <div class="col">
+                        <a class="btn-mj btn-def" href="{{ path('confirmation', {id:app.user.id}) }}" style="color:white;float:right"> Envoyer ma demande <i class="fa fa-angle-double-right"></i>  </a>
+                    </div>
+                </div>
+
+
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+
+    <script>
+
+    </script>
+
+
+{% endblock %}
+
+
+
+

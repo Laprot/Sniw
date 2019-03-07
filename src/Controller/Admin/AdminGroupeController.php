@@ -141,6 +141,4 @@ class AdminGroupeController extends AbstractController
 
         return $this->redirectToRoute('groupe_show');
     }
-
-
 }

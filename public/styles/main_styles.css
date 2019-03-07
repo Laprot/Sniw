@@ -1913,3 +1913,21 @@ slideshow {
 	display: block;
 }
 
+.btn-mj {
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 0;
+}
+
+.btn-succ {
+	color: white;
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+}
+
+.btn-def {
+	color: white;
+	background-color: black;
+	border-color: #4cae4c;
+}

@@ -133,11 +133,26 @@ class User implements UserInterface,NotificationInterface
      */
     private $id_groupe;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nomAdresse;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\NouvelleAdresse", mappedBy="user")
+     */
+    private $nouvelleAdresses;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="utilisateur")
+     */
+    private $commandes;
 
     public function __construct() {
         $this->roles = array('ROLE_USER');
         $this->id_groupe = new ArrayCollection();
+        $this->nouvelleAdresses = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     // other properties and methods
@@ -468,10 +483,79 @@ class User implements UserInterface,NotificationInterface
         $this->id_groupe = $id_groupe;
     }
 
+    public function getNomAdresse(): ?string
+    {
+        return $this->nomAdresse;
+    }
 
+    public function setNomAdresse(?string $nomAdresse): self
+    {
+        $this->nomAdresse = $nomAdresse;
 
+        return $this;
+    }
 
+    /**
+     * @return Collection|NouvelleAdresse[]
+     */
+    public function getNouvelleAdresses(): Collection
+    {
+        return $this->nouvelleAdresses;
+    }
 
+    public function addNouvelleAdress(NouvelleAdresse $nouvelleAdress): self
+    {
+        if (!$this->nouvelleAdresses->contains($nouvelleAdress)) {
+            $this->nouvelleAdresses[] = $nouvelleAdress;
+            $nouvelleAdress->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNouvelleAdress(NouvelleAdresse $nouvelleAdress): self
+    {
+        if ($this->nouvelleAdresses->contains($nouvelleAdress)) {
+            $this->nouvelleAdresses->removeElement($nouvelleAdress);
+            // set the owning side to null (unless already changed)
+            if ($nouvelleAdress->getUser() === $this) {
+                $nouvelleAdress->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->contains($commande)) {
+            $this->commandes->removeElement($commande);
+            // set the owning side to null (unless already changed)
+            if ($commande->getUtilisateur() === $this) {
+                $commande->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
 
 
 }

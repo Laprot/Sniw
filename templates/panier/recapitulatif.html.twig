@@ -101,9 +101,14 @@
 
 
 
-                <div class="mt-4 text-center">
-                    <button id="review_submit"  class="red_button message_submit_btn trans_300"  > Envoyer</button>
-                </div>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <a class="btn-mj btn-def" href="{{ path('catalogue') }}" style="color:white"> <i class="fa fa-angle-double-left"></i> Continuer mes achats </a>
+                        </div>
+                        <div class="col">
+                            <a class="btn-mj btn-def" href="{{ path('adresses', {id: app.user.id}) }}" style="color:white;float:right"> Envoyer ma demande <i class="fa fa-angle-double-right"></i>  </a>
+                        </div>
+                    </div>
 
                 {% endif %}
 
