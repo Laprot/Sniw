@@ -94,10 +94,13 @@ class PanierController extends AbstractController
         if(!$session->has('panier')) {
             $session->set('panier', []);
         }
+
+
         $produits = $this->repository->findArray(array_keys($session->get('panier')));
         return $this->render('panier/recapitulatif.html.twig', [
             'produits' => $produits,
-            'panier' => $session->get('panier')
+            'panier' => $session->get('panier'),
+
         ]);
 
     }
@@ -206,8 +209,5 @@ class PanierController extends AbstractController
 
         ]);
     }
-
-
-
 
 }

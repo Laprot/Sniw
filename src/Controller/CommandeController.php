@@ -52,7 +52,9 @@ class CommandeController extends AbstractController
                 'nom' => $produit->getNom(),
                 'prixUnitaire' => $produit->getPrixFinal(),
                 'quantite' => $panier[$produit->getId()],
-                'prixHT' => round($produit->getPrixFinal(), 2)
+                'prixHT' => round($produit->getPrixFinal(), 2),
+                'image' => $produit->getFileName(),
+
             ];
         }
 
@@ -114,8 +116,7 @@ class CommandeController extends AbstractController
 
         $em->flush();
 
-        //Une fois la commande passée, on supprime la commande de la session ainsi que le panier pour pouvoir
-        // en repasser une
+        //Une fois la commande passée, on supprime la commande et le panier de la session
         $session->remove('commande');
         $session->remove('panier');
 
@@ -129,13 +130,12 @@ class CommandeController extends AbstractController
      * @Route("/panier/validation", name="validation")
      */
     public function validation(Request $request, CommandeNotification $notification) {
+        //on prépare la commande
         $prepareCommande = $this->prepareCommande($request);
-
-
         $em = $this->getDoctrine()->getManager();
         $commande = $em->getRepository(Commande::class)->find($prepareCommande->getContent());
 
-
+        //et on envoi un mail aux reponsables export pour facture
         $notification->notify($commande);
 
 
@@ -144,5 +144,4 @@ class CommandeController extends AbstractController
         ]);
 
     }
-
 }

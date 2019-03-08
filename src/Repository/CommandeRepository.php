@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Commande;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -18,6 +21,54 @@ class CommandeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Commande::class);
     }
+
+
+
+
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(Search $search) : Query
+    {
+        $query= $this->findVisibleQuery();
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere('c.id like :chaine')
+                ->orWhere('c.reference like :chaine')
+                ->orWhere('c.pays like :chaine')
+                ->orWhere('c.nom like :chaine')
+                ->orWhere('c.prenom like :chaine')
+                ->orWhere('c.email like :chaine')
+                ->orWhere('c.societe like :chaine')
+                ->orWhere('c.etat like :chaine')
+                ->orWhere('c.date like :chaine')
+
+                ->orderBy('c.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
+    }
+
+
+    private function findVisibleQuery(): QueryBuilder
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id','DESC');
+    }
+
+
+    /**
+     * @return Query
+     */
+    public function findByCommande() {
+
+    }
+
+
+
+
 
     // /**
     //  * @return Commande[] Returns an array of Commande objects

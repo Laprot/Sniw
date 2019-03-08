@@ -7,7 +7,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Catégories</title>
+        <title> Commandes</title>
         <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
 
         <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/dataTables.bootstrap4.css">
@@ -37,17 +37,43 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Données catégories   </h2>
+                            <h2 class="pageheader-title">Données commandes   </h2>
 
-                            <h5> <a class="nav-link" href="{{ path('categorie_new') }}"> <i class="fas fa-plus"></i> Ajouter une catégorie </a> </h5>
                             <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Catégories</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Commandes</li>
                                     </ol>
                                 </nav>
+                            </div>
+
+                            <div class="mt-4">
+
+
+                                {{ form_start(form) }}
+                                <div class="form-row align-items-end ">
+
+
+                                    <div class="col">
+                                        {{ form_row(form.rechercher) }}
+
+                                    </div>
+
+
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <button class="btn btn-primary" style="width:10%">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                {{ form_end(form) }}
+
                             </div>
                         </div>
                     </div>
@@ -61,7 +87,8 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Toutes les catégories</h5>
+                            <h5 class="card-header">Toutes les commandes -  {{ count }} résultat(s)
+                            </h5>
 
                             <div class="card-body">
                                 <div class="table-responsive"  >
@@ -69,45 +96,69 @@
                                         <thead>
                                         <tr style="background-color:lightgrey">
                                             <th>ID</th>
+                                            <th>Référence</th>
+                                            <th>Pays de livraison</th>
+                                            <th>Prénom</th>
                                             <th>Nom</th>
-                                            <th>Position</th>
+                                            <th>Email</th>
+                                            <th>Société</th>
+                                            <th>Total</th>
+                                            <th>Etat</th>
+                                            <th>Date</th>
                                             <th>Actions (Modifier / Supprimer)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for categorie in categories %}
-
-                                            <!-- Boucle if pour afficher que les parents -->
-
-                                            {% if categorie.getIdParent() == null %}
+                                        {% for commande in commandes %}
 
                                             <tr>
-                                                <td> {{ categorie.id }} </td>
-
-                                                <td><a href="{{ path('sous_categorie', {id: categorie.id}) }}">{{ categorie.nom }}</a></td>
-
-
-                                                <td> {{ categorie.position }} </td>
-
+                                                <td>{{ commande.id }}</td>
                                                 <td>
-                                                    <div class="btn btn-group justified text-center">
+                                                    {{ commande.reference }}
+                                                </td>
+                                                <td> {{ commande.pays }} </td>
+                                                <td> {{ commande.prenom }}</td>
+                                                <td> {{ commande.nom }}</td>
+                                                <td> {{ commande.email }}</td>
+                                                <td> {{ commande.societe }}</td>
+                                                <td> <strong> {{ commande.commande.prixHT }}€ </strong> </td>
+                                                <td> {{ commande.etat }}</td>
+                                                <td> {{ commande.date|date('Y-m-d H:i:s') }}</td>
+                                                <td>
+                                                    <div class="btn btn-group justified">
 
 
-                                                        <a class="ml-2 mr-2" href="{{ path('categorie_edit', {id: categorie.id}) }}">
+                                                        <a class="ml-2 mr-2" href="{{ path('commande_edit', {id: commande.id}) }}">
                                                             <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
                                                         </a>
-                                                        <form method="post" action="{{ path('categorie_delete', {'id':  categorie.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer cette catégorie');">
+
+                                                        <form method="post" action="{{ path('commande_delete', {'id': commande.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer cette commande ?');">
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.id) }}">
                                                             <button class="btn btn-danger" ><i class="fas fa-times"></i></button>
                                                         </form>
+
+
                                                     </div>
+
                                                 </td>
-                                            {% endif %}
                                             </tr>
+
+
                                         {% endfor %}
                                         </tbody>
                                     </table>
+
+                                    <div class="mt-4">
+                                        Affichage : {{ commandes | length  }} / {{ count }} résultats
+                                    </div>
+                                    <div class="" style="float:right">
+
+                                        {{ knp_pagination_render(commandes) }}
+
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

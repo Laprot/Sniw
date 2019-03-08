@@ -22,7 +22,7 @@ class UserVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute ,[AppAccess::USER_EDIT, AppAccess::MONPANIER] )){
+        if (!in_array($attribute ,[AppAccess::USER_EDIT, AppAccess::MONPANIER,AppAccess::USER_EDIT_ADRESSE] )){
             return false;
         }
 
