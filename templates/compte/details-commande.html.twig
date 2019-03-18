@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des commandes - SNIW , centrale d'achat export.{% endblock %}
+
+{% block stylesheet %}
+
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="{{ path('commande_view', {id:app.user.id}) }}">Vos commandes </a></li>
+
+                    </ul>
+                </div>
+                <a href="{{ path('panier_recommander', {id:commande.id}) }}"> Re-commander</a>
+                <h2> Détail de la commande {{ commande.reference }} </h2>
+                <div class="row mt-4">
+                    <div class="col" style="background-color:#fbfbfb;border:1px solid #d8d8d8" >
+                        <h4 class="mt-4" style="color:black"> Adresse de livraison  </h4>
+                        <hr>
+                        <ul>
+                            <li> {{ commande.prenom }} {{ commande.nom }}</li>
+                            <li> {{ commande.adresse }}</li>
+                            <li> {{ commande.getCodePostal() }} {{commande.ville }}</li>
+                            <li> {{ commande.pays }} </li>
+                            <li> {{ commande.telephone }}</li>
+                            <li class="mt-4"> </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col ml-4" style="background-color:#fbfbfb;border:1px solid #d8d8d8" >
+                        <h4 class="mt-4" style="color:black"> Adresse de facturation  </h4>
+                        <hr>
+                        <ul>
+                            <li> {{ commande.prenom }} {{ commande.nom }}</li>
+                            <li> {{ commande.adresse }}</li>
+                            <li> {{ commande.getCodePostal() }} {{ commande.ville }}</li>
+                            <li> {{ commande.pays }} </li>
+                            <li> {{ commande.telephone }}</li>
+                            <li></li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+                <h5 class="mt-4"> Date de commande : {{ commande.date|date('d-m-Y') }}</h5>
+                <table class="table mt-5">
+                    <thead>
+                    <tr>
+                        <th>Référence</th>
+                        <th>Produit</th>
+                        <th>Nb de carton(s)</th>
+                        <th> Prix / Carton</th>
+                        <th> Prix Total</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for produit in commande.commande.produit  %}
+                        <tr>
+                            <td> {{ produit.reference }} </td>
+                            <td> {{ produit.nom }}</td>
+                            <td> {{ produit.quantite }}</td>
+                            <td> {{ produit.prixUnitaire }}€</td>
+                            <td>  {{ produit.prixUnitaire * produit.quantite }}€</td>
+
+
+
+
+                        </tr>
+
+
+
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+
+
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+
+
+
+{% endblock %}
+
+
+
+

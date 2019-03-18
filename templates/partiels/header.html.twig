@@ -81,7 +81,7 @@
                                 </a>
 
                                     <ul class="account_selection">
-                                        <li><a href="#">Mes commandes </a></li>
+                                        <li><a href="{{ path('commande_view', {id: app.user.id}) }}">Mes commandes </a></li>
                                         <li><a href="{{ path('edit_profil', {id: app.user.id}) }}">Mes informations</a></li>
                                         <li><a href={{ path('edit_adresse', {id: app.user.id}) }}>Mes adresses</a></li>
 

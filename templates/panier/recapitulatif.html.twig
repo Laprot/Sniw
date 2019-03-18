@@ -53,7 +53,7 @@
                             <td> {{ produit.nom }}</td>
                             <td> {{ produit.getPrixFinal() }}€</td>
                             <td>
-                               <input name="quantite" id="qte" type="text" value="{{ panier[produit.id] }}" >
+                               <input name="quantite" id="qte" type="text" value="{{ panier[produit.id] }}"  onchange="this.form.submit()">
                             </td>
 
                             <td> {{ produit.getPrixFinal() * panier[produit.id] }}€</td>
@@ -122,7 +122,7 @@
     <script src="/js/jquery-3.2.1.min.js"></script>
 
     <script>
-        console.log('msmsm');
+      /*  console.log('msmsm');
         $("document").ready(function () {
            $('#qte').change(function () {
                $.ajax({
@@ -130,7 +130,7 @@
                        id: $('#qte').data('quantite'),
                    },
                    type: 'get',
-                   url: '{{ path('panier') }}',
+                   url: '',
                    beforeSend: function () {
                        console.log('ca charge');
                    },
@@ -141,7 +141,7 @@
                    }
                )
            })
-        });
+        });*/
     </script>
 
 

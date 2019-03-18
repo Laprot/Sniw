@@ -2,6 +2,7 @@
 
 namespace App\Security\Voter;
 
+use App\Entity\Commande;
 use App\Form\UserType;
 use App\Security\AppAccess;
 use App\Entity\User;
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 use Symfony\Component\Security\Core\Security;
 
-class UserVoter extends Voter
+class CommandeVoter extends Voter
 {
     private $security;
 
@@ -22,11 +23,11 @@ class UserVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute ,[AppAccess::USER_EDIT,AppAccess::MONPANIER,AppAccess::USER_EDIT_ADRESSE] )){
+        if (!in_array($attribute ,[AppAccess::COMMANDE_EDIT] )){
             return false;
         }
 
-        if (!$subject instanceof User) {
+        if (!$subject instanceof Commande) {
             return false;
         }
 
@@ -35,11 +36,9 @@ class UserVoter extends Voter
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        $user = $token->getUser();
+        $user = $token->getUser()->getCommandes();
 
-
-
-        if (!$user instanceof User) {
+        if (!$user instanceof Commande ) {
             return false;
         }
         if ($this->security->isGranted('ROLE_ADMIN') === true) {

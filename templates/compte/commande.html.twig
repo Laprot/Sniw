@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des commandes - SNIW , centrale d'achat export.{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Vos commandes</li>
+
+                    </ul>
+                </div>
+                <h2> Historique de vos commandes </h2>
+                <table class="table mt-5">
+                    <thead>
+                    <tr>
+                        <th>Référence de la commande</th>
+                        <th>Date</th>
+                        <th>Prix total</th>
+                        <th> Paiement</th>
+                        <th>Etat</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for commande in user.commandes  %}
+                        <tr>
+                            <td> {{ commande.reference }} </td>
+                            <td> {{ commande.date|date('d/m/Y') }}</td>
+                            <td> {{ commande.commande.prixHT }}€</td>
+                            <td> Virement bancaire</td>
+                            <td> {{ commande.etat }}</td>
+                            <td> <a href="{{ path('commande_details', {id: commande.id}) }}"> Détails </a></td>
+
+
+                        </tr>
+
+
+
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+
+
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+
+
+
+{% endblock %}
+
+
+
+

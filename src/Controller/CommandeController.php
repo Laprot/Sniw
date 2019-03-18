@@ -54,10 +54,9 @@ class CommandeController extends AbstractController
                 'quantite' => $panier[$produit->getId()],
                 'prixHT' => round($produit->getPrixFinal(), 2),
                 'image' => $produit->getFileName(),
-
+                'id' => $produit->getId()
             ];
         }
-
         $commande['nom'] = $session->get('nom');
         $commande['prixHT'] = round($totalHT, 2);
         $commande['token'] = bin2hex($generator);
@@ -126,6 +125,8 @@ class CommandeController extends AbstractController
 
     }
 
+
+
     /**
      * @Route("/panier/validation", name="validation")
      */
@@ -135,6 +136,7 @@ class CommandeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $commande = $em->getRepository(Commande::class)->find($prepareCommande->getContent());
 
+        
         //et on envoi un mail aux reponsables export pour facture
         $notification->notify($commande);
 

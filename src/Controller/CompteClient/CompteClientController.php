@@ -2,6 +2,7 @@
 
 namespace App\Controller\CompteClient;
 
+use App\Entity\Commande;
 use App\Entity\User;
 use App\Form\AdresseUserType;
 use App\Form\UserType;
@@ -62,4 +63,30 @@ class CompteClientController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/infos/{id}/commandes", name="commande_view")
+     */
+    public function commande(User $user){
+
+        $this->denyAccessUnlessGranted(AppAccess::USER_EDIT, $user);
+
+        return $this->render('compte/commande.html.twig', [
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/infos/{id}/commande/detail", name="commande_details")
+     */
+    public function detailsCommande(User $user,Commande $commande) {
+
+        //$commande = $this->getDoctrine()->getRepository(Commande::class)->findByUser($user);
+
+        return $this->render('compte/details-commande.html.twig', [
+            'user'=>$user,
+            'commande'=>$commande
+        ]);
+    }
+
 }

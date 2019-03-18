@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use App\Entity\NouvelleAdresse;
+use App\Entity\Produit;
 use App\Entity\User;
 use App\Form\AdresseUserType;
 use App\Form\ChoixAdresseType;
@@ -15,6 +16,7 @@ use App\Security\AppAccess;
 use Doctrine\Common\Persistence\ObjectManager;
 use Imagine\Exception\Exception;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -82,6 +84,30 @@ class PanierController extends AbstractController
 
 
 
+
+    /**
+     * @Route("/panier/recommander/{id}", name="panier_recommander")
+     */
+    public function recommander($id,Request $request,Commande $commande) {
+        $session = $request->getSession();
+        $panier = $session->get('panier');
+
+        $panier[$id] = $commande->getCommande();
+
+
+        $session->set('panier', $panier);
+
+        //$session->remove('panier');
+
+        $produits = $this->repository->findArray(array_keys($session->get('panier')));
+
+        return $this->render('panier/recommande.html.twig', [
+            'commande'=> $commande,
+            'panier' => $session->get('panier')
+        ]);
+
+    }
+
     /**
      * @Route("/panier", name="panier")
      */
@@ -104,7 +130,6 @@ class PanierController extends AbstractController
         ]);
 
     }
-
 
     /**
      * @Route("/panier/adresse/{id}", name="livraison", methods="GET|POST")
