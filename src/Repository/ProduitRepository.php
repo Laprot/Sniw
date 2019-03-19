@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Commande;
 use App\Entity\Produit;
 use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -26,6 +27,14 @@ class ProduitRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('u')
             ->where('u.id IN (:array)')
             ->setParameter('array', $array)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findFromCommande($commande) {
+        return $this->createQueryBuilder('u')
+            ->where('u.id IN (:commande)')
+            ->setParameter('commande',$commande)
             ->getQuery()
             ->getResult();
     }

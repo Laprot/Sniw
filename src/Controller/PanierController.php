@@ -83,30 +83,26 @@ class PanierController extends AbstractController
     }
 
 
-
-
     /**
-     * @Route("/panier/recommander/{id}", name="panier_recommander")
+     * @Route("/recommander/{id}", name="recommander")
      */
-    public function recommander($id,Request $request,Commande $commande) {
+
+    public function recommander($id,Commande $commande, Request $request) {
         $session = $request->getSession();
+        if (!$session->has('panier')) {
+            $session->set('panier', []);
+        }
         $panier = $session->get('panier');
 
         $panier[$id] = $commande->getCommande();
 
 
-        $session->set('panier', $panier);
+        $session->set('panier',$panier);
 
-        //$session->remove('panier');
-
-        $produits = $this->repository->findArray(array_keys($session->get('panier')));
-
-        return $this->render('panier/recommande.html.twig', [
-            'commande'=> $commande,
-            'panier' => $session->get('panier')
-        ]);
+        return $this->redirect($this->generateUrl('panier'));
 
     }
+
 
     /**
      * @Route("/panier", name="panier")
@@ -121,14 +117,14 @@ class PanierController extends AbstractController
             $session->set('panier', []);
         }
 
-
         $produits = $this->repository->findArray(array_keys($session->get('panier')));
+
+
         return $this->render('panier/recapitulatif.html.twig', [
             'produits' => $produits,
             'panier' => $session->get('panier'),
-
         ]);
-
+ 
     }
 
     /**
