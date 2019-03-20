@@ -79,30 +79,69 @@ class PanierController extends AbstractController
             }
         $session->set('panier',$panier);
 
-        return $this->redirect($this->generateUrl('panier'));
+
+
+        return $this->redirect($this->generateUrl('home'));
     }
+
 
 
     /**
      * @Route("/recommander/{id}", name="recommander")
      */
+    public function recommander($id, Request $request)
+    {
+        $session = $request->getSession();
+        if (!$session->has('panier')) {
+            $session->set('panier', []);
+        }
+        $panier = $session->get('panier');
+        if (array_key_exists($id, $panier)) {
+            if ($request->query->getInt('quantite') != null) {
+                $panier[$id] = $request->query->getInt('quantite');
+            }
+        } else {
+            if ($request->query->getInt('quantite') != null) {
+                $panier[$id] = $request->query->getInt('quantite');
+            } else {
+                $panier[$id] = 1;
+            }
+        }
+        $session->set('panier',$panier);
 
-    public function recommander($id,Commande $commande, Request $request) {
+        return $this->redirect($this->generateUrl('panier'));
+    }
+
+
+
+   /* public function recommander($id,Commande $commande, Request $request) {
         $session = $request->getSession();
         if (!$session->has('panier')) {
             $session->set('panier', []);
         }
         $panier = $session->get('panier');
 
-        $panier[$id] = $commande->getCommande();
+
+        $produits = $this->getDoctrine()->getRepository(Commande::class)->findBy($commande['produit']);
 
 
-        $session->set('panier',$panier);
 
+        $produits = $commande->getCommande()->get('produit');
+
+        $panier[$id] = $produits;
+
+
+
+        $session->set('panier',$panier[$id]);
+
+
+
+        dump($panier);
+        die();
         return $this->redirect($this->generateUrl('panier'));
-
     }
 
+    */
 
     /**
      * @Route("/panier", name="panier")
@@ -110,13 +149,11 @@ class PanierController extends AbstractController
     public function index(Request $request)
     {
         $session = $request->getSession();
-
         //$session->remove('panier');
         //die();
         if(!$session->has('panier')) {
             $session->set('panier', []);
         }
-
         $produits = $this->repository->findArray(array_keys($session->get('panier')));
 
 
@@ -124,7 +161,6 @@ class PanierController extends AbstractController
             'produits' => $produits,
             'panier' => $session->get('panier'),
         ]);
- 
     }
 
     /**

@@ -22,7 +22,6 @@
 
                     </ul>
                 </div>
-                <a href="{{ path('recommander', {id:commande.id}) }}"> Re-commander</a>
                 <h2> Détail de la commande {{ commande.reference }} </h2>
                 <div class="row mt-4">
                     <div class="col" style="background-color:#fbfbfb;border:1px solid #d8d8d8" >
@@ -58,28 +57,38 @@
                 <h5 class="mt-4"> Date de commande : {{ commande.date|date('d-m-Y') }}</h5>
                 <table class="table mt-5">
                     <thead>
-                    <tr>
+                    <tr style="text-align:center">
+                        <th> Produit </th>
                         <th>Référence</th>
-                        <th>Produit</th>
+                        <th>Description</th>
                         <th>Nb de carton(s)</th>
                         <th> Prix / Carton</th>
                         <th> Prix Total</th>
+                        <th> Re-commander</th>
 
                     </tr>
                     </thead>
                     <tbody>
 
                     {% for produit in commande.commande.produit  %}
-                        <tr>
+                        <tr style="text-align:center">
+                            <td> <img src="{{ asset('images/croquette.jpg') }}"></td>
                             <td> {{ produit.reference }} </td>
                             <td> {{ produit.nom }}</td>
                             <td> {{ produit.quantite }}</td>
                             <td> {{ produit.prixUnitaire }}€</td>
                             <td>  {{ produit.prixUnitaire * produit.quantite }}€</td>
 
-
-
-
+                            <td>
+                                <ul class="navbar_user">
+                                    <li class="checkout" style="margin-right:30px" >
+                                        <a href="{{ path('recommander', {id:produit.id}) }}">
+                                            <i class="fa fa-cart-plus" aria-hidden="true">
+                                            </i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
                         </tr>
 
 
@@ -98,9 +107,32 @@
     </div>
     </body>
 
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
+    <script>
+
+
+        jQuery(function($) {
+            $('#a').click(function() {
+                $.ajax({
+                    url: '{{ path('panier') }}',
+                    type: 'POST',
+                    beforeSend: function(){
+                        console.log('sa marche');
+                    },
+                    success: function()
+                    {
+                      console.log('ca marche');
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
 
 {% endblock %}
+
 
 
 

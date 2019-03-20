@@ -115,6 +115,7 @@ class CommandeController extends AbstractController
 
         $em->flush();
 
+
         //Une fois la commande passée, on supprime la commande et le panier de la session
         $session->remove('commande');
         $session->remove('panier');
@@ -144,6 +145,5 @@ class CommandeController extends AbstractController
         return $this->render('panier/validation.html.twig', [
             'commande' => $commande
         ]);
-
     }
 }

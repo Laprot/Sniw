@@ -31,14 +31,17 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findFromCommande($commande) {
+    /*
+    public function findByIdCommande($commande) {
         return $this->createQueryBuilder('u')
-            ->where('u.id IN (:commande)')
+            ->select('u')
+            ->where('u.commande = :commande')
+            ->orderBy('u.id')
             ->setParameter('commande',$commande)
             ->getQuery()
             ->getResult();
     }
-
+*/
     /**
      * @return Query
      */

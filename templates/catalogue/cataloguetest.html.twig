@@ -178,9 +178,9 @@
 
                                                     <div class="wrapper-qty text-center">
 
-                                                        <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get">
+                                                        <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get" id="idForm">
                                                         <span class="labelQty" style="float:left;margin-left:10px;font-size:12px">Quantit&eacute; :</span>
-                                                        <br><input name="quantite" class="addQty" style="width: 60%;height:20px;float: left;margin-left: 10px;">
+                                                        <br><input name="quantite" class="addQty" id="submitid" style="width: 60%;height:20px;float: left;margin-left: 10px;">
 
 
 
@@ -325,6 +325,12 @@
 <script src="plugins/easing/easing.js"></script>
 <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="js/categories_custom.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script>
+
+</script>
 </body>
 
 {% endblock %}

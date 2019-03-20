@@ -72,7 +72,14 @@ class CommandeRepository extends ServiceEntityRepository
     }
 
 
-
+    public function findByIdCommande($commande) {
+        return $this->createQueryBuilder('u')
+            ->where('u.commande = :commande')
+            ->orderBy('u.id')
+            ->setParameter('commande',$commande)
+            ->getQuery()
+            ->getResult();
+    }
 
 
 

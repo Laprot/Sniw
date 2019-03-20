@@ -24,26 +24,31 @@
                 <h2> Historique de vos commandes </h2>
                 <table class="table mt-5">
                     <thead>
-                    <tr>
+                    <tr style="text-align:center">
                         <th>Référence de la commande</th>
                         <th>Date</th>
                         <th>Prix total</th>
                         <th> Paiement</th>
                         <th>Etat</th>
+                        <th> Détails commande</th>
 
                     </tr>
                     </thead>
                     <tbody>
 
                     {% for commande in user.commandes  %}
-                        <tr>
+                        <tr style="text-align:center">
                             <td> {{ commande.reference }} </td>
                             <td> {{ commande.date|date('d/m/Y') }}</td>
                             <td> {{ commande.commande.prixHT }}€</td>
                             <td> Virement bancaire</td>
                             <td> {{ commande.etat }}</td>
-                            <td> <a href="{{ path('commande_details', {id: commande.id}) }}"> Détails </a></td>
-
+                            <td>
+                                <a href="{{ path('commande_details', {id: commande.id}) }}">
+                                <i class="fa fa-search-plus">
+                                </i> Afficher
+                                </a>
+                            </td>
 
                         </tr>
 
@@ -66,7 +71,6 @@
 
 
 {% endblock %}
-
 
 
 
