@@ -184,6 +184,11 @@ class Produit
      */
     private $produit_belle_france;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CommandeTypeProduits", inversedBy="produits")
+     */
+    private $commandeTypeProduits;
+
 
     public function __construct()
     {
@@ -594,6 +599,18 @@ class Produit
     public function setProduitBelleFrance(?bool $produit_belle_france): self
     {
         $this->produit_belle_france = $produit_belle_france;
+
+        return $this;
+    }
+
+    public function getCommandeTypeProduits(): ?CommandeTypeProduits
+    {
+        return $this->commandeTypeProduits;
+    }
+
+    public function setCommandeTypeProduits(?CommandeTypeProduits $commandeTypeProduits): self
+    {
+        $this->commandeTypeProduits = $commandeTypeProduits;
 
         return $this;
     }

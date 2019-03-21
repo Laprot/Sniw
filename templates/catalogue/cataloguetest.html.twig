@@ -160,11 +160,76 @@
                                         {% if is_granted('ROLE_USER') %}
                                             <div class="product-item men">
                                                 <div class="product discount product_filter">
-                                                    <div class="product_image text-center mt-2">
+                                                    <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
                                                         <img src="{{ asset('images/croquette.jpg') }}" style="width:70%;" alt="{{ produit.nom }}">
                                                     </div>
-                                                    <div class="product_info">
-                                                        <h6 class="product_name" style="text-align:left;font-weight: bold"><a href="single.html">{{ produit.nom }}</a></h6>
+                                                    <div class="product_info" style="cursor:auto !important">
+                                                        <h6 class="product_name" style="text-align:left;font-weight: bold">{{ produit.nom }}</h6>
+
+
+                                                        <!-- Modal -->
+                                                        <!-- Modal: modalAbandonedCart-->
+                                                        <div class="modal fade" tabindex="-1" role="dialog" id="{{ produit.id }}" aria-labelledby="gridSystemModalLabel">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                        <h4 class="modal-title" id="gridSystemModalLabel"> {{ produit.nom }}</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-4"> <img src="{{ asset('images/croquette.jpg') }}"></div>
+                                                                            <div class="col-md-7 col-md-offset-4">
+
+                                                                                <p style="text-align:left;color:#f2bf00;font-size:15px"> {{ produit.getIdManufacturer() }}</p>
+                                                                                <p style="text-align:left;color:#777777;font-size:12px"> Référence :  {{ produit.reference }}</p>
+                                                                                <p style="text-align:left;color:#777777;font-size:12px"> Gencod : {{ produit.gencod }}</p>
+                                                                                <table id="customers">
+                                                                                    <tr>
+                                                                                        <td> Conditionnement</td>
+                                                                                        <td> {{ produit.conditionnement() }} </td>
+
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td> Unité par carton</td>
+                                                                                        <td> {{ produit.getUniteParCarton() }} </td>
+
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td> NB carton/palette</td>
+                                                                                        <td> </td>
+
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td> DLV Garantie</td>
+                                                                                        <td> </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td> DLV Théorique</td>
+                                                                                        <td> </td>
+                                                                                    </tr>
+
+                                                                                    <tr>
+                                                                                        <td>Produits belle france </td>
+                                                                                        <td> </td>
+                                                                                    </tr>
+
+
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <div class="col">
+                                                                        <p class="text-center"> Prix unitaire : <strong>{{ produit.getPrixFinal() }}€ </strong></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                                        </div><!-- /.modal -->
+
+
+
                                                         <div class="product_price" style="text-align:left;color:#f2bf00;font-size:11px"> {{ produit.getIdManufacturer() }}</div>
 
                                                         <div class="product_price" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
@@ -201,14 +266,80 @@
                                                 {% else %}
                                                     <div class="product-item men" style="height:280px">
                                                         <div class="product discount product_filter" style="height:260px">
-                                                            <div class="product_image text-center mt-2">
+                                                            <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
                                                                 <img src="{{ asset('images/croquette.jpg') }}" style="width:70%;" alt="{{ produit.nom }}">
                                                             </div>
-                                                            <div class="product_info">
-                                                                <h6 class="product_name" style="text-align:left;font-weight: bold"><a href="single.html">{{ produit.nom }}</a></h6>
+                                                            <div class="product_info" style="cursor:auto !important">
+                                                                <h6 class="product_name" style="text-align:left;font-weight: bold">{{ produit.nom }}</h6>
                                                                 <div class="product_price" style="text-align:left;color:#f2bf00;font-size:11px"> {{ produit.getIdManufacturer() }}</div>
 
                                                                 <div class="product_price" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
+
+
+
+                                                                <!-- Modal -->
+                                                            <!-- Modal: modalAbandonedCart-->
+                                                            <div class="modal fade" tabindex="-1" role="dialog" id="{{ produit.id }}" aria-labelledby="gridSystemModalLabel">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                            <h4 class="modal-title" id="gridSystemModalLabel"> {{ produit.nom }}</h4>
+                                                                        </div>
+
+
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4"> <img src="{{ asset('images/croquette.jpg') }}"></div>
+                                                                                <div class="col-md-7 col-md-offset-4">
+
+                                                                                    <p style="text-align:left;color:#f2bf00;font-size:15px"> {{ produit.getIdManufacturer() }}</p>
+                                                                                    <p style="text-align:left;color:#777777;font-size:12px"> Référence :  {{ produit.reference }}</p>
+                                                                                    <p style="text-align:left;color:#777777;font-size:12px"> Gencod : {{ produit.gencod }}</p>
+                                                                                    <table id="customers">
+                                                                                        <tr>
+                                                                                            <td> Conditionnement</td>
+                                                                                            <td> {{ produit.conditionnement() }} </td>
+
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td> Unité par carton</td>
+                                                                                            <td> {{ produit.getUniteParCarton() }} </td>
+
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td> NB carton/palette</td>
+                                                                                            <td> </td>
+
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td> DLV Garantie</td>
+                                                                                            <td> </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td> DLV Théorique</td>
+                                                                                            <td> </td>
+                                                                                        </tr>
+
+                                                                                        <tr>
+                                                                                            <td>Produits belle france </td>
+                                                                                            <td> </td>
+                                                                                        </tr>
+
+
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <div class="col">
+                                                                                <p> Créez un compte pour voir le prix.</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- /.modal-content -->
+                                                                </div><!-- /.modal-dialog -->
+                                                            </div><!-- /.modal -->
+
 
 
                                                         {% endif %}
