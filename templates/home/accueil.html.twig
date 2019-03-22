@@ -43,30 +43,30 @@
         <!-- Banner -->
 
 
-         <div class="container resp-img">
-                        <div class="row" style="margin-top:40px">
-                            <div class="col-12 col-md-3 picto-p resp-bf">
+         <div class="container resp-img fade-in-post-container " >
+                        <div class="row elementor-post" style="margin-top:40px">
+                            <div class="col-12 col-md-3 picto-p resp-bf ">
                                 <h5><span>BELLEFRANCE</span></h5>
-                                <div class="sniw-cms-img" id="center" ><img
+                                <div class="sniw-cms-img  " id="center" ><img
                                             src="images/BelleFrance.jpg"
                                             alt="bellefrance.jpg" width="104" height="92"/></div>
                                 <p class="txt-picto-activites">Une gamme de près de 2000 produits épicerie, produits frais, surgelés, liquides. Garantie de qualité au meilleur prix</p>
                             </div>
-                            <div class="col-12 col-md-3 picto-p">
+                            <div class="col-12 col-md-3 picto-p ">
                                 <h5><span>ACHATS</span></h5>
-                                <div class="sniw-cms-img" id="center" ><img
+                                <div class="sniw-cms-img elementor-post" id="center" ><img
                                             src="images/Achats.jpg"
                                             alt="achats.jpg" width="104" height="92"/></div>
                                 <p class="txt-picto-activites">Depuis 1993 SNIW Centrale d’achat alimentaire et non-alimentaire spécialisée pour l’export</p>
                             </div>
-                            <div class="col-12 col-md-3 picto-p">
+                            <div class="col-12 col-md-3 picto-p ">
                                 <h5><span>LOGISTIQUE</span></h5>
-                                <div class="sniw-cms-img" id="center" ><img
+                                <div class="sniw-cms-img " id="center" ><img
                                             src="images/logistique.jpg"
                                             alt="logistique.jpg" width="104" height="92"/></div>
                                 <p class="txt-picto-activites">Une prestation logistique complète pour vos marchandises</p>
                             </div>
-                            <div class="col-12 col-md-3 picto-p">
+                            <div class="col-12 col-md-3 picto-p ">
                                 <h5><span>TRANSIT</span></h5>
                                 <div class="sniw-cms-img" id="center"><img
                                             src="images/Transit.jpg"
@@ -115,7 +115,7 @@
             <div class="row" style="margin-top:40px">
                 <div class="col-12 col-xl-3 ">
                     <h5><span>VOS </br> GARANTIES</span></h5>
-                    <div class="item-img" id="center"><img
+                    <div class="item-img " id="center"><img
                                 src="images/footer/pict1.jpg"
                                 alt="bellefrance.jpg" width="104" height="92"/></div>
                     <div class="item-html">SNIW à votre service depuis 1993 Une prestation complète</div>
@@ -209,4 +209,14 @@
     </body>
 </html>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+
+
+<script>
+
+ jQuery('.fade-in-post-container .elementor-post').each(function(i) {
+    setTimeout(()=>{$(this).addClass('animated fadeInUp')}, 130 * i);
+});
+</script>
 {% endblock %}

@@ -81,6 +81,7 @@
                                 </a>
 
                                     <ul class="account_selection">
+
                                         <li><a href="{{ path('commande_view', {id: app.user.id}) }}">Mes commandes </a></li>
                                         <li><a href="{{ path('edit_profil', {id: app.user.id}) }}">Mes informations</a></li>
                                         <li><a href={{ path('edit_adresse', {id: app.user.id}) }}>Mes adresses</a></li>
@@ -99,6 +100,8 @@
 
                                     <ul class="account_selection">
                                         <li><a href={{ path('admin_dashboard') }}>Dashboard </a></li>
+                                        <li><a href="{{ path('commandes_type')}}"> Commandes Types</a></li>
+                                        <li><a href={{ path('commande_view', {id: app.user.id}) }}>Les commandes</a></li>
                                         <li><a href={{ path('edit_profil', {id: app.user.id}) }}>Mes informations</a></li>
                                         <li><a href={{ path('user_registration') }}><i class="fa fa-plus" aria-hidden="true"></i>Ajout rapide client</a></li>
                                         <li><a href={{ path('app_logout') }}><i class="fa fa-sign-in" aria-hidden="true"></i>Déconnexion</a></li>
@@ -146,8 +149,16 @@
                     </div>
                     <nav class="navbar">
                         <ul class="navbar_menu tabs">
-                            <li><a href="{{ path('home') }}">Accueil</a></li>
-                            <li><a href="{{ path('catalogue') }}">Catalogue</a></li>
+                            <li><a href="{{ path('home') }}">Accueil</a></li><li class="dropdown">
+                                <a href="#">Catalogue</a>
+                                <div class="dropdown-content">
+                                    <a href="{{ path('catalogue') }}">Produits</a>
+                                    {% if is_granted('ROLE_USER') %}
+                                    <a href="{{ path('commandes_type') }}">Commandes</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+
                             <li><a href="{{ path('societe') }}">La société</a></li>
 
                             <li class="dropdown">

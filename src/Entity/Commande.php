@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -111,6 +113,11 @@ class Commande
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $email;
+
+    public function __construct()
+    {
+        $this->commandeTypeProduits = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -343,5 +350,12 @@ class Commande
         $this->email = $email;
 
         return $this;
+    }
+
+
+
+    public function __toString()
+    {
+        return $this->getReference();
     }
 }

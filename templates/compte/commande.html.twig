@@ -21,52 +21,95 @@
 
                     </ul>
                 </div>
-                <h2> Historique de vos commandes </h2>
-                <table class="table mt-5">
-                    <thead>
-                    <tr style="text-align:center">
-                        <th>Référence de la commande</th>
-                        <th>Date</th>
-                        <th>Prix total</th>
-                        <th> Paiement</th>
-                        <th>Etat</th>
-                        <th> Détails commande</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    {% for commande in user.commandes  %}
+                {% if is_granted("ROLE_ADMIN")  %}
+                    <h2> Historique des commandes </h2>
+                    <table class="table mt-5">
+                        <thead>
                         <tr style="text-align:center">
-                            <td> {{ commande.reference }} </td>
-                            <td> {{ commande.date|date('d/m/Y') }}</td>
-                            <td> {{ commande.commande.prixHT }}€</td>
-                            <td> Virement bancaire</td>
-                            <td> {{ commande.etat }}</td>
-                            <td>
-                                <a href="{{ path('commande_details', {id: commande.id}) }}">
-                                <i class="fa fa-search-plus">
-                                </i> Afficher
-                                </a>
-                            </td>
+                            <th> Auteur </th>
+                            <th>Référence </th>
+                            <th>Date</th>
+                            <th>Prix total</th>
+                            <th> Paiement</th>
+                            <th>Etat</th>
+                            <th> Détails </th>
+                            <th> Supprimer</th>
+
+
 
                         </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for commande in commandes  %}
+                            <tr style="text-align:center">
+                                {% if commande.nom != 'admin' %}
+                                <td> {{ commande.nom }} {{ commande.prenom }}</td>
+                                <td> {{ commande.reference }} </td>
+                                <td> {{ commande.date|date('d/m/Y') }}</td>
+                                <td> {{ commande.commande.prixHT }}€</td>
+                                <td> Virement bancaire</td>
+                                <td> {{ commande.etat }}</td>
+                                <td>
+                                    <a href="{{ path('commande_details', {id: commande.id}) }}">
+                                        <i class="fa fa-search-plus">
+                                        </i> Afficher
+                                    </a>
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ path('commande_delete' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
+                                    </td>
+                                {% endif %}
 
 
+                            </tr>
+                        {% endfor %}
 
-                    {% endfor %}
+                        </tbody>
+                    </table>
 
+                    {% else %}
 
-                    </tbody>
-                </table>
+                        <h2> Historique de vos commandes </h2>
+                        <table class="table mt-5">
+                            <thead>
+                            <tr style="text-align:center">
+                                <th>Référence de la commande</th>
+                                <th>Date</th>
+                                <th>Prix total</th>
+                                <th> Paiement</th>
+                                <th>Etat</th>
+                                <th> Détails commande</th>
 
+                            </tr>
+                            </thead>
+                            <tbody>
 
+                            {% for commande in user.commandes  %}
+                                <tr style="text-align:center">
+                                    <td> {{ commande.reference }} </td>
+                                    <td> {{ commande.date|date('d/m/Y') }}</td>
+                                    <td> {{ commande.commande.prixHT }}€</td>
+                                    <td> Virement bancaire</td>
+                                    <td> {{ commande.etat }}</td>
+                                    <td>
+                                        <a href="{{ path('commande_details', {id: commande.id}) }}">
+                                            <i class="fa fa-search-plus">
+                                            </i> Afficher
+                                        </a>
+                                    </td>
 
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                {% endif %}
                 {% include 'partiels/footer.html.twig' %}
             </div>
         </div>
     </div>
-    </body>
+</body>
 
 
 

@@ -113,7 +113,9 @@ class CommandeController extends AbstractController
             $session->set('commande',$commande);
         }
 
+
         $em->flush();
+
 
 
         //Une fois la commande passée, on supprime la commande et le panier de la session
@@ -137,10 +139,12 @@ class CommandeController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $commande = $em->getRepository(Commande::class)->find($prepareCommande->getContent());
 
-        
-        //et on envoi un mail aux reponsables export pour facture
-        $notification->notify($commande);
+        //et on envoie un mail aux reponsables export pour facture
 
+        // /!\ On n'envoie pas de mails aux reponsables si l'admin crée une commande pour une commande type
+        if(!$this->isGranted('ROLE_ADMIN') ) {
+            $notification->notify($commande);
+        }
 
         return $this->render('panier/validation.html.twig', [
             'commande' => $commande

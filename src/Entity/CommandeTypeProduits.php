@@ -28,9 +28,16 @@ class CommandeTypeProduits
      */
     private $produits;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Commande")
+     */
+    private $commande;
+
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -80,4 +87,18 @@ class CommandeTypeProduits
 
         return $this;
     }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+
 }

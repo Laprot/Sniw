@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Controller\CompteClient;
+namespace App\Controller\Comptes;
 
 use App\Entity\Commande;
+use App\Entity\CommandeTypeProduits;
 use App\Entity\User;
 use App\Form\AdresseUserType;
+use App\Form\CommandeTypeProduitsType;
 use App\Form\UserType;
+use App\Repository\CommandeRepository;
 use App\Security\AppAccess;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,8 +74,12 @@ class CompteClientController extends AbstractController
 
         $this->denyAccessUnlessGranted(AppAccess::USER_EDIT, $user);
 
+        $commandes = $this->getDoctrine()->getRepository(Commande::class)->findAll();
+
+
         return $this->render('compte/commande.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'commandes' => $commandes
         ]);
     }
 
@@ -83,7 +90,26 @@ class CompteClientController extends AbstractController
 
         //$commande = $this->getDoctrine()->getRepository(Commande::class)->findByUser($user);
 
+        $commandeUser = $commande->getUtilisateur()->getId();
+
+       // $this->denyAccessUnlessGranted(AppAccess::USER_EDIT, $commandeUser);
+
         return $this->render('compte/details-commande.html.twig', [
+            'user'=>$user,
+            'commande'=>$commande
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/infos/{id}/commande-type/detail", name="commandes-type_details")
+     */
+    public function detailsCommandeType(User $user,Commande $commande) {
+
+        //$commande = $this->getDoctrine()->getRepository(Commande::class)->findByUser($user);
+
+        return $this->render('compte/details-commandes-types.html.twig', [
             'user'=>$user,
             'commande'=>$commande
         ]);

@@ -43,7 +43,6 @@
                     <tr>
                         <td colspan="6" class="text-center"> Votre panier est vide </td>
                     </tr>
-
                     {% endif %}
 
                     {% for produit in produits  %}
@@ -58,12 +57,10 @@
                             </td>
 
                             <td> {{ produit.getPrixFinal() * panier[produit.id] }}€</td>
-                            <td><a href="{{ path('supprimer' , {'id' : produit.id}) }}"><i class="fa fa-trash"></i></a></td>
+                            <td><a href="{{ path('supprimer' , {'id' : produit.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a></td>
                         </form>
                     </tr>
-
-                        {% set totalHT = totalHT + (produit.getPrixFinal() * panier[produit.id]) %}
-
+                    {% set totalHT = totalHT + (produit.getPrixFinal() * panier[produit.id]) %}
 
                     {% endfor %}
 
@@ -75,8 +72,6 @@
 
                 <div class="row">
                     <div class="col-md-6">
-
-
                     </div>
                     <div class="col-md-6">
                         <table class="table">

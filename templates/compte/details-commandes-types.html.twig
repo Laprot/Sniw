@@ -18,53 +18,14 @@
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
                         <li><a href="{{ path('home') }}">Home</a></li>
-
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="{{ path('commandes_type') }}">Commandes types </a></li>
-                        {% else %}
-                            <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="{{ path('commande_view', {id:app.user.id}) }}">Vos commandes </a></li>
-                        {% endif %}
+                        <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="{{ path('commandes_type') }}">Commandes types </a></li>
 
                         <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Détails</li>
 
                     </ul>
                 </div>
+                <h2> Détail de la commande type  </h2>
 
-                <h2> Détail de la commande {{ commande.reference }} </h2>
-                {% if is_granted('ROLE_ADMIN') == false %}
-                <div class="row mt-4">
-                    <div class="col" style="background-color:#fbfbfb;border:1px solid #d8d8d8" >
-                        <h4 class="mt-4" style="color:black"> Adresse de livraison  </h4>
-                        <hr>
-                        <ul>
-                            <li> {{ commande.prenom }} {{ commande.nom }}</li>
-                            <li> {{ commande.adresse }}</li>
-                            <li> {{ commande.getCodePostal() }} {{commande.ville }}</li>
-                            <li> {{ commande.pays }} </li>
-                            <li> {{ commande.telephone }}</li>
-                            <li class="mt-4"> </li>
-                        </ul>
-                    </div>
-
-
-                    <div class="col ml-4" style="background-color:#fbfbfb;border:1px solid #d8d8d8" >
-                        <h4 class="mt-4" style="color:black"> Adresse de facturation  </h4>
-                        <hr>
-                        <ul>
-                            <li> {{ commande.prenom }} {{ commande.nom }}</li>
-                            <li> {{ commande.adresse }}</li>
-                            <li> {{ commande.getCodePostal() }} {{ commande.ville }}</li>
-                            <li> {{ commande.pays }} </li>
-                            <li> {{ commande.telephone }}</li>
-                            <li></li>
-                        </ul>
-                    </div>
-
-
-                </div>
-
-                <h5 class="mt-4"> Date de commande : {{ commande.date|date('d-m-Y') }}</h5>
-                {% endif %}
                 <table class="table mt-5">
                     <thead>
                     <tr style="text-align:center">
@@ -74,7 +35,7 @@
                         <th>Nb de carton(s)</th>
                         <th> Prix / Carton</th>
                         <th> Prix Total</th>
-                        <th> Re-commander</th>
+                        <th> Ajouter panier</th>
 
                     </tr>
                     </thead>
@@ -133,7 +94,7 @@
                     },
                     success: function()
                     {
-                      console.log('ca marche');
+                        console.log('ca marche');
                     }
                 });
                 return false;

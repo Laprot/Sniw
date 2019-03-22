@@ -1,0 +1,237 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des commandes - SNIW , centrale d'achat export.{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Commandes types</li>
+
+                    </ul>
+                </div>
+                <!--  Success Message  -->
+
+
+                {% if is_granted('ROLE_ADMIN') %}
+
+                <div class="row">
+
+                    <div class="col">
+                        {% if app.session.flashBag.has('success')  %}
+                            <div class="form-group col-md-6">
+                                {% for message in app.flashes('success') %}
+
+                                    <div class="alert alert-success">
+                                        {{ message }}
+                                    </div>
+                                {% endfor%}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                    <p>   1 - Pour créer une commande type, veuillez commencer par  passer une commande en tant qu'admin en cliquant <a href="{{ path('catalogue') }}"> ici </a>.
+
+                    </br> 2 - Ensuite vous pouvez créer votre commande type à partir de la référence de la commande associée
+
+                    </p>
+
+                    <div class="container" style="margin-top:40px">
+                        <h3><span>&nbsp;Les commandes admin<hr></span></h3>
+                    </div>
+
+                    <table class="table mt-5">
+                        <thead>
+                        <tr style="text-align:center">
+                            <th> Auteur </th>
+                            <th>Référence </th>
+                            <th>Date</th>
+                            <th>Prix total</th>
+                            <th> Détails </th>
+
+
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for commande in commandes  %}
+                            <tr style="text-align:center">
+                                {% if commande.nom == 'admin' %}
+                                    <td> {{ commande.nom }} {{ commande.prenom }}</td>
+                                    <td> {{ commande.reference }} </td>
+                                    <td> {{ commande.date|date('d/m/Y') }}</td>
+                                    <td> {{ commande.commande.prixHT }}€</td>
+
+                                    <td>
+                                        <a href="{{ path('commande_details', {id: commande.id}) }}">
+                                            <i class="fa fa-search-plus">
+                                            </i> Afficher
+                                        </a>
+                                    </td>
+
+                                {% endif %}
+
+
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                    <div class="container" style="margin-top:60px">
+                        <h3><span>&nbsp;Créer une commande type<hr></span></h3>
+                    </div>
+
+
+                    {{ form_start(form) }}
+                <div class="row">
+
+                    <div class="col-md-6">
+                        {{ form_row(form.nom) }}
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                    <div class="col-md-6">
+                    {{ form_row(form.commande) }}
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
+                    <div class="col-md-6" style="margin-left:30px;margin-top:20px">
+                        <button id="review_submit"  class="red_button message_submit_btn trans_300"  > Créer</button>
+                    </div>
+                {{ form_end(form) }}
+                </div>
+
+
+
+
+                {% endif %}
+                <div class="container" style="margin-top:60px">
+                    <h3><span>&nbsp;Les commandes types<hr></span></h3>
+                </div>
+                <table class="table mt-5">
+                    <thead>
+                    <tr style="text-align:center">
+                        <th> Nom de la commande Type</th>
+                        <th> Référence</th>
+                        <th> Détails commande</th>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <th> Supprimer </th>
+                        {% endif %}
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% if commandeTypes|length ==0 %}
+                        <tr>
+                            <td colspan="6" class="text-center"> Pas de commandes Types </td>
+                        </tr>
+                    {% endif %}
+                    {% for commande in commandeTypes  %}
+                        <tr style="text-align:center">
+                            <td> {{ commande.nom }} </td>
+                            <td> {{ commande.commande.reference }}</td>
+                            <td>
+                                <a href="{{ path('commandes-type_details', {id: commande.commande.id}) }}">
+                                    <i class="fa fa-search-plus">
+                                    </i> Afficher
+                                </a>
+                            </td>
+
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <td>
+                                <a href="{{ path('commandes_type_delete' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
+                            </td>
+
+                            {% endif %}
+
+                        </tr>
+
+
+
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+
+                <hr>
+
+
+                {% if is_granted('ROLE_ADMIN') %}
+
+
+                    <div class="container" style="margin-top:60px">
+                        <h3><span>&nbsp;Supprimer une commande admin <hr></span></h3>
+                    </div>
+
+                    <i class="fa fa-exclamation-triangle"></i> Pour supprimer une commande admin, assurez-vous d'avoir supprimé la commande type associée
+
+                    <table class="table mt-5">
+                    <thead>
+                    <tr style="text-align:center">
+                        <th>Référence </th>
+                        <th> Details </th>
+                        <th> Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                    {% for commande in commandes  %}
+
+                        <tr style="text-align:center">
+                            {% if commande.nom == 'admin' %}
+                                <td> {{ commande.reference }} </td>
+
+                                <td>
+                                    <a href="{{ path('commande_details', {id: commande.id}) }}">
+                                        <i class="fa fa-search-plus">
+                                        </i> Afficher
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="{{ path('commande_delete_admin' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
+                                </td>
+                            {% endif %}
+
+
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+                {% endif %}
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+
+
+
+{% endblock %}
+
+
+

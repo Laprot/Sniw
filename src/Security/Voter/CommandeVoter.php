@@ -36,9 +36,9 @@ class CommandeVoter extends Voter
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        $user = $token->getUser()->getCommandes();
+        $user = $token->getUser();
 
-        if (!$user instanceof Commande ) {
+        if (!$user instanceof User ) {
             return false;
         }
         if ($this->security->isGranted('ROLE_ADMIN') === true) {

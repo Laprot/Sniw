@@ -71,14 +71,24 @@
 
 
 
-                <div class="row mt-4">
-                    <div class="col">
-                        <a class="btn-mj btn-def" href="{{ path('catalogue') }}" style="color:white"> <i class="fa fa-angle-double-left"></i> Voir l'historique de mes commandes </a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="row mt-4">
+                        <div class="col">
+                            <a class="btn-mj btn-def" href="{{ path('commandes_type')}}" style="color:white"> <i class="fa fa-angle-double-left"></i> Voir l'historique des commandes admin </a>
+                        </div>
+
                     </div>
 
-                </div>
 
+                {% else %}
+                    <div class="row mt-4">
+                        <div class="col">
+                            <a class="btn-mj btn-def" href="{{ path('commande_view', {id:app.user.id}) }}" style="color:white"> <i class="fa fa-angle-double-left"></i> Voir l'historique des commandes </a>
+                        </div>
 
+                    </div>
+
+                {% endif %}
 
                 {% include 'partiels/footer.html.twig' %}
             </div>
