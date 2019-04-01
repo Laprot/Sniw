@@ -29,7 +29,7 @@ class CommandeTypeProduits
     private $produits;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Commande")
+     * @ORM\OneToOne(targetEntity="App\Entity\Commande", cascade={"remove"})
      */
     private $commande;
 

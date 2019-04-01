@@ -26,25 +26,17 @@ class AdministrationController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+
             $file = $upload->getName();
-            $fileName = $file->guessExtension();
-            $path = $file->move($this->getParameter('upload_directory'),$fileName);
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-            $path->file_path = $file->getRealPath();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($upload);
+            $entityManager->flush();
 
-
-            $csvPath = $path->file_path;
-
-
-            $reader = Reader::createFromPath($csvPath);
 
 
             $this->addFlash('success','Votre fichier a bien été uploadé');
-            $upload->setName($fileName);
-
-
-
-
 
             return $this->redirectToRoute('admin_upload', [
                 'fileName' => $fileName
@@ -54,7 +46,6 @@ class AdministrationController extends AbstractController
 
         return $this->render('admin/administration/admin.html.twig', [
             'formUpload'=>$form->createView(),
-            ''
         ]);
     }
 
