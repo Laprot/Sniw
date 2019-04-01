@@ -44,7 +44,7 @@ class CommandeVoter extends Voter
         if ($this->security->isGranted('ROLE_ADMIN') === true) {
             return true;
         }
-        return $subject->getId() === $user->getId();
+        return $subject->getUtilisateur()->getId() == $user->getId();
 
     }
 }
