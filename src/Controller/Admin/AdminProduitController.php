@@ -9,6 +9,7 @@ use App\Form\ProduitType;
 use App\Form\SearchType;
 use App\Repository\ProduitRepository;
 
+use App\Service\FileUploader;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Id\AssignedGenerator;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -30,11 +31,14 @@ class AdminProduitController extends AbstractController
      */
     private $em;
 
+
+
     public function __construct(ProduitRepository $repository, ObjectManager $em)
     {
 
         $this->repository = $repository;
         $this->em = $em;
+
     }
 
     /**
@@ -64,7 +68,7 @@ class AdminProduitController extends AbstractController
     /**
      * @Route("/admin/produits/new", name="produits_new")
      */
-    public function new(Request $request)
+    public function new(Request $request, FileUploader $fileUploader)
     {
         // 1) build the form
         $produit = new Produit();
@@ -73,8 +77,9 @@ class AdminProduitController extends AbstractController
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-
+            $file = $produit->getImage();
+            $fileName = $fileUploader->upload($file);
+            $produit->setImage($fileName);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($produit);

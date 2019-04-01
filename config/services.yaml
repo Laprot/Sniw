@@ -7,6 +7,7 @@ parameters:
     locale: 'en'
     app.category.form.type.class: App\Form\CategoryType
     upload_directory: '%kernel.project_dir%/public/produits_csv'
+    images_directory: '%kernel.project_dir%/public/produits/images'
 
 services:
     # default configuration for services in *this* file
@@ -83,3 +84,7 @@ services:
             - "@doctrine.orm.entity_manager"
         tags:
             - { name: form.type }
+
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%images_directory%'

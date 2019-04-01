@@ -113,7 +113,7 @@
 
                                                 <td>{{ produit.id }}</td>
                                                 <td>
-                                                    <a href="{{ path('produits_edit', {id: produit.id}) }}"> <img src="{{ produit.fileName | imagine_filter('small')}}" ></a>
+                                                    <a href="{{ path('produits_edit', {id: produit.id}) }}"> <img src="{{ asset('produits/images/' ~ produit.image) }}"></a>
                                                 </td>
 
 

@@ -6,8 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -15,7 +14,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  * @UniqueEntity(fields="nom", message="Nom déjà utilisé")
  * @UniqueEntity(fields="reference", message="Référence déjà utilisé")
- * @Vich\Uploadable
  */
 class Produit
 {
@@ -28,17 +26,23 @@ class Produit
     private $id;
 
     /**
-     * @var string|null
      * @ORM\Column(type="string", length=255)
      */
-    private $filename;
+    private $image;
 
-    /**
-     * @var File|null
-     * @Vich\UploadableField(mapping="produits", fileNameProperty="filename")
-     */
-    private $imageFile;
 
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage( $image)
+    {
+        $this->name = $image;
+
+        return $this;
+    }
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -55,8 +59,6 @@ class Produit
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Gencod;
-
-
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -190,6 +192,7 @@ class Produit
     private $commandeTypeProduits;
 
 
+
     public function __construct()
     {
         $this->features = new ArrayCollection();
@@ -279,42 +282,6 @@ class Produit
     {
         $this->etat = $etat;
 
-        return $this;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getFilename()
-    {
-        return $this->filename;
-    }
-
-    /**
-     * @param null|string $filename
-     * @return Produit
-     */
-    public function setFilename($filename)
-    {
-        $this->filename = $filename;
-        return $this;
-    }
-
-    /**
-     * @return null|File
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * @param null|File $imageFile
-     * @return Produit
-     */
-    public function setImageFile($imageFile)
-    {
-        $this->imageFile = $imageFile;
         return $this;
     }
 
@@ -614,4 +581,8 @@ class Produit
 
         return $this;
     }
+
+
+
+
 }

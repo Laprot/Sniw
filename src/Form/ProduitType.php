@@ -22,6 +22,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -47,7 +48,9 @@ class ProduitType extends AbstractType
         $features = $this->em->getRepository(Features::class)->findAll();
 
         $builder
-            ->add('filename')
+            ->add('image', FileType::class, [
+                'label' => 'Image'
+            ])
             ->add('nom')
             ->add('reference')
             ->add('id_categorie',EntityType::class,[

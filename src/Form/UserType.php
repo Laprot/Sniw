@@ -61,6 +61,7 @@ class UserType extends AbstractType
                 'first_options'  => array('label' => 'Mot de passe *'),
                 'second_options' => array('label' => 'Répéter le mot de passe *'),
             ))
+
         ;
     }
 

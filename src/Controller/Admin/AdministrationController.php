@@ -26,9 +26,9 @@ class AdministrationController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-
             $file = $upload->getName();
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('upload_directory'),$fileName);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($upload);
