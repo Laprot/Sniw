@@ -70,6 +70,7 @@
                         <tbody>
 
                         {% for commande in commandes  %}
+
                             <tr style="text-align:center">
                                 {% if commande.nom == 'admin' %}
                                     <td> {{ commande.nom }} {{ commande.prenom }}</td>
@@ -86,8 +87,6 @@
                                     <td>
                                         <a href="{{ path('commande_delete_admin' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
                                     </td>
-
-
                                 {% endif %}
 
 
@@ -105,7 +104,7 @@
                     {{ form_start(form) }}
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-center">
                         {{ form_row(form.nom) }}
                     </div>
                     <div class="col-md-6">

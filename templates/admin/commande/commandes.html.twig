@@ -105,7 +105,7 @@
                                             <th>Total</th>
                                             <th>Etat</th>
                                             <th>Date</th>
-                                            <th>Actions (Modifier / Supprimer)</th>
+                                            <th>Actions (Afficher / Supprimer)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -132,10 +132,10 @@
                                                             <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
                                                         </a>
 
-                                                        <form method="post" action="{{ path('commande_delete', {'id': commande.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer cette commande ?');">
+                                                        <form method="post" action="{{ path('commande_delete_dashboard', {'id': commande.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer cette commande ?');">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.id) }}">
-                                                            <button class="btn btn-danger" ></button>
+                                                            <button class="btn btn-danger" ><i class="fas fa-trash"></i></button>
                                                         </form>
 
 

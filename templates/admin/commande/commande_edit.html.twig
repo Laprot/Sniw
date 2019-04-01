@@ -76,7 +76,6 @@
                                             <th>Prix unitaire</th>
                                             <th>Quantité</th>
                                             <th>Total</th>
-                                            <th>Actions (Modifier / Supprimer)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -91,20 +90,7 @@
                                                 <td> {{ produit.prixUnitaire }}€</td>
                                                 <td> {{ produit.quantite }}</td>
                                                <td>  {{ produit.prixUnitaire * produit.quantite }}€</td>
-                                                <td>
-                                                    <div class="btn btn-group justified">
 
-
-                                                        <a class="ml-2 mr-2" href="{{ path('commande_edit', {id: commande.id}) }}">
-                                                            <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
-                                                        </a>
-
-                                                        <a href="{{ path('supprimer_produit_commande' , {id: commande.id}) }}"><i class="fa fa-trash"></i></a>
-
-
-                                                    </div>
-
-                                                </td>
                                             </tr>
 
 

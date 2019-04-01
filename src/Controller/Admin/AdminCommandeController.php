@@ -74,7 +74,7 @@ class AdminCommandeController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}/commande/delete", name="commande_delete", methods="DELETE")
+     * @Route("/admin/{id}/commande/delete", name="commande_delete_dashboard", methods="DELETE")
      */
     public function delete(Request $request, Commande $commande)
     {
