@@ -63,7 +63,7 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <button class="btn btn-primary" style="width:10%">
+                                                    <button class="btn btn-primary">
                                                         <i class="fa fa-search" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
@@ -96,7 +96,7 @@
                                         <thead>
                                         <tr style="background-color:lightgrey">
                                             <th>ID</th>
-                                            <th>Image</th>
+                                            <th style="width:100px">Image</th>
                                             <th>Nom</th>
                                             <th>Référence</th>
                                             <th> Gencod</th>
@@ -113,7 +113,7 @@
 
                                                 <td>{{ produit.id }}</td>
                                                 <td>
-                                                    <a href="{{ path('produits_edit', {id: produit.id}) }}"> <img src="{{ asset('produits/images/' ~ produit.image) }}"></a>
+                                                    <a href="{{ path('produits_edit', {id: produit.id}) }}"> <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%"></a>
                                                 </td>
 
 

@@ -31,14 +31,11 @@ class AdminProduitController extends AbstractController
      */
     private $em;
 
-
-
     public function __construct(ProduitRepository $repository, ObjectManager $em)
     {
 
         $this->repository = $repository;
         $this->em = $em;
-
     }
 
     /**
@@ -76,7 +73,10 @@ class AdminProduitController extends AbstractController
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
+
+
         if ($form->isSubmitted() && $form->isValid()) {
+
             $file = $produit->getImage();
             $fileName = $fileUploader->upload($file);
             $produit->setImage($fileName);

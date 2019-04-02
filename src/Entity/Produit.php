@@ -5,10 +5,9 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
@@ -25,24 +24,23 @@ class Produit
      */
     private $id;
 
+
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string")
+     * @Assert\File(mimeTypes={ "image/jpeg" , "image/jpg", "image/png" }, mimeTypesMessage="Format incorrect (formats jpeg,jpg et png autorisés)")
      */
     private $image;
-
-
 
     public function getImage()
     {
         return $this->image;
     }
-
-    public function setImage( $image)
+    public function setImage($image)
     {
-        $this->name = $image;
-
+        $this->image = $image;
         return $this;
     }
+
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -190,8 +188,6 @@ class Produit
      * @ORM\ManyToOne(targetEntity="App\Entity\CommandeTypeProduits", inversedBy="produits")
      */
     private $commandeTypeProduits;
-
-
 
     public function __construct()
     {
@@ -581,7 +577,6 @@ class Produit
 
         return $this;
     }
-
 
 
 

@@ -52,11 +52,14 @@ class AdminGroupeController extends AbstractController
         $form = $this->createForm(SearchType::class,$search);
         $form->handleRequest($request);
 
+
+
         //Pagination avec 10 groupes par page
         $groupes = $paginator->paginate(
             $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page', 1), 10
         );
+
 
         return $this->render('admin/groupe/groupes.html.twig', [
             'groupes' => $groupes,
@@ -77,6 +80,7 @@ class AdminGroupeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
 
 
             $this->getDoctrine()->getManager()->flush();

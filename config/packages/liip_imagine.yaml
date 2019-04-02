@@ -4,7 +4,7 @@ liip_imagine:
       quality: 75
       filters:
         thumbnail:
-          size: [260, 230]
+          size: [300, 500]
           mode: outbound
 
 

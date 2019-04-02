@@ -4,26 +4,18 @@ namespace App\Form;
 
 use App\Entity\Categorie;
 use App\Entity\Features;
-use App\Entity\Manufacturer;
 use App\Entity\Produit;
 use App\Form\Type\ManufacturerType;
 
 
-use App\Form\FeaturesType;
-
 
 use App\Repository\CategorieRepository;
-use App\Repository\ManufacturerRepository;
-use Doctrine\DBAL\Types\ArrayType;
-use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -48,10 +40,11 @@ class ProduitType extends AbstractType
         $features = $this->em->getRepository(Features::class)->findAll();
 
         $builder
-            ->add('image', FileType::class, [
-                'label' => 'Image'
-            ])
             ->add('nom')
+            ->add('image',FileType::class, [
+                'data_class' => null,
+                'attr' => ['placeholder' => 'Choisissez un fichier'],
+            ])
             ->add('reference')
             ->add('id_categorie',EntityType::class,[
                 'required' =>false,
@@ -70,6 +63,7 @@ class ProduitType extends AbstractType
                     return $query;
                 }
             ])
+
             ->add('Gencod',null, [
                 'label' => 'Gencod (EAN13)'
             ])
