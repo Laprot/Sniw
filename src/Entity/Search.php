@@ -9,6 +9,8 @@
 namespace App\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Search
 {
     private $rechercher;
@@ -28,5 +30,8 @@ class Search
     {
         $this->rechercher = $rechercher;
     }
+
+
+
 
 }

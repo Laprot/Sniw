@@ -31,6 +31,20 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+
+    public function byCategorie($categorie)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.id_categorie = :id_categorie')
+            ->andWhere('u.etat = 1')
+            ->orderBy('u.id')
+            ->setParameter('id_categorie', $categorie);
+        return $qb->getQuery()->getResult();
+    }
+
+
     /*
     public function findByIdCommande($commande) {
         return $this->createQueryBuilder('u')

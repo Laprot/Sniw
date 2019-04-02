@@ -36,22 +36,31 @@ class CatalogueController extends AbstractController
     }
 
     /**
-     * @Route("/catalogue", name="catalogue")
+     * @Route("/catalogue/{categorie}", name="catalogue")
      */
-    public function index(PaginatorInterface $paginator,Request $request)
+    public function index(PaginatorInterface $paginator,Request $request, Categorie $categorie = null)
     {
-
-        $search = new Search();
-        $form = $this->createForm(SearchType::class, $search);
-        $form->handleRequest($request);
-
-        //Pagination avec 10 users par page
+        if ($categorie != null)
+            $findProduits = $this->repository->byCategorie($categorie);
+        else
+            $findProduits = $this->repository->findBy(array('etat' => 1));
 
 
-        $produits = $paginator->paginate(
-            $this->repository->findAllVisibleQuery($search),
-            $request->query->getInt('page', 1), 10
-        );
+        /*si on utilise la barre de recherche
+        if ($form->isSubmitted() && $form->isValid()) {
+            $produits = $paginator->paginate($this->repository->findAllVisibleQuery($search),
+                $request->query->getInt('page', 1), 20);
+        }
+        //sinon on utilise le filtre des produits catégories
+        else {
+            $produits = $paginator->paginate($findProduits,
+                $request->query->getInt('page', 1), 20);
+        }*/
+
+        //Pagination avec 20 produits par page
+        $produits = $paginator->paginate($findProduits,
+        $request->query->getInt('page', 1), 20);
+
 
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
@@ -59,29 +68,35 @@ class CatalogueController extends AbstractController
         return $this->render('catalogue/cataloguetest.html.twig', [
             'produits' => $produits,
             'count' => $produits->getTotalItemCount(),
-            'form' => $form->createView(),
             'categories'=>$categories
         ]);
 
     }
 
 
-
-
     public function rechercheAction() {
-
         $form = $this->createForm(SearchType::class);
-
         return $this->render('partiels/recherche.html.twig',[
                 'form' => $form->createView()
             ]
         );
     }
+
+
+    public function rechercheActionCatalogue() {
+        $form = $this->createForm(SearchType::class);
+        return $this->render('partiels/recherche_catalogue.html.twig',[
+                'form' => $form->createView()
+            ]
+        );
+    }
+
+
     /**
-     * @Route("/catalogue", name="recherche")
+     * @Route("/catalogue/recherche", name="recherche")
      */
 
-    /*
+/*
     public function rechercheTraitementAction(Request $request)
     {
         $search = new Search();
@@ -90,18 +105,16 @@ class CatalogueController extends AbstractController
 
         $produits = $this->repository->findAllVisibleQuery($search);
 
-
-        $categories = $this->em->getRepository(Categorie::class)->findAll();
-
+        dump($produits);
+        dump($form->getData());
+        die();
 
 
         return $this->render('catalogue/catalogue.html.twig',[
                 'produits' => $produits,
                 'form' => $form->createView(),
-                'categories' => $categories
             ]
         );
 
-    }
-*/
+    }*/
 }

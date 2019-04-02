@@ -33,15 +33,13 @@
                 <div class="sidebar">
                     <div class="sidebar_section">
                         <div class="sidebar_title">
-                            <h5>Product Category</h5>
+                            <h5 style="background-color:#f2bf00;color:white;padding:6px 10px 6px 20px">Catégorie</h5>
                         </div>
+
                         <ul class="sidebar_categories">
-                            <li><a href="#">Men</a></li>
-                            <li class="active"><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Women</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">New Arrivals</a></li>
-                            <li><a href="#">Collection</a></li>
-                            <li><a href="#">Shop</a></li>
+                            {% for categorie in categories %}
+                                <li><a style="font-size:14px" href="{{ path('catalogue', {'categorie':categorie.id}) }}">{{ categorie.nom }} </a></li>
+                            {% endfor %}
                         </ul>
                     </div>
 
@@ -108,14 +106,15 @@
 
                                 <!-- Product Sorting -->
 
-                                <div class="container">
-                                    {{ form_start(form) }}
-                                    <div class="row">
-                                        {{ form_row(form.rechercher) }} <span style="margin-left:40px"> Il y a {{ count }} produit(s) </span>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ render(controller('App\\Controller\\CatalogueController::rechercheActionCatalogue')) }}
                                     </div>
-                                    {{ form_end(form) }}
+                                    <div class="col" style="text-align:right">
+                                        Il y a {{ count }} produit(s)
+                                    </div>
                                 </div>
-                                <div class="product_sorting_container product_sorting_container_top">
+                                <div class="product_sorting_container product_sorting_container_top mt-4">
                                     <ul class="product_sorting">
                                         <li>
                                             <span class="type_sorting_text">Default Sorting</span>
@@ -174,9 +173,9 @@
                                                         <div class="modal fade" tabindex="-1" role="dialog" id="{{ produit.id }}" aria-labelledby="gridSystemModalLabel">
                                                             <div class="modal-dialog modal-lg" role="document">
                                                                 <div class="modal-content">
-                                                                    <div class="modal-header">
+                                                                    <div class="modal-header" style="background-color:#f2bf00">
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                        <h4 class="modal-title" id="gridSystemModalLabel"> {{ produit.nom }}</h4>
+                                                                        <h4 class="modal-title" id="gridSystemModalLabel" style="color:black"> {{ produit.nom }}</h4>
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <div class="row">
@@ -284,9 +283,9 @@
                                                             <div class="modal fade" tabindex="-1" role="dialog" id="{{ produit.id }}" aria-labelledby="gridSystemModalLabel">
                                                                 <div class="modal-dialog modal-lg" role="document">
                                                                     <div class="modal-content">
-                                                                        <div class="modal-header">
+                                                                        <div class="modal-header" style="background-color:#f2bf00">
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                            <h4 class="modal-title" id="gridSystemModalLabel"> {{ produit.nom }}</h4>
+                                                                            <h4 class="modal-title" id="gridSystemModalLabel" style="color:black"> {{ produit.nom }}</h4>
                                                                         </div>
 
 
