@@ -32,14 +32,14 @@
                     </ul>
                 </div>
                 <h2> Confirmez votre demande </h2>
-                <table class="table mt-5 border">
+                <table class="table mt-5 border border-bottom">
                     <thead>
                     <tr>
-                        <th>Produit</th>
-                        <th>Description</th>
-                        <th>Prix/Carton</th>
-                        <th>Nb de carton(s)</th>
-                        <th>Total</th>
+                        <th style="width:100px;border: 1px solid #e9ecef">Produit</th>
+                        <th style="width:450px;border: 1px solid #e9ecef">Description</th>
+                        <th style="border: 1px solid #e9ecef;width:100px">Prix/Carton</th>
+                        <th style="border: 1px solid #e9ecef;width:140px">Nb de carton(s)</th>
+                        <th style="border: 1px solid #e9ecef">Total</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -52,16 +52,18 @@
                     {% endif %}
                     {% for produit in produits  %}
                         <tr>
-                            <td> <img src="{{ asset('images/croquette.jpg') }}"></td>
+                            <td> <img src="{{ asset('produits/images/' ~ produit.image) }}"></td>
 
                             <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get">
-                                <td> {{ produit.nom }}</td>
-                                <td> {{ produit.getPrixFinal() }}€</td>
-                                <td>
+                                <td style="border: 1px solid #e9ecef;text-transform: uppercase"> {{ produit.nom }}
+                                    <p style="font-size:11px;text-transform: none"> Référence : {{ produit.reference }}</p>
+                                </td>
+                                <td style="border: 1px solid #e9ecef">{{ produit.getPrixFinal() }}€</td>
+                                <td style="border: 1px solid #e9ecef">
                                     {{ panier[produit.id] }}
                                 </td>
 
-                                <td> {{ produit.getPrixFinal() * panier[produit.id] }}€</td>
+                                <td style="border: 1px solid #e9ecef">{{ produit.getPrixFinal() * panier[produit.id] }}€</td>
                             </form>
                         </tr>
 
