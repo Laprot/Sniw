@@ -102,12 +102,17 @@ class AdminProduitController extends AbstractController
     /**
      * @Route("/admin/{id}/produit/edit", name="produits_edit", methods="GET|POST")
      */
-    public function edit(Request $request, Produit $produit)
+    public function edit(Request $request, Produit $produit,FileUploader $fileUploader)
     {
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $produit->getImage();
+            $fileName = $fileUploader->upload($file);
+            $produit->setImage($fileName);
+
 
             $metadata = $this->em->getClassMetaData(get_class($produit));
             $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);

@@ -71,7 +71,7 @@
                                         <thead>
                                         <tr style="background-color:lightgrey">
                                             <th>Référence</th>
-                                            <th>Image</th>
+                                            <th style="width:100px">Image</th>
                                             <th>Désignation</th>
                                             <th>Prix unitaire</th>
                                             <th>Quantité</th>
@@ -84,7 +84,7 @@
                                             <tr>
                                                 <td>{{ produit.reference }}</td>
                                                 <td>
-                                                    {{ produit.image }}
+                                                    <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%">
                                                 </td>
                                                 <td> {{ produit.nom }} </td>
                                                 <td> {{ produit.prixUnitaire }}€</td>

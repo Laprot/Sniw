@@ -40,13 +40,15 @@ class CatalogueController extends AbstractController
      */
     public function index(PaginatorInterface $paginator,Request $request, Categorie $categorie = null)
     {
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
+
         if ($categorie != null)
             $findProduits = $this->repository->byCategorie($categorie);
         else
             $findProduits = $this->repository->findBy(array('etat' => 1));
 
-
-        /*si on utilise la barre de recherche
         if ($form->isSubmitted() && $form->isValid()) {
             $produits = $paginator->paginate($this->repository->findAllVisibleQuery($search),
                 $request->query->getInt('page', 1), 20);
@@ -55,23 +57,25 @@ class CatalogueController extends AbstractController
         else {
             $produits = $paginator->paginate($findProduits,
                 $request->query->getInt('page', 1), 20);
-        }*/
+        }
 
-        //Pagination avec 20 produits par page
-        $produits = $paginator->paginate($findProduits,
-        $request->query->getInt('page', 1), 20);
-
-
+        //Pagination avec 10 users par page
+        /*$produits = $paginator->paginate(
+            $findProduits,
+            $request->query->getInt('page', 1), 10
+        );*/
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
-
         return $this->render('catalogue/cataloguetest.html.twig', [
             'produits' => $produits,
             'count' => $produits->getTotalItemCount(),
+            'form' => $form->createView(),
             'categories'=>$categories
         ]);
 
     }
+
+
 
 
     public function rechercheAction() {
@@ -82,7 +86,6 @@ class CatalogueController extends AbstractController
         );
     }
 
-
     public function rechercheActionCatalogue() {
         $form = $this->createForm(SearchType::class);
         return $this->render('partiels/recherche_catalogue.html.twig',[
@@ -90,6 +93,7 @@ class CatalogueController extends AbstractController
             ]
         );
     }
+
 
 
     /**
