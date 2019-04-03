@@ -5,11 +5,14 @@
 
 {% block stylesheet %}
 
-
-    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
 {% endblock %}
 {% block body %}
+
 <body>
+
+<link rel="stylesheet" type="text/css" href="/styles/pagination.css">
+<link rel="stylesheet" type="text/css" href="/styles/produit_fix.css">
+
 
 
 <div class="background">
@@ -21,7 +24,7 @@
 
                 <!-- Breadcrumbs -->
 
-                <div class="breadcrumbs d-flex flex-row align-items-center">
+                <div class="breadcrumbs d-flex flex-row align-items-center" style="margin-bottom:15px">
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li class="active"><a href="index.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Men's</a></li>
@@ -43,17 +46,7 @@
                         </ul>
                     </div>
 
-                    <!-- Price Range Filtering -->
-                    <div class="sidebar_section">
-                        <div class="sidebar_title">
-                            <h5>Filter by Price</h5>
-                        </div>
-                        <p>
-                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                        </p>
-                        <div id="slider-range"></div>
-                        <div class="filter_button"><span>filter</span></div>
-                    </div>
+
 
                     <!-- Sizes -->
                     <div class="sidebar_section">
@@ -94,11 +87,13 @@
 
                 </div>
 
+
                 <!-- Main Content -->
 
                 <div class="main_content">
 
                     <!-- Products -->
+
 
                     <div class="products_iso">
                         <div class="row">
@@ -106,28 +101,45 @@
 
                                 <!-- Product Sorting -->
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        {{ render(controller('App\\Controller\\CatalogueController::rechercheActionCatalogue')) }}
+
+                                {% if produits|length !=0 %}
+
+                                <!-- Product Grid -->
+
+
+
+                                <div class="container">
+                                    <div class="row">
+
+                                        <div class="pages d-flex flex-row align-items-center ">
+                                            {{ knp_pagination_render(produits) }}
+                                        </div>
+                                        <div class="col">
+                                            <div style="float: right">
+                                                Résultats 1 - 24 sur {{ count }}.
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col" style="text-align:right">
-                                        Il y a {{ count }} produit(s)
-                                    </div>
+
                                 </div>
+
+                                <hr>
+
+
                                 <div class="product_sorting_container product_sorting_container_top mt-4">
                                     <ul class="product_sorting">
                                         <li>
-                                            <span class="type_sorting_text">Default Sorting</span>
+                                            <span class="type_sorting_text">Trier par  </span>
                                             <i class="fa fa-angle-down"></i>
                                             <ul class="sorting_type">
-                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default Sorting</span></li>
-                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
-                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Product Name</span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Defaut</span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Prix</span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Nom </span></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <span>Show</span>
-                                            <span class="num_sorting_text">6</span>
+                                            <span>Voir</span>
+                                            <span class="num_sorting_text">24</span>
                                             <i class="fa fa-angle-down"></i>
                                             <ul class="sorting_num">
                                                 <li class="num_sorting_btn"><span>6</span></li>
@@ -135,25 +147,18 @@
                                                 <li class="num_sorting_btn"><span>24</span></li>
                                             </ul>
                                         </li>
+                                        <li style="border:none">
+                                            Il y a {{ count }} produit(s)
+                                        </li>
                                     </ul>
-                                    <div class="pages d-flex flex-row align-items-center">
-                                        <div class="page_current">
-                                            <span>1</span>
-                                            <ul class="page_selection">
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="page_total"><span>of</span> 3</div>
-                                        <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
-                                    </div>
+
+
+
 
                                 </div>
 
-                                <!-- Product Grid -->
 
-                                <div class="product-grid">
+                                <div class="product-grid mb-4">
 
                                     <!-- Products -->
 
@@ -162,10 +167,11 @@
                                             <div class="product-item men">
                                                 <div class="product discount product_filter">
                                                     <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
-                                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:70%;" alt="{{ produit.nom }}">
+                                                        <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
                                                     </div>
+
                                                     <div class="product_info" style="cursor:auto !important">
-                                                        <h6 class="product_name" style="text-align:left;font-weight: bold">{{ produit.nom }}</h6>
+                                                        <h6 class="product_name desc_bloc1" style="text-align:left;font-weight: bold">{{ produit.nom }}</h6>
 
 
                                                         <!-- Modal -->
@@ -198,21 +204,21 @@
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td> NB carton/palette</td>
-                                                                                        <td> </td>
+                                                                                        <td> {{ produit.getNbCartonPalette() }}</td>
 
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td> DLV Garantie</td>
-                                                                                        <td> </td>
+                                                                                        <td> {{ produit.getDlvGarantie() }}</td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td> DLV Théorique</td>
-                                                                                        <td> </td>
+                                                                                        <td> {{ produit.getDlvTheorique() }}</td>
                                                                                     </tr>
 
                                                                                     <tr>
-                                                                                        <td>Produits belle france </td>
-                                                                                        <td> </td>
+                                                                                        <td>Produits Belle France </td>
+                                                                                        <td> {{ produit.getProduitBelleFrance() ? 'Oui' : 'Non' }}</td>
                                                                                     </tr>
 
 
@@ -222,7 +228,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <div class="col">
-                                                                        <p class="text-center"> Prix unitaire : <strong>{{ produit.getPrixFinal() }}€ </strong></p>
+                                                                        <p class="text-center "> Prix unitaire : <strong>{{ produit.getPrixFinal() }}€ </strong></p>
                                                                         </div>
                                                                     </div>
                                                                 </div><!-- /.modal-content -->
@@ -231,13 +237,13 @@
 
 
 
-                                                        <div class="product_price" style="text-align:left;color:#f2bf00;font-size:11px"> {{ produit.getIdManufacturer() }}</div>
+                                                        <div class="product_info desc_bloc2" style="font-weight:bold;text-align:left;color:#f2bf00;font-size:11px"> {{ produit.getIdManufacturer() }}</div>
 
-                                                        <div class="product_price" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
+                                                        <div class="product_info desc_bloc3" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
 
 
-                                                        <div class="product_price" style="font-size:11px;color:#C4C2C2"> Prix unitaire : <span style="font-size:16px;color:black">{{ produit.getPrixFinal() }}€ HT </span></div>
-                                                        <div class="product_price" style="font-size:10px;text-align:right;color:#777777"> Carton de {{ produit.getUniteParCarton() }} produit(s)</div>
+                                                        <div class="product_price unit-price"> {{ produit.getPrixFinal() }}€/u HT</div>
+                                                        <div class="product_info price-condi"> Carton de {{ produit.getUniteParCarton() }} produit(s)</div>
                                                     </div>
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -249,15 +255,14 @@
                                                         <br><input name="quantite" class="addQty" id="submitid" style="width: 60%;height:20px;float: left;margin-left: 10px;">
 
 
-
-
                                                     </div>
+
                                                 </div>
 
-                                                <div class="col-sm-6">
+                                                <div class="col-md-6">
 
-                                                    <div class="wrapper-qty text-center">
-                                                       <input type="image"src="{{ asset('images/add-to-cart.png') }}" style="width:50%;margin-top:10px">
+                                                    <div class="wrapper-qty text-center add-tocart">
+                                                       <input type="image"src="{{ asset('images/add-to-cart.png') }}" style="width:40px">
                                                     </div>
 
                                                 </div>
@@ -310,21 +315,21 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td> NB carton/palette</td>
-                                                                                            <td> </td>
+                                                                                            <td> {{ produit.getNbCartonPalette() }}</td>
 
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td> DLV Garantie</td>
-                                                                                            <td> </td>
+                                                                                            <td> {{ produit.getDlvGarantie() }}</td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td> DLV Théorique</td>
-                                                                                            <td> </td>
+                                                                                            <td> {{ produit.getDlvTheorique() }}</td>
                                                                                         </tr>
 
                                                                                         <tr>
-                                                                                            <td>Produits belle france </td>
-                                                                                            <td> </td>
+                                                                                            <td>Produits Belle France </td>
+                                                                                            <td> {{ produit.getProduitBelleFrance() ? 'Oui' : 'Non' }}</td>
                                                                                         </tr>
 
 
@@ -363,70 +368,27 @@
                                     {% endfor %}
 
 
-
-
-                                    <!-- Product 4 -->
-
-
-                                    <!-- Product 5 -->
-
-
-
-                                    <!-- Product 6 -->
-
-
-                                    <!-- Product 7 -->
-
-
-                                    <!-- Product 8 -->
-
-
-                                    <!-- Product 9 -->
-
-
-
-                                    <!-- Product 10 -->
-
-
-                                    <!-- Product 11 -->
-
-
-                                    <!-- Product 12 -->
-
-
                                 </div>
 
                                 <!-- Product Sorting -->
 
                                 <div class="product_sorting_container product_sorting_container_bottom clearfix">
-                                    <ul class="product_sorting">
-                                        <li>
-                                            <span>Show:</span>
-                                            <span class="num_sorting_text">04</span>
-                                            <i class="fa fa-angle-down"></i>
-                                            <ul class="sorting_num">
-                                                <li class="num_sorting_btn"><span>01</span></li>
-                                                <li class="num_sorting_btn"><span>02</span></li>
-                                                <li class="num_sorting_btn"><span>03</span></li>
-                                                <li class="num_sorting_btn"><span>04</span></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <span class="showing_results">Showing 1–3 of 12 results</span>
+
+                                    <span class="showing_results">Résultats 1 - 24 sur 79.</span>
                                     <div class="pages d-flex flex-row align-items-center">
-                                        <div class="page_current">
-                                            <span>1</span>
-                                            <ul class="page_selection">
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                            </ul>
+
+                                        <div class="pages d-flex flex-row align-items-center ">
+                                            {{ knp_pagination_render(produits) }}
                                         </div>
-                                        <div class="page_total"><span>of</span> 3</div>
-                                        <div id="next_page_1" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
                                     </div>
 
+                                    {% else %}
+
+                                        <h5 class="mt-4"> Aucun résultat trouvé pour "{{ search }}"</h5>
+                                    {% endif %}
+
                                 </div>
+
 
                             </div>
                         </div>

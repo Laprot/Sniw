@@ -1,5 +1,15 @@
+<link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+
 <form action="{{ path('catalogue') }}" >
     {{ form_start(form) }}
+        <div class="container">
+        <div class="row">
         {{ form_widget(form.rechercher) }}
+
+                <button class="btn btn-search">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                </button>
+        </div>
+        </div>
     {{ form_end(form) }}
 </form>

@@ -59,7 +59,9 @@ class ImportProduit extends Command
 
             //Import des informations
             $produit->setUpc($row['upc']);
-            $produit->setFilename($row['filename']);
+            $produit->setImage($row['filename']);
+
+
             $produit->setEtat($row['etat']);
             $produit->setGencod($row['gencod']);
             $produit->setPrixFinal($row['prix_final']);
