@@ -68,7 +68,7 @@
                 <table class="table mt-5">
                     <thead>
                     <tr style="text-align:center">
-                        <th> Produit </th>
+                        <th style="width:100px"> Produit </th>
                         <th>Référence</th>
                         <th>Description</th>
                         <th>Nb de carton(s)</th>
@@ -82,7 +82,7 @@
 
                     {% for produit in commande.commande.produit  %}
                         <tr style="text-align:center">
-                            <td> <img src="{{ asset('images/croquette.jpg') }}"></td>
+                            <td>  <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%"></td>
                             <td> {{ produit.reference }} </td>
                             <td> {{ produit.nom }}</td>
                             <td> {{ produit.quantite }}</td>

@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% set totalHT = 0 %}
-
+{% set volume = 0 %}
+{% set poids = 0 %}
 
 {% block title %}Commande - SNIW , centrale d'achat export.{% endblock %}
 
@@ -63,6 +64,8 @@
                         </form>
                     </tr>
                     {% set totalHT = totalHT + (produit.getPrixFinal() * panier[produit.id]) %}
+                    {% set volume = volume + (produit.profondeur) * panier[produit.id] %}
+                    {% set poids = poids + (produit.weight) * panier[produit.id] %}
 
                     {% endfor %}
 
@@ -79,11 +82,12 @@
                         <table class="table">
                             <tr>
                              <td style="border: 1px solid #e9ecef"> Volume</td>
-                             <td style="border: 1px solid #e9ecef"> 123 m³</td>
+                             <td style="border: 1px solid #e9ecef"> {{ volume }} m³</td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #e9ecef"> Poids</td>
-                                <td style="border: 1px solid #e9ecef"> 1255 T</td>
+
+                                <td style="border: 1px solid #e9ecef"> {% if poids <= 1000 %} {{ poids }} kg{% else %} {{ poids / 1000 }}T{% endif %}</td>
                             </tr>
 
                             <tr>
@@ -91,14 +95,8 @@
                                 <td style="font-weight: bold;font-size:22px;border: 1px solid #e9ecef"> {{ totalHT }}€</td>
                             </tr>
                         </table>
-
                     </div>
-
-
                 </div>
-
-
-
                     <div class="row mt-4">
                         <div class="col">
                             <a class="btn-mj btn-def" href="{{ path('catalogue') }}" style="color:white"> <i class="fa fa-angle-double-left"></i> Continuer mes achats </a>
