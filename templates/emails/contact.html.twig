@@ -1,455 +1,358 @@
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title> Service clientèle - SNIW </title>
-    <!--[if !mso]><!-- -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--<![endif]-->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oxygen Invoice</title>
+
     <style type="text/css">
-        #outlook a {
-            padding: 0;
-        }
+        /* Take care of image borders and formatting, client hacks */
+        img { max-width: 600px; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;}
+        a img { border: none; }
+        table { border-collapse: collapse !important;}
+        #outlook a { padding:0; }
+        .ReadMsgBody { width: 100%; }
+        .ExternalClass { width: 100%; }
+        .backgroundTable { margin: 0 auto; padding: 0; width: 100% !important; }
+        table td { border-collapse: collapse; }
+        .ExternalClass * { line-height: 115%; }
+        .container-for-gmail-android { min-width: 600px; }
 
-        .ReadMsgBody {
-            width: 100%;
-        }
 
-        .ExternalClass {
-            width: 100%;
-        }
-
-        .ExternalClass * {
-            line-height: 100%;
+        /* General styling */
+        * {
+            font-family: Helvetica, Arial, sans-serif;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: none;
+            width: 100% !important;
+            margin: 0 !important;
+            height: 100%;
+            color: #676767;
         }
 
-        table,
         td {
-            border-collapse: collapse;
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #777777;
+            text-align: center;
+            line-height: 21px;
         }
 
-        img {
-            border: 0;
-            height: auto;
-            line-height: 100%;
-            outline: none;
-            text-decoration: none;
-            -ms-interpolation-mode: bicubic;
+        a {
+            color: #676767;
+            text-decoration: none !important;
         }
 
-        p {
-            display: block;
-            margin: 13px 0;
+        .pull-left {
+            text-align: left;
+        }
+
+        .pull-right {
+            text-align: right;
+        }
+
+        .header-lg,
+        .header-md,
+        .header-sm {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: normal;
+            padding: 35px 0 0;
+            color: #4d4d4d;
+        }
+
+        .header-md {
+            font-size: 24px;
+        }
+
+        .header-sm {
+            padding: 5px 0;
+            font-size: 18px;
+            line-height: 1.3;
+        }
+
+        .content-padding {
+            padding: 20px 0 5px;
+        }
+
+        .mobile-header-padding-right {
+            width: 290px;
+            text-align: right;
+            padding-left: 10px;
+        }
+
+        .mobile-header-padding-left {
+            width: 290px;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .free-text {
+            width: 100% !important;
+            padding: 10px 60px 0px;
+        }
+
+        .button {
+            padding: 30px 0;
+        }
+
+        .mini-block {
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            background-color: #ffffff;
+            padding: 12px 15px 15px;
+            text-align: left;
+            width: 253px;
+        }
+
+        .mini-container-left {
+            width: 278px;
+            padding: 10px 0 10px 15px;
+        }
+
+        .mini-container-right {
+            width: 278px;
+            padding: 10px 14px 10px 15px;
+        }
+
+        .mini-container {
+            padding: 10px 14px 10px 15px;
+        }
+
+        .product {
+            text-align: left;
+            vertical-align: top;
+            width: 175px;
+        }
+
+        .total-space {
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        .item-table {
+            padding: 50px 20px;
+            width: 560px;
+        }
+
+        .item {
+            width: 300px;
+        }
+
+        .mobile-hide-img {
+            text-align: left;
+            width: 125px;
+        }
+
+        .mobile-hide-img img {
+            border: 1px solid #e6e6e6;
+            border-radius: 4px;
+        }
+
+        .title-dark {
+            text-align: left;
+            border-bottom: 1px solid #cccccc;
+            color: #4d4d4d;
+            font-weight: 700;
+            padding-bottom: 5px;
+        }
+
+        .item-col {
+            padding-top: 20px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .force-width-gmail {
+            min-width:600px;
+            height: 0px !important;
+            line-height: 1px !important;
+            font-size: 1px !important;
+        }
+
+    </style>
+
+    <style type="text/css" media="screen">
+        @import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
+    </style>
+
+    <style type="text/css" media="screen">
+        @media screen {
+            /* Thanks Outlook 2013! */
+            * {
+                font-family: 'Oxygen', 'Helvetica Neue', 'Arial', 'sans-serif' !important;
+            }
         }
     </style>
-    <!--[if !mso]><!-->
-    <style type="text/css">
-        @media only screen and (max-width:480px) {
-            @-ms-viewport {
-                width: 320px;
-            }
-            @viewport {
-                width: 320px;
-            }
-        }
-    </style>
-    <!--<![endif]-->
-    <!--[if mso]>
-    <xml>
-        <o:OfficeDocumentSettings>
-            <o:AllowPNG/>
-            <o:PixelsPerInch>96</o:PixelsPerInch>
-        </o:OfficeDocumentSettings>
-    </xml>
-    <![endif]-->
-    <!--[if lte mso 11]>
-    <style type="text/css">
-        .outlook-group-fix { width:100% !important; }
-    </style>
-    <![endif]-->
-    <!--[if !mso]><!-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet" type="text/css">
-    <style type="text/css">
-        @import url(https://fonts.googleapis.com/css?family=Roboto:300,500);
-    </style>
-    <!--<![endif]-->
-    <style type="text/css">
-        @media only screen and (min-width:480px) {
-            .mj-column-per-100 {
+
+    <style type="text/css" media="only screen and (max-width: 480px)">
+        /* Mobile styles */
+        @media only screen and (max-width: 480px) {
+
+            table[class*="container-for-gmail-android"] {
+                min-width: 290px !important;
                 width: 100% !important;
-                max-width: 100%;
             }
-            .mj-column-per-45 {
-                width: 45% !important;
-                max-width: 45%;
+
+            img[class="force-width-gmail"] {
+                display: none !important;
+                width: 0 !important;
+                height: 0 !important;
             }
-            .mj-column-per-89 {
-                width: 89% !important;
-                max-width: 89%;
+
+            table[class="w320"] {
+                width: 320px !important;
             }
-            .mj-column-per-35 {
-                width: 35% !important;
-                max-width: 35%;
+
+            td[class*="mobile-header-padding-left"] {
+                width: 160px !important;
+                padding-left: 0 !important;
             }
-        }
-    </style>
-    <style type="text/css">
-        @media only screen and (max-width:480px) {
-            table.full-width-mobile {
-                width: 100% !important;
+
+            td[class*="mobile-header-padding-right"] {
+                width: 160px !important;
+                padding-right: 0 !important;
             }
-            td.full-width-mobile {
-                width: auto !important;
+
+            td[class="header-lg"] {
+                font-size: 24px !important;
+                padding-bottom: 5px !important;
             }
+
+            td[class="content-padding"] {
+                padding: 5px 0 5px !important;
+            }
+
+            td[class="button"] {
+                padding: 5px 5px 30px !important;
+            }
+
+            td[class*="free-text"] {
+                padding: 10px 18px 30px !important;
+            }
+
+            td[class~="mobile-hide-img"] {
+                display: none !important;
+                height: 0 !important;
+                width: 0 !important;
+                line-height: 0 !important;
+            }
+
+            td[class~="item"] {
+                width: 140px !important;
+                vertical-align: top !important;
+            }
+
+            td[class~="quantity"] {
+                width: 50px !important;
+            }
+
+            td[class~="price"] {
+                width: 90px !important;
+            }
+
+            td[class="item-table"] {
+                padding: 30px 20px !important;
+            }
+
+            td[class="mini-container-left"],
+            td[class="mini-container-right"] {
+                padding: 0 15px 15px !important;
+                display: block !important;
+                width: 290px !important;
+            }
+
         }
     </style>
 </head>
 
-<body>
-<div style="">
-    <!--[if mso | IE]>
-    <table
-            align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-    >
-        <tr>
-            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
-    <div style="Margin:0px auto;max-width:600px;">
-        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-            <tbody>
-            <tr>
-                <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;vertical-align:top;">
-                    <!--[if mso | IE]>
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<body bgcolor="#f7f7f7">
+<table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="100%">
 
-                        <tr>
-
-                        </tr>
-
-                    </table>
-                    <![endif]-->
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--[if mso | IE]>
-    </td>
-    </tr>
-    </table>
-
-    <table
-            align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-    >
-        <tr>
-            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
-    <div style="Margin:0px auto;max-width:600px;">
-        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-            <tbody>
-            <tr>
-                <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
-                    <!--[if mso | IE]>
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-                        <tr>
-
-                            <td
-                                    class="" style="vertical-align:top;width:600px;"
-                            >
-                    <![endif]-->
-                    <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                            <tr>
-                                <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!--[if mso | IE]>
-                    </td>
+    <tr>
+        <td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
+            <center>
+                <table cellspacing="0" cellpadding="0" width="600" class="w320">
+                    <tr>
+                        <td class="header-lg">
+                            <a href="{{ path('home') }}">
+                                S.N.I.W
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="free-text">
+                                Quelqu'un cherche à vous contacter
+                        </td>
+                    </tr>
+                    <tr>
 
                     </tr>
+                    <tr>
+                        <td class="w320">
 
-                    </table>
-                    <![endif]-->
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--[if mso | IE]>
-    </td>
-    </tr>
-    </table>
 
-    <table
-            align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-    >
-        <tr>
-            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
-    <div style="Margin:0px auto;max-width:600px;">
-        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-            <tbody>
-            <tr>
-                <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
-                    <!--[if mso | IE]>
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-                        <tr>
-
-                            <td
-                                    class="" style="vertical-align:top;width:600px;"
-                            >
-                    <![endif]-->
-                    <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                            <tr>
-                                <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                    <div style="font-family:Roboto, Helvetica, sans-serif;font-size:16px;font-weight:300;line-height:24px;text-align:center;color:#616161;"> S.N.I.W - Centrale d'achat export </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!--[if mso | IE]>
-                    </td>
-
-                    </tr>
-
-                    </table>
-                    <![endif]-->
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--[if mso | IE]>
-    </td>
-    </tr>
-    </table>
-
-    <table
-            align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-    >
-        <tr>
-            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
-    <div style="Margin:0px auto;max-width:600px;">
-        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-            <tbody>
-            <tr>
-                <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
-                    <!--[if mso | IE]>
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-                        <tr>
-
-                            <td
-                                    class="" style="vertical-align:top;width:270px;"
-                            >
-                    <![endif]-->
-                    <div class="mj-column-per-45 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                            <tr>
-                                <td align="center" style="font-size:0px;padding:0px;word-break:break-word;">
-                                    <div style="font-family:Roboto, Helvetica, sans-serif;font-size:18px;font-weight:500;line-height:24px;text-align:center;color:#616161;"> Service clientèle </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                    <p style="border-top:solid 2px #616161;font-size:1;margin:0px auto;width:100%;"> </p>
-                                    <!--[if mso | IE]>
-                                    <table
-                                            align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 2px #616161;font-size:1;margin:0px auto;width:220px;" role="presentation" width="220px"
-                                    >
-                                        <tr>
-                                            <td style="height:0;line-height:0;">
-                                                &nbsp;
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <![endif]-->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                    <p style="border-top:solid 2px #616161;font-size:1;margin:0px auto;width:45%;"> </p>
-                                    <!--[if mso | IE]>
-                                    <table
-                                            align="center" border="0" cellpadding="0" cellspacing="0" style="border-top:solid 2px #616161;font-size:1;margin:0px auto;width:71.5px;" role="presentation" width="71.5px"
-                                    >
-                                        <tr>
-                                            <td style="height:0;line-height:0;">
-                                                &nbsp;
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <![endif]-->
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!--[if mso | IE]>
-                    </td>
-
-                    </tr>
-
-                    </table>
-                    <![endif]-->
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--[if mso | IE]>
-    </td>
-    </tr>
-    </table>
-
-    <table
-            align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-    >
-        <tr>
-            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
-    <div style="Margin:0px auto;max-width:600px;">
-        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-            <tbody>
-            <tr>
-                <td style="direction:ltr;font-size:0px;padding:0px;padding-top:30px;text-align:center;vertical-align:top;">
-                    <!--[if mso | IE]>
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-                        <tr>
-
-                            <td
-                                    class="" style="vertical-align:top;width:600px;"
-                            >
-                    <![endif]-->
-                    <div class="mj-column-per-100 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                            <tr>
-                                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                    <div style="font-family:Roboto, Helvetica, sans-serif;font-size:16px;font-weight:300;line-height:24px;text-align:left;color:#616161;">
-                                        <p>Demande de la société : <h1>{{contact.societe}}</h1> </p> </div>
-                                        <hr>
-                                            <table style="font-family:Roboto, Helvetica, sans-serif;font-size:12px;font-weight:300;margin-top:20px;text-align:left;color:#616161;">
+                            <table cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td class="mini-container">
+                                        <table cellpadding="0" cellspacing="0" width="100%">
                                             <tr>
-                                                <td> <h3> Nom : {{ contact.nom }} </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> Prenom : {{ contact.prenom }}  </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> Adresse : {{ contact.adresse }} </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> Code Postal : {{ contact.getCodePostal() }} </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> Ville : {{ contact.ville }} </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> Pays : {{ contact.pays }} </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> Email : {{ contact.email }} </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> Téléphone : {{ contact.telephone }} </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> Grossiste : {{ contact.getGrossisteBool() ? 'Oui' : 'Non' }} </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> Possession de supermarché : {{ contact.getSupermarcheBool() ? 'Oui' : 'Non'}} </h3></td>
-                                            </tr>
-                                            <tr>
-                                                <td> <h3> La demande : {{ contact.demande }} </h3></td>
+                                                <td class="mini-block-padding">
+                                                    <table cellspacing="0" cellpadding="0" width="100%" style="border-collapse:separate !important;">
+                                                        <tr>
+                                                            <td class="mini-block">
+                                                                <span class="header-sm"> DETAILS </span>
+                                                                <br />
+                                                                <hr>
+                                                                <span style="font-weight:bold"> Nom : </span> {{ contact.nom }} <br />
+                                                                <span style="font-weight:bold"> Prénom : </span> {{ contact.prenom }} <br />
+                                                                <span style="font-weight:bold"> Adresse : </span> {{ contact.adresse }} <br />
+                                                                <span style="font-weight:bold"> Code postal : </span> {{ contact.getCodePostal() }}<br />
+                                                                <span style="font-weight:bold"> Ville : </span> {{ contact.ville }} <br />
+                                                                <span style="font-weight:bold"> Pays : </span>{{ contact.pays }}<br />
+                                                                <span style="font-weight:bold"> Email : </span> {{ contact.email }} <br />
+                                                                <span style="font-weight:bold"> Téléphone : </span> {{ contact.telephone }} <br />
+                                                                <span style="font-weight:bold"> Grossiste : </span> {{ contact.getGrossisteBool() ? 'Oui' : 'Non' }} <br />
+                                                                <span style="font-weight:bold"> Possession de supermarché : </span> {{ contact.getSupermarcheBool() ? 'Oui' : 'Non'}} <br />
+
+                                                                <span style="font-weight:bold"> La demande : </span> {{ contact.demande }} <br />
+
+
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
                                             </tr>
                                         </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!--[if mso | IE]>
-                    </td>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
                     </tr>
-
-                    </table>
-                    <![endif]-->
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--[if mso | IE]>
-    </td>
+                </table>
+            </center>
+        </td>
     </tr>
-    </table>
 
-    <table
-            align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600"
-    >
-        <tr>
-            <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-    <![endif]-->
-    <div style="Margin:0px auto;max-width:600px;">
-        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-            <tbody>
-            <tr>
-                <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;vertical-align:top;">
-                    <!--[if mso | IE]>
-                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-
-                        <tr>
-
-                            <td
-                                    class="" style="vertical-align:top;width:534px;"
-                            >
-                    <![endif]-->
-                    <div class="mj-column-per-89 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%"> </table>
-                    </div>
-                    <!--[if mso | IE]>
-                    </td>
-
+    <tr>
+        <td align="center" valign="top" width="100%" style="background-color: #f7f7f7; height: 100px;">
+            <center>
+                <table cellspacing="0" cellpadding="0" width="600" class="w320">
+                    <tr>
+                        <td style="padding: 25px 0 25px">
+                            <strong>S.N.I.W</strong><br />
+                            Bâtiment B, 4 Rue Archimède, 59650  <br />
+                            Villeneuve-d'Ascq <br /><br />
+                        </td>
                     </tr>
-
-                    </table>
-                    <![endif]-->
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <!--[if mso | IE]>
-    </td>
+                </table>
+            </center>
+        </td>
     </tr>
-    </table>
-    <![endif]-->
-    <div class="mj-column-per-35 outlook-group-fix" style="font-size:13px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-            <tr>
-                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                    <table cellpadding="0" cellspacing="0" width="100%" border="0" style="cellspacing:0;color:#000000;font-family:Roboto, Helvetica, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;"> </table>
-                </td>
-            </tr>
-        </table>
-    </div>
+</table>
 </div>
 </body>
-
 </html>
