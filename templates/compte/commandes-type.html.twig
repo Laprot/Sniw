@@ -8,6 +8,8 @@
 
 
 {% block body %}
+
+    <link rel="stylesheet" type="text/css" href="/styles/pagination.css">
     <body>
     <div class="background">
         <div class="columns-container container carriere-container">
@@ -50,19 +52,34 @@
 
                     <div class="container" style="margin-top:40px">
                         <h3><span>&nbsp;Les commandes admin<hr></span></h3>
+
+
+                        <div class="container mt-4">
+                            <div class="row">
+
+                                <div class="pages d-flex flex-row align-items-center ">
+                                    {{ knp_pagination_render(commandes) }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        {{ form_start(formSearch) }}
+                        {{ form_row(formSearch.rechercher) }}
+                        <button class="btn" style="padding:0px 10px"><i class="fa fa-search"></i></button>
+
+                        {{ form_end(formSearch) }}
                     </div>
 
-                    <table class="table mt-5">
+
+                    <table class="table mt-4">
                         <thead>
                         <tr style="text-align:center">
-                            <th> Auteur </th>
                             <th>Référence </th>
                             <th>Date</th>
                             <th>Prix total</th>
                             <th> Détails </th>
                             <th> Supprimer</th>
-
-
 
 
                         </tr>
@@ -72,8 +89,6 @@
                         {% for commande in commandes  %}
 
                             <tr style="text-align:center">
-                                {% if commande.nom == 'admin' %}
-                                    <td> {{ commande.nom }} {{ commande.prenom }}</td>
                                     <td> {{ commande.reference }} </td>
                                     <td> {{ commande.date|date('d/m/Y') }}</td>
                                     <td> {{ commande.commande.prixHT }}€</td>
@@ -87,7 +102,7 @@
                                     <td>
                                         <a href="{{ path('commande_delete_admin' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
                                     </td>
-                                {% endif %}
+
 
 
                             </tr>
@@ -129,7 +144,22 @@
                 <div class="container" style="margin-top:60px">
                     <h3><span>&nbsp;Les commandes types<hr></span></h3>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <i class="fa fa-exclamation-triangle"></i> Supprimer une commande type supprimera la commande associée
+                        <div class="container mt-4">
+                            <div class="row">
+
+                                <div class="pages d-flex flex-row align-items-center ">
+                                    {{ knp_pagination_render(commandeTypes) }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        {{ form_start(formSearch2) }}
+                        {{ form_row(formSearch2.rechercher) }}
+                        <button class="btn" style="padding:0px 10px"><i class="fa fa-search"></i></button>
+
+                        {{ form_end(formSearch2) }}
+                        <i class="fa fa-exclamation-triangle mt-4 "></i> Supprimer une commande type supprimera la commande associée
                     {% endif %}
                 </div>
                 <table class="table mt-5">

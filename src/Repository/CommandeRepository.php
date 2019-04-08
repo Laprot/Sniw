@@ -51,11 +51,44 @@ class CommandeRepository extends ServiceEntityRepository
         return $query->getQuery();
     }
 
+
     private function findVisibleQuery(): QueryBuilder
     {
         return $this->createQueryBuilder('c')
             ->orderBy('c.id','DESC');
     }
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQueryAdmin(Search $search) : Query
+    {
+        $query= $this->findVisibleQueryAdmin();
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere('c.id like :chaine')
+                ->orWhere('c.reference like :chaine')
+                ->orWhere('c.pays like :chaine')
+                ->orWhere('c.nom like :chaine')
+                ->orWhere('c.prenom like :chaine')
+                ->orWhere('c.email like :chaine')
+                ->orWhere('c.societe like :chaine')
+                ->orWhere('c.etat like :chaine')
+                ->orWhere('c.date like :chaine')
+                ->orderBy('c.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
+    }
+
+    private function findVisibleQueryAdmin(): QueryBuilder
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.nom = :admin')
+            ->setParameter('admin', 'admin')
+            ->orderBy('c.id','DESC');
+    }
+
 
 
     /**

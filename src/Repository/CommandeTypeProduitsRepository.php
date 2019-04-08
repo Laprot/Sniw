@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\CommandeTypeProduits;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -18,6 +21,34 @@ class CommandeTypeProduitsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, CommandeTypeProduits::class);
     }
+
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQuery(Search $search) : Query
+    {
+        $query= $this->findVisibleQuery();
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere('c.id like :chaine')
+                ->orWhere('c.nom like :chaine')
+                ->innerJoin('c.commande', 'commande')
+                ->addSelect('commande')
+                ->orderBy('c.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
+    }
+
+
+    private function findVisibleQuery(): QueryBuilder
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id','DESC');
+    }
+
 
     // /**
     //  * @return CommandeTypeProduits[] Returns an array of CommandeTypeProduits objects

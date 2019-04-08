@@ -4,12 +4,15 @@ namespace App\Controller\Comptes;
 
 use App\Entity\Commande;
 use App\Entity\CommandeTypeProduits;
+use App\Entity\Search;
 use App\Entity\User;
 use App\Form\AdresseUserType;
 use App\Form\CommandeTypeProduitsType;
+use App\Form\SearchType;
 use App\Form\UserType;
 use App\Repository\CommandeRepository;
 use App\Security\AppAccess;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,16 +53,32 @@ class CompteAdminController extends AbstractController
     /**
      * @Route("infos/commandes-type", name="commandes_type")
      */
-    public function commandeType( Request $request) {
+    public function commandeType(PaginatorInterface $paginator, Request $request) {
+        //Commandes
+        $search = new Search();
+        $formSearch = $this->createForm(SearchType::class,$search);
+        $formSearch->handleRequest($request);
+
+        $commandes = $paginator->paginate(
+            $this->getDoctrine()->getRepository(Commande::class)->findAllVisibleQueryAdmin($search),
+            $request->query->getInt('page', 1), 5
+        );
+
+        //CommandeTypes
         $commandeType = new CommandeTypeProduits();
         $form = $this->createForm(CommandeTypeProduitsType::class, $commandeType);
-
         $form->handleRequest($request);
 
-        $commandeTypes = $this->getDoctrine()->getRepository(CommandeTypeProduits::class)->findAll();
 
+        $search = new Search();
+        $formSearch2 = $this->createForm(SearchType::class,$search);
+        $formSearch2->handleRequest($request);
 
-        $commandes = $this->getDoctrine()->getRepository(Commande::class)->findAll();
+        $commandeTypes = $paginator->paginate(
+            $this->getDoctrine()->getRepository(CommandeTypeProduits::class)->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1), 5
+        );
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -75,7 +94,9 @@ class CompteAdminController extends AbstractController
         return $this->render('compte/commandes-type.html.twig', [
             'form' => $form->createView(),
             'commandeTypes' => $commandeTypes,
-            'commandes' => $commandes
+            'commandes' => $commandes,
+            'formSearch' => $formSearch->createView(),
+            'formSearch2' => $formSearch->createView()
         ]);
     }
 
@@ -88,7 +109,7 @@ class CompteAdminController extends AbstractController
         $em->remove($commandeTypeProduits);
         $em->flush();
 
-        $this->addFlash('success', 'Votre commande type a bien été supprimée. Vous pouvez désormais supprimer la commande qui était associée.');
+        $this->addFlash('success', 'Votre commande type a bien été supprimée ainsi que la commande associée.');
 
         return $this->redirectToRoute('commandes_type');
     }

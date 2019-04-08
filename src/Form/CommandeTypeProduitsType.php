@@ -5,11 +5,14 @@ namespace App\Form;
 use App\Entity\Commande;
 use App\Entity\CommandeTypeProduits;
 use App\Repository\CommandeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommandeTypeProduitsType extends AbstractType
@@ -18,7 +21,7 @@ class CommandeTypeProduitsType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('commande', EntityType::class ,[
+            ->add('commande', EntityType::class, [
                 'class' => Commande::class,
                 'label' => 'À partir de la commande : ',
                 'query_builder' => function (CommandeRepository $c) {
@@ -29,8 +32,7 @@ class CommandeTypeProduitsType extends AbstractType
                         ->orderBy('c.id', 'ASC');
                     return $query;
                 }
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
