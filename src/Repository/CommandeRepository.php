@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Commande;
 use App\Entity\Search;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
@@ -44,7 +45,6 @@ class CommandeRepository extends ServiceEntityRepository
                 ->orWhere('c.societe like :chaine')
                 ->orWhere('c.etat like :chaine')
                 ->orWhere('c.date like :chaine')
-
                 ->orderBy('c.id')
                 ->setParameter('chaine','%'.$search->getRechercher().'%');
         }

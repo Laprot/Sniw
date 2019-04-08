@@ -4,12 +4,15 @@ namespace App\Controller\Comptes;
 
 use App\Entity\Commande;
 use App\Entity\CommandeTypeProduits;
+use App\Entity\Search;
 use App\Entity\User;
 use App\Form\AdresseUserType;
 use App\Form\CommandeTypeProduitsType;
+use App\Form\SearchType;
 use App\Form\UserType;
 use App\Repository\CommandeRepository;
 use App\Security\AppAccess;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -70,19 +73,26 @@ class CompteClientController extends AbstractController
     /**
      * @Route("/infos/{id}/commandes", name="commande_view")
      */
-    public function commande(User $user){
+    public function commande(PaginatorInterface $paginator,User $user,Request $request){
 
         $this->denyAccessUnlessGranted(AppAccess::USER_EDIT, $user);
 
-        $commandes = $this->getDoctrine()->getRepository(Commande::class)->findAll();
+
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
 
 
-
-
+        $commandes = $paginator->paginate(
+            $this->getDoctrine()->getRepository(Commande::class)->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1), 10
+        );
 
         return $this->render('compte/commande.html.twig', [
             'user' => $user,
-            'commandes' => $commandes
+            'commandes' => $commandes,
+            'form' => $form->createView(),
+            'count' => $commandes->getTotalItemCount()
         ]);
     }
 

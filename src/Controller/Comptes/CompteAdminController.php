@@ -17,19 +17,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CompteAdminController extends AbstractController
 {
-
-
-    /**
-     * @Route("/infos/allcommandes", name="commande_view_admin")
-     */
-    public function allCommande(){
-        $commandes = $this->getDoctrine()->getRepository(Commande::class)->findAll();
-
-        return $this->render('compte/commande.html.twig', [
-            'commandes' => $commandes
-        ]);
-    }
-
     /**
      * @Route("/infos/{id}/allcommandes/delete", name="commande_delete_admin")
      */

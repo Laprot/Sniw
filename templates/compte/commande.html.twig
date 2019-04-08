@@ -8,6 +8,8 @@
 
 
 {% block body %}
+
+    <link rel="stylesheet" type="text/css" href="/styles/pagination.css">
     <body>
     <div class="background">
         <div class="columns-container container carriere-container">
@@ -23,7 +25,34 @@
                 </div>
                 {% if is_granted("ROLE_ADMIN")  %}
                     <h2> Historique des commandes </h2>
-                    <table class="table mt-5">
+
+
+                    <div class="container mt-4">
+                        <div class="row">
+
+                            <div class="pages d-flex flex-row align-items-center ">
+                                {{ knp_pagination_render(commandes) }}
+                            </div>
+                            <div class="col">
+                                <div style="float: right">
+                                    {% if count <= 10 %}
+                                        Résultats 1 - {{ count }} sur {{ count }}.
+                                    {% else %}
+                                        Résultats 1 - 10 sur {{ count }}.
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+                    {{ form_start(form) }}
+                        {{ form_row(form.rechercher) }}
+                        <button class="btn" style="padding:0px 10px"><i class="fa fa-search"></i></button>
+
+                    {{ form_end(form) }}
+
+                    <table class="table mt-3">
                         <thead>
                         <tr style="text-align:center">
                             <th> Auteur </th>
@@ -43,24 +72,23 @@
 
                         {% for commande in commandes  %}
                             <tr style="text-align:center">
-                                {% if commande.nom != 'admin' %}
-                                <td> {{ commande.nom }} {{ commande.prenom }}</td>
-                                <td> {{ commande.reference }} </td>
-                                <td> {{ commande.date|date('d/m/Y') }}</td>
-                                <td> {{ commande.commande.prixHT }}€</td>
-                                <td> Virement bancaire</td>
-                                <td> {{ commande.etat }}</td>
-                                <td>
-                                    <a href="{{ path('commande_details', {id: commande.id}) }}">
-                                        <i class="fa fa-search-plus">
-                                        </i> Afficher
-                                    </a>
-                                    </td>
-
+                                    <td> {{ commande.nom }} {{ commande.prenom }}</td>
+                                    <td> {{ commande.reference }} </td>
+                                    <td> {{ commande.date|date('d/m/Y') }}</td>
+                                    <td> {{ commande.commande.prixHT }}€</td>
+                                    <td> Virement bancaire</td>
+                                    <td> {{ commande.etat }}</td>
                                     <td>
-                                        <a href="{{ path('commande_delete' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
-                                    </td>
-                                {% endif %}
+                                        <a href="{{ path('commande_details', {id: commande.id}) }}">
+                                            <i class="fa fa-search-plus">
+                                            </i> Afficher
+                                        </a>
+                                        </td>
+
+                                        <td>
+                                            <a href="{{ path('commande_delete' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
+                                        </td>
+
 
 
                             </tr>
@@ -72,7 +100,15 @@
                     {% else %}
 
                         <h2> Historique de vos commandes </h2>
+                        <div class="container mt-4">
+                            <div class="row">
 
+                                <div class="pages d-flex flex-row align-items-center ">
+                                    {{ knp_pagination_render(commandes) }}
+                                </div>
+                            </div>
+
+                        </div>
 
                         <table class="table mt-5">
                             <thead>
@@ -88,7 +124,7 @@
                             </thead>
                             <tbody>
 
-                            {% for commande in user.commandes  %}
+                            {% for commande in commandes  %}
                                 <tr style="text-align:center">
                                     <td> {{ commande.reference }} </td>
                                     <td> {{ commande.date|date('d/m/Y') }}</td>
