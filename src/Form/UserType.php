@@ -8,14 +8,26 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class UserType extends AbstractType
 {
+
+    private $token;
+
+    public function __construct(TokenStorageInterface $token)
+    {
+        $this->token = $token;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -60,9 +72,21 @@ class UserType extends AbstractType
                 'required'=>true,
                 'first_options'  => array('label' => 'Mot de passe *'),
                 'second_options' => array('label' => 'Répéter le mot de passe *'),
-            ))
+            ));
 
-        ;
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            array($this, 'OnPreSetData')
+        );
+    }
+    public function onPreSetData(FormEvent $event)
+    {
+        $form = $event->getForm();
+
+        if(!$this->token->getToken()->getUser()->isGranted('ROLE_ADMIN')){
+            $form->remove('id_groupe');
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

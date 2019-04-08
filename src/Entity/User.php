@@ -557,5 +557,9 @@ class User implements UserInterface,NotificationInterface
         return $this;
     }
 
+    public function isGranted($role)
+    {
+        return in_array($role, $this->getRoles());
+    }
 
 }

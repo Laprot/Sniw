@@ -91,9 +91,11 @@
                             <div class="form-group col-md-6">
                                 {{ form_row(form.plainPassword.second, {'label' : 'Répéter le nouveau mot de passe','required': false }) }}
                             </div>
-                            <div class="form-group col-md-6">
-                                {{ form_row(form.id_groupe) }}
-                            </div>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class="form-group col-md-6">
+                                    {{ form_row(form.id_groupe) }}
+                                </div>
+                            {% endif %}
 
 
 

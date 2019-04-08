@@ -51,7 +51,6 @@ class CommandeRepository extends ServiceEntityRepository
         return $query->getQuery();
     }
 
-
     private function findVisibleQuery(): QueryBuilder
     {
         return $this->createQueryBuilder('c')
