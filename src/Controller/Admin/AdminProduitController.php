@@ -50,7 +50,7 @@ class AdminProduitController extends AbstractController
 
         //Pagination avec 10 produits par page
         $produits = $paginator->paginate(
-            $this->repository->findAllVisibleQuery($search),
+            $this->repository->findAllVisibleQueryAdmin($search),
             $request->query->getInt('page', 1), 10
         );
 

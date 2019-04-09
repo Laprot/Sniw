@@ -84,10 +84,8 @@ class PanierController extends AbstractController
 
 
 
-    /**
-     * @Route("/recommander/{id}", name="recommander")
-     */
-    public function recommander($id, Request $request)
+
+    /*public function recommander($id, Request $request)
     {
         $session = $request->getSession();
         if (!$session->has('panier')) {
@@ -108,37 +106,40 @@ class PanierController extends AbstractController
         $session->set('panier',$panier);
 
         return $this->redirect($this->generateUrl('panier'));
-    }
+    }*/
 
 
+    /**
+     * @Route("/recommander/{id}", name="recommander")
+     */
+    /*
+    public function recommander($id,Commande $commande, Request $request) {
 
-   /* public function recommander($id,Commande $commande, Request $request) {
         $session = $request->getSession();
         if (!$session->has('panier')) {
             $session->set('panier', []);
         }
+
+
         $panier = $session->get('panier');
 
+        foreach($commande->getCommande() as $value) {
+            if (is_array($value) || is_object($value))
+                foreach($value as $produit) {
+                    $panier[$id] = $produit;
+                }
+        }
 
-        $produits = $this->getDoctrine()->getRepository(Commande::class)->findBy($commande['produit']);
+        //$produits = $this->getDoctrine()->getRepository(Commande::class)->findBy($commande['produit']);
 
-
-
-        $produits = $commande->getCommande()->get('produit');
-
-        $panier[$id] = $produits;
-
-
+        $panier = $session->set('panier', $panier);
 
         $session->set('panier',$panier[$id]);
-
-
 
         dump($panier);
         die();
         return $this->redirect($this->generateUrl('panier'));
     }
-
     */
 
     /**
@@ -153,7 +154,6 @@ class PanierController extends AbstractController
             $session->set('panier', []);
         }
         $produits = $this->repository->findArray(array_keys($session->get('panier')));
-
 
         return $this->render('panier/recapitulatif.html.twig', [
             'produits' => $produits,

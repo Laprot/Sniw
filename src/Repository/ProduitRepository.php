@@ -27,6 +27,7 @@ class ProduitRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('u')
             ->where('u.id IN (:array)')
             ->setParameter('array', $array)
+            ->andWhere('u.etat = 1')
             ->getQuery()
             ->getResult();
     }
@@ -67,6 +68,25 @@ class ProduitRepository extends ServiceEntityRepository
            $query = $query
                 ->andWhere("u.nom like :chaine")
                 ->andWhere('u.etat = 1')
+                ->orWhere('u.reference like :chaine')
+                ->orWhere('u.Gencod like :chaine')
+                ->orderBy('u.id')
+                ->setParameter('chaine','%'.$search->getRechercher().'%');
+        }
+        return $query->getQuery();
+    }
+
+
+    /**
+     * @return Query
+     */
+    public function findAllVisibleQueryAdmin(Search $search): Query
+    {
+        $query= $this->findProduitASC();
+
+        if($search->getRechercher()) {
+            $query = $query
+                ->andWhere("u.nom like :chaine")
                 ->orWhere('u.reference like :chaine')
                 ->orWhere('u.Gencod like :chaine')
                 ->orderBy('u.id')

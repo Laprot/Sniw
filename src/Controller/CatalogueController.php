@@ -51,9 +51,18 @@ class CatalogueController extends AbstractController
 
         //si on utilise la barre de recherche
        if ($form->isSubmitted() && $form->isValid()) {
-           $produits = $paginator->paginate($this->repository->findAllVisibleQuery($search),
-               $request->query->getInt('page', 1), 24);
-       }
+           //si on ne tape rien dans la barre de recherche,on affiche tous les produits
+           if ($search->getRechercher() == null) {
+               $produits = $paginator->paginate($this->repository->findAllAvailable(),
+                   $request->query->getInt('page', 1), 24);
+           }
+           else {
+               //Sinon on affiche les produits recherchés
+               $produits = $paginator->paginate($this->repository->findAllVisibleQuery($search),
+                   $request->query->getInt('page', 1), 24);
+           }
+
+        }
        //sinon on utilise le filtre des produits catégories
        else {
            $produits = $paginator->paginate($findProduits,

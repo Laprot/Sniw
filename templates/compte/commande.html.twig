@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
 {% endblock %}
 
-
 {% block body %}
 
     <link rel="stylesheet" type="text/css" href="/styles/pagination.css">
@@ -49,7 +48,6 @@
                     {{ form_start(form) }}
                         {{ form_row(form.rechercher) }}
                         <button class="btn" style="padding:0px 10px"><i class="fa fa-search"></i></button>
-
                     {{ form_end(form) }}
 
                     <table class="table mt-3">
@@ -63,9 +61,6 @@
                             <th>Exporter</th>
                             <th> Détails </th>
                             <th> Supprimer</th>
-
-
-
                         </tr>
                         </thead>
                         <tbody>
@@ -84,13 +79,9 @@
                                             </i> Afficher
                                         </a>
                                         </td>
-
                                         <td>
                                             <a href="{{ path('commande_delete' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
                                         </td>
-
-
-
                             </tr>
                         {% endfor %}
 
@@ -102,12 +93,10 @@
                         <h2> Historique de vos commandes </h2>
                         <div class="container mt-4">
                             <div class="row">
-
                                 <div class="pages d-flex flex-row align-items-center ">
                                     {{ knp_pagination_render(commandes) }}
                                 </div>
                             </div>
-
                         </div>
 
                         <table class="table mt-5">
@@ -137,7 +126,6 @@
                                             </i> Afficher
                                         </a>
                                     </td>
-
                                 </tr>
                             {% endfor %}
                             </tbody>
