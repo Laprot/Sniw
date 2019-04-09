@@ -86,7 +86,7 @@ class ImportProduit extends Command
 
 
             //Import des caractéristiques
-            //strpos pour trouver le mort dans la colonne
+            //strpos pour trouver le mot dans la colonne
             //Si mot trouvé, on remplace le mot avec le "-"  par rien pour récupérer juste la valeur
             // /!\ toujours vérifier le fichier ps_products.csv
            foreach ($row as $k=>$v ) {

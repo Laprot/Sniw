@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
 use App\Entity\DemandeCompte;
 use App\Form\DemandeCompteType;
 use App\Notification\OuvertureCompteNotification;
@@ -26,9 +27,13 @@ class DemandeCompteController extends AbstractController
             return $this->redirectToRoute('creation_compte');
         }
 
+
         return $this->render('contact/demande_compte.html.twig', [
             'form'=>$form->createView(),
         ]);
     }
+
+
+
 
 }

@@ -84,7 +84,7 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Tous les clients - {{ count }} résultat(s)
+                            <h5 class="card-header">Tous les clients - {{ count }} résultat(s) <span style="float:right"> <i class="fa fa-exclamation-triangle"></i> Après exportation, ouvrez le fichier et corrigez les champs pour importation sur <a href="https://contacts.google.com/">GMAIL</a> </span>
                             </h5>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -120,6 +120,9 @@
                                                     <div class="btn btn-group justified">
 
 
+                                                        <a class="ml-2 mr-2" href="{{ path('client_export', {id:user.id}) }}" onclick="return confirm('Exporter cet user ?');">
+                                                            <button class="btn"><i class="fa fa-download"></i></button>
+                                                        </a>
                                                         <a class="ml-2 mr-2" href="{{ path('client_edit_adresse', {id: user.id}) }}">
                                                             <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
                                                         </a>
