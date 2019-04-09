@@ -6,10 +6,7 @@
 {% block body %}
 
 
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <body>
+ <body>
 
 
 
@@ -205,6 +202,18 @@
                 </div>
              </footer>
 
+
+<div id="myModal" class="modal fade in">
+    <div class="inner-modal">
+        <div class="modal-container">
+            <p>some text</p>
+            <button id="myModalClose" class="close" data-dismiss="modal" data-target="#myModal">Hide this message</button>
+        </div>
+    </div>
+</div>
+
+
+
          </div>
     </body>
 </html>
@@ -214,9 +223,8 @@
 
 
 <script>
-
- jQuery('.fade-in-post-container .elementor-post').each(function(i) {
-    setTimeout(()=>{$(this).addClass('animated fadeInUp')}, 130 * i);
-});
+   jQuery('.fade-in-post-container .elementor-post').each(function(i) {
+     setTimeout(()=>{$(this).addClass('animated fadeInUp')}, 130 * i);
+   });
 </script>
 {% endblock %}

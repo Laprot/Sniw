@@ -1875,6 +1875,16 @@ slideshow {
 
 }
 
+@media(max-width: 990px) {
+	.carriere-container {
+		margin-top: 223px;
+	}
+	.societe_container {
+		margin-top: 223px;
+	}
+}
+
+
 
 
 .dropbtn {

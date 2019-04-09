@@ -519,7 +519,7 @@ section
 		background: #1e1e27;
 		color: white;
 		float:left;
-		margin-top:10px;
+		margin-top:5px;
 		border-right: 1px solid white;
 	}
 	.account {
@@ -543,7 +543,6 @@ section
 		padding-right: 0;
 		padding-left: 0;
 		text-align: center;
-		margin-top: 10px;
 		vertical-align: middle;
 		background: #1e1e27;
 		color: white;
@@ -2128,7 +2127,7 @@ ul.tabs {
 	}
 }
 
-@media (min-width: 361px) and (max-width: 479px) {
+@media (min-width: 320px) and (max-width: 479px) {
 	.top_nav_left{
 		height: 50px;
 		line-height: 50px;
@@ -2137,7 +2136,7 @@ ul.tabs {
 		text-transform: uppercase;
 	}
 	.resp-bf {
-		margin-top:50px;
+		margin-top:300px;
 	}
 }
 
@@ -2372,3 +2371,13 @@ h5 > span {
 
 .histoires__card-img {
 	width: 100%; }
+
+.table-responsive {
+	display: table ;
+}
+
+@media(max-width: 767px) {
+	.table-responsive {
+		display:block;
+	}
+}

@@ -84,8 +84,10 @@ class PanierController extends AbstractController
 
 
 
-
-    /*public function recommander($id, Request $request)
+    /**
+     * @Route("/recommander/{id}", name="recommander")
+     */
+    public function recommander($id, Request $request)
     {
         $session = $request->getSession();
         if (!$session->has('panier')) {
@@ -106,12 +108,10 @@ class PanierController extends AbstractController
         $session->set('panier',$panier);
 
         return $this->redirect($this->generateUrl('panier'));
-    }*/
+    }
 
 
-    /**
-     * @Route("/recommander/{id}", name="recommander")
-     */
+
     /*
     public function recommander($id,Commande $commande, Request $request) {
 
