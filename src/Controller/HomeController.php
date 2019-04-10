@@ -27,4 +27,26 @@ class HomeController extends AbstractController
             'cookie' => $cookie
         ]);
     }
+
+
+    /**
+     * @Route("/error404", name="error404")
+     */
+    /*
+    public function error404(){
+        return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
+    }
+
+    */
+    /**
+     * @Route("/error403", name="error403")
+     */
+    /*
+    public function error403(){
+        return $this->render('bundles/TwigBundle/Exception/error403.html.twig');
+    }
+    */
+
+
+
 }

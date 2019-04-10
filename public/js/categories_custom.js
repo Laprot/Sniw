@@ -21,7 +21,7 @@ jQuery(document).ready(function($)
 {
 	"use strict";
 
-	/* 
+	/*
 
 	1. Vars and Inits
 
@@ -56,7 +56,7 @@ jQuery(document).ready(function($)
 	initPriceSlider();
 	initCheckboxes();
 
-	/* 
+	/*
 
 	2. Set Header
 
@@ -92,7 +92,7 @@ jQuery(document).ready(function($)
 		}
 	}
 
-	/* 
+	/*
 
 	3. Init Menu
 
@@ -155,7 +155,7 @@ jQuery(document).ready(function($)
 					    	panel.style.maxHeight = panel.scrollHeight + "px";
 					    }
 					}
-				}	
+				}
 			}
 		}
 	}
@@ -175,7 +175,7 @@ jQuery(document).ready(function($)
 		menuActive = false;
 	}
 
-	/* 
+	/*
 
 	4. Init Favorite
 
@@ -213,7 +213,7 @@ jQuery(document).ready(function($)
     	}
     }
 
-    /* 
+    /*
 
 	5. Init Fix Product Border
 
@@ -298,11 +298,11 @@ jQuery(document).ready(function($)
 					var product = $(products[i]);
 					product.css('border-right', 'none');
 				}
-			}	
+			}
     	}
     }
 
-    /* 
+    /*
 
 	6. Init Isotope Filtering
 
@@ -356,7 +356,7 @@ jQuery(document).ready(function($)
 	        		$('.num_sorting_text').text($(this).text());
     				$('.product-grid').isotope({filter: numFilter });
 	        	});
-	        });	
+	        });
 
 	        // Filter based on the price range slider
 	        filterButton.on('click', function()
@@ -381,7 +381,7 @@ jQuery(document).ready(function($)
     	}
     }
 
-    /* 
+    /*
 
 	7. Init Price Slider
 
@@ -400,11 +400,11 @@ jQuery(document).ready(function($)
 				$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 			}
 		});
-			
+
 		$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
     }
 
-    /* 
+    /*
 
 	8. Init Checkboxes
 

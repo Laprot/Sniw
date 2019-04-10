@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Erreur 403 - SNIW , centrale d'achat export.{% endblock %}
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+                <div class="row ">
+                    <div class="pagenotfound mt-4">
+                        <h1> ACCÈS INTERDIT</h1>
+                        <p> Vous n'avez pas le droit d'accéder à l'objet demandé. Soit celui-ci est protégé, soit il ne peut être lu par le serveur.</p>
+                        <a href="{{ path('home') }}" id="review_submit" class="red_button message_submit_btn trans_300"> Retour à l'accueil </a>
+                    </div>
+                </div>
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

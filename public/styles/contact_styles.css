@@ -2381,3 +2381,25 @@ h5 > span {
 		display:block;
 	}
 }
+.pagenotfound{
+	max-width: 824px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+.pagenotfound h1 {
+	font: 600 28px/34px "Roboto", sans-serif;
+	color: #333333;
+	text-transform: uppercase;
+	margin-bottom: 7px;
+}
+
+.pagenotfound p {
+	font: 600 16px/20px "Roboto",sans-serif;
+	color: #555454;
+	text-transform: uppercase;
+	border-bottom: 1px solid #d8d8d8;
+	padding-bottom: 19px;
+	margin-bottom: 20px;
+}
