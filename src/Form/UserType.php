@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Groupe;
+use App\Entity\SuperficieMagasin;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -63,17 +64,20 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Email *'
             ])
-            ->add('username', TextType::class, [
-                'label' => 'Nom de compte *',
-                'required'=>false
-            ])
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'required'=>true,
                 'first_options'  => array('label' => 'Mot de passe *'),
                 'second_options' => array('label' => 'Répéter le mot de passe *'),
-            ));
-
+            ))
+            ->add('superficieMagasin', EntityType::class, [
+                'class' => SuperficieMagasin::class,
+                'label' => 'Superficie du magasin',
+                'placeholder' => ' ',
+                'multiple'=>false,
+                'expanded'=>false,
+                'choice_label' => 'nom'
+            ]);
 
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,

@@ -81,7 +81,16 @@ class DemandeCompteType extends AbstractType
             ])
 
 
-
+            ->add('superficieMagasin',ChoiceType::class, [
+                'choices' => [
+                    '- de 100 m2' => '- de 100 m2',
+                    'entre 100 et 500 m2' => 'entre 100 et 500 m2',
+                    '+ de 100 m2' => '+ de 100 m2'
+                ],
+                'expanded'=> false,
+                'multiple' => false,
+                'required' => true
+            ])
 
             ->add('demande',TextareaType::class, [
                 'label'=>'Votre demande : *',

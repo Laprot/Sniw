@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Commande;
 use App\Entity\CommandeTypeProduits;
+use App\Entity\SuperficieMagasin;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -32,6 +33,11 @@ class CommandeTypeProduitsType extends AbstractType
                         ->orderBy('c.id', 'ASC');
                     return $query;
                 }
+            ])
+            ->add('superficie', EntityType::class, [
+                'class' => SuperficieMagasin::class,
+                'label' => 'Pour une superficie de : ',
+                'choice_label' => 'nom'
             ]);
     }
 

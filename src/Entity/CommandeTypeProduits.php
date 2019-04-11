@@ -35,6 +35,11 @@ class CommandeTypeProduits
      */
     private $commande;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SuperficieMagasin", inversedBy="commandeTypeProduits")
+     */
+    private $superficie;
+
 
     public function __construct()
     {
@@ -98,6 +103,18 @@ class CommandeTypeProduits
     public function setCommande(?Commande $commande): self
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getSuperficie(): ?SuperficieMagasin
+    {
+        return $this->superficie;
+    }
+
+    public function setSuperficie(?SuperficieMagasin $superficie): self
+    {
+        $this->superficie = $superficie;
 
         return $this;
     }

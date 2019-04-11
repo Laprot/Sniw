@@ -108,6 +108,11 @@ class DemandeCompte
     private $telephone;
 
     /**
+     * @var string|null
+     */
+    private $superficieMagasin;
+
+    /**
      * @Assert\Type(type="bool")
      */
     private $grossiste_bool;
@@ -358,5 +363,23 @@ class DemandeCompte
         $this->demande = $demande;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSuperficieMagasin()
+    {
+        return $this->superficieMagasin;
+    }
+
+    /**
+     * @param mixed $superficieMagasin
+     */
+    public function setSuperficieMagasin($superficieMagasin)
+    {
+        $this->superficieMagasin = $superficieMagasin;
+    }
+
+
 
 }

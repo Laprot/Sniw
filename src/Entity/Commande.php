@@ -356,6 +356,6 @@ class Commande
 
     public function __toString()
     {
-        return $this->getReference();
+        return 'Réf : '.$this->getReference().' - '.$this->getCommande()['prixHT'].'€';
     }
 }
