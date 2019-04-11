@@ -69,14 +69,73 @@ class CatalogueController extends AbstractController
                $request->query->getInt('page', 1), 24);
        }
 
+
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
-        return $this->render('catalogue/cataloguetest.html.twig', [
+
+
+        return $this->render('catalogue/catalogue.html.twig', [
             'produits' => $produits,
             'count' => $produits->getTotalItemCount(),
             'form' => $form->createView(),
             'categories'=>$categories,
             'search' => $search->getRechercher()
+        ]);
+
+    }
+
+
+    /**
+     * @Route("/catalogue/sous-cat/{id}", name="catalogue_sous-cat", requirements={"id"="\d+"})
+     */
+    public function sous_categorie(PaginatorInterface $paginator,Request $request, Categorie $categorie)
+    {
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
+
+        if ($categorie != null)
+            $findProduits = $this->repository->byCategorie($categorie);
+        else
+            $findProduits = $this->repository->findBy(array('etat' => 1));
+
+        //si on utilise la barre de recherche
+        if ($form->isSubmitted() && $form->isValid()) {
+            //si on ne tape rien dans la barre de recherche,on affiche tous les produits
+            if ($search->getRechercher() == null) {
+                $produits = $paginator->paginate($this->repository->findAllAvailable(),
+                    $request->query->getInt('page', 1), 24);
+            }
+            else {
+                //Sinon on affiche les produits recherchés
+                $produits = $paginator->paginate($this->repository->findAllVisibleQuery($search),
+                    $request->query->getInt('page', 1), 24);
+            }
+
+        }
+        //sinon on utilise le filtre des produits catégories
+        else {
+            $produits = $paginator->paginate($findProduits,
+                $request->query->getInt('page', 1), 24);
+        }
+
+
+        if($categorie->getNom() == '-') {
+            $categorie->setNom($categorie->getIdParent()->getNom());
+        }
+
+
+        //Catégories
+        $categories = $this->em->getRepository(Categorie::class)->findAll();
+
+
+        return $this->render('catalogue/catalogue_souscategorie.html.twig', [
+            'produits' => $produits,
+            'count' => $produits->getTotalItemCount(),
+            'form' => $form->createView(),
+            'categories'=>$categories,
+            'search' => $search->getRechercher(),
+            'categorie' =>$categorie,
         ]);
 
     }

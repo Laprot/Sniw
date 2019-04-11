@@ -45,7 +45,7 @@ class ImportCategorie extends Command
         $io = new SymfonyStyle($input,$output);
         $io->title('Import du flux ...');
 
-        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/categories_csv/ps_categories.csv');
+        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/categories_csv/classification_diapar.csv');
 
         $reader->setDelimiter(';');
         $results = $reader->fetchAssoc();
@@ -63,12 +63,13 @@ class ImportCategorie extends Command
 
             $categorie->setIdParent($id_parent);
 
+            /*
             $categorie->setLvl($row['lvl']);
             $categorie->setLft($row['lft']);
             $categorie->setRgt($row['rgt']);
             $categorie->setPosition($row['position']);
 
-
+            */
 
             $this->em->persist($categorie);
 

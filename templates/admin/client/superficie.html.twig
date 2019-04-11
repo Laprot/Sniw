@@ -1,13 +1,13 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Les catégories {% endblock %}
+{% block title %} Les superficies {% endblock %}
 
 {% block stylesheets %}
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Catégories</title>
+        <title> Clients</title>
         <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
 
         <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/dataTables.bootstrap4.css">
@@ -25,32 +25,39 @@
     <!-- ============================================================== -->
     <div class="dashboard-main-wrapper">
 
-        {% include 'admin/left_side.html.twig' %}
+    {% include 'admin/left_side.html.twig' %}
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+    <div class="container-fluid  dashboard-content">
         <!-- ============================================================== -->
-        <!-- wrapper  -->
+        <!-- pageheader -->
         <!-- ============================================================== -->
-        <div class="dashboard-wrapper">
-            <div class="container-fluid  dashboard-content">
-                <!-- ============================================================== -->
-                <!-- pageheader -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="page-header">
-                            <h2 class="pageheader-title">Données catégories   </h2>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-header">
+                    <h2 class="pageheader-title">Données superficies magasins</h2>
 
-                            <h5> <a class="nav-link" href="{{ path('categorie_new') }}"> <i class="fas fa-plus"></i> Ajouter une catégorie </a> </h5>
-                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                            <div class="page-breadcrumb">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Catégories</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
+
+
+
+
+
+                    <h5> <a class="nav-link" href="{{ path('client_superficie_new') }}"> <i class="fas fa-plus"></i> Ajouter une superficie </a> </h5>
+
+
+                    <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                    <div class="page-breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Superficies</li>
+                            </ol>
+                        </nav>
                     </div>
+
+
                 </div>
                 <!-- ============================================================== -->
                 <!-- end pageheader -->
@@ -61,8 +68,8 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Toutes les catégories</h5>
-
+                            <h5 class="card-header">Toutes les superficies
+                            </h5>
                             <div class="card-body">
                                 <div class="table-responsive"  >
                                     <table class="table table-bordered first" >
@@ -70,45 +77,44 @@
                                         <tr style="background-color:lightgrey">
                                             <th>ID</th>
                                             <th>Nom</th>
-                                            <th> Sous-catégories </th>
-                                            <th>Actions (Modifier / Supprimer)</th>
+
+                                            <th>Modifier / Supprimer</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for categorie in categories %}
-
-                                            <!-- Boucle if pour afficher que les parents -->
-
-                                            {% if categorie.getIdParent() == null %}
-
+                                        {% for superficie in superficies %}
                                             <tr>
-                                                <td> {{ categorie.id }} </td>
+                                                <td>{{ superficie.id }}</td>
 
-                                                <td><a href="{{ path('sous_categorie', {id: categorie.id}) }}">{{ categorie.nom }}</a></td>
-
-
-                                                <td style="text-align:center"> <a class="text-center" href="{{ path('sous_categorie', {id: categorie.id}) }}"><i style="font-size:20px" class="fas fa-search-plus"></i> Afficher</a> </td>
+                                                <td> {{ superficie.nom }}</td>
 
                                                 <td>
-                                                    <div class="btn btn-group justified text-center">
+                                                    <div class="btn btn-group justified">
 
-
-                                                        <a class="ml-2 mr-2" href="{{ path('categorie_edit', {id: categorie.id}) }}">
+                                                        <a class="ml-2 mr-2" href="{{ path('client_superficie_edit', {id: superficie.id}) }}">
                                                             <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
                                                         </a>
-                                                        <form method="post" action="{{ path('categorie_delete', {'id':  categorie.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer cette catégorie');">
+
+                                                        <form method="post" action="{{ path('client_superficie_delete', {'id': superficie.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer cette superficie ?');">
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ superficie.id) }}">
                                                             <button class="btn btn-danger" ><i class="fas fa-times"></i></button>
                                                         </form>
+
+
                                                     </div>
+
                                                 </td>
-                                            {% endif %}
+
                                             </tr>
+
                                         {% endfor %}
                                         </tbody>
+
                                     </table>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -121,13 +127,12 @@
         </div>
     </div>
 
-
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>

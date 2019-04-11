@@ -31,7 +31,7 @@ class Categorie
 
     /**
      * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="children", cascade={"remove"})
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
     private $id_parent;
@@ -57,13 +57,13 @@ class Categorie
 
     /**
      * @Gedmo\TreeRoot
-     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
     private $root;
 
     /**
-     * @ORM\OneToMany(targetEntity="Categorie", mappedBy="id_parent")
+     * @ORM\OneToMany(targetEntity="App\Entity\Categorie", mappedBy="id_parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     private $children;

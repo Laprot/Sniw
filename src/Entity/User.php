@@ -148,6 +148,11 @@ class User implements UserInterface,NotificationInterface
      */
     private $commandes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SuperficieMagasin", inversedBy="user")
+     */
+    private $superficieMagasin;
+
     public function __construct() {
         $this->roles = array('ROLE_USER');
         $this->id_groupe = new ArrayCollection();
@@ -560,6 +565,18 @@ class User implements UserInterface,NotificationInterface
     public function isGranted($role)
     {
         return in_array($role, $this->getRoles());
+    }
+
+    public function getSuperficieMagasin(): ?SuperficieMagasin
+    {
+        return $this->superficieMagasin;
+    }
+
+    public function setSuperficieMagasin(?SuperficieMagasin $superficieMagasin): self
+    {
+        $this->superficieMagasin = $superficieMagasin;
+
+        return $this;
     }
 
 }

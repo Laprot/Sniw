@@ -1,0 +1,464 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Hypermarché/Supermarché - SNIW, centrale d'achat export.{% endblock %}
+
+
+{% block stylesheet %}
+
+{% endblock %}
+{% block body %}
+
+    <body>
+
+    <link rel="stylesheet" type="text/css" href="/styles/pagination.css">
+    <link rel="stylesheet" type="text/css" href="/styles/produit_fix.css">
+
+
+
+    <div class="background">
+        <div class="columns-container container carriere-container">
+
+            <div id="_desktop_top_menu" class="adtm_menu_container ">
+                <div id="adtm_menu" data-open-method="1">
+                    <div id="adtm_menu_inner" class="clearfix advtm_open_on_hover">
+
+                        <ul id="menu">
+                            {% for categorie in categories %}
+                                {% if categorie.getIdParent() == null  %}
+                                    <li class="li-niveau1 advtm_menu_3 menuHaveNoMobileSubMenu">
+                                        <a  href="{{ path('catalogue_sous-cat',{id:categorie.id}) }}" title="Animalerie"  class=" a-niveau1 {% if app.request.attributes.get('_params') %} advtm_menu_actif {% endif %}"  data-type="category" data-id="6262"><span class="advtm_menu_span advtm_menu_span_3">{{ categorie.nom }}</span></a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="rte">
+
+                <div class="col product_section clearfix">
+
+
+
+                    <!-- Breadcrumbs -->
+
+                    <div class="breadcrumbs d-flex flex-row align-items-center" style="margin-bottom:15px">
+                        <ul>
+                            <li><a href="{{ path('home') }}">Home</a></li>
+                            <li><a href="{{ path('catalogue') }}"><i class="fa fa-angle-right" aria-hidden="true"></i>Catalogue</a></li>
+
+                            {%  if categorie.getIdParent()|length > 0 %}
+
+                                <li><a href="{{ path('catalogue_sous-cat', {id:categorie.getIdParent().id}) }}"><i class="fa fa-angle-right" aria-hidden="true"></i>{{ categorie.getIdParent().nom }}</a></li>
+                                <li class="active"><a href="{{ path('catalogue_sous-cat', {id:categorie.id}) }}"><i class="fa fa-angle-right" aria-hidden="true"></i>{{ categorie.nom }}</a></li>
+
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <!-- Sidebar -->
+
+                    <div class="sidebar">
+                        <div class="sidebar_section">
+                            <div class="sidebar_title">
+                                <h5 style="background-color:#f2bf00;color:white;padding:6px 20px 6px 20px">{{ categorie.nom }}</h5>
+                            </div>
+
+
+
+
+                            <ul class="navbar-nav flex-column">
+                                {% for categorie in categorie.children %}
+                                    {% if categorie.getIdParent()|length > 0 %}
+
+                                        <li class="nav-item ">
+
+                                                {% if categorie.children|length == 0 %}
+                                                    <a class="nav-link" href="{{ path('catalogue_sous-cat', {id:categorie.id}) }}">{{ categorie.nom }} </a>
+                                                {% else %}
+                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#{{ categorie.id }}" aria-controls="submenu-3">{{ categorie.nom }} <i class="fa fa-angle-down" ></i></a>
+                                                    </a>
+                                                {% endif %}
+                                            <div id="{{ categorie.id }}" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                    {% for categorie in categorie.children %}
+
+                                                            <li class="nav-item"><a class="nav-link nav-link-li" style="font-size:10px" href="{{ path('catalogue_sous-cat', {'id':categorie.id}) }}"> <i class="fa fa-angle-right"></i> {{ categorie.nom }} </a></li>
+
+
+
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                    <!-- Main Content -->
+
+                    <div class="main_content">
+
+                        <!-- Products -->
+
+
+                        <div class="products_iso">
+                            <div class="row">
+                                <div class="col">
+
+                                    <!-- Product Sorting -->
+
+                                    {% if produits|length !=0 %}
+
+                                    <!-- Product Grid -->
+
+                                    <div class="container">
+                                        <div class="row">
+
+                                            <div class="pages d-flex flex-row align-items-center ">
+                                                {{ knp_pagination_render(produits) }}
+                                            </div>
+                                            <div class="col">
+                                                <div style="float: right">
+                                                    {% if count <= 24 %}
+                                                        Résultats 1 - {{ count }} sur {{ count }}.
+                                                    {% else %}
+                                                        Résultats 1 - 24 sur {{ count }}.
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <hr>
+
+
+                                    <div class="product_sorting_container product_sorting_container_top mt-4">
+                                        <ul class="product_sorting">
+                                            <li>
+                                                <span class="type_sorting_text">Trier par  </span>
+                                                <i class="fa fa-angle-down"></i>
+                                                <ul class="sorting_type">
+                                                    <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Defaut</span></li>
+                                                    {% if is_granted('ROLE_USER') %}
+
+                                                        <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Prix</span></li>
+
+                                                    {% endif %}
+                                                    <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Nom </span></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <span>Voir</span>
+                                                <span class="num_sorting_text">24</span>
+                                                <i class="fa fa-angle-down"></i>
+                                                <ul class="sorting_num">
+                                                    <li class="num_sorting_btn"><span>6</span></li>
+                                                    <li class="num_sorting_btn"><span>12</span></li>
+                                                    <li class="num_sorting_btn"><span>24</span></li>
+                                                </ul>
+                                            </li>
+                                            <li style="border:none">
+                                                Il y a {{ count }} produit(s)
+                                            </li>
+                                        </ul>
+
+
+
+
+                                    </div>
+
+
+                                    <div class="product-grid mb-4">
+
+                                        <!-- Products -->
+
+                                        {% for produit in produits %}
+                                        {% if is_granted('ROLE_USER') %}
+                                        <div class="product-item men">
+                                            <div class="product discount product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
+                                                <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
+                                                    <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
+                                                </div>
+
+                                                <div class="product_info" style="cursor:auto !important">
+                                                    <h6 class="product_name desc_bloc1" style="text-align:left;font-weight: bold">{{ produit.nom }}</h6>
+
+
+                                                    <!-- Modal -->
+                                                    <!-- Modal: modalAbandonedCart-->
+                                                    <div class="modal fade" tabindex="-1" role="dialog" id="{{ produit.id }}" aria-labelledby="gridSystemModalLabel">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header" style="background:url(/images/bg-site.png) transparent top center repeat-y">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="gridSystemModalLabel" style="color:black"> {{ produit.nom }}</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4"> <img src="{{ asset('produits/images/' ~ produit.image) }}"></div>
+                                                                        <div class="col-md-7 col-md-offset-4">
+
+                                                                            <p style="text-align:left;color:#f2bf00;font-size:15px"> {{ produit.getIdManufacturer() }}</p>
+                                                                            <p style="text-align:left;color:#777777;font-size:12px"> Référence :  {{ produit.reference }}</p>
+                                                                            <p style="text-align:left;color:#777777;font-size:12px"> Gencod : {{ produit.gencod }}</p>
+                                                                            <table id="customers">
+                                                                                <tr>
+                                                                                    <td> Conditionnement</td>
+                                                                                    <td> {{ produit.conditionnement() }} </td>
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td> Unité par carton</td>
+                                                                                    <td> {{ produit.getUniteParCarton() }} </td>
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td> NB carton/palette</td>
+                                                                                    <td> {{ produit.getNbCartonPalette() }}</td>
+
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td> DLV Garantie</td>
+                                                                                    <td> {{ produit.getDlvGarantie() }}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td> DLV Théorique</td>
+                                                                                    <td> {{ produit.getDlvTheorique() }}</td>
+                                                                                </tr>
+
+                                                                                <tr>
+                                                                                    <td>Produit Belle France </td>
+                                                                                    <td> {{ produit.getProduitBelleFrance() ? 'Oui' : 'Non' }}</td>
+                                                                                </tr>
+
+
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <div class="col">
+                                                                        <p class="text-center "> Prix unitaire : <strong>{{ produit.getPrixFinal() }}€ </strong></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.modal -->
+
+
+
+                                                    <div class="product_info desc_bloc2" style="font-weight:bold;text-align:left;color:#f2bf00;font-size:11px"> {{ produit.getIdManufacturer() }}</div>
+
+                                                    <div class="product_info desc_bloc3" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
+
+
+                                                    <div class="product_price unit-price"> {{ produit.getPrixFinal() }}€/u HT</div>
+                                                    <div class="product_info price-condi"> Carton de {{ produit.getUniteParCarton() }} produit(s)</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="wrapper-qty text-center">
+
+                                                            <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get" id="idForm">
+                                                                <span class="labelQty" style="float:left;margin-left:10px;font-size:12px">Quantit&eacute; :</span>
+                                                                <br><input name="quantite" class="addQty" id="submitid" style="width: 60%;height:20px;float: left;margin-left: 10px;">
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-6">
+
+                                                        <div class="wrapper-qty text-center add-tocart">
+                                                            <input type="image"src="{{ asset('images/add-to-cart.png') }}" style="width:40px">
+                                                        </div>
+
+                                                    </div>
+
+                                                    </form>
+
+                                                    {% else %}
+                                                    <div class="product-item men" style="height:280px">
+                                                        <div class="product discount product_filter" style="height:260px">
+                                                            <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
+                                                                <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
+                                                            </div>
+                                                            <div class="product_info" style="cursor:auto !important">
+                                                                <h6 class="product_name desc_bloc1" style="text-align:left;font-weight: bold">{{ produit.nom }}</h6>
+                                                                <div class="product_price desc_bloc2" style="text-align:left;color:#f2bf00;font-size:11px"> {{ produit.getIdManufacturer() }}</div>
+
+                                                                <div class="product_price desc_bloc3" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
+
+
+
+                                                                <!-- Modal -->
+                                                                <!-- Modal: modalAbandonedCart-->
+                                                                <div class="modal fade" tabindex="-1" role="dialog" id="{{ produit.id }}" aria-labelledby="gridSystemModalLabel">
+                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header" style="background:url(/images/bg-site.png) transparent top center repeat-y">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                                <h4 class="modal-title" id="gridSystemModalLabel" style="color:black"> {{ produit.nom }}</h4>
+                                                                            </div>
+
+
+                                                                            <div class="modal-body">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-4"> <img src="{{ asset('images/croquette.jpg') }}"></div>
+                                                                                    <div class="col-md-7 col-md-offset-4">
+
+                                                                                        <p style="text-align:left;color:#f2bf00;font-size:15px"> {{ produit.getIdManufacturer() }}</p>
+                                                                                        <p style="text-align:left;color:#777777;font-size:12px"> Référence :  {{ produit.reference }}</p>
+                                                                                        <p style="text-align:left;color:#777777;font-size:12px"> Gencod : {{ produit.gencod }}</p>
+                                                                                        <table id="customers">
+                                                                                            <tr>
+                                                                                                <td> Conditionnement</td>
+                                                                                                <td> {{ produit.conditionnement() }} </td>
+
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td> Unité par carton</td>
+                                                                                                <td> {{ produit.getUniteParCarton() }} </td>
+
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td> NB carton/palette</td>
+                                                                                                <td> {{ produit.getNbCartonPalette() }}</td>
+
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td> DLV Garantie</td>
+                                                                                                <td> {{ produit.getDlvGarantie() }}</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td> DLV Théorique</td>
+                                                                                                <td> {{ produit.getDlvTheorique() }}</td>
+                                                                                            </tr>
+
+                                                                                            <tr>
+                                                                                                <td>Produit Belle France </td>
+                                                                                                <td> {{ produit.getProduitBelleFrance() ? 'Oui' : 'Non' }}</td>
+                                                                                            </tr>
+
+
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <div class="col">
+                                                                                    <p> Créez un compte pour voir le prix.</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div><!-- /.modal-content -->
+                                                                    </div><!-- /.modal-dialog -->
+                                                                </div><!-- /.modal -->
+
+
+
+                                                                {% endif %}
+
+
+                                                            </div>
+
+
+
+
+                                                        </div>
+
+
+                                                        <!-- Bouton ajouter panier au cas ou
+                                                        <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+
+                                                        -->
+
+                                                    </div>
+                                                    {% endfor %}
+
+
+                                                </div>
+
+                                                <!-- Product Sorting -->
+
+                                                <div class="product_sorting_container product_sorting_container_bottom clearfix">
+
+                                    <span class="showing_results">
+
+                                        {% if count <= 24 %}
+                                            Résultats 1 - {{ count }} sur {{ count }}.
+                                        {% else %}
+                                            Résultats 1 - 24 sur {{ count }}.
+                                        {% endif %}
+
+
+                                    </span>
+                                                    <div class="pages d-flex flex-row align-items-center">
+
+                                                        <div class="pages d-flex flex-row align-items-center ">
+                                                            {{ knp_pagination_render(produits) }}
+                                                        </div>
+                                                    </div>
+
+                                                    {% else %}
+
+                                                        <h5 class="mt-4"> Aucun résultat trouvé pour "{{ search }}"</h5>
+                                                    {% endif %}
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Benefit -->
+
+
+
+
+
+                            <!-- Footer -->
+                            {% include 'partiels/footer.html.twig' %}
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <script src="js/jquery-3.2.1.min.js"></script>
+                <script src="styles/bootstrap4/popper.js"></script>
+                <script src="styles/bootstrap4/bootstrap.min.js"></script>
+                <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+                <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+                <script src="plugins/easing/easing.js"></script>
+                <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+                <script src="js/categories_custom.js"></script>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script src="/js/jquery-3.2.1.min.js"></script>
+                <script>
+
+
+                </script>
+    </body>
+
+{% endblock %}
