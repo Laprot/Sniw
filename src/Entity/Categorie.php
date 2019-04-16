@@ -31,7 +31,7 @@ class Categorie
 
     /**
      * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="children", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="children")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      */
     private $id_parent;

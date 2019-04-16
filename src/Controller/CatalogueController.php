@@ -94,10 +94,12 @@ class CatalogueController extends AbstractController
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
-        if ($categorie != null)
+        if ($categorie != null )
             $findProduits = $this->repository->byCategorie($categorie);
-        else
+        else if ($categorie == null)
             $findProduits = $this->repository->findBy(array('etat' => 1));
+
+
 
         //si on utilise la barre de recherche
         if ($form->isSubmitted() && $form->isValid()) {
@@ -118,6 +120,7 @@ class CatalogueController extends AbstractController
             $produits = $paginator->paginate($findProduits,
                 $request->query->getInt('page', 1), 24);
         }
+
 
 
         if($categorie->getNom() == '-') {

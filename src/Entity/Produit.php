@@ -26,7 +26,7 @@ class Produit
 
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string",nullable=true)
      * @Assert\File(mimeTypes={ "image/jpeg" , "image/jpg", "image/png" }, mimeTypesMessage="Format incorrect (formats jpeg,jpg et png autorisés)")
      */
     private $image;
@@ -43,12 +43,12 @@ class Produit
 
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $reference;
 
@@ -64,7 +64,7 @@ class Produit
     private $prix_base;
 
     /**
-     * @ORM\Column(type="float", length=255)
+     * @ORM\Column(type="float", length=255,nullable=true)
      */
     private $prix_final;
 
@@ -427,8 +427,6 @@ class Produit
 
         return $this;
     }
-
-
 
     /**
      * @return Collection|Features[]
