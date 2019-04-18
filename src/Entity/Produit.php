@@ -124,10 +124,7 @@ class Produit
      */
     private $upc;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="id_produit")
-     */
-    private $id_categorie;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Manufacturer", inversedBy="produits")
@@ -189,9 +186,15 @@ class Produit
      */
     private $commandeTypeProduits;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Categorie", inversedBy="produits")
+     */
+    private $categories;
+
     public function __construct()
     {
         $this->features = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -403,17 +406,6 @@ class Produit
     }
 
 
-    public function getIdCategorie(): ?Categorie
-    {
-        return $this->id_categorie;
-    }
-
-    public function setIdCategorie(?Categorie $id_categorie): self
-    {
-        $this->id_categorie = $id_categorie;
-        return $this;
-    }
-
 
 
     public function getIdManufacturer(): ?Manufacturer
@@ -572,6 +564,32 @@ class Produit
     public function setCommandeTypeProduits(?CommandeTypeProduits $commandeTypeProduits): self
     {
         $this->commandeTypeProduits = $commandeTypeProduits;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+        }
 
         return $this;
     }

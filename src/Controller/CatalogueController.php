@@ -94,11 +94,11 @@ class CatalogueController extends AbstractController
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
-        if ($categorie != null )
-            $findProduits = $this->repository->byCategorie($categorie);
-        else if ($categorie == null)
-            $findProduits = $this->repository->findBy(array('etat' => 1));
+        if ($categorie != null)
+            $findProduits = $this->repository->byCategorie($categorie->getId());
 
+        else
+            $findProduits = $this->repository->findBy(array('etat' => 1));
 
 
         //si on utilise la barre de recherche

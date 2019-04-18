@@ -33,7 +33,7 @@ class ProduitRepository extends ServiceEntityRepository
     }
 
 
-
+/*
     public function byCategorie($categorie)
     {
         $qb = $this->createQueryBuilder('u')
@@ -44,8 +44,20 @@ class ProduitRepository extends ServiceEntityRepository
             ->setParameter('id_categorie', $categorie);
         return $qb->getQuery()->getResult();
     }
+*/
 
 
+    public function byCategorie($categorie)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->select('p')
+            ->leftJoin('p.categories', 'C')
+            ->where(' C.id = :categorie_id ')
+            ->andWhere('p.etat = 1')
+            ->orderBy('p.id')
+            ->setParameter('categorie_id', $categorie);
+        return $qb->getQuery()->getResult();
+    }
     /*
     public function findByIdCommande($commande) {
         return $this->createQueryBuilder('u')

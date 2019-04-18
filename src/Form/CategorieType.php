@@ -27,13 +27,6 @@ class CategorieType extends AbstractType
                     'multiple' => false,
                     'group_by' => 'id_parent',
                     'label' => 'Catégorie parente',
-                    'query_builder' => function (CategorieRepository $c) {
-                        $queryBuilder = $c->createQueryBuilder('c');
-                        $query = $queryBuilder
-                            ->where($queryBuilder->expr()->isNotNull('c.id_parent'))
-                            ->orderBy('c.id_parent', 'ASC');
-                        return $query;
-                    }
             ]);
 
     }

@@ -26,7 +26,7 @@
                                 {% for categorie in categories %}
                                 {% if categorie.getIdParent() == null  %}
                                 <li class="li-niveau1 advtm_menu_3 menuHaveNoMobileSubMenu">
-                                    <a  href="{{ path('catalogue_sous-cat',{id:categorie.id}) }}" title="Animalerie"  class=" a-niveau1 {% if app.request.attributes.get('_params') %} advtm_menu_actif {% endif %}"  data-type="category" data-id="6262"><span class="advtm_menu_span advtm_menu_span_3">{{ categorie.nom }}</span></a>
+                                    <a  href="{{ path('catalogue_sous-cat',{id:categorie.id}) }}" title="Animalerie"  class=" a-niveau1 {% if app.request.attributes.get('catalogue') %} advtm_menu_actif {% endif %}"  data-type="category" data-id="6262"><span class="advtm_menu_span advtm_menu_span_3">{{ categorie.nom }}</span></a>
                                 </li>
                                 {% endif %}
                                 {% endfor %}

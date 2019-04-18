@@ -117,7 +117,7 @@ class ImportProduit extends Command
             //Import des caractéristiques si mal écrit
             //strpos pour trouver le mot dans la colonne
             //Si mot trouvé, on remplace le mot avec le "-"  par rien pour récupérer juste la valeur
-            // /!\ toujours vérifier le fichier ps_productstest.csv
+            // /!\ toujours vérifier le fichier ps_products.csv
            foreach ($row as $k=>$v ) {
                //produit bio
                if(\strpos($row[$k],'BIO') !== false) {

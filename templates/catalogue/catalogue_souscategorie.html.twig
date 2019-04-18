@@ -21,12 +21,13 @@
             <div id="_desktop_top_menu" class="adtm_menu_container ">
                 <div id="adtm_menu" data-open-method="1">
                     <div id="adtm_menu_inner" class="clearfix advtm_open_on_hover">
-
                         <ul id="menu">
                             {% for categorie in categories %}
                                 {% if categorie.getIdParent() == null  %}
                                     <li class="li-niveau1 advtm_menu_3 menuHaveNoMobileSubMenu">
-                                        <a  href="{{ path('catalogue_sous-cat',{id:categorie.id}) }}" title="Animalerie"  class=" a-niveau1 {% if app.request.attributes.get('_params') %} advtm_menu_actif {% endif %}"  data-type="category" data-id="6262"><span class="advtm_menu_span advtm_menu_span_3">{{ categorie.nom }}</span></a>
+                                        <a  href="{{ path('catalogue_sous-cat',{id:categorie.id}) }}" title="Animalerie"  class=" a-niveau1 {% if app.request.attributes.get('_route') %}  {% endif %}"  data-type="category" data-id="6262"><span class="advtm_menu_span advtm_menu_span_3">{{ categorie.nom }}</span></a>
+
+
                                     </li>
                                 {% endif %}
                             {% endfor %}
@@ -83,7 +84,12 @@
                                                 {% endif %}
                                             <div id="{{ categorie.id }}" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
+
+                                                    <li class="nav-item"><a class="nav-link nav-link-li" style="font-size:10px" href="{{ path('catalogue_sous-cat', {'id':categorie.id}) }}"> <i class="fa fa-angle-right"></i> <span style="font-weight:bold">TOUT VOIR </span></a></li>
+
+
                                                     {% for categorie in categorie.children %}
+
 
                                                             <li class="nav-item"><a class="nav-link nav-link-li" style="font-size:10px" href="{{ path('catalogue_sous-cat', {'id':categorie.id}) }}"> <i class="fa fa-angle-right"></i> {{ categorie.nom }} </a></li>
 
@@ -445,17 +451,15 @@
 
                 </div>
 
-                <script src="js/jquery-3.2.1.min.js"></script>
-                <script src="styles/bootstrap4/popper.js"></script>
-                <script src="styles/bootstrap4/bootstrap.min.js"></script>
-                <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
-                <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-                <script src="plugins/easing/easing.js"></script>
-                <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-                <script src="js/categories_custom.js"></script>
-
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script src="/js/jquery-3.2.1.min.js"></script>
+                <script src="/styles/bootstrap4/popper.js"></script>
+                <script src="styles/bootstrap4/bootstrap.min.js"></script>
+                <script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+                <script src="/plugins/easing/easing.js"></script>
+                <script src="/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+                <script src="/js/categories_custom.js"></script>
+
+                <script src="/js/isotope.pkgd.min.js"></script>
                 <script>
 
 
