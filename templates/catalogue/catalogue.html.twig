@@ -171,7 +171,11 @@
                                             <div class="product-item men">
                                                 <div class="product discount product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
                                                     <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
-                                                        <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
+                                                        {% if produit.image|length > 0 %}
+                                                            <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
+                                                        {% else %}
+                                                            <span class="product_img_link"><img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}"></span>
+                                                        {% endif %}
                                                     </div>
 
                                                     <div class="product_info" style="cursor:auto !important">
@@ -189,7 +193,15 @@
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <div class="row">
-                                                                            <div class="col-md-4"> <img src="{{ asset('produits/images/' ~ produit.image) }}"></div>
+                                                                            <div class="col-md-4">
+
+
+                                                                                {% if produit.image|length > 0 %}
+                                                                                    <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                                                                {% else %}
+                                                                                    <img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}">
+                                                                                {% endif %}
+                                                                            </div>
                                                                             <div class="col-md-7 col-md-offset-4">
 
                                                                                 <p style="text-align:left;color:#f2bf00;font-size:15px"> {{ produit.getIdManufacturer() }}</p>
@@ -254,9 +266,9 @@
 
                                                     <div class="wrapper-qty text-center">
 
-                                                        <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get" id="idForm">
+                                                        <form  method="get" id="idForm">
                                                         <span class="labelQty" style="float:left;margin-left:10px;font-size:12px">Quantit&eacute; :</span>
-                                                        <br><input name="quantite" class="addQty" id="submitid" style="width: 60%;height:20px;float: left;margin-left: 10px;">
+                                                        <br><input name="{{ produit.id }}" value="1" class="addQty" id="submitid_{{ produit.id }}" style="width: 60%;height:20px;float: left;margin-left: 10px;" >
 
 
                                                     </div>
@@ -266,18 +278,29 @@
                                                 <div class="col-md-6">
 
                                                     <div class="wrapper-qty text-center add-tocart">
-                                                       <input type="image"src="{{ asset('images/add-to-cart.png') }}" style="width:40px">
+                                                       <img onclick="refreshAjax({{ produit.id }},'/ajouter/ajax/'+ {{ produit.id }})" src="{{ asset('images/add-to-cart.png') }}" style="width:40px" >
                                                     </div>
 
                                                 </div>
 
-                                            </form>
+                                                 </form>
 
                                                 {% else %}
+
+
                                                     <div class="product-item men" style="height:280px">
                                                         <div class="product discount product_filter" style="height:260px">
                                                             <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
-                                                                <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
+                                                                <span class="product_img_link">
+
+                                                                       {% if produit.image|length > 0 %}
+                                                                           <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
+                                                                    {% else %}
+                                                                           <span class="product_img_link"><img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}"></span>
+                                                                       {% endif %}
+
+
+                                                                </span>
                                                             </div>
                                                             <div class="product_info" style="cursor:auto !important">
                                                                 <h6 class="product_name desc_bloc1" style="text-align:left;font-weight: bold">{{ produit.nom }}</h6>
@@ -300,7 +323,15 @@
 
                                                                         <div class="modal-body">
                                                                             <div class="row">
-                                                                                <div class="col-md-4"> <img src="{{ asset('images/croquette.jpg') }}"></div>
+                                                                                <div class="col-md-4">
+
+                                                                                    {% if produit.image|length > 0 %}
+                                                                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                                                                    {% else %}
+                                                                                        <img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}">
+                                                                                    {% endif %}
+
+                                                                                </div>
                                                                                 <div class="col-md-7 col-md-offset-4">
 
                                                                                     <p style="text-align:left;color:#f2bf00;font-size:15px"> {{ produit.getIdManufacturer() }}</p>
@@ -437,8 +468,41 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
+    function refreshAjax(id,changePath) {
+        $.ajax({
+           type: "POST",
+           url: changePath,
+           data : {
+               quantite: $('#submitid_' +id).val()
+            },
+            dataType: "json",
+            success: function(response) {
+
+               //let qte =  +$('#submitid_' +id).val() +1 ;
+
+                //$('#submitid_' +id).val(qte);
+
+                let txt = 0;
+
+
+                txt = parseInt($('#checkout_items').text()) +1;
+                $('#checkout_items').text(txt);
+
+
+            }
+
+
+
+
+        });
+    }
+
+
+
 
 </script>
+
 </body>
+
 
 {% endblock %}

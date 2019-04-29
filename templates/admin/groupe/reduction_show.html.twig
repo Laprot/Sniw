@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Les produits {% endblock %}
+{% block title %} Les réductions par groupe et par catégorie {% endblock %}
 
 {% block stylesheets %}
     <head>
@@ -37,42 +37,21 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Données produits</h2>
+                            <h2 class="pageheader-title">Données réductions</h2>
 
 
-                            <h5> <a class="nav-link" href="{{ path('produits_new') }}"> <i class="fas fa-plus"></i> Ajouter un produit </a> </h5>
+                            <h5> <a class="nav-link" href="{{ path('reduction_new') }}"> <i class="fas fa-plus"></i> Ajouter une réduction </a> </h5>
 
                             <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Produits</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Reductions</li>
                                     </ol>
                                 </nav>
                             </div>
 
-
-                            <div class="mt-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        {{ form_start(form) }}
-                                        <div class="form-row align-items-end ">
-                                            <div class="col">
-                                                {{ form_row(form.rechercher) }}
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                    <button class="btn" style="padding:6px 0px">
-                                                        <i class="fa fa-search" aria-hidden="true" style="font-size: 17px;"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{ form_end(form) }}
-                                    </div>
-                                </div>
-                            </div>
 
 
 
@@ -88,58 +67,37 @@
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Tous les produits -  {{ count }} résultat(s)
                             </h5>
                             <div class="card-body">
                                 <div class="table-responsive"  >
                                     <table class="table table-bordered first" >
                                         <thead>
                                         <tr style="background-color:lightgrey">
-                                            <th style="width:100px">Image</th>
-                                            <th>Nom</th>
-                                            <th>Référence</th>
-                                            <th> Gencod</th>
-                                            <th> Catégories</th>
-                                            <th>Prix final</th>
-                                            <th> Etat</th>
+                                            <th>Groupes</th>
+                                            <th>Reduction</th>
                                             <th>Actions (Modifier / Supprimer)</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for produit in produits %}
+                                        {% for reduction in reductions %}
                                             <tr>
-                                                <td>
-                                                    {% if produit.image|length > 0 %}
-                                                        <a href="{{ path('produits_edit', {id: produit.id}) }}"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></a>
-                                                    {% else %}
-                                                        <a href="{{ path('produits_edit', {id: produit.id}) }}"><img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}"></a>
-                                                    {% endif %}
-                                                <td>
-                                                    <a href="{{ path('produits_edit', {id: produit.id}) }}">{{ produit.nom }} </a>
-                                                </td>
-                                                <td> {{ produit.reference }} </td>
-                                                <td> {{ produit.gencod }}</td>
+                                                <td> {{ reduction.groupes }}</td>
                                                 <td>
                                                     <ul>
-                                                        {% for categorie in produit.categories %}
-                                                            <li style="font-size:10px"> {{ categorie.nom }}</li>
-                                                        {% endfor %}
+                                                        <li>{{ reduction.categories }} : {{  reduction.getNewReduction() * 100 }}% </li>
                                                     </ul>
-                                                </td>
-                                                <td> {{ produit.getPrixFinal()}}</td>
-                                                <td>
-                                                    {{ produit.getEtat() ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}
                                                 </td>
                                                 <td>
                                                     <div class="btn btn-group justified">
 
-                                                        <a class="ml-2 mr-2" href="{{ path('produits_edit', {id: produit.id}) }}">
+
+                                                        <a class="ml-2 mr-2" href="{{ path('reduction_edit', {id: reduction.id}) }}">
                                                             <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
                                                         </a>
 
-                                                        <form method="post" action="{{ path('produits_delete', {'id': produit.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce produit');">
+                                                        <form method="post" action="{{ path('reduction_delete', {'id': reduction.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer cette réduction');">
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ produit.id) }}">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reduction.id) }}">
                                                             <button class="btn btn-danger" ><i class="fas fa-times"></i></button>
                                                         </form>
 
@@ -155,12 +113,7 @@
                                         </tbody>
 
                                     </table>
-                                    <div class="mt-4">
-                                        Affichage : {{ produits | length  }} / {{ count }} résultats
-                                    </div>
-                                    <div class="" style="float:right">
-                                        {{ knp_pagination_render(produits) }}
-                                    </div>
+
 
                                 </div>
 

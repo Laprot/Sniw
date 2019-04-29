@@ -33,6 +33,13 @@ class Groupe
      */
     private $id_client;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reduction", mappedBy="groupes")
+     */
+    private $reductions;
+
+
+
     public function __construct()
     {
         $this->id_client = new ArrayCollection();
@@ -114,6 +121,25 @@ class Groupe
     {
         $this->id_client = $id_client;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getReductions()
+    {
+        return $this->reductions;
+    }
+
+    /**
+     * @param mixed $reductions
+     */
+    public function setReductions($reductions)
+    {
+        $this->reductions = $reductions;
+    }
+
+
+
 
 
 }

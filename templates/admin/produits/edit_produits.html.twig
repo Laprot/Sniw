@@ -5,6 +5,7 @@
 {% block stylesheets %}
     <!-- Bootstrap CSS -->
 
+
 {% endblock %}
 
 
@@ -53,34 +54,32 @@
                         <h5 class="card-header">Produit : {{ produit.nom }}</h5>
                         <div class="card-body">
                             <div class="form-group col-md-6 container">
+
+
                                     {{ form_start(form) }}
 
                                     <h5 class="text-center"> Informations </h5>
                                     {{ form_row(form.etat) }}
 
-                                    <p>
-                                        Image
-                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%">
-                                    </p>
 
 
-                                    <div class="input-group" style="margin-bottom:20px">
-                                        <div class="input-group-prepend" style="height: 38px;">
-                                            <span class="input-group-text" id="inputGroupFileAddon01"> Télécharger</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            {{ form_widget(form.image, {
-                                                attr: {
-                                                    'placeholder': 'Choisir une image',
-                                                    'class' : 'custom-file-input'
-                                                }}) }}
-                                        </div>
-                                    </div>
+                                <p>
+                                    Image
+                                </p>
+                                <div class="text-center">
+                                    {% if produit.image|length > 0 %}
+                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                    {% else %}
+                                        <img src="http://{{ produit.getImageImport() }}" style="width:30%;" alt="{{ produit.nom }}">
+                                    {% endif %}
+                                </div>
+                                <a class="btn btn-primary" style="margin-bottom: 20px;margin-left: 200px;margin-top:20px"
+
+                                   href="{{ path('produits_edit_image', {id:produit.id}) }}"> Modifier l'image
+                                </a>
 
 
-
-
-                                    {{ form_row(form.nom) }}
+                                {{ form_row(form.nom) }}
                                     {{ form_row(form.reference) }}
                                     {{ form_row(form.Gencod) }}
                                     {{ form_row(form.upc) }}
@@ -110,10 +109,24 @@
                                     {{ form_row(form.produit_belle_france) }}
 
 
+                                <div class="form-group row text-right">
+                                    <div class="col float-right col-sm-10 col-lg-9 offset-lg-0">
+                                        <button type="submit" class="btn btn-space btn-primary">Enregistrer</button>
+
+
+                                    </div>
+
+
+
+                                </div>
                                     <hr>
                                     <h5 class="text-center"> Associations </h5>
 
-                                    {{ form_row(form.id_categorie) }}
+
+
+
+
+                                    {{ form_widget(form.categories) }}</li>
 
 
 

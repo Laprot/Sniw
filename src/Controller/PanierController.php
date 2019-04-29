@@ -18,8 +18,10 @@ use Imagine\Exception\Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -82,6 +84,76 @@ class PanierController extends AbstractController
         return $this->redirect($this->generateUrl('panier'));
     }
 
+
+
+    /**
+     * @Route("/ajouter/ajax/{id}", name="ajouter_ajax")
+     */
+    public function ajouterActionAjax($id, Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $session = $request->getSession();
+            if (!$session->has('panier')) {
+                $session->set('panier', []);
+            }
+            $panier = $session->get('panier');
+
+            if (array_key_exists($id, $panier)) {
+                if ($request->request->getInt('quantite') != null) {
+                    $panier[$id] = $request->request->getInt('quantite') ;
+
+                }
+            } else {
+                if ($request->request->getInt('quantite') != null) {
+                    $panier[$id] = $request->request->getInt('quantite');
+
+                } else {
+                    $panier[$id] = 1;
+                }
+            }
+            $session->set('panier', $panier);
+
+            return new JsonResponse(['data' => 'this is a json response']);
+        }
+
+        return new Response('this is not ajax', 400);
+    }
+
+    /**
+     * @Route("/supprimer/{id}", name="supprimer")
+     */
+    public function supprimer($id,Request $request) {
+        $session = $request->getSession();
+
+        $panier= $session->get('panier');
+        if(array_key_exists($id,$panier)) {
+            unset($panier[$id]);
+            $session->set('panier',$panier);
+        }
+
+        return $this->redirect($this->generateUrl('panier'));
+
+    }
+
+    /**
+     * @Route("/supprimer/ajax/{id}", name="supprimer_ajax")
+     */
+    public function supprimerAjax($id,Request $request) {
+
+        if($request->isXmlHttpRequest()) {
+            $session = $request->getSession();
+
+            $panier = $session->get('panier');
+            if (array_key_exists($id, $panier)) {
+                unset($panier[$id]);
+                $session->set('panier', $panier);
+            }
+            return new JsonResponse(['data' => 'this is a json response']);
+        }
+
+        return new Response('this is not ajax', 400);
+
+    }
 
 
     /**
@@ -194,21 +266,11 @@ class PanierController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/supprimer/{id}", name="supprimer")
-     */
-    public function supprimer($id,Request $request) {
-        $session = $request->getSession();
 
-        $panier= $session->get('panier');
-        if(array_key_exists($id,$panier)) {
-            unset($panier[$id]);
-            $session->set('panier',$panier);
-        }
 
-        return $this->redirect($this->generateUrl('panier'));
 
-    }
+
+
 
 
     /**

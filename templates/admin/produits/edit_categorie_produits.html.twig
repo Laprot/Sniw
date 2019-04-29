@@ -1,9 +1,10 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Ajouter un groupe {% endblock %}
+{% block title %} Modifier un produit {% endblock %}
 
 {% block stylesheets %}
     <!-- Bootstrap CSS -->
+
 
 {% endblock %}
 
@@ -25,14 +26,15 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="pageheader-title">Groupes </h2>
+                        <h2 class="pageheader-title">Produits </h2>
                         <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ path('groupe_show') }}" class="breadcrumb-link">Groupes</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Ajouter un nouveau groupe</li>
+                                    <li class="breadcrumb-item"><a href="{{ path('produits_show') }}" class="breadcrumb-link">Produits</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ path('produits_edit', {id:produit.id}) }}" class="breadcrumb-link">Modifier un produit</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Modifier une image</li>
                                 </ol>
                             </nav>
                         </div>
@@ -46,37 +48,35 @@
 
             <div class="row">
                 <!-- ============================================================== -->
-                <!-- valifation types -->
+                <!-- validation types -->
                 <!-- ============================================================== -->
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                        <h5 class="card-header">Produit</h5>
+                        <h5 class="card-header">Produit : {{ produit.nom }}</h5>
                         <div class="card-body">
                             <div class="form-group col-md-6 container">
+                                {{ form_start(form) }}
 
-                                <form method="post">
-                                    {{ form_start(form) }}
-                                    {{ form_row(form.nom) }}
-
-
-                                    <div class="form-group row text-right">
-                                        <div class="col float-right col-sm-10 col-lg-9 offset-lg-0">
-                                            <button type="submit" class="btn btn-space btn-primary">Enregistrer</button>
-
-                                            {{ form_end(form) }}
-
-                                        </div>
+                                {{ form_row(form.categories) }}
 
 
+
+
+
+                                <div class="form-group row text-right">
+                                    <div class="col float-right col-sm-10 col-lg-9 offset-lg-0">
+                                        <button type="submit" class="btn btn-space btn-primary">Enregistrer</button>
+
+                                        {{ form_end(form) }}
 
                                     </div>
 
 
 
-                                </form>
+                                </div>
 
                             </div>
-                            <a href="{{ path('groupe_show') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
+                            <a href="{{ path('produits_edit', {id:produit.id}) }}"><button class="btn btn-space btn-secondary">Retour</button></a>
                         </div>
                     </div>
                 </div>
@@ -101,10 +101,15 @@
     <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-
+    <script src="/admin/assets/vendor/parsley/parsley.js"></script>
     <script src="/admin/assets/libs/js/main-js.js"></script>
     <script>
-        $('#form').parsley();
+        $('.custom-file-input').on('change', function(event) {
+            let inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
     </script>
 {% endblock %}
 

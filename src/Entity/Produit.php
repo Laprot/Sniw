@@ -27,7 +27,6 @@ class Produit
 
     /**
      * @ORM\Column(type="string",nullable=true)
-     * @Assert\File(mimeTypes={ "image/jpeg" , "image/jpg", "image/png" }, mimeTypesMessage="Format incorrect (formats jpeg,jpg et png autorisés)")
      */
     private $image;
 
@@ -190,6 +189,11 @@ class Produit
      * @ORM\ManyToMany(targetEntity="App\Entity\Categorie", inversedBy="produits")
      */
     private $categories;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image_import;
 
     public function __construct()
     {
@@ -590,6 +594,18 @@ class Produit
         if ($this->categories->contains($category)) {
             $this->categories->removeElement($category);
         }
+
+        return $this;
+    }
+
+    public function getImageImport(): ?string
+    {
+        return $this->image_import;
+    }
+
+    public function setImageImport(?string $image_import): self
+    {
+        $this->image_import = $image_import;
 
         return $this;
     }

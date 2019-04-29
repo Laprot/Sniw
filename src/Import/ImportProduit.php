@@ -94,12 +94,12 @@ class ImportProduit extends Command
 
 
             //Import nom catégorie
-            $categorie = $this->em->getRepository(Categorie::class)->findOneBy(['nom' => [$row['nom_categorie']]]);
+            //$categorie = $this->em->getRepository(Categorie::class)->findOneBy(['nom' => [$row['nom_categorie']]]);
 
             //Import id catégorie en fonction du nom
-            $idCategorie = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie->getId()]);
+           // $idCategorie = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie->getId()]);
 
-            $produit->setIdCategorie($idCategorie);
+            //$produit->setIdCategorie($idCategorie);
 
 
             //Taille produits

@@ -41,27 +41,16 @@ class ProduitType extends AbstractType
 
         $builder
             ->add('nom')
-            ->add('image',FileType::class, [
-                'data_class' => null,
-                'attr' => ['placeholder' => 'Choisissez un fichier'],
-            ])
             ->add('reference')
-            ->add('id_categorie',EntityType::class,[
+            ->add('categories',EntityType::class,[
                 'required' =>false,
                 'attr' => ['id' => 'data-value'],
                 'class' => Categorie::class,
                 'choice_label' => 'nom',
-                'expanded' => false,
-                'multiple' => false,
+                'expanded' => true,
+                'multiple' => true,
                 'group_by' => 'id_parent',
                 'label' => 'Catégorie parente',
-                'query_builder' => function (CategorieRepository $c) {
-                    $queryBuilder = $c->createQueryBuilder('c');
-                    $query = $queryBuilder
-                        ->where($queryBuilder->expr()->isNotNull('c.id_parent'))
-                        ->orderBy('c.id_parent', 'ASC');
-                    return $query;
-                }
             ])
 
             ->add('Gencod',null, [

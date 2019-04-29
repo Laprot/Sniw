@@ -85,6 +85,13 @@ services:
           tags:
             - { name : console.command }
 
+    console_command.csv_importproduit_image:
+              class: App\Import\ImportProduitImage
+              arguments:
+                - "@doctrine.orm.entity_manager"
+              tags:
+                - { name : console.command }
+
     app.form.type.about_users:
         class: App\Form\CategoryType
         arguments:

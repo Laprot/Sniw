@@ -3,8 +3,11 @@
 namespace App\Controller\Admin;
 
 
+use App\Entity\Categorie;
 use App\Entity\Produit;
 use App\Entity\Search;
+use App\Form\ProduitCategorieType;
+use App\Form\ProduitImageType;
 use App\Form\ProduitType;
 use App\Form\SearchType;
 use App\Repository\ProduitRepository;
@@ -77,9 +80,7 @@ class AdminProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $file = $produit->getImage();
-            $fileName = $fileUploader->upload($file);
-            $produit->setImage($fileName);
+
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($produit);
@@ -107,17 +108,10 @@ class AdminProduitController extends AbstractController
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
+        $categorie = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
+
+
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $file = $produit->getImage();
-            $fileName = $fileUploader->upload($file);
-            $produit->setImage($fileName);
-
-
-            $metadata = $this->em->getClassMetaData(get_class($produit));
-            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
-            $metadata->setIdGenerator(new AssignedGenerator());
-
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -128,8 +122,41 @@ class AdminProduitController extends AbstractController
         return $this->render('admin/produits/edit_produits.html.twig', [
             'produit' => $produit,
             'form' => $form->createView(),
+            'categorie'=>$categorie
         ]);
     }
+
+    /**
+     * @Route("/admin/{id}/produit/edit/image", name="produits_edit_image", methods="GET|POST")
+     */
+    public function editImage(Request $request, Produit $produit,FileUploader $fileUploader)
+    {
+        $form = $this->createForm(ProduitImageType::class, $produit);
+        $form->handleRequest($request);
+
+        $categorie = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $produit->getImage();
+            $fileName = $fileUploader->upload($file);
+            $produit->setImage($fileName);
+
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('produits_show', [
+                'id' => $produit->getId()
+            ]);
+        }
+        return $this->render('admin/produits/edit_image_produits.html.twig', [
+            'produit' => $produit,
+            'form' => $form->createView(),
+            'categorie'=>$categorie
+        ]);
+    }
+
 
     /**
      * @Route("/admin/{id}/produit/delete", name="produits_delete", methods="DELETE")

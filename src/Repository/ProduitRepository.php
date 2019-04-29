@@ -58,6 +58,7 @@ class ProduitRepository extends ServiceEntityRepository
             ->setParameter('categorie_id', $categorie);
         return $qb->getQuery()->getResult();
     }
+
     /*
     public function findByIdCommande($commande) {
         return $this->createQueryBuilder('u')

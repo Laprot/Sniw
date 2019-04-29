@@ -1,9 +1,21 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Ajouter un groupe {% endblock %}
+{% block title %} Modifier une réduction {% endblock %}
 
 {% block stylesheets %}
     <!-- Bootstrap CSS -->
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Clients</title>
+        <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/buttons.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/select.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+    </head>
 
 {% endblock %}
 
@@ -25,14 +37,14 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="pageheader-title">Groupes </h2>
+                        <h2 class="pageheader-title">Réductions </h2>
                         <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ path('groupe_show') }}" class="breadcrumb-link">Groupes</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Ajouter un nouveau groupe</li>
+                                    <li class="breadcrumb-item"><a href="{{ path('reduction_show') }}" class="breadcrumb-link">Réductions</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Modifier une réduction</li>
                                 </ol>
                             </nav>
                         </div>
@@ -50,14 +62,14 @@
                 <!-- ============================================================== -->
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                        <h5 class="card-header">Produit</h5>
+                        <h5 class="card-header">Reduction : {{ reduction.getNewReduction() * 100 }}%</h5>
                         <div class="card-body">
                             <div class="form-group col-md-6 container">
-
                                 <form method="post">
                                     {{ form_start(form) }}
-                                    {{ form_row(form.nom) }}
-
+                                    {{ form_row(form.new_reduction) }}
+                                    {{ form_row(form.groupes) }}
+                                    {{ form_row(form.categories) }}
 
                                     <div class="form-group row text-right">
                                         <div class="col float-right col-sm-10 col-lg-9 offset-lg-0">
@@ -71,15 +83,29 @@
 
                                     </div>
 
-
-
                                 </form>
 
+
                             </div>
-                            <a href="{{ path('groupe_show') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
+                            <a href="{{ path('reduction_show') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
                         </div>
                     </div>
                 </div>
+
+
+                <!-- Membres du groupe -->
+
+
+
+                        <!-- ============================================================== -->
+                        <!-- end data table multiselects  -->
+                        <!-- ============================================================== -->
+                    </div>
+                </div>
+
+
+
+
                 <!-- ============================================================== -->
                 <!-- end valifation types -->
                 <!-- ============================================================== -->
@@ -88,7 +114,9 @@
         </div>
 
     </div>
+
 </div>
+
 <!-- ============================================================== -->
 <!-- end main wrapper -->
 <!-- ============================================================== -->
@@ -101,7 +129,7 @@
     <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-
+    <script src="/admin/assets/vendor/parsley/parsley.js"></script>
     <script src="/admin/assets/libs/js/main-js.js"></script>
     <script>
         $('#form').parsley();

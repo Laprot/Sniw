@@ -21,7 +21,7 @@
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
                         <li><a href="{{ path('home') }}">Home</a></li>
-                        <li> <i class="fa fa-angle-right"></i><a href="{{ path('catalogue') }}">Catalogue</a></li>
+                        <li><i class="fa fa-angle-right"></i><a href="{{ path('catalogue') }}">Catalogue</a></li>
                         <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Votre panier</li>
 
                     </ul>
@@ -34,6 +34,9 @@
                         <th style="width:400px;border: 1px solid #e9ecef">Description</th>
                         <th style="width:100px;border: 1px solid #e9ecef">Prix/Carton</th>
                         <th style="width:140px;border: 1px solid #e9ecef">Nb de carton(s)</th>
+
+                        <th style="width:140px;border: 1px solid #e9ecef">Poids produit(s)</th>
+                        <th style="width:140px;border: 1px solid #e9ecef">Volume produit(s)</th>
                         <th style="width:90px;border: 1px solid #e9ecef">Total</th>
                         <th style="width:140px;border: 1px solid #e9ecef"> Supprimer</th>
                     </tr>
@@ -41,31 +44,58 @@
                     <tbody>
 
                     {% if produits|length ==0 %}
-                    <tr>
-                        <td colspan="6" class="text-center"> Votre panier est vide </td>
-                    </tr>
+                        <tr>
+                            <td colspan="6" class="text-center"> Votre panier est vide</td>
+                        </tr>
                     {% endif %}
 
-                    {% for produit in produits  %}
-                    <tr>
-                        <td style="border: 1px solid #e9ecef"> <img src="{{ asset('produits/images/' ~ produit.image) }}"></td>
-
-                        <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get" id="form-qte">
-                            <td style="border: 1px solid #e9ecef;text-transform: uppercase"> {{ produit.nom }}
-                                <p style="font-size:11px;text-transform: none"> Référence : {{ produit.reference }}</p>
-                            </td>
-                            <td style="border: 1px solid #e9ecef"> {{ produit.getPrixFinal() }}€</td>
+                    {% for produit in produits %}
+                        <tr id="produit_{{ produit.id }}">
                             <td style="border: 1px solid #e9ecef">
-                               <input name="quantite" id="qte" type="text" value="{{ panier[produit.id] }}"  onchange="this.form.submit()">
+
+                                {% if produit.image|length > 0 %}
+                                    <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                {% else %}
+                                    <img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}">
+                                {% endif %}
+
                             </td>
 
-                            <td style="border: 1px solid #e9ecef"> {{ produit.getPrixFinal() * panier[produit.id] }}€</td>
-                            <td style="border: 1px solid #e9ecef"><a href="{{ path('supprimer' , {'id' : produit.id}) }}"><i class="fa fa-trash" style="font-size:28px;margin-left:40px"></i></a></td>
-                        </form>
-                    </tr>
-                    {% set totalHT = totalHT + (produit.getPrixFinal() * panier[produit.id]) %}
-                    {% set volume = volume + (produit.profondeur) * panier[produit.id] %}
-                    {% set poids = poids + (produit.weight) * panier[produit.id] %}
+                            {% set prixTotalProduit =  produit.getPrixFinal() * panier[produit.id] %}
+                            {% set poidsP = produit.weight * panier[produit.id] %}
+                            {% set volumeP = produit.profondeur * panier[produit.id] %}
+                            <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get" id="form-qte">
+
+                                <td style="border: 1px solid #e9ecef;text-transform: uppercase"> {{ produit.nom }}
+                                    <p style="font-size:11px;text-transform: none"> Référence
+                                        : {{ produit.reference }}</p>
+                                </td>
+                                <td style="border: 1px solid #e9ecef"><span
+                                            id="prix">{{ produit.getPrixFinal()|number_format(2, '.','') }}</span>€
+                                </td>
+                                <td style="border: 1px solid #e9ecef">
+                                    <input name="quantite" id="qte" type="text" value="{{ panier[produit.id] }}">
+                                </td>
+                                <td style="border: 1px solid #e9ecef"><span
+                                            id="poidsProd_{{ produit.id }}">{{ poidsP|number_format(2, '.','') }} </span> kg
+                                </td>
+
+                                <td style="border: 1px solid #e9ecef"><span
+                                            id="volumeTotal_{{ produit.id }}">{{ volumeP|number_format(2, '.','') }}</span>  m3
+                                </td>
+                                <td style="border: 1px solid #e9ecef"><span
+                                            id="prixTotal_{{ produit.id }}">{{ prixTotalProduit|number_format(2, '.','') }} </span>€
+                                </td>
+                                <td style="border: 1px solid #e9ecef">
+                                    <img onclick="suppAjax({{ produit.id }},'/supprimer/ajax/'+{{ produit.id }})" src="{{ asset('images/add-to-cart.png') }}" style="width:40px" >
+                                </td>
+
+                            </form>
+                        </tr>
+                        {% set totalHT = totalHT + (produit.getPrixFinal() * panier[produit.id]) %}
+                        {% set volume = volume + (produit.profondeur) * panier[produit.id] %}
+                        {% set poids = poids + (produit.weight) * panier[produit.id] %}
+                        {% set poidsProduit = produit.weight %}
 
                     {% endfor %}
 
@@ -75,34 +105,39 @@
 
                 {% if produits|length !=0 %}
 
-                <div class="row">
-                    <div class="col-md-6">
-                    </div>
-                    <div class="col-md-6">
-                        <table class="table">
-                            <tr>
-                             <td style="border: 1px solid #e9ecef"> Volume</td>
-                             <td style="border: 1px solid #e9ecef"> {{ volume }} m³</td>
-                            </tr>
-                            <tr>
-                                <td style="border: 1px solid #e9ecef"> Poids</td>
+                    <div class="row">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table">
+                                <tr>
+                                    <td style="border: 1px solid #e9ecef"> Volume</td>
+                                    <td style="border: 1px solid #e9ecef"> <span id="volumeFinal"> {{ volume|number_format(2, '.','') }} </span> m³</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #e9ecef"> Poids</td>
 
-                                <td style="border: 1px solid #e9ecef"> {% if poids <= 1000 %} {{ poids }} kg{% else %} {{ poids / 1000 }}T{% endif %}</td>
-                            </tr>
+                                    <td style="border: 1px solid #e9ecef"> <span id="poidsFinal" >{{ poids|number_format(2, '.','')}} </span> kg </td>
+                                </tr>
 
-                            <tr>
-                                <td style="border: 1px solid #e9ecef">Total HT</td>
-                                <td style="font-weight: bold;font-size:22px;border: 1px solid #e9ecef"> {{ totalHT }}€</td>
-                            </tr>
-                        </table>
+                                <tr>
+                                    <td style="border: 1px solid #e9ecef">Total HT</td>
+                                    <td style="font-weight: bold;font-size:22px;border: 1px solid #e9ecef" ><span id="prixFinal"> {{ totalHT|number_format(2, '.', '') }} </span>
+                                        €
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
                     <div class="row mt-4">
                         <div class="col">
-                            <a class="btn-mj btn-def" href="{{ path('catalogue') }}" style="color:white"> <i class="fa fa-angle-double-left"></i> Continuer mes achats </a>
+                            <a class="btn-mj btn-def" href="{{ path('catalogue') }}" style="color:white"> <i
+                                        class="fa fa-angle-double-left"></i> Continuer mes achats </a>
                         </div>
                         <div class="col">
-                            <a class="btn-mj btn-def" href="{{ path('adresses', {id: app.user.id}) }}" style="color:white;float:right"> Envoyer ma demande <i class="fa fa-angle-double-right"></i>  </a>
+                            <a id="submit" class="btn-mj btn-def" href="{{ path('adresses', {id: app.user.id}) }}"
+                               style="color:white;float:right"> Envoyer ma demande <i
+                                        class="fa fa-angle-double-right"></i> </a>
                         </div>
                     </div>
 
@@ -118,30 +153,106 @@
     <script src="/js/jquery-3.2.1.min.js"></script>
 
     <script>
-      /*  console.log('msmsm');
         $("document").ready(function () {
-           $('#qte').change(function () {
-               $.ajax({
-                   data: {
-                       id: $('#qte').data('quantite'),
-                   },
-                   type: 'get',
-                   url: '',
-                   beforeSend: function () {
-                       console.log('ca charge');
-                   },
+            let changement = false;
+            $('#qte').change(function () {
+                $.ajax({
+                        data: {
+                            id: $('#qte').val(),
+                            produit: $('#prix').text()
+                        },
+                        type: 'get',
+                        url: '',
+                        beforeSend: function () {
+                        },
 
 
-                   success: function(data){
-                       $('#qte').data('#qte');
-                       console.log('ca marche');
+                        success: function (data) {
+                            $('#total').text($('#qte').val() * parseFloat($('#prix').text()));
+
+
+
+                            document.getElementById('form-qte').submit();
+                        }
                     }
-                   }
-               )
-           })
-        });*/
+                );
+                $.ajax({
+                        data: {
+                            id: $('#qte').val(),
+                        },
+                        type: 'post',
+                        url: '',
+                        beforeSend: function () {
+                        },
+                        success: function (data) {
+                            $('#total').text($('#qte').val() * parseFloat($('#prix').text()));
+                        }
+                    }
+                )
+            })
+
+            })
+
+
+
+
     </script>
 
+    <script>
+        function suppAjax(id,changePath) {
+            $.ajax({
+                type: "POST",
+                url: changePath,
+                data : {
+                    idproduit: $('#produit_' +id).val()
+                },
+                dataType: "json",
+                success: function(response) {
+
+                    //Supprime avec un effet
+                    $('#produit_' +id).fadeOut(300,function() { $("this").remove() });
+
+                    //Enlève 1 au panier
+                    let txt = parseInt($('#checkout_items').text());
+                    $('#checkout_items').text(txt-1);
+
+
+                    //Poids produit
+                    let poidsProduit = parseFloat($('#poidsProd_'+id).text()).toFixed(2);
+                    //Poids final
+                    let poidsFinal = parseFloat($('#poidsFinal').text()).toFixed(2);
+
+
+                    //Volume produit
+                    let volumeProduit = parseFloat($('#volumeTotal_'+id).text()).toFixed(2);
+                    //Change le volume final
+                    let volumeFinal = parseFloat($('#volumeFinal').text()).toFixed(2);
+
+
+                    //Prix produit
+                    let prixProduit = parseFloat($('#prixTotal_'+id).text()).toFixed(2);
+                    //Change le prix final
+                    let prixFinal = parseFloat($('#prixFinal').text()).toFixed(2);
+
+
+                    //Si l'on supprime un produit du panier
+                    if ( $('#produit_' +id).fadeOut(300,function() { $("this").remove() }) ) {
+                        let poidsF = poidsFinal - poidsProduit;
+                        parseFloat($('#poidsFinal').text(poidsF.toFixed(2)));
+
+                        let volumeF = volumeFinal - volumeProduit;
+                        parseFloat($('#volumeFinal').text(volumeF.toFixed(2)));
+
+                        let prixF = prixFinal - prixProduit;
+                        parseFloat($('#prixFinal').text(prixF.toFixed(2)));
+
+
+
+                    }
+                }
+            });
+        }
+    </script>
 
 {% endblock %}
 

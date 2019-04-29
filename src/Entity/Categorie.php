@@ -75,11 +75,17 @@ class Categorie
      */
     private $produits;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Reduction", mappedBy="categories")
+     */
+    private $reductions;
+
 
     public function __construct()
     {
         $this->id_produit = new ArrayCollection();
         $this->produits = new ArrayCollection();
+        $this->reductions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -263,5 +269,32 @@ class Categorie
         return $this;
     }
 
+    /**
+     * @return Collection|Reduction[]
+     */
+    public function getReductions(): Collection
+    {
+        return $this->reductions;
+    }
+
+    public function addReduction(Reduction $reduction): self
+    {
+        if (!$this->reductions->contains($reduction)) {
+            $this->reductions[] = $reduction;
+            $reduction->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReduction(Reduction $reduction): self
+    {
+        if ($this->reductions->contains($reduction)) {
+            $this->reductions->removeElement($reduction);
+            $reduction->removeCategory($this);
+        }
+
+        return $this;
+    }
 
 }

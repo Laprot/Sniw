@@ -123,10 +123,6 @@ class CatalogueController extends AbstractController
 
 
 
-        if($categorie->getNom() == '-') {
-            $categorie->setNom($categorie->getIdParent()->getNom());
-        }
-
 
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
