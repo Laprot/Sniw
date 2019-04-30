@@ -82,17 +82,28 @@
 
                     {% for produit in commande.commande.produit  %}
                         <tr style="text-align:center">
-                            <td>  <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%"></td>
+                            <td>
+
+                                {% if produit.image|length > 0 and produit.imageImport|length < 0 %}
+                                    <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                {% else %}
+                                    <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
+                                {% endif %}
+
+
+
+                            </td>
                             <td> {{ produit.reference }} </td>
                             <td> {{ produit.nom }}</td>
                             <td> {{ produit.quantite }}</td>
-                            <td> {{ produit.prixUnitaire }}€</td>
-                            <td>  {{ produit.prixUnitaire * produit.quantite }}€</td>
+                            <td> {{ produit.prixUnitaire|number_format(2,'.','') }}€</td>
+                            {% set prixTotal = produit.prixUnitaire * produit.quantite %}
+                            <td>  {{ prixTotal|number_format(2,'.','') }}€</td>
 
                             <td>
                                 <ul class="navbar_user">
                                     <li class="checkout" style="margin-right:30px" >
-                                        <a href="{{ path('recommander', {id:produit.id}) }}">
+                                        <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/ajouter/ajax/'+ {{ produit.id }})">
                                             <i class="fa fa-cart-plus" aria-hidden="true">
                                             </i>
                                         </a>
@@ -119,26 +130,21 @@
 
     <script src="jquery-3.3.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
     <script>
 
-
-        jQuery(function($) {
-            $('#a').click(function() {
-                $.ajax({
-                    url: '{{ path('panier') }}',
-                    type: 'POST',
-                    beforeSend: function(){
-                        console.log('sa marche');
-                    },
-                    success: function()
-                    {
-                      console.log('ca marche');
-                    }
-                });
-                return false;
+        function refreshAjax(id,changePath) {
+            $.ajax({
+                type: "POST",
+                url: changePath,
+                data : {
+                },
+                dataType: "json",
+                success: function(response) {
+                    let txt = parseInt($('#checkout_items').text());
+                    $('#checkout_items').text(txt+1);
+                }
             });
-        });
+        }
     </script>
 
 {% endblock %}

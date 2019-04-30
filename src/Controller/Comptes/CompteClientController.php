@@ -85,7 +85,7 @@ class CompteClientController extends AbstractController
 
 
         $commandes = $paginator->paginate(
-            $this->getDoctrine()->getRepository(Commande::class)->findAllVisibleQuery($search),
+            $this->getDoctrine()->getRepository(Commande::class)->findBy(['nom' => $user->getNom()],['id' => 'DESC']),
             $request->query->getInt('page', 1), 10
         );
 
@@ -105,6 +105,7 @@ class CompteClientController extends AbstractController
         //$commande = $this->getDoctrine()->getRepository(Commande::class)->findByUser($user);
 
        // $commandeUser = $commande->getUtilisateur()->getId();
+
 
        $this->denyAccessUnlessGranted(AppAccess::COMMANDE_EDIT, $commande);
 

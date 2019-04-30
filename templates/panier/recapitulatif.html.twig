@@ -33,10 +33,15 @@
                         <th style="width:100px;border: 1px solid #e9ecef">Produit</th>
                         <th style="width:400px;border: 1px solid #e9ecef">Description</th>
                         <th style="width:100px;border: 1px solid #e9ecef">Prix/Carton</th>
+                        <th style="width:100px;border: 1px solid #e9ecef;display:none">Poids/Carton</th>
+                        <th style="width:100px;border: 1px solid #e9ecef;display:none">Volume/Carton</th>
+
+
+
                         <th style="width:140px;border: 1px solid #e9ecef">Nb de carton(s)</th>
 
-                        <th style="width:140px;border: 1px solid #e9ecef">Poids produit(s)</th>
-                        <th style="width:140px;border: 1px solid #e9ecef">Volume produit(s)</th>
+                        <th style="width:140px;border: 1px solid #e9ecef;display:none">Poids produit(s)</th>
+                        <th style="width:140px;border: 1px solid #e9ecef;display:none">Volume produit(s)</th>
                         <th style="width:90px;border: 1px solid #e9ecef">Total</th>
                         <th style="width:140px;border: 1px solid #e9ecef"> Supprimer</th>
                     </tr>
@@ -64,30 +69,37 @@
                             {% set prixTotalProduit =  produit.getPrixFinal() * panier[produit.id] %}
                             {% set poidsP = produit.weight * panier[produit.id] %}
                             {% set volumeP = produit.profondeur * panier[produit.id] %}
-                            <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get" id="form-qte">
+                            <form  id="form-qte">
 
                                 <td style="border: 1px solid #e9ecef;text-transform: uppercase"> {{ produit.nom }}
                                     <p style="font-size:11px;text-transform: none"> Référence
                                         : {{ produit.reference }}</p>
                                 </td>
                                 <td style="border: 1px solid #e9ecef"><span
-                                            id="prix">{{ produit.getPrixFinal()|number_format(2, '.','') }}</span>€
+                                            id="prixProd_{{ produit.id }}">{{ produit.getPrixFinal()|number_format(2, '.','') }}</span>€
+                                </td>
+                                <td style="border: 1px solid #e9ecef;display:none"><span
+                                            id="poidsProd_{{ produit.id }}">{{ produit.weight|number_format(2, '.','') }}</span>
+                                </td>
+                                <td style="border: 1px solid #e9ecef;display:none"><span
+                                            id="volumeProd_{{ produit.id }}">{{ produit.profondeur|number_format(2, '.','') }}</span>
                                 </td>
                                 <td style="border: 1px solid #e9ecef">
-                                    <input name="quantite" id="qte" type="text" value="{{ panier[produit.id] }}">
+                                    <input onchange="modifQte({{ produit.id }},'/ajouter/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ panier[produit.id] }}" >
                                 </td>
-                                <td style="border: 1px solid #e9ecef"><span
-                                            id="poidsProd_{{ produit.id }}">{{ poidsP|number_format(2, '.','') }} </span> kg
+                                <td style="border: 1px solid #e9ecef;display:none"><span class="poidsall"
+                                            id="poidsTotal_{{ produit.id }}">{{ poidsP|number_format(2, '.','') }} </span> kg
                                 </td>
 
-                                <td style="border: 1px solid #e9ecef"><span
+                                <td style="border: 1px solid #e9ecef;display:none">
+                                    <span class="volumeall"
                                             id="volumeTotal_{{ produit.id }}">{{ volumeP|number_format(2, '.','') }}</span>  m3
                                 </td>
-                                <td style="border: 1px solid #e9ecef"><span
+                                <td style="border: 1px solid #e9ecef"><span class="priceall"
                                             id="prixTotal_{{ produit.id }}">{{ prixTotalProduit|number_format(2, '.','') }} </span>€
                                 </td>
                                 <td style="border: 1px solid #e9ecef">
-                                    <img onclick="suppAjax({{ produit.id }},'/supprimer/ajax/'+{{ produit.id }})" src="{{ asset('images/add-to-cart.png') }}" style="width:40px" >
+                                    <img onclick="suppAjax({{ produit.id }},'/supprimer/ajax/'+{{ produit.id }})" src="{{ asset('images/supprimer.png') }}" style="width:30px;margin-left: 30px;margin-top: 20px;" >
                                 </td>
 
                             </form>
@@ -153,49 +165,80 @@
     <script src="/js/jquery-3.2.1.min.js"></script>
 
     <script>
-        $("document").ready(function () {
-            let changement = false;
-            $('#qte').change(function () {
-                $.ajax({
-                        data: {
-                            id: $('#qte').val(),
-                            produit: $('#prix').text()
-                        },
-                        type: 'get',
-                        url: '',
-                        beforeSend: function () {
-                        },
+        function modifQte(id,changePath) {
+            $.ajax({
+                type: "POST",
+                url: changePath,
+                data : {
+                    quantite: $('#submitid_' +id).val()
+                },
+                dataType: "json",
+                success: function(response) {
+                    //Quantité produit
+                    let qte = $('#submitid_' +id).val();
 
 
-                        success: function (data) {
-                            $('#total').text($('#qte').val() * parseFloat($('#prix').text()));
+                    //Poids produit
+                    let poidsProduit = parseFloat($('#poidsProd_'+id).text()).toFixed(2);
+
+                    //Volume produit
+                    let volumeProduit = parseFloat($('#volumeProd_'+id).text()).toFixed(2);
+
+                    //Prix produit
+                    let prixProduit = parseFloat($('#prixProd_'+id).text()).toFixed(2);
+
+                    //Si la quantité entrée est un nombre et est supérieure à 0
+
+                    if($.isNumeric(qte) && qte > 0 ) {
+                        //_________________PRIX
+
+                        //prix produit * quantite
+                        let pQte = qte * prixProduit;
+                        parseFloat($('#prixTotal_' + id).text(pQte.toFixed(2)));
+
+                        //Prix Total HT
+                        let totalPrix = 0;
+                        $(".priceall").each(function (index) {
+                            totalPrix = totalPrix + parseFloat($(this).text());
+
+                        });
+                        parseFloat($('#prixFinal').text(totalPrix.toFixed(2)));
+
+                        //__________________VOLUME
+
+                        //volume produit * quantite
+                        let vQte = qte * volumeProduit;
+                        parseFloat($('#volumeTotal_' + id).text(vQte.toFixed(2)));
+
+                        //Volume Total
+                        let volume = 0;
+                        $(".volumeall").each(function (index) {
+                            volume = volume + parseFloat($(this).text());
+                        });
+                        parseFloat($('#volumeFinal').text(volume.toFixed(2)));
 
 
+                        //___________________POIDS
 
-                            document.getElementById('form-qte').submit();
-                        }
+                        //poids produit * quantite
+                        let poidsQte = qte * poidsProduit;
+                        parseFloat($('#poidsTotal_' + id).text(poidsQte.toFixed(2)));
+
+                        //Poids Total
+                        let poids = 0;
+                        $(".poidsall").each(function (index) {
+                            poids = poids + parseFloat($(this).text());
+                        });
+                        parseFloat($('#poidsFinal').text(poids.toFixed(2)));
+
                     }
-                );
-                $.ajax({
-                        data: {
-                            id: $('#qte').val(),
-                        },
-                        type: 'post',
-                        url: '',
-                        beforeSend: function () {
-                        },
-                        success: function (data) {
-                            $('#total').text($('#qte').val() * parseFloat($('#prix').text()));
-                        }
+                    //Sinon on refresh la page
+                    else {
+                        location.reload();
                     }
-                )
-            })
-
-            })
-
-
-
-
+                }
+            });
+        }
     </script>
 
     <script>
@@ -236,7 +279,7 @@
 
 
                     //Si l'on supprime un produit du panier
-                    if ( $('#produit_' +id).fadeOut(300,function() { $("this").remove() }) ) {
+                    if ( $('#produit_' +id).fadeOut(300,function() { $("this").remove() })) {
                         let poidsF = poidsFinal - poidsProduit;
                         parseFloat($('#poidsFinal').text(poidsF.toFixed(2)));
 
@@ -246,9 +289,15 @@
                         let prixF = prixFinal - prixProduit;
                         parseFloat($('#prixFinal').text(prixF.toFixed(2)));
 
-
+                        //Rafraichit la page lorsque tout est supprimé (marge d'erreur de soustraction à 0.2 près)
+                        if( parseFloat($('#prixFinal').text()) >= 0 &&  parseFloat($('#prixFinal').text()) <= 0.20 ){
+                            location.reload();
+                        }
 
                     }
+
+
+
                 }
             });
         }

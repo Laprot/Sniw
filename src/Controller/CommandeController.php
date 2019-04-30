@@ -54,6 +54,7 @@ class CommandeController extends AbstractController
                 'quantite' => $panier[$produit->getId()],
                 'prixHT' => round($produit->getPrixFinal(), 2),
                 'image' => $produit->getImage(),
+                'imageImport' => $produit->getImageImport(),
                 'id' => $produit->getId()
             ];
         }
