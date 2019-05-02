@@ -12,6 +12,8 @@ use App\Form\SearchType;
 use App\Form\UserType;
 use App\Repository\CommandeRepository;
 use App\Security\AppAccess;
+use Doctrine\DBAL\Driver\PDOException;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,13 +42,24 @@ class CompteAdminController extends AbstractController
      */
     public function deleteCommande(Request $request, Commande $commande)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($commande);
-        $em->flush();
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($commande);
+            $em->flush();
+            $this->addFlash('success', 'Votre commande a bien été supprimée.');
 
-        $this->addFlash('success', 'La commande  a bien été supprimée');
+            return $this->redirectToRoute('commande_view', [
+                'id' => $this->getUser()->getId()
+            ]);
+        }
+        catch(ForeignKeyConstraintViolationException $e) {
+             $this->addFlash('error', 'Veuillez supprimez la commande type associée .');
 
-        return $this->redirectToRoute('commande_view_admin');
+            return $this->redirectToRoute('commande_view', [
+                'id' => $this->getUser()->getId()
+            ]);
+        }
+
     }
 
 
@@ -105,13 +118,16 @@ class CompteAdminController extends AbstractController
      */
     public function delete(Request $request, CommandeTypeProduits $commandeTypeProduits)
     {
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($commandeTypeProduits);
         $em->flush();
-
-        $this->addFlash('success', 'Votre commande type a bien été supprimée ainsi que la commande associée.');
+        $this->addFlash('success', 'Votre commande type a bien été supprimée.');
 
         return $this->redirectToRoute('commandes_type');
+
+
+
     }
 
 

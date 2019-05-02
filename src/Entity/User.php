@@ -144,7 +144,7 @@ class User implements UserInterface,NotificationInterface
     private $nouvelleAdresses;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="utilisateur")
+     * @ORM\OneToMany(targetEntity="App\Entity\Commande", mappedBy="utilisateur",orphanRemoval=true)
      */
     private $commandes;
 

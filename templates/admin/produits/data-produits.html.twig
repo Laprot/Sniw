@@ -109,10 +109,10 @@
                                         {% for produit in produits %}
                                             <tr>
                                                 <td>
-                                                    {% if produit.image|length > 0 %}
-                                                        <a href="{{ path('produits_edit', {id: produit.id}) }}"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></a>
-                                                    {% else %}
+                                                    {% if produit.imageImport|length > 0  %}
                                                         <a href="{{ path('produits_edit', {id: produit.id}) }}"><img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}"></a>
+                                                    {% else %}
+                                                        <a href="{{ path('produits_edit', {id: produit.id}) }}"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></a>
                                                     {% endif %}
                                                 <td>
                                                     <a href="{{ path('produits_edit', {id: produit.id}) }}">{{ produit.nom }} </a>

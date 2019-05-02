@@ -67,10 +67,10 @@
                                     Image
                                 </p>
                                 <div class="text-center">
-                                    {% if produit.image|length > 0 %}
-                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                    {% if produit.imageImport|length > 0  %}
+                                        <a href="{{ path('produits_edit', {id: produit.id}) }}"><img src="http://{{ produit.getImageImport() }}" style="width:50%;" alt="{{ produit.nom }}"></a>
                                     {% else %}
-                                        <img src="http://{{ produit.getImageImport() }}" style="width:30%;" alt="{{ produit.nom }}">
+                                        <a href="{{ path('produits_edit', {id: produit.id}) }}"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></a>
                                     {% endif %}
                                 </div>
                                 <a class="btn btn-primary" style="margin-bottom: 20px;margin-left: 200px;margin-top:20px"

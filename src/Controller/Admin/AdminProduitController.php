@@ -79,7 +79,9 @@ class AdminProduitController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $file = $produit->getImage();
+            $fileName = $fileUploader->upload($file);
+            $produit->setImage($fileName);
 
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -139,9 +141,12 @@ class AdminProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $file = $produit->getImage();
-            $fileName = $fileUploader->upload($file);
-            $produit->setImage($fileName);
+           if((sizeof($produit->getImage()) > 0 ) && sizeof($produit->getImageImport() > 0)) {
+               $file = $produit->getImage();
+               $fileName = $fileUploader->upload($file);
+               $produit->setImage($fileName);
+               $produit->setImageImport(null);
+           }
 
 
             $this->getDoctrine()->getManager()->flush();

@@ -151,9 +151,7 @@
                         {{ form_row(formSearch2.rechercher) }}
                         <button class="btn" style="padding:0px 10px"><i class="fa fa-search"></i></button>
 
-                        {{ form_end(formSearch2) }}
-                        <i class="fa fa-exclamation-triangle mt-4 "></i> Supprimer une commande type supprimera la commande associée
-                </div>
+                        {{ form_end(formSearch2) }} </div>
 
                     <table class="table mt-5 table-responsive">
                         <thead>
@@ -220,9 +218,6 @@
                     <button class="btn" style="padding:0px 10px"><i class="fa fa-search"></i></button>
 
                     {{ form_end(formSearch2) }}
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <i class="fa fa-exclamation-triangle mt-4 "></i> Supprimer une commande type supprimera la commande associée
-                    {% endif %}
                 </div>
 
                 <table class="table mt-5 table-responsive">

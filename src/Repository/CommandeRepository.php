@@ -114,6 +114,53 @@ class CommandeRepository extends ServiceEntityRepository
     }
 
 
+    public function countAll(){
+        return $this->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->where('u.nom <> :nom')
+            ->setParameter('nom', 'admin')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
+    public function maxPrix(){
+        return $this->createQueryBuilder('u')
+            ->select('MAX(u.commande)')
+            ->getQuery()
+            ->getResult();
+
+    }
+
+
+    public function getLastFiveCommandes($limit = 5) {
+        //Permet d'afficher les 'limits' dernières commandes
+        return $this->createQueryBuilder('c')
+            ->groupby('c.id')
+            ->orderBy('c.id','DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getTotalPrixCommande() {
+        return $this->createQueryBuilder('u')
+            ->select('MAX(u.commande)')
+            ->where('u.nom <> :nom')
+            ->setParameter('nom', 'admin')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getCommandesUser(){
+        return $this->createQueryBuilder('u')
+            ->where('u.nom <> :nom')
+            ->setParameter('nom', 'admin')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 
     // /**
     //  * @return Commande[] Returns an array of Commande objects

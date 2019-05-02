@@ -84,7 +84,7 @@
                         <tr style="text-align:center">
                             <td>
 
-                                {% if produit.image|length > 0 and produit.imageImport|length < 0 %}
+                                {% if produit.image|length > 0 %}
                                     <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
                                 {% else %}
                                     <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
