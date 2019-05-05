@@ -131,6 +131,14 @@ class Produit
     private $id_manufacturer;
 
     /**
+     * @param mixed $categories
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
+    }
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Features", mappedBy="produits")
      */
     private $features=[];
@@ -580,10 +588,10 @@ class Produit
         return $this->categories;
     }
 
-    public function addCategory(Categorie $category): self
+    public function addCategorie(Categorie $categorie): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
+        if (!$this->categories->contains($categorie)) {
+            $this->categories[] = $categorie;
         }
 
         return $this;

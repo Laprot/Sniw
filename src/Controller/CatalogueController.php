@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
+use App\Entity\Filtre;
 use App\Entity\Produit;
 use App\Entity\Search;
+use App\Form\FiltreType;
 use App\Form\RechercheProduitType;
 use App\Form\SearchType;
 use App\Repository\ProduitRepository;
@@ -44,10 +46,15 @@ class CatalogueController extends AbstractController
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
+
+        $filtre= new Filtre();
+        $formFiltre = $this->createForm(FiltreType::class,$filtre);
+        $formFiltre->handleRequest($request);
+
         if ($categorie != null)
             $findProduits = $this->repository->byCategorie($categorie);
         else
-            $findProduits = $this->repository->findBy(array('etat' => 1));
+            $findProduits = $this->repository->findBy(['etat' => 1]);
 
         //si on utilise la barre de recherche
        if ($form->isSubmitted() && $form->isValid()) {
@@ -69,6 +76,13 @@ class CatalogueController extends AbstractController
                $request->query->getInt('page', 1), 24);
        }
 
+        //Filtre par checkboxe bio et produit belle france
+        if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
+            $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre),
+                $request->query->getInt('page', 1), 24);
+        }
+
+
 
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
@@ -78,6 +92,7 @@ class CatalogueController extends AbstractController
             'produits' => $produits,
             'count' => $produits->getTotalItemCount(),
             'form' => $form->createView(),
+            'formFiltre'=>$formFiltre->createView(),
             'categories'=>$categories,
             'search' => $search->getRechercher()
         ]);
@@ -94,9 +109,12 @@ class CatalogueController extends AbstractController
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
+        $filtre= new Filtre();
+        $formFiltre = $this->createForm(FiltreType::class,$filtre);
+        $formFiltre->handleRequest($request);
+
         if ($categorie != null)
             $findProduits = $this->repository->byCategorie($categorie->getId());
-
         else
             $findProduits = $this->repository->findBy(array('etat' => 1));
 
@@ -122,7 +140,17 @@ class CatalogueController extends AbstractController
         }
 
 
+        $produitssouscat = $this->repository->byCategorie($categorie);
 
+
+        foreach($produitssouscat as $ps) {
+            $ts = $ps->getProduitBelleFrance();
+        }
+        //Filtre par checkboxe bio et produit belle france
+        if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
+            $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre,$ts),
+                $request->query->getInt('page', 1), 24);
+        }
 
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
@@ -132,6 +160,7 @@ class CatalogueController extends AbstractController
             'produits' => $produits,
             'count' => $produits->getTotalItemCount(),
             'form' => $form->createView(),
+            'formFiltre' => $formFiltre->createView(),
             'categories'=>$categories,
             'search' => $search->getRechercher(),
             'categorie' =>$categorie,

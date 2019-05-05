@@ -1,16 +1,5 @@
 <!-- Header -->
 <header class="header trans_300">
-    {% if not app.request.cookies.get('site_cookie_check') %}
-        <div class="eupopup eupopup-container-bottomright">
-            <div class="eupopup-markup" style="background-color:black">
-                <div class="eupopup-body" style="text-align: center">Ce site utilise les cookies. En poursuivant votre navigation, vous acceptez l’utilisation des cookies.
-                    <a href="{{ path(app.request.attributes.get('_route')) }}" class="eupopup-button eupopup-button_1">Accepter et fermer</a>
-
-                    <div class="clearfix"></div>
-
-                </div>
-            </div>
-        {% endif %}
     <!-- Top Navigation -->
     <div class="top_nav">
         <div class="container">

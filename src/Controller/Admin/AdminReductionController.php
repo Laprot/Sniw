@@ -99,27 +99,25 @@ class AdminReductionController extends AbstractController
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
 
-
-
-
         if ($form->isSubmitted() && $form->isValid()) {
 
-            //Cherche les catégories
+            //Catégories
             $categorie = $this->getDoctrine()->getRepository(Categorie::class)->findOneBy(['id'=>$reduction->getCategories()]);
 
-
-           $produits = $this->getDoctrine()->getRepository(Produit::class)->byCategorie($categorie);
-
+            //Produits par catégories
+            $produits = $this->getDoctrine()->getRepository(Produit::class)->byCategorie($categorie);
 
            foreach($produits as $p) {
+               $prixUnite = $p->getPrixUnite();
 
-               $v = $p->getPrixUnite();
-               $v .= $v;
+
+               $reduc = $reduction->getNewReduction() * $prixUnite;
+               $prixFinalUnite = $prixUnite - $reduc;
+
+               $p->setPrixUnite($prixFinalUnite);
+               $prixFinal = $prixFinalUnite * $p->getUniteParCarton();
+
            }
-
-
-           dump($v);
-           die();
 
 
 

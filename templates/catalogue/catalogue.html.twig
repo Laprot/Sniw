@@ -30,6 +30,7 @@
                                 </li>
                                 {% endif %}
                                 {% endfor %}
+
                             </ul>
 
 
@@ -57,6 +58,26 @@
 
                 <div class="sidebar">
                     <div class="sidebar_section">
+                        <div class="sidebar_title">
+                            <h5 style="background-color:#f2bf00;color:white;padding:6px 20px 6px 20px">FILTRE</h5>
+                        </div>
+                        <ul class="navbar-nav flex-column">
+
+                            {{ form_start(formFiltre) }}
+                            {{ form_row(formFiltre.isBelleFrance) }}
+                            {{ form_row(formFiltre.isBio) }}
+
+                            <div class="form-group mt-4 ">
+                                <button class="btn" style="padding:6px 25px;">
+                                    <i class="fa fa-search" aria-hidden="true" style="font-size: 20px;cursor:pointer"></i>
+                                </button>
+                            </div>
+
+                           {{ form_end(formFiltre) }}
+                       </li>
+                        </ul>
+
+
                         <div class="sidebar_title">
                             <h5 style="background-color:#f2bf00;color:white;padding:6px 20px 6px 20px">Rayons</h5>
                         </div>
@@ -137,7 +158,6 @@
                                                 <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Prix</span></li>
 
                                                 {% endif %}
-
                                                 <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Nom </span></li>
                                             </ul>
                                         </li>
@@ -151,6 +171,7 @@
                                                 <li class="num_sorting_btn"><span>24</span></li>
                                             </ul>
                                         </li>
+
                                         <li style="border:none">
                                             Il y a {{ count }} produit(s)
                                         </li>
@@ -234,7 +255,8 @@
 
                                                                                     <tr>
                                                                                         <td>Produit Belle France </td>
-                                                                                        <td> {{ produit.getProduitBelleFrance() ? 'Oui' : 'Non' }}</td>
+
+                                                                                        <td> <span class="bellefrance">{{ produit.getProduitBelleFrance() ? 'Oui' : 'Non' }} </span></td>
                                                                                     </tr>
 
 

@@ -33,7 +33,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin_dashboard")
+     * @Route("/admin-dashboard", name="admin_dashboard")
      */
     public function index()
     {

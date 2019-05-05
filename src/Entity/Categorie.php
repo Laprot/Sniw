@@ -253,7 +253,7 @@ class Categorie
     {
         if (!$this->produits->contains($produit)) {
             $this->produits[] = $produit;
-            $produit->addCategory($this);
+            $produit->addCategorie($this);
         }
 
         return $this;
@@ -281,7 +281,7 @@ class Categorie
     {
         if (!$this->reductions->contains($reduction)) {
             $this->reductions[] = $reduction;
-            $reduction->addCategory($this);
+            $reduction->addCategorie($this);
         }
 
         return $this;
@@ -291,7 +291,7 @@ class Categorie
     {
         if ($this->reductions->contains($reduction)) {
             $this->reductions->removeElement($reduction);
-            $reduction->removeCategory($this);
+            $reduction->removeCategorie($this);
         }
 
         return $this;

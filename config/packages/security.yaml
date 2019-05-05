@@ -9,9 +9,6 @@ security:
                 class: App\Entity\User
                 property: email
 
-
-
-
         #in_memory: { memory: ~ }
     firewalls:
         dev:
@@ -20,6 +17,7 @@ security:
         main:
             pattern: ^/
             anonymous: ~
+            switch_user: true
             remember_me:
                 secret:   '%kernel.secret%'
                 lifetime: 604800 # 1 week in seconds

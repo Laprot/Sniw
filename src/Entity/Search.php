@@ -23,6 +23,7 @@ class Search
         return $this->rechercher;
     }
 
+
     /**
      * @param mixed $rechercher
      */

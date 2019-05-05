@@ -1,5 +1,10 @@
 <form action="{{ path('catalogue') }}" >
     {{ form_start(form) }}
     {{ form_widget(form.rechercher, { 'attr': { 'class' : "currency",'placeholder': "Rechercher"} }) }}
+
+        <button class="btn" style="padding:6px 15px;background-color: #1E1E27;">
+            <i class="fa fa-search" aria-hidden="true" style="font-size: 17px;cursor:pointer;color:white"></i>
+        </button>
+
     {{ form_end(form) }}
 </form>

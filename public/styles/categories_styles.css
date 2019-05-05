@@ -1719,8 +1719,15 @@ section
 
 #_desktop_top_menu {
 	display: block;
-	margin: 0 -10px 0 100px;
+	margin: 0 -10px 0 120px;
 }
+@media (max-width: 640px){
+	#_desktop_top_menu {
+		display: block;
+		margin: 0 -10px 0 30px;
+	}
+}
+
 
 #adtm_menu {
 	z-index: 9;

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Commande;
+use App\Entity\Filtre;
 use App\Entity\Produit;
 use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -128,6 +129,11 @@ class ProduitRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findAllAvailableCatalogue() {
+        return $this->createQueryBuilder('u')
+            ->where('u.etat = 1');
+    }
 /*
     public function byCategorie($categorie) {
         return $this->createQueryBuilder('u')
@@ -155,32 +161,31 @@ class ProduitRepository extends ServiceEntityRepository
     }
 
 
-    // /**
-    //  * @return Produit[] Returns an array of Produit objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Produit
+    //Filtre produit belle france ou produit bio
+    /**
+     * @return Query
+     */
+    public function findProduitCheckbox(Filtre $filtre): Query
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query= $this->findAllAvailableCatalogue();
+
+        if($filtre->getIsBelleFrance()) {
+            $query = $query
+                ->andWhere("u.produit_belle_france like :filtre")
+                ->setParameter('filtre', $filtre->getIsBelleFrance());
+        }
+        if($filtre->getIsBio()) {
+            $query = $query
+                ->andWhere("u.produit_bio like :filtre")
+                ->setParameter('filtre', $filtre->getIsBio());
+        }
+
+
+        return $query->getQuery();
     }
-    */
+
+
+
+
 }

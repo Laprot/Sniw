@@ -31,6 +31,7 @@
                                     </li>
                                 {% endif %}
                             {% endfor %}
+
                         </ul>
 
 
@@ -56,6 +57,7 @@
                                 <li class="active"><a href="{{ path('catalogue_sous-cat', {id:categorie.id}) }}"><i class="fa fa-angle-right" aria-hidden="true"></i>{{ categorie.nom }}</a></li>
 
                             {% endif %}
+
                         </ul>
                     </div>
 
@@ -64,8 +66,27 @@
                     <div class="sidebar">
                         <div class="sidebar_section">
                             <div class="sidebar_title">
+                                <h5 style="background-color:#f2bf00;color:white;padding:6px 20px 6px 20px">FILTRE</h5>
+                            </div>
+                            <ul class="navbar-nav flex-column">
+
+                                {{ form_start(formFiltre) }}
+                                {{ form_row(formFiltre.isBelleFrance) }}
+                                {{ form_row(formFiltre.isBio) }}
+
+                                <div class="form-group mt-4 ">
+                                    <button class="btn" style="padding:6px 25px">
+                                        <i class="fa fa-search" aria-hidden="true" style="font-size: 20px;cursor:pointer"></i>
+                                    </button>
+                                </div>
+
+                                {{ form_end(formFiltre) }}
+                                </li>
+                            </ul>
+                            <div class="sidebar_title">
                                 <h5 style="background-color:#f2bf00;color:white;padding:6px 20px 6px 20px">{{ categorie.nom }}</h5>
                             </div>
+
 
 
 
@@ -96,6 +117,7 @@
 
 
                                                     {% endfor %}
+
                                                 </ul>
                                             </div>
                                         </li>
@@ -103,6 +125,7 @@
                                     {% endif %}
 
                                 {% endfor %}
+
                             </ul>
 
                         </div>

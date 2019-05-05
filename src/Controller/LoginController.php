@@ -25,4 +25,14 @@ class LoginController extends Controller
             'error'         => $error,
         ));
     }
+
+    /**
+     * @Route("/login_check", name="login_check")
+     */
+    public function loginCheckAction()
+    {
+        // this controller will not be executed,
+        // as the route is handled by the Security system
+        throw new \Exception('Which means that this Exception will not be raised anytime soon …');
+    }
 }
