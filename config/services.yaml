@@ -92,6 +92,13 @@ services:
               tags:
                 - { name : console.command }
 
+    console_command.csv_importcommande:
+              class: App\Import\ImportCommande
+              arguments:
+                - "@doctrine.orm.entity_manager"
+              tags:
+                - { name : console.command }
+
     app.form.type.about_users:
         class: App\Form\CategoryType
         arguments:

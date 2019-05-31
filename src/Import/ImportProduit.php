@@ -42,11 +42,15 @@ class ImportProduit extends Command
         ;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute (InputInterface $input, OutputInterface $output) {
         $io = new SymfonyStyle($input,$output);
         $io->title('Import du flux ...');
 
-        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/ps_products.csv');
+        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/produitmai2019testcsv.csv');
 
         $reader->setDelimiter(';');
         $results = $reader->fetchAssoc();
@@ -84,6 +88,7 @@ class ImportProduit extends Command
             }
 
             $produit->setIdManufacturer($idManu);
+
 
 
 
@@ -156,17 +161,56 @@ class ImportProduit extends Command
                    $cond4 = str_replace("DLV Théorique-", "",$row[$k]);
                    $produit->setDlvTheorique($cond4);
                }
+
+
+
+
                //reste à faire
 
                //...........
             }
 
 
+            //Import catégorie1, catégorie2 et catégorie3
+
+            //Nom catégorie
+            $categorie_nom = $this->em->getRepository(Categorie::class)->findOneBy(['nom' => $row['nom_categorie1']]);
+            $categorie_nom1 = $this->em->getRepository(Categorie::class)->findOneBy(['nom' => $row['nom_categorie2']]);
+
+
+            $categorie_nom2 = $this->em->getRepository(Categorie::class)->findOneBy(['nom' => $row['nom_categorie3']]);
+
+
+            //id catégorie en fonction du nom
+            $categorie1 = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie_nom->getId()]);
+            $categorie2 = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie_nom1->getId()]);
 
 
 
 
 
+            //$produit->addCategorie($row['nom_categorie1']);
+
+            //$produit->addCategorie($row['nom_categorie2']);
+
+            $produit->addCategorie($categorie1);
+            $produit->addCategorie($categorie2);
+
+
+
+
+            if(\strpos($row['nom_categorie3'],'-') !== false ) {
+
+            } else {
+                $categorie3 = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie_nom2->getId()]);
+                $produit->addCategorie($categorie3);
+            }
+
+
+
+
+           // $allproduit = $this->em->getRepository(Produit::class)->findAll();
+            //$this->em->remove($allproduit);
             $this->em->persist($produit);
 
             //Permet de ne pas incrémenter l'id automatiquement

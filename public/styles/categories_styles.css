@@ -1346,7 +1346,7 @@ section
 .product_info
 {
 	text-align: center;
-	padding-left: 10px;
+	padding-left: 3px;
 	padding-right: 10px;
 }
 .product_name
@@ -1364,6 +1364,7 @@ section
 }
 .discount .product_info .product_price
 {
+	padding-left:65px;
 	font-size: 14px;
 }
 .product_price

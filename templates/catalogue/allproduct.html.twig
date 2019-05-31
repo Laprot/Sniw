@@ -11,7 +11,7 @@
     <body>
 
     <link rel="stylesheet" type="text/css" href="/styles/pagination.css">
-    <link rel="stylesheet" type="text/css" href="/styles/produit_fix.css?v=1">
+    <link rel="stylesheet" type="text/css" href="/styles/produit_fix.css?v=2">
 
 
 
@@ -21,13 +21,12 @@
             <div id="_desktop_top_menu" class="adtm_menu_container ">
                 <div id="adtm_menu" data-open-method="1">
                     <div id="adtm_menu_inner" class="clearfix advtm_open_on_hover">
+
                         <ul id="menu">
                             {% for categorie in categories %}
                                 {% if categorie.getIdParent() == null  %}
                                     <li class="li-niveau1 advtm_menu_3 menuHaveNoMobileSubMenu">
-                                        <a  href="{{ path('catalogue_sous-cat',{id:categorie.id}) }}" title="Animalerie"  class=" a-niveau1 {% if app.request.attributes.get('_route') %}  {% endif %}"  data-type="category" data-id="6262"><span class="advtm_menu_span advtm_menu_span_3">{{ categorie.nom }}</span></a>
-
-
+                                        <a  href="{{ path('catalogue_sous-cat',{id:categorie.id}) }}" title="Animalerie"  class=" a-niveau1 {% if app.request.attributes.get('catalogue') %} advtm_menu_actif {% endif %}"  data-type="category" data-id="6262"><span class="advtm_menu_span advtm_menu_span_3">{{ categorie.nom }}</span></a>
                                     </li>
                                 {% endif %}
                             {% endfor %}
@@ -46,17 +45,11 @@
 
                     <!-- Breadcrumbs -->
 
+
                     <div class="breadcrumbs d-flex flex-row align-items-center" style="margin-bottom:15px">
                         <ul>
                             <li><a href="{{ path('home') }}">Home</a></li>
-                            <li><a href="{{ path('catalogue') }}"><i class="fa fa-angle-right" aria-hidden="true"></i>Catalogue</a></li>
-
-                            {%  if categorie.getIdParent()|length > 0 %}
-
-                                <li><a href="{{ path('catalogue_sous-cat', {id:categorie.getIdParent().id}) }}"><i class="fa fa-angle-right" aria-hidden="true"></i>{{ categorie.getIdParent().nom }}</a></li>
-                                <li class="active"><a href="{{ path('catalogue_sous-cat', {id:categorie.id}) }}"><i class="fa fa-angle-right" aria-hidden="true"></i>{{ categorie.nom }}</a></li>
-
-                            {% endif %}
+                            <li class="active"><a href="{{ path('catalogue') }}"><i class="fa fa-angle-right" aria-hidden="true"></i>Catalogue</a></li>
 
                         </ul>
                     </div>
@@ -75,7 +68,7 @@
                                 {{ form_row(formFiltre.isBio) }}
 
                                 <div class="form-group mt-4 ">
-                                    <button class="btn" style="padding:6px 25px">
+                                    <button class="btn" style="padding:6px 25px;">
                                         <i class="fa fa-search" aria-hidden="true" style="font-size: 20px;cursor:pointer"></i>
                                     </button>
                                 </div>
@@ -83,49 +76,26 @@
                                 {{ form_end(formFiltre) }}
                                 </li>
                             </ul>
+
+
                             <div class="sidebar_title">
-                                <h5 style="background-color:#f2bf00;color:white;padding:6px 20px 6px 20px">{{ categorie.nom }}</h5>
+                                <h5 style="background-color:#f2bf00;color:white;padding:6px 20px 6px 20px">Rayons</h5>
                             </div>
 
 
-
-
-
                             <ul class="navbar-nav flex-column">
-                                {% for categorie in categorie.children %}
-                                    {% if categorie.getIdParent()|length > 0 %}
+                                {% for categorie in categories %}
+                                    {% if categorie.getIdParent()|length == 0 %}
 
                                         <li class="nav-item ">
 
-                                                {% if categorie.children|length == 0 %}
-                                                    <a class="nav-link" href="{{ path('catalogue_sous-cat', {id:categorie.id}) }}">{{ categorie.nom }} </a>
-                                                {% else %}
-                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#{{ categorie.id }}" aria-controls="submenu-3">{{ categorie.nom }} <i class="fa fa-angle-down" ></i></a>
-                                                    </a>
-                                                {% endif %}
-                                            <div id="{{ categorie.id }}" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
+                                            <a class="nav-link" href="{{ path('catalogue_sous-cat', {id:categorie.id}) }}">{{ categorie.nom }} </a>
+                                            </a>
 
-                                                    <li class="nav-item"><a class="nav-link nav-link-li" style="font-size:10px" href="{{ path('catalogue_sous-cat', {'id':categorie.id}) }}"> <i class="fa fa-angle-right"></i> <span style="font-weight:bold">TOUT VOIR </span></a></li>
-
-
-                                                    {% for categorie in categorie.children %}
-
-
-                                                            <li class="nav-item"><a class="nav-link nav-link-li" style="font-size:10px" href="{{ path('catalogue_sous-cat', {'id':categorie.id}) }}"> <i class="fa fa-angle-right"></i> {{ categorie.nom }} </a></li>
-
-
-
-                                                    {% endfor %}
-
-                                                </ul>
-                                            </div>
                                         </li>
-
                                     {% endif %}
 
                                 {% endfor %}
-
                             </ul>
 
                         </div>
@@ -154,24 +124,7 @@
 
                                     <!-- Product Grid -->
 
-                                    <div class="container">
-                                        <div class="row">
 
-                                            <div class="pages d-flex flex-row align-items-center ">
-                                                {{ knp_pagination_render(produits) }}
-                                            </div>
-                                            <div class="col">
-                                                <div style="float: right">
-                                                    {% if count <= 32 %}
-                                                        Résultats 1 - {{ count }} sur {{ count }}.
-                                                    {% else %}
-                                                        Résultats 1 - 32 sur {{ count }}.
-                                                    {% endif %}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
 
                                     <hr>
 
@@ -203,8 +156,9 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="{{ path('catalogue_voirtout_cat',{categorie:categorie.id}) }}"> Afficher tout</a>
+                                                <a href="{{ path('catalogue_voirtout') }}"> Afficher tout</a>
                                             </li>
+
                                             <li style="border:none">
                                                 Il y a {{ count }} produit(s)
                                             </li>
@@ -225,11 +179,10 @@
                                         <div class="product-item men">
                                             <div class="product discount product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
                                                 <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
-
                                                     {% if produit.image|length > 0 %}
-                                                    <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
+                                                        <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
                                                     {% else %}
-                                                        <span class="product_img_link"><img src="http://{{ produit.getImageImport() }}" style="width:100%;" alt="{{ produit.nom }}"></span>
+                                                        <span class="product_img_link"><img src="http://{{ produit.getImageImport() }}" style="width:120%;" alt="{{ produit.nom }}"></span>
                                                     {% endif %}
                                                 </div>
 
@@ -256,8 +209,6 @@
                                                                             {% else %}
                                                                                 <img src="http://{{ produit.getImageImport() }}" style="width:100%;" alt="{{ produit.nom }}">
                                                                             {% endif %}
-
-
                                                                         </div>
                                                                         <div class="col-md-7 col-md-offset-4">
 
@@ -291,7 +242,8 @@
 
                                                                                 <tr>
                                                                                     <td>Produit Belle France </td>
-                                                                                    <td> {{ produit.getProduitBelleFrance() ? 'Oui' : 'Non' }}</td>
+
+                                                                                    <td> <span class="bellefrance">{{ produit.getProduitBelleFrance() ? 'Oui' : 'Non' }} </span></td>
                                                                                 </tr>
 
 
@@ -301,7 +253,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <div class="col">
-                                                                        <p class="text-center "> Prix unitaire : <strong> {{ produit.getPrixUnite()|number_format(2, '.', ',') }}€ </strong></p>
+                                                                        <p class="text-center "> Prix unitaire : <strong>{{ produit.getPrixUnite()|number_format(2, '.', ',') }}€ </strong></p>
                                                                     </div>
                                                                 </div>
                                                             </div><!-- /.modal-content -->
@@ -315,7 +267,7 @@
                                                     <div class="product_info desc_bloc3" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
 
 
-                                                    <div class="product_price unit-price">  {{ produit.getPrixUnite()|number_format(2, '.', ',') }}€/UC HT</div>
+                                                    <div class="product_price unit-price"> {{ produit.getPrixUnite()|number_format(2, '.', ',') }}€/UC HT</div>
                                                     <div class="product_info price-condi"> Carton de {{ produit.getUniteParCarton() }} produit(s)</div>
                                                 </div>
                                                 <div class="row">
@@ -325,7 +277,7 @@
 
                                                             <form  method="get" id="idForm">
                                                                 <span class="labelQty" style="float:left;margin-left:10px;font-size:12px">Quantit&eacute; :</span>
-                                                                <br><input name="{{ produit.id }}" value="1" class="addQty" id="submitid_{{ produit.id }}" style="width: 60%;height:20px;float: left;margin-left: 10px;">
+                                                                <br><input name="{{ produit.id }}" value="1" class="addQty" id="submitid_{{ produit.id }}" style="width: 60%;height:20px;float: left;margin-left: 10px;" >
 
 
                                                         </div>
@@ -345,7 +297,6 @@
                                                     {% else %}
 
 
-
                                                     <div class="product-item men" style="height:280px">
                                                         <div class="product discount product_filter" style="height:260px">
                                                             <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
@@ -353,9 +304,10 @@
 
                                                                        {% if produit.image|length > 0 %}
                                                                            <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
-                                                                         {% else %}
+                                                                    {% else %}
                                                                            <span class="product_img_link"><img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}"></span>
                                                                        {% endif %}
+
 
                                                                 </span>
                                                             </div>
@@ -382,13 +334,11 @@
                                                                                 <div class="row">
                                                                                     <div class="col-md-4">
 
-
                                                                                         {% if produit.image|length > 0 %}
                                                                                             <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
                                                                                         {% else %}
                                                                                             <img src="http://{{ produit.getImageImport() }}" style="width:100%;" alt="{{ produit.nom }}">
                                                                                         {% endif %}
-
 
                                                                                     </div>
                                                                                     <div class="col-md-7 col-md-offset-4">
@@ -468,26 +418,11 @@
 
                                                 <div class="product_sorting_container product_sorting_container_bottom clearfix">
 
-                                    <span class="showing_results">
 
-                                        {% if count <= 32 %}
-                                            Résultats 1 - {{ count }} sur {{ count }}.
-                                        {% else %}
-                                            Résultats 1 - 32 sur {{ count }}.
-                                        {% endif %}
-
-
-                                    </span>
-                                                    <div class="pages d-flex flex-row align-items-center">
-
-                                                        <div class="pages d-flex flex-row align-items-center ">
-                                                            {{ knp_pagination_render(produits) }}
-                                                        </div>
-                                                    </div>
 
                                                     {% else %}
 
-                                                        <h5 class="mt-4"> Aucun résultat trouvé pour "{{ search }}"</h5>
+                                                        <h5 class="mt-4"> Aucun résultat trouvé</h5>
                                                     {% endif %}
 
                                                 </div>
@@ -514,15 +449,17 @@
 
                 </div>
 
-                <script src="/js/jquery-3.2.1.min.js"></script>
-                <script src="/styles/bootstrap4/popper.js"></script>
+                <script src="js/jquery-3.2.1.min.js"></script>
+                <script src="styles/bootstrap4/popper.js"></script>
                 <script src="styles/bootstrap4/bootstrap.min.js"></script>
-                <script src="/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-                <script src="/plugins/easing/easing.js"></script>
-                <script src="/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-                <script src="/js/categories_custom.js"></script>
+                <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+                <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+                <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+                <script src="plugins/easing/easing.js"></script>
+                <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+                <script src="js/categories_custom.js"></script>
 
-                <script src="/js/isotope.pkgd.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                 <script>
 
                     function refreshAjax(id,changePath) {
@@ -534,8 +471,18 @@
                             },
                             dataType: "json",
                             success: function(response) {
-                                let txt = parseInt($('#checkout_items').text());
-                                $('#checkout_items').text(txt+1);
+
+                                //let qte =  +$('#submitid_' +id).val() +1 ;
+
+                                //$('#submitid_' +id).val(qte);
+
+                                let txt = 0;
+
+
+                                txt = parseInt($('#checkout_items').text()) +1;
+                                $('#checkout_items').text(txt);
+
+
                             }
 
 
@@ -546,7 +493,10 @@
 
 
 
+
                 </script>
+
     </body>
+
 
 {% endblock %}

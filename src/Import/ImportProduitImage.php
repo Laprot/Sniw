@@ -50,7 +50,7 @@ class ImportProduitImage extends Command
 
 
 
-        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/exportimage.csv');
+        $reader = Reader::createFromPath('%kernel.project_dir%/../public/produits_csv/exportimage-mai.csv');
 
 
         $reader->setDelimiter(';');
@@ -75,7 +75,14 @@ class ImportProduitImage extends Command
                 $this->em->persist($produit);
             }
 */
-            $produits->setImageImport($row['image']);
+
+            if($produits == null ) {
+                $produits = new Produit();
+                $produits->setEtat(0);
+            } else {
+                $produits->setImageImport($row['image']);
+            }
+
             $this->em->persist($produits);
 
             /* $user = new User();

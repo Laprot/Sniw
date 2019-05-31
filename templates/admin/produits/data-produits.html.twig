@@ -126,7 +126,7 @@
                                                         {% endfor %}
                                                     </ul>
                                                 </td>
-                                                <td> {{ produit.getPrixFinal()}}</td>
+                                                <td> {{ produit.getPrixFinal()|number_format(2, '.', ',')}}</td>
                                                 <td>
                                                     {{ produit.getEtat() ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' }}
                                                 </td>

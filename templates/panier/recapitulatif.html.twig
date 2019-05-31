@@ -290,7 +290,7 @@
                         parseFloat($('#prixFinal').text(prixF.toFixed(2)));
 
                         //Rafraichit la page lorsque tout est supprimé (marge d'erreur de soustraction à 0.2 près)
-                        if( parseFloat($('#prixFinal').text()) >= 0 &&  parseFloat($('#prixFinal').text()) <= 0.20 ){
+                        if( parseFloat($('#volumeFinal').text()) >= 0 &&  parseFloat($('#volumeFinal').text()) <= 0.20 ){
                             location.reload();
                         }
                     }

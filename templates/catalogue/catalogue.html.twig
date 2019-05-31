@@ -11,7 +11,7 @@
 <body>
 
 <link rel="stylesheet" type="text/css" href="/styles/pagination.css">
-<link rel="stylesheet" type="text/css" href="/styles/produit_fix.css">
+<link rel="stylesheet" type="text/css" href="/styles/produit_fix.css?v=2">
 
 
 
@@ -132,10 +132,10 @@
                                         </div>
                                         <div class="col">
                                             <div style="float: right">
-                                                {% if count <= 24 %}
+                                                {% if count <= 32 %}
                                                     Résultats 1 - {{ count }} sur {{ count }}.
                                                 {% else %}
-                                                    Résultats 1 - 24 sur {{ count }}.
+                                                    Résultats 1 - 32 sur {{ count }}.
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -163,13 +163,17 @@
                                         </li>
                                         <li>
                                             <span>Voir</span>
-                                            <span class="num_sorting_text">24</span>
+                                            <span class="num_sorting_text">32</span>
                                             <i class="fa fa-angle-down"></i>
                                             <ul class="sorting_num">
                                                 <li class="num_sorting_btn"><span>6</span></li>
                                                 <li class="num_sorting_btn"><span>12</span></li>
                                                 <li class="num_sorting_btn"><span>24</span></li>
+                                                <li class="num_sorting_btn"><span>32</span></li>
                                             </ul>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('catalogue_voirtout') }}"> Afficher tout</a>
                                         </li>
 
                                         <li style="border:none">
@@ -195,7 +199,7 @@
                                                         {% if produit.image|length > 0 %}
                                                             <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
                                                         {% else %}
-                                                            <span class="product_img_link"><img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}"></span>
+                                                            <span class="product_img_link"><img src="http://{{ produit.getImageImport() }}" style="width:120%;" alt="{{ produit.nom }}"></span>
                                                         {% endif %}
                                                     </div>
 
@@ -220,7 +224,7 @@
                                                                                 {% if produit.image|length > 0 %}
                                                                                     <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
                                                                                 {% else %}
-                                                                                    <img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}">
+                                                                                    <img src="http://{{ produit.getImageImport() }}" style="width:100%;" alt="{{ produit.nom }}">
                                                                                 {% endif %}
                                                                             </div>
                                                                             <div class="col-md-7 col-md-offset-4">
@@ -280,7 +284,7 @@
                                                         <div class="product_info desc_bloc3" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
 
 
-                                                        <div class="product_price unit-price"> {{ produit.getPrixUnite()|number_format(2, '.', ',') }}€/u HT</div>
+                                                        <div class="product_price unit-price"> {{ produit.getPrixUnite()|number_format(2, '.', ',') }}€/UC HT</div>
                                                         <div class="product_info price-condi"> Carton de {{ produit.getUniteParCarton() }} produit(s)</div>
                                                     </div>
                                             <div class="row">
@@ -350,7 +354,7 @@
                                                                                     {% if produit.image|length > 0 %}
                                                                                         <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
                                                                                     {% else %}
-                                                                                        <img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}">
+                                                                                        <img src="http://{{ produit.getImageImport() }}" style="width:100%;" alt="{{ produit.nom }}">
                                                                                     {% endif %}
 
                                                                                 </div>
@@ -433,10 +437,10 @@
 
                                     <span class="showing_results">
 
-                                        {% if count <= 24 %}
+                                        {% if count <= 32 %}
                                             Résultats 1 - {{ count }} sur {{ count }}.
                                         {% else %}
-                                            Résultats 1 - 24 sur {{ count }}.
+                                            Résultats 1 - 32 sur {{ count }}.
                                         {% endif %}
 
 

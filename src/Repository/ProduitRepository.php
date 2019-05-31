@@ -34,18 +34,19 @@ class ProduitRepository extends ServiceEntityRepository
     }
 
 
-/*
-    public function byCategorie($categorie)
-    {
-        $qb = $this->createQueryBuilder('u')
-            ->select('u')
-            ->where('u.id_categorie = :id_categorie')
-            ->andWhere('u.etat = 1')
-            ->orderBy('u.id')
-            ->setParameter('id_categorie', $categorie);
-        return $qb->getQuery()->getResult();
-    }
-*/
+
+    /*
+        public function byCategorie($categorie)
+        {
+            $qb = $this->createQueryBuilder('u')
+                ->select('u')
+                ->where('u.id_categorie = :id_categorie')
+                ->andWhere('u.etat = 1')
+                ->orderBy('u.id')
+                ->setParameter('id_categorie', $categorie);
+            return $qb->getQuery()->getResult();
+        }
+    */
 
 
     public function byCategorie($categorie)
@@ -59,6 +60,25 @@ class ProduitRepository extends ServiceEntityRepository
             ->setParameter('categorie_id', $categorie);
         return $qb->getQuery()->getResult();
     }
+    public function countProduits()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->where('p.etat=1')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countProduitsCategorie() {
+        return $this->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->leftJoin('p.categories','C')
+            ->where('C.id = :categorie_id')
+            ->andWhere('p.etat = 1')
+            ->getQuery()
+            ->getScalarResult();
+    }
+
 
     /*
     public function findByIdCommande($commande) {

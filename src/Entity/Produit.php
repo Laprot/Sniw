@@ -203,6 +203,11 @@ class Produit
      */
     private $image_import;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CommandeImport", inversedBy="produits")
+     */
+    private $commandeImport;
+
     public function __construct()
     {
         $this->features = new ArrayCollection();
@@ -614,6 +619,18 @@ class Produit
     public function setImageImport(?string $image_import): self
     {
         $this->image_import = $image_import;
+
+        return $this;
+    }
+
+    public function getCommandeImport(): ?CommandeImport
+    {
+        return $this->commandeImport;
+    }
+
+    public function setCommandeImport(?CommandeImport $commandeImport): self
+    {
+        $this->commandeImport = $commandeImport;
 
         return $this;
     }

@@ -47,7 +47,7 @@
         "symfony/profiler-pack": "^1.0",
         "symfony/routing": "4.1.7",
         "symfony/test-pack": "*",
-        "symfony/web-server-bundle": "4.1.7"
+        "symfony/web-server-bundle": "4.2.*"
     },
     "config": {
         "preferred-install": {

@@ -1,2 +1,2 @@
 #!/bin/sh
-rsync -av ./ u97288435@access783107477.webspace-data.io:~/sniw --include=public/build --include=public/.htaccess --exclude-from=.gitignore --exclude=".*"
+rsync -av ./ u97288435@access783107477.webspace-data.io:~/sniw --include=public/build --include=public/styles --include=public/.htaccess --exclude-from=.gitignore --exclude=".*"

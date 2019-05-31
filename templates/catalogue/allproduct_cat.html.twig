@@ -97,12 +97,12 @@
 
                                         <li class="nav-item ">
 
-                                                {% if categorie.children|length == 0 %}
-                                                    <a class="nav-link" href="{{ path('catalogue_sous-cat', {id:categorie.id}) }}">{{ categorie.nom }} </a>
-                                                {% else %}
-                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#{{ categorie.id }}" aria-controls="submenu-3">{{ categorie.nom }} <i class="fa fa-angle-down" ></i></a>
-                                                    </a>
-                                                {% endif %}
+                                            {% if categorie.children|length == 0 %}
+                                                <a class="nav-link" href="{{ path('catalogue_sous-cat', {id:categorie.id}) }}">{{ categorie.nom }} </a>
+                                            {% else %}
+                                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#{{ categorie.id }}" aria-controls="submenu-3">{{ categorie.nom }} <i class="fa fa-angle-down" ></i></a>
+                                                </a>
+                                            {% endif %}
                                             <div id="{{ categorie.id }}" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
 
@@ -112,7 +112,7 @@
                                                     {% for categorie in categorie.children %}
 
 
-                                                            <li class="nav-item"><a class="nav-link nav-link-li" style="font-size:10px" href="{{ path('catalogue_sous-cat', {'id':categorie.id}) }}"> <i class="fa fa-angle-right"></i> {{ categorie.nom }} </a></li>
+                                                        <li class="nav-item"><a class="nav-link nav-link-li" style="font-size:10px" href="{{ path('catalogue_sous-cat', {'id':categorie.id}) }}"> <i class="fa fa-angle-right"></i> {{ categorie.nom }} </a></li>
 
 
 
@@ -202,9 +202,6 @@
                                                     <li class="num_sorting_btn"><span>32</span></li>
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <a href="{{ path('catalogue_voirtout_cat',{categorie:categorie.id}) }}"> Afficher tout</a>
-                                            </li>
                                             <li style="border:none">
                                                 Il y a {{ count }} produit(s)
                                             </li>
@@ -227,7 +224,7 @@
                                                 <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
 
                                                     {% if produit.image|length > 0 %}
-                                                    <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
+                                                        <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
                                                     {% else %}
                                                         <span class="product_img_link"><img src="http://{{ produit.getImageImport() }}" style="width:100%;" alt="{{ produit.nom }}"></span>
                                                     {% endif %}

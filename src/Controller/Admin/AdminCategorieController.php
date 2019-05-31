@@ -167,7 +167,7 @@ class AdminCategorieController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('fabricant_show', [
+            return $this->redirectToRoute('categorie_show', [
                 'id' => $categorie->getId()
             ]);
         }

@@ -85,19 +85,6 @@
                                                 <td>{{ produit.reference }}</td>
                                                 <td>
 
-                                                    {% if produit.image|length > 0 %}
-                                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
-                                                    {% else %}
-                                                        <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
-                                                    {% endif %}
-
-
-                                                </td>
-                                                <td> {{ produit.nom }} </td>
-                                                <td> {{ produit.prixUnitaire }}€</td>
-                                                <td> {{ produit.quantite }}</td>
-                                               <td>  {{ produit.prixUnitaire * produit.quantite }}€</td>
-
                                             </tr>
 
 
@@ -111,8 +98,7 @@
                                          </div>
                                          <div class="col" style="margin-left:300px">
                                              Total :
-                                             <strong style="font-size:20px"> {{ commande.commande.prixHT }}€ </strong>
-                                         </div>
+                                                </div>
                                      </div>
 
 
