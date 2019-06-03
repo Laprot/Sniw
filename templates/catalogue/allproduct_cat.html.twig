@@ -87,9 +87,7 @@
                             <ul class="navbar-nav flex-column">
                                 {% for categorie in categorie.children %}
                                     {% if categorie.getIdParent()|length > 0 %}
-
                                         <li class="nav-item ">
-
                                             {% if categorie.children|length == 0 %}
                                                 <a class="nav-link" href="{{ path('catalogue_sous-cat', {id:categorie.id}) }}">{{ categorie.nom }} </a>
                                             {% else %}
@@ -104,10 +102,7 @@
 
                                                     {% for categorie in categorie.children %}
 
-
                                                         <li class="nav-item"><a class="nav-link nav-link-li" style="font-size:10px" href="{{ path('catalogue_sous-cat', {'id':categorie.id}) }}"> <i class="fa fa-angle-right"></i> {{ categorie.nom }} </a></li>
-
-
 
                                                     {% endfor %}
 
@@ -137,9 +132,6 @@
                                     <!-- Product Sorting -->
                                     {% if produits|length !=0 %}
                                     <!-- Product Grid -->
-
-
-
                                     <hr>
 
 

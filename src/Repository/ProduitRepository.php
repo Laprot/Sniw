@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Categorie;
 use App\Entity\Commande;
 use App\Entity\Filtre;
 use App\Entity\Produit;
@@ -186,19 +187,25 @@ class ProduitRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function findProduitCheckbox(Filtre $filtre, Produit $produit): Query
+    public function findProduitCheckbox(Filtre $filtre, Categorie $categorie): Query
     {
         $query= $this->findAllAvailableCatalogue();
 
         if($filtre->getIsBelleFrance()) {
             $query = $query
                 ->andWhere("u.produit_belle_france like :filtre")
-                ->setParameter('filtre', $filtre->getIsBelleFrance());
+                ->leftJoin('u.categories','C')
+                ->andWhere('C.id = :categorie_id')
+                ->setParameters(['filtre' => $filtre->getIsBelleFrance() , 'categorie_id' => $categorie]);
+
+
         }
         if($filtre->getIsBio()) {
             $query = $query
                 ->andWhere("u.produit_bio like :filtre")
-                ->setParameter('filtre', $filtre->getIsBio());
+                ->leftJoin('u.categories','ca')
+                ->andWhere('ca.id = :categorie_id')
+                ->setParameters(['filtre' => $filtre->getIsBelleFrance() , 'categorie_id' => $categorie]);
         }
 
 

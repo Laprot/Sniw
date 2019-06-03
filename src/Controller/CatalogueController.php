@@ -202,28 +202,19 @@ class CatalogueController extends AbstractController
         }
 
 
-        $produitssouscat = $this->repository->byCategorie($categorie);
 
-
-
-        foreach($produitssouscat as $ps) {
-            if($ps->getProduitBelleFrance(true)){
-                $produitBelleFrance = $ps;
-            }
-        }
 
         //Filtre par checkboxe bio et produit belle france
         if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
-            $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre,$produitBelleFrance),
-                $request->query->getInt('page', 1), $limit);
-
-
-            dump($produitBelleFrance);
-
-            $produitsBF = $this->repository->findBy(['produit_belle_france' => $produitBelleFrance]);
-
+            if ($filtre->getIsBelleFrance() == true || $filtre->getIsBio() == true) {
+                $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre, $categorie),
+                    $request->query->getInt('page', 1), $limit);
+            }
+            else {
+                $produits = $paginator->paginate($findProduits,
+                    $request->query->getInt('page', 1), $limit);
+            }
         }
-
 
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
