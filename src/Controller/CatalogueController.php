@@ -102,13 +102,11 @@ class CatalogueController extends AbstractController
     }
 
 
-
-
-
+    //Afficher tous les produits
 
     /**
      * @Route("/display/allproducts", name="catalogue_voirtout")
-     */
+
     public function toutvoir(Request $request, Categorie $categorie=null) {
         $produits = $this->repository->findAll();
 
@@ -129,6 +127,7 @@ class CatalogueController extends AbstractController
     }
 
 
+     * */
     /**
      * @Route("/display_cat/allproducts/{categorie}", name="catalogue_voirtout_cat")
      */
@@ -146,9 +145,10 @@ class CatalogueController extends AbstractController
 
         $categories = $this->em->getRepository(Categorie::class)->findAll();
 
-        return $this->render('catalogue/allproduct.html.twig', [
+        return $this->render('catalogue/allproduct_cat.html.twig', [
             'produits' => $produits,
             'categories'=> $categories,
+            'categorie' => $categorie,
             'count'=>count($produits),
             'formFiltre'=>$formFiltre->createView(),
         ]);
@@ -205,14 +205,25 @@ class CatalogueController extends AbstractController
         $produitssouscat = $this->repository->byCategorie($categorie);
 
 
+
         foreach($produitssouscat as $ps) {
-            $ts = $ps->getProduitBelleFrance();
+            if($ps->getProduitBelleFrance(true)){
+                $produitBelleFrance = $ps;
+            }
         }
+
         //Filtre par checkboxe bio et produit belle france
         if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
-            $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre,$ts),
+            $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre,$produitBelleFrance),
                 $request->query->getInt('page', 1), $limit);
+
+
+            dump($produitBelleFrance);
+
+            $produitsBF = $this->repository->findBy(['produit_belle_france' => $produitBelleFrance]);
+
         }
+
 
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();

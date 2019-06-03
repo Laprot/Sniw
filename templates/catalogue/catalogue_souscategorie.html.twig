@@ -203,7 +203,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="{{ path('catalogue_voirtout_cat',{categorie:categorie.id}) }}"> Afficher tout</a>
+                                                <a class="load-btn" href="{{ path('catalogue_voirtout_cat',{categorie:categorie.id}) }}"> Afficher tout</a>
                                             </li>
                                             <li style="border:none">
                                                 Il y a {{ count }} produit(s)
@@ -547,6 +547,7 @@
 
 
                 </script>
+
     </body>
 
 {% endblock %}

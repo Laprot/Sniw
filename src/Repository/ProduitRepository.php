@@ -186,7 +186,7 @@ class ProduitRepository extends ServiceEntityRepository
     /**
      * @return Query
      */
-    public function findProduitCheckbox(Filtre $filtre): Query
+    public function findProduitCheckbox(Filtre $filtre, Produit $produit): Query
     {
         $query= $this->findAllAvailableCatalogue();
 
