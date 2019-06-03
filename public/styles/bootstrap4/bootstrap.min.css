@@ -8514,6 +8514,26 @@ input[type="radio"]:checked {
     background-color: black;
 }
 
+input[type="checkbox"] {
+    /* remove standard background appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* create custom radiobutton appearance */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    background-clip: content-box;
+    border: 2px solid lightgrey;
+    border-radius: 50%;
+}
+
+/* appearance for checked radiobutton */
+input[type="checkbox"]:checked {
+    background-color: black;
+}
 
 /* radio button taille font size responsive */
 

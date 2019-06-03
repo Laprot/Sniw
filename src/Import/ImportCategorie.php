@@ -57,8 +57,6 @@ class ImportCategorie extends Command
 
             $id_parent= $this->em->getRepository(Categorie::class)->find($row['id_parent']);
 
-
-
             $categorie->setId($row['id']);
             $categorie->setNom($row['nom']);
 

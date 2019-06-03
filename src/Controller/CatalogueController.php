@@ -143,6 +143,16 @@ class CatalogueController extends AbstractController
         $formFiltre = $this->createForm(FiltreType::class,$filtre);
         $formFiltre->handleRequest($request);
 
+        //Filtre par checkboxe bio et produit belle france
+        if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
+            if ($filtre->getIsBelleFrance() == true || $filtre->getIsBio() == true) {
+                $produits = $this->repository->findProduitCheckbox($filtre, $categorie);
+            }
+            else {
+                $produits = $findProduits;
+            }
+        }
+
         $categories = $this->em->getRepository(Categorie::class)->findAll();
 
         return $this->render('catalogue/allproduct_cat.html.twig', [
