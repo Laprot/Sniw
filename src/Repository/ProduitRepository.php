@@ -205,9 +205,33 @@ class ProduitRepository extends ServiceEntityRepository
                 ->andWhere("u.produit_bio like :filtre")
                 ->leftJoin('u.categories','ca')
                 ->andWhere('ca.id = :categorie_id')
-                ->setParameters(['filtre' => $filtre->getIsBelleFrance() , 'categorie_id' => $categorie]);
+                ->setParameters(['filtre' => $filtre->getIsBio() , 'categorie_id' => $categorie]);
         }
 
+
+        return $query->getQuery();
+    }
+
+    //Filtre tous les produits belle france ou produit bio
+    /**
+     * @return Query
+     */
+    public function findAllProduitCheckbox(Filtre $filtre): Query
+    {
+        $query= $this->findAllAvailableCatalogue();
+
+        if($filtre->getIsBelleFrance()) {
+            $query = $query
+                ->andWhere("u.produit_belle_france like :filtre")
+                ->setParameter('filtre', $filtre->getIsBelleFrance());
+
+
+        }
+        if($filtre->getIsBio()) {
+            $query = $query
+                ->andWhere("u.produit_bio like :filtre")
+                ->setParameter('filtre',$filtre->getisBio());
+        }
 
         return $query->getQuery();
     }

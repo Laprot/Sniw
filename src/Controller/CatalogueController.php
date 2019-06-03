@@ -80,7 +80,7 @@ class CatalogueController extends AbstractController
 
         //Filtre par checkboxe bio et produit belle france
         if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
-            $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre),
+            $produits = $paginator->paginate($this->repository->findAllProduitCheckbox($filtre),
                 $request->query->getInt('page', 1), $limit);
         }
 
@@ -106,6 +106,7 @@ class CatalogueController extends AbstractController
 
     /**
      * @Route("/display/allproducts", name="catalogue_voirtout")
+     * /
 
     public function toutvoir(Request $request, Categorie $categorie=null) {
         $produits = $this->repository->findAll();

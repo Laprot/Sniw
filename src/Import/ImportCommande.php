@@ -77,6 +77,7 @@ class ImportCommande extends Command
 
             //Ne push que le dernier produit
 
+
             $commande->setCommande(
                 ['produit' =>
                     [$produit_id =>
@@ -84,7 +85,9 @@ class ImportCommande extends Command
                     ]
                 ]);
 
-            //dump($commande->getReference());
+            dump($commande);
+
+            die();
             //dump($commande->getCommande());
 
             //$this->em->persist($commande);
