@@ -55,8 +55,6 @@ class ImportCommande extends Command
 
         $io->progressStart(iterator_count($results));
 
-
-
         $commande = new Commande();
 
         // Référence aléatoire de 8 lettres
@@ -66,16 +64,22 @@ class ImportCommande extends Command
             $code_aleatoire .= $characts[ rand() % strlen($characts) ];
             $commande->setReference($code_aleatoire);
         }
-
         $commande->setDate(new \DateTime('now'));
 
         foreach($results as $row) {
+
+
 
             $produit = $this->em->getRepository(Produit::class)->findOneBy(['reference' => $row['Référence']]);
 
             $produit_id = $produit->getId();
 
             //Ne push que le dernier produit
+
+            //$tab = [$row['Référence'],$row['Produit'],$row['Prix unitaire'],$row['Quantité']];
+
+            //dump($tab);
+
 
 
             $commande->setCommande(
@@ -85,15 +89,15 @@ class ImportCommande extends Command
                     ]
                 ]);
 
+
+
             dump($commande);
 
-            die();
-            //dump($commande->getCommande());
-
-            //$this->em->persist($commande);
+            $this->em->persist($commande);
 
             $io->progressAdvance();
         }
+
 
         $io->progressFinish();
 

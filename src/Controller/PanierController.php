@@ -51,7 +51,7 @@ class PanierController extends AbstractController
             $articles = 0;
         }
         else {
-            $articles = count($session->get('panier'));
+            $articles = count($session->get('panier')) ;
         }
         return $this->render('panier/affichage.html.twig', [
             'articles' => $articles
@@ -108,7 +108,7 @@ class PanierController extends AbstractController
                     $panier[$id] = $request->request->getInt('quantite');
 
                 } else {
-                    $panier[$id] = 1;
+                    $panier[$id] = 1 + $request->request->getInt('quantite');
                 }
             }
             $session->set('panier', $panier);

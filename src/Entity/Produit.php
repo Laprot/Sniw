@@ -11,8 +11,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
- * @UniqueEntity(fields="nom", message="Nom déjà utilisé")
- * @UniqueEntity(fields="reference", message="Référence déjà utilisé")
  */
 class Produit
 {

@@ -147,6 +147,12 @@ class AdminProduitController extends AbstractController
                $produit->setImage($fileName);
                $produit->setImageImport(null);
            }
+            else {
+                $file = $produit->getImage();
+                $fileName = $fileUploader->upload($file);
+                $produit->setImage($fileName);
+                $produit->setImageImport(null);
+            }
 
 
             $this->getDoctrine()->getManager()->flush();

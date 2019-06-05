@@ -220,6 +220,7 @@ class CatalogueController extends AbstractController
             if ($filtre->getIsBelleFrance() == true || $filtre->getIsBio() == true) {
                 $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre, $categorie),
                     $request->query->getInt('page', 1), $limit);
+
             }
             else {
                 $produits = $paginator->paginate($findProduits,

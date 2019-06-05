@@ -25,6 +25,7 @@
         "symfony/intl": "4.2.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
+        "symfony/phpunit-bridge": "4.2.*",
         "symfony/process": "4.1.*",
         "symfony/security-bundle": "4.1.*",
         "symfony/serializer-pack": "*",
@@ -38,6 +39,8 @@
         "white-october/pagerfanta-bundle": "^1.2"
     },
     "require-dev": {
+        "symfony/browser-kit": "4.2.*",
+        "symfony/css-selector": "4.2.*",
         "symfony/debug": "4.1.7",
         "symfony/debug-pack": "*",
         "symfony/event-dispatcher": "4.1.7",

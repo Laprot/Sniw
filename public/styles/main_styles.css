@@ -1852,14 +1852,14 @@ slideshow {
 	.img-responsive {
 		display: block;
 		height: auto;
-		max-width: 70%;
+		max-width: 35%;
 	}
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
 	.img-responsive {
 		display: block;
-		width: 75%;
+		width: 35%;
 		height: auto;
 		max-width: 100%;
 	}
@@ -1964,4 +1964,10 @@ slideshow {
 	text-align: left;
 	background-color: #4CAF50;
 	color: white;
+}
+
+@media (max-width:479px) {
+	.resp-title{
+		display:none;
+	}
 }
