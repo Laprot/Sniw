@@ -16,7 +16,7 @@
 
 
 <div class="background">
-    <div class="columns-container container carriere-container">
+    <div class="columns-container container produit-container">
 
         <div id="_desktop_top_menu" class="adtm_menu_container ">
             <div id="adtm_menu" data-open-method="1">
@@ -189,6 +189,10 @@
                                     <!-- Products -->
 
                                     {% for produit in produits %}
+                                    {% set poidsP = produit.weight %}
+
+
+
                                         {% if is_granted('ROLE_USER') %}
                                             <div class="product-item men">
                                                 <div class="product discount product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
@@ -243,6 +247,12 @@
                                                                                     <tr>
                                                                                         <td> NB carton/palette</td>
                                                                                         <td> {{ produit.getNbCartonPalette() }}</td>
+                                                                                        <td style="border: 1px solid #e9ecef;display:none"><span
+                                                                                                    id="poidsProd_{{ produit.id }}">{{ produit.weight|number_format(2, '.','') }}</span>
+                                                                                        </td>
+                                                                                        <td style="border: 1px solid #e9ecef;display:none"><span class="poidsall"
+                                                                                                                                                 id="poidsTotal_{{ produit.id }}">{{ poidsP|number_format(2, '.','') }} </span> kg
+                                                                                        </td>
 
                                                                                     </tr>
                                                                                     <tr>
@@ -505,13 +515,36 @@
 
                 //$('#submitid_' +id).val(qte);
 
+
+
                 let txt = 0;
 
 
-                txt = parseInt($('#checkout_items').text()) +1;
-                $('#checkout_items').text(txt);
+
+                //txt = parseInt($('#').text()) +1;
+
+                //$('#').text(parseFloat($('#poidsFinal').text(poids.toFixed(2))));
 
 
+                $('.sp-pdss').text(poids);
+
+
+                let qte = $('#submitid_' +id).val();
+                //Poids produit
+                let poidsProduit = parseFloat($('#poidsProd_'+id).text()).toFixed(2);
+
+                //___________________POIDS
+
+                //poids produit * quantite
+                let poidsQte = qte * poidsProduit;
+                parseFloat($('#poidsTotal_' + id).text(poidsQte.toFixed(2)));
+
+                //Poids Total
+                let poids = 0;
+                $(".poidsall").each(function (index) {
+                    poids = poids + parseFloat($(this).text());
+                });
+                parseFloat($('#poidsFinal').text(poids.toFixed(2)));
             }
 
 

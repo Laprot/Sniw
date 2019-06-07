@@ -11,6 +11,7 @@ namespace App\Import;
 use App\Entity\Categorie;
 use App\Entity\Manufacturer;
 use App\Entity\Produit;
+use App\Controller\Admin\AdministrationController;
 use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Reader;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -19,6 +20,8 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 class ImportProduit extends Command
 {
@@ -50,7 +53,21 @@ class ImportProduit extends Command
         $io = new SymfonyStyle($input,$output);
         $io->title('Import du flux ...');
 
-        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/produitmai2019testcsv.csv');
+
+        $filesystem = new Filesystem();
+
+        $finder = new Finder();
+        $finder->in(__DIR__.'/../../public/produits_csv');
+
+        foreach($finder as $file) {
+            break;
+        }
+
+
+        //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/produitmai2019testcsv.csv');
+
+        $reader = Reader::createFromStream(fopen($file,'r+'));
+
 
         $reader->setDelimiter(';');
         $results = $reader->fetchAssoc();
@@ -170,7 +187,6 @@ class ImportProduit extends Command
                //...........
             }
 
-
             //Import catégorie1, catégorie2 et catégorie3
 
             //Nom catégorie
@@ -226,6 +242,8 @@ class ImportProduit extends Command
         $this->em->flush();
 
         $io->success('Import des produits complété !');
+
+        $filesystem->remove($file);
     }
 
 

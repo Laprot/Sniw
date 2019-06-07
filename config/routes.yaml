@@ -12,3 +12,18 @@ mgilet_notification:
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.yaml"
 
+coresphere_console:
+    resource: .
+    type: extra
+
+console:
+    path:  /admin/_console
+    defaults: { _controller: coresphere_console.controller:consoleAction }
+    methods: [GET]
+
+console_exec:
+    path:  /admin/_console/commands.{_format}
+    defaults: { _controller: coresphere_console.controller:execAction, _format: json }
+    methods: [POST]
+    requirements:
+        _format: json

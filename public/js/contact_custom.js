@@ -57,11 +57,22 @@ jQuery(document).ready(function($)
 				header.css({'top':"0"});
 			}
 		}
-        if(window.innerWidth < 767 && window.innerWidth > 300)
+        if(window.innerWidth < 767 && window.innerWidth > 479)
         {
             if($(window).scrollTop() > 50)
             {
                 header.css({'top':"-100px"});
+            }
+            else
+            {
+                header.css({'top':"0"});
+            }
+        }
+        if(window.innerWidth < 479 && window.innerWidth > 300)
+        {
+            if($(window).scrollTop() > 50)
+            {
+                header.css({'top':"-120px"});
             }
             else
             {

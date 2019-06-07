@@ -21,4 +21,5 @@ return [
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
     WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle::class => ['all' => true],
     Egyg33k\CsvBundle\Egyg33kCsvBundle::class => ['all' => true],
+    CoreSphere\ConsoleBundle\CoreSphereConsoleBundle::class =>['all'=>true]
 ];

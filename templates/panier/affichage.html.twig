@@ -1,6 +1,9 @@
+{% set volume = 0 %}
+{% set qte = 222 %}
+
 {% block stylesheets %}
     <head>
-        <link rel="stylesheet" type="text/css" href="/styles/container.css?v=1">
+        <link rel="stylesheet" type="text/css" href="/styles/container.css?v=2">
     </head>
 {% endblock %}
         {% if is_granted('ROLE_USER') %}
@@ -29,13 +32,21 @@
                         <div class="container-right">
                             <em>&nbsp;</em>
                             <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Volume : <span class="sp-vol">0</span>m³ </p></div>
-                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Poids : <span class="sp-pds">0</span>T </p></div>
+                            <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Poids : <span class="sp-pds"></span>T </p></div>
                         </div>
                     </div>
                     <div class="bloc-resume">
                         <p class="cta-title"><span class="cta-open" onclick="openBloc()">+</span><span class="cta-close" onclick="closeBloc()">-</span></p>
                         <p class="data-resume">Volume : <span class="sp-vol">0</span>m³</p>
-                        <p class="data-resume">Poids : <span class="sp-pds">0</span>T</p>
+
+
+
+                        <p class="data-resume">Poids : <span class="sp-pds"> {{ articles }} </span>T</p>
+
+
+
+
+
                         <a class="cta-resume" href="{{ path('panier') }}" title="> Commander" target="_self">&gt; Commander</a>
                     </div>
                 </div>
@@ -46,6 +57,7 @@
                     <p>Cliquez sur&nbsp;<img src="https://centraleachatexport.com/themes/theme1279/img/container/btn-small.jpg"><br>pour consulter le remplissage de vos containers.</p>
                 </div>
                 <div class="bloc-sec">
+
                     <div class="container-left">
                         <p class="container-titre">Produits sec</p>
                         <p class="container-texte">Volume max : <span style="font-weight:bold">70m³</span> /Ctr </p>
@@ -53,7 +65,8 @@
                     </div>
                     <div class="container-right">
                         <div class="curseur-v curseur"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Volume : <span class="sp-vol">0</span>m³ </p></div>
-                        <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Poids : <span class="sp-pds">0</span>T </p></div>
+                       <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Poids :  <span class="sp-pds"> </span>T </p></div>
+
                     </div>
                 </div>
                 <div class="bloc-frais">
@@ -71,7 +84,7 @@
                 <div class="bloc-resume">
                     <p class="cta-title"><span class="cta-open" onclick="openBloc()">+</span><span class="cta-close" onclick="closeBloc()">-</span></p>
                     <p class="data-resume">Volume : <span class="sp-vol">0</span>m³</p>
-                    <p class="data-resume">Poids : <span class="sp-pds">0</span>T</p>
+                    <p class="data-resume">Poids : <a href="{{ path('panier') }}"><span class="sp-pdss">{{ articles }}</span></a>T</p>
                     <a class="cta-resume" href="{{ path('panier') }}" title="> Commander" target="_self">&gt; Commander</a>
                 </div>
             </div>
@@ -124,4 +137,10 @@
         $('span.cta-open').css('display','block');
         $('span.cta-close').css('display','none');
     };
+
+
+
+
+
+
 </script>

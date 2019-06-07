@@ -10,8 +10,10 @@ use App\Import\ImportProduit;
 use Doctrine\Common\Persistence\ObjectManager;
 use League\Csv\Reader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Exception\InvalidArgumentException;
 
 
 class AdministrationController extends AbstractController
@@ -26,30 +28,29 @@ class AdministrationController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-            dump($form->getData());
-            die();
             $file = $upload->getName();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move($this->getParameter('upload_directory'),$fileName);
+            $fileName = '1'.md5(uniqid()).'.'.$file->guessExtension();
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($upload);
-            $entityManager->flush();
+            if($file->guessExtension() != "txt") {
+                $this->addFlash('error','Ficher CSV demandé');
+            }
+            else {
+                $file->move($this->getParameter('upload_directory'),$fileName);
+                $this->addFlash('success','Votre fichier a bien été uploadé');
 
-
-
-            $this->addFlash('success','Votre fichier a bien été uploadé');
+            }
 
             return $this->redirectToRoute('admin_upload', [
-                'fileName' => $fileName
+                'fileName' => $fileName,
             ]);
         }
 
-
         return $this->render('admin/administration/admin.html.twig', [
             'formUpload'=>$form->createView(),
+
         ]);
     }
+
 
 
 

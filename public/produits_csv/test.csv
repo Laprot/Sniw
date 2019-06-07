@@ -1,2 +1,2 @@
-nom_categorie1;nom_categorie2;nom_categorie3;upc;reference;gencod;Unite par carton;prix_unite;prix_final;weight;profondeur;Hauteur;Longueur;Largeur;NB carton/palette;Nb de cartons par couche;Nb de couche par palette;DLV Theorique;DLV Garantie;BF;BIO;nom;Conditionnement;marque;etat
-EPICERIE;BISCOTTES ET ASSIMILES;LES BISCOTTES AVEC SEL;1101320;349111;76222110416704;8;2.5293;20.2351;8.3;0.056758;26;59;37;16;4;4;240;120;NAT; ;Biscotte nature test 108 tranches;Le paquet 875g;HEUDEBERT;1
+nom_categorie1;nom_categorie2;nom_categorie3;nom;Conditionnement;marque;BF;BIO;upc;reference;gencod;Unite par carton;prix_unite;prix_final;weight;Hauteur ;Longueur ;Largeur ;profondeur;Nb de cartons par couche;Nb de couche par palette;NB carton/palette;DLV Theorique;DLV Garantie;etat
+ARTICLES BAZAR;Accessoires plein air;-;50 gobelets en plastique blanc;x50; ;1P; ;75411020;751040;3434030025202;30;0.6347;19.041;2;32;40;39;0.050;6;6;36;0;0;1

@@ -46,13 +46,58 @@
                         {% endfor%}
                     </div>
                     <div class="form-group col-md-6"></div>
+
                 {% endif %}
 
+                {% for message in app.flashes('error') %}
+                    <div class="form-group col-md-6">
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6"></div>
+                {% endfor %}
 
-                <h1>Upload de fichiers</h1>
-                {{ form(formUpload) }}
+
+
+                <h1><i class="fas fa-file-import"></i> Fonction d'import produits</h1>
+
+
+                <hr>
+                <h2>Etape 1 : Vérifier que tous les champs sont bien écrits et valides. Exemple :   </h2>
+
+                <img src="{{ asset('images/exempleImport.png') }}" style="width:100%">
+
+                <hr>
+                <h2>Etape 2 : Importer le fichier CSV </h2>
+                {{ form_start(formUpload) }}
+                <div class="input-group" style="margin-bottom:20px;margin-top:20px">
+                    <div class="input-group-prepend" style="height: 38px;">
+                        <span class="input-group-text" id="inputGroupFileAddon01"> Télécharger</span>
+                    </div>
+                    <div class="custom-file">
+                        {{ form_widget(formUpload.name, {
+                            attr: {
+                                'placeholder': 'Choisir un fichier CSV',
+                                'class' : 'custom-file-input'
+                            }}) }}
+                    </div>
                 </div>
+                {{ form_end(formUpload) }}
+
+
+                <hr>
+            <h2> Etape 3 : copier la commande <span style="font-style:italic;text-decoration:underline">csv:import</span> et accéder à la console Admin </h2>
+
+                <a class="btn btn-primary" href="/admin/_console"> Accèder à la console Admin </a>
+
+
+
+
+
             </div>
+
+
 
         </div>
 
@@ -70,4 +115,12 @@
     <script src="/admin/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
     <script src="/admin/assets/libs/js/main-js.js"></script>
 
+    <script>
+        $('.custom-file-input').on('change', function(event) {
+            let inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
+    </script>
 {% endblock %}

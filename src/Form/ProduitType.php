@@ -52,11 +52,6 @@ class ProduitType extends AbstractType
                 'group_by' => 'id_parent',
                 'label' => 'Catégorie parente',
             ])
-            ->add('image',FileType::class, [
-                'data_class' => null,
-                'required' =>false,
-                'attr' => ['placeholder' => 'Choisissez un fichier'],
-            ])
 
             ->add('Gencod',null, [
                 'label' => 'Gencod (EAN13)'

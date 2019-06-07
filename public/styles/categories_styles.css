@@ -1770,6 +1770,23 @@ div#adtm_menu_inner {
 	list-style: none;
 }
 
+@media (min-width:375px) and (max-width:479px) {
+	#adtm_menu ul#menu {
+		margin: 0;
+		margin-top:48px;
+		list-style: none;
+	}
+}
+
+
+@media (min-width:320px) and (max-width:375px) {
+	#adtm_menu ul#menu {
+		margin: 0;
+		margin-top:77px;
+		list-style: none;
+	}
+}
+
 #adtm_menu ul#menu li.li-niveau1 {
 	float: left;
 }

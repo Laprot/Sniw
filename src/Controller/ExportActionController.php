@@ -40,7 +40,7 @@ class ExportActionController extends Controller
         }
 
 
-        dump($commande->getCommande()['produit']);
+        dump($commande->getCommande());
         die();
         $csv->insertOne($reference.";".$nom.";".$prixUnitaire.";".$quantite.";".$prixTotal);
         $csv->output('Facture_'.$commande->getReference().'.csv');

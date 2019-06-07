@@ -55,30 +55,39 @@ class ImportCommande extends Command
 
         $io->progressStart(iterator_count($results));
 
-        $commande = new Commande();
+        //$commande = new Commande();
 
         // Référence aléatoire de 8 lettres
-        $characts = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $code_aleatoire = '';
-        for($i=0;$i<8;$i++){
-            $code_aleatoire .= $characts[ rand() % strlen($characts) ];
-            $commande->setReference($code_aleatoire);
-        }
-        $commande->setDate(new \DateTime('now'));
+
 
         foreach($results as $row) {
 
 
+            $commande = new Commande();
+
+            $characts = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $code_aleatoire = '';
+            for($i=0;$i<8;$i++){
+                $code_aleatoire .= $characts[ rand() % strlen($characts) ];
+                $commande->setReference($code_aleatoire);
+            }
+            $commande->setDate(new \DateTime('now'));
 
             $produit = $this->em->getRepository(Produit::class)->findOneBy(['reference' => $row['Référence']]);
 
             $produit_id = $produit->getId();
 
             //Ne push que le dernier produit
-
             //$tab = [$row['Référence'],$row['Produit'],$row['Prix unitaire'],$row['Quantité']];
-
             //dump($tab);
+
+            /*$tab =
+                [$produit_id =>
+                    ['reference' => intval($row['Référence']), 'nom' => $row['Produit'], 'prixUnitaire' => intval($row['Prix unitaire']), 'quantite' => intval($row['Quantité'])]
+                ];
+            */
+            //dump($tab);
+
 
 
 
@@ -93,15 +102,27 @@ class ImportCommande extends Command
 
             dump($commande);
 
-            $this->em->persist($commande);
+
 
             $io->progressAdvance();
         }
+        die();
 
+
+
+        /*
+
+        dump($commande->setCommande(['produit' => $tab ]));
+
+        foreach($commande->getCommande() as $com) {
+            dump($com);
+        }
+*/
+        $this->em->persist($commande);
 
         $io->progressFinish();
 
-        //$this->em->flush();
+        $this->em->flush();
 
         $io->success('Import des commandes complété !');
     }

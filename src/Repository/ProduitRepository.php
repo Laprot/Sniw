@@ -101,9 +101,11 @@ class ProduitRepository extends ServiceEntityRepository
 
         if($search->getRechercher()) {
            $query = $query
+                ->leftJoin('u.id_manufacturer','m')
                 ->andWhere("u.nom like :chaine")
                 ->andWhere('u.etat = 1')
                 ->orWhere('u.reference like :chaine')
+                ->orWhere('m.nom like :chaine')
                 ->orWhere('u.Gencod like :chaine')
                 ->orderBy('u.id')
                 ->setParameter('chaine','%'.$search->getRechercher().'%');

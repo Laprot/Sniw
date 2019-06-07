@@ -170,12 +170,14 @@
                 type: "POST",
                 url: changePath,
                 data : {
-                    quantite: $('#submitid_' +id).val()
+                    quantite: $('#submitid_' +id).val(),
+                    poidsFinal: $('#poidsFinal').text()
                 },
                 dataType: "json",
                 success: function(response) {
                     //Quantité produit
                     let qte = $('#submitid_' +id).val();
+
 
 
                     //Poids produit
@@ -231,6 +233,8 @@
                         });
                         parseFloat($('#poidsFinal').text(poids.toFixed(2)));
 
+
+                        $('.sp-pdss').text((poids/1000).toFixed(2));
                     }
                     //Sinon on refresh la page
                     else {
@@ -282,6 +286,7 @@
                     if ( $('#produit_' +id).fadeOut(300,function() { $("this").remove() })) {
                         let poidsF = poidsFinal - poidsProduit;
                         parseFloat($('#poidsFinal').text(poidsF.toFixed(2)));
+                        $('.sp-pdss').text((poidsF/1000).toFixed(2));
 
                         let volumeF = volumeFinal - volumeProduit;
                         parseFloat($('#volumeFinal').text(volumeF.toFixed(2)));

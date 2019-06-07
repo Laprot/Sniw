@@ -1874,16 +1874,31 @@ slideshow {
 	margin-top: 170px;
 
 }
+.produit-container {
+	margin-top:170px;
+}
 
 @media(max-width: 990px) {
 	.carriere-container {
 		margin-top: 223px;
 	}
+	.produit-container {
+		margin-top:223px;
+	}
+
 	.societe_container {
 		margin-top: 223px;
 	}
 }
 
+@media(max-width: 479px) {
+	.carriere-container {
+		margin-top: 335px;
+	}
+	.produit-container {
+		margin-top:235px;
+	}
+}
 
 
 
@@ -1969,5 +1984,8 @@ slideshow {
 @media (max-width:479px) {
 	.resp-title{
 		display:none;
+	}
+	.pagination {
+		font-size:8px !important;
 	}
 }

@@ -535,7 +535,7 @@ section
 
 }
 
-@media  (min-width: 320px) and (max-width: 479px) {
+@media  (min-width: 300px) and (max-width: 479px) {
 	.currency{
 		display: inline-block;
 		position: relative;
@@ -547,7 +547,8 @@ section
 		background: #1e1e27;
 		color: white;
 		float: left;
-		border-right: 1px solid white;
+		border-right: 1px solid black;
+		margin:-2px;
 	}
 	.top_nav_left {
 		height: 50px;
@@ -574,6 +575,7 @@ section
 	}
 }
 
+
 @media (max-width: 361px){
 		.top_nav_left {
 			height: 50px;
@@ -582,6 +584,16 @@ section
 			color: #b5aec4;
 			text-transform: uppercase;
 		}
+
+	.cursor-resp {
+		position:absolute;
+		left:-1em;
+		font-size:25px;
+	}
+
+	.account_selection {
+		width:420% !important;
+	}
 }
 /*********************************
 3.2 Language
@@ -2170,7 +2182,7 @@ ul.tabs {
 	.top_nav_left{
 		height: 50px;
 		line-height: 50px;
-		font-size: 12px;
+		font-size: 10px;
 		color: #b5aec4;
 		text-transform: uppercase;
 	}
@@ -2287,7 +2299,7 @@ h5 > span {
 
 @media (max-width: 479px) {
 	.mt-3 {
-		margin-top: 20px !important;
+		margin-top: 45px !important;
 	}
 }
 
