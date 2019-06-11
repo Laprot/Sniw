@@ -140,7 +140,6 @@ class AdminProduitController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-
            if((sizeof($produit->getImage()) > 0 ) && sizeof($produit->getImageImport() > 0)) {
                $file = $produit->getImage();
                $fileName = $fileUploader->upload($file);

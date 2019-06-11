@@ -57,14 +57,20 @@ class ImportProduit extends Command
         $filesystem = new Filesystem();
 
         $finder = new Finder();
-        $finder->in(__DIR__.'/../../public/produits_csv');
+
+        //EN DEV
+        $finder->in(__DIR__.'/../../public/file_produits');
+
+
+
+        //EN PROD
+        //$finder->in('/homepages/10/d783107477/htdocs/sniw/public/file_produits');
 
         foreach($finder as $file) {
             break;
         }
 
-
-        //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/produitmai2019testcsv.csv');
+        //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/produits-import.csv');
 
         $reader = Reader::createFromStream(fopen($file,'r+'));
 
@@ -73,6 +79,7 @@ class ImportProduit extends Command
         $results = $reader->fetchAssoc();
 
         $io->progressStart(iterator_count($results));
+
 
         foreach($results as $row) {
             $produit = new Produit();

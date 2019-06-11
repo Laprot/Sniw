@@ -4,10 +4,14 @@ namespace App\Controller\Admin;
 
 
 
+use App\Entity\Produit;
 use App\Entity\Upload;
+use App\Form\UploadImageType;
 use App\Form\UploadType;
 use App\Import\ImportProduit;
+use App\Service\FileUploader;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use League\Csv\Reader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Finder;
@@ -20,6 +24,18 @@ class AdministrationController extends AbstractController
 {
 
     /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
+
+
+    /**
      *@Route("/admin/upload",name="admin_upload")
      */
     public function upload(Request $request){
@@ -29,7 +45,10 @@ class AdministrationController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $file = $upload->getName();
-            $fileName = '1'.md5(uniqid()).'.'.$file->guessExtension();
+           // $fileName = '1'.md5(uniqid()).'.'.$file->guessExtension();
+
+            $fileName = $upload->getName()->getClientOriginalName();
+
 
             if($file->guessExtension() != "txt") {
                 $this->addFlash('error','Ficher CSV demandé');
@@ -37,19 +56,87 @@ class AdministrationController extends AbstractController
             else {
                 $file->move($this->getParameter('upload_directory'),$fileName);
                 $this->addFlash('success','Votre fichier a bien été uploadé');
-
             }
-
             return $this->redirectToRoute('admin_upload', [
                 'fileName' => $fileName,
             ]);
         }
 
-        return $this->render('admin/administration/admin.html.twig', [
+        return $this->render('admin/administration/import-produits.html.twig', [
             'formUpload'=>$form->createView(),
 
         ]);
     }
+
+
+    /**
+     *@Route("/admin/uploadImages",name="admin_upload_images")
+     */
+    public function uploadImages(Request $request){
+        $upload = new Upload();
+        $form = $this->createForm(UploadImageType::class,$upload);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+
+            //$fileName = '1'.md5(uniqid()).'.'.$file->guessExtension();
+
+            //UploadDirectory
+            $uploadDir = $this->getParameter('images_directory');
+
+            $files = $request->files->get('upload_image')['name'];
+
+
+            foreach ($files as $file ){
+                $fileName = $file->getClientOriginalName();
+
+                $file->move($uploadDir, $fileName);
+
+                $gencod = explode(".",$fileName);
+
+                $produits = $this->em->getRepository(Produit::class)->findBy(['Gencod' => $gencod[0]]);
+
+                foreach($produits as $prod) {
+                    if((sizeof($prod->getImage()) > 0 ) && sizeof($prod->getImageImport() > 0)) {
+                        $prod->setImage('/' . $gencod[0] . '.' . $gencod[1]);
+                        $prod->setImageImport(null);
+                        $this->em->persist($prod);
+                        $this->em->flush();
+                    }
+                    if((sizeof($prod->getImage()) > 0 ) || sizeof($prod->getImageImport() > 0)) {
+                        $prod->setImage('/' . $gencod[0] . '.' . $gencod[1]);
+                        $prod->setImageImport(null);
+                        $this->em->persist($prod);
+                        $this->em->flush();
+                    }
+                    if((sizeof($prod->getImage()) == 0 ) && sizeof($prod->getImageImport() == 0)) {
+                        $prod->setImage('/' . $gencod[0] . '.' . $gencod[1]);
+                        $prod->setImageImport(null);
+                        $this->em->persist($prod);
+                        $this->em->flush();
+                    }
+
+
+                }
+
+
+            }
+
+
+            $this->addFlash('success', 'Vos fichiers ont bien été uploadés');
+
+            return $this->redirectToRoute('admin_upload_images', [
+                'fileName' => $fileName,
+            ]);
+        }
+
+        return $this->render('admin/administration/import-images.html.twig', [
+            'formUpload'=>$form->createView(),
+
+        ]);
+    }
+
+
 
 
 

@@ -28,6 +28,8 @@ class FiltreType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Filtre::class,
+            'method' => 'get',
+            'csrf_protection' => false
         ]);
     }
 }

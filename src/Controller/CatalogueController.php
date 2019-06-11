@@ -84,8 +84,6 @@ class CatalogueController extends AbstractController
                 $request->query->getInt('page', 1), $limit);
         }
 
-
-
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
 
@@ -148,6 +146,7 @@ class CatalogueController extends AbstractController
         if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
             if ($filtre->getIsBelleFrance() == true || $filtre->getIsBio() == true) {
                 $produits = $this->repository->findProduitCheckbox($filtre, $categorie);
+
             }
             else {
                 $produits = $findProduits;
@@ -211,9 +210,6 @@ class CatalogueController extends AbstractController
             $produits = $paginator->paginate($findProduits,
                 $request->query->getInt('page', 1), $limit);
         }
-
-
-
 
         //Filtre par checkboxe bio et produit belle france
         if($formFiltre->isSubmitted() && $formFiltre->isValid()) {

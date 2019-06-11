@@ -67,15 +67,16 @@
                             </div>
                             <ul class="navbar-nav flex-column">
 
-                                {{ form_start(formFiltre) }}
-                                {{ form_row(formFiltre.isBelleFrance) }}
-                                {{ form_row(formFiltre.isBio) }}
+                                {{ form_start(formFiltre, {'attr': {'class': 'form-checkbox'}}) }}
 
-                                <div class="form-group mt-4 ">
-                                    <button class="btn" style="padding:6px 25px">
-                                        <i class="fa fa-search" aria-hidden="true" style="font-size: 20px;cursor:pointer"></i>
-                                    </button>
-                                </div>
+
+                                {{ form_row(formFiltre.isBelleFrance, {'attr': {'class': 'is_bf'}}) }}
+                                {{ form_row(formFiltre.isBio, {'attr': {'class': 'is_bio'}}) }}
+
+
+                                {{ form_end(formFiltre) }}
+
+
 
                                 {{ form_end(formFiltre) }}
                                 </li>
@@ -147,6 +148,7 @@
                                                         <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Prix</span></li>
 
                                                     {% endif %}
+
                                                     <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Nom </span></li>
                                                 </ul>
                                             </li>
@@ -485,6 +487,23 @@
                     }
 
 
+
+                </script>
+                <script>
+                    $(document).ready( function() {
+                        $('.is_bf').change(function() {
+                            // to get the selected value
+                            $( ".form-checkbox" ).submit();
+
+                            // do your magic pony stuff
+                        });
+                        $('.is_bio').change(function() {
+                            // to get the selected value
+                            $( ".form-checkbox" ).submit();
+
+                            // do your magic pony stuff
+                        });
+                    });
 
                 </script>
     </body>

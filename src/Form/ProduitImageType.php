@@ -21,8 +21,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProduitImageType extends AbstractType
 {
-
-
     /**
      * @var EntityManagerInterface
      */
@@ -33,10 +31,8 @@ class ProduitImageType extends AbstractType
         $this->em = $em;
     }
 
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
 
         $builder
             ->add('image',FileType::class, [
