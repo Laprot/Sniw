@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Ajouter une réduction {% endblock %}
+{% block title %} Ajouter un coefficient {% endblock %}
 
 {% block stylesheets %}
     <!-- Bootstrap CSS -->
@@ -25,14 +25,14 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <h2 class="pageheader-title">Réductions </h2>
+                        <h2 class="pageheader-title">Coefficients </h2>
                         <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
                         <div class="page-breadcrumb">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ path('reduction_show') }}" class="breadcrumb-link">Réductions</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Ajouter une nouvelle réduction</li>
+                                    <li class="breadcrumb-item"><a href="{{ path('coefficient_show') }}" class="breadcrumb-link">Coefficients</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Ajouter un nouveau coefficient</li>
                                 </ol>
                             </nav>
                         </div>
@@ -50,13 +50,13 @@
                 <!-- ============================================================== -->
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="card">
-                        <h5 class="card-header">Réduction</h5>
+                        <h5 class="card-header">Coefficients</h5>
                         <div class="card-body">
                             <div class="form-group col-md-6 container">
 
                                 <form method="post">
                                     {{ form_start(form) }}
-                                    {{ form_row(form.new_reduction) }}
+                                    {{ form_row(form.new_coeff) }}
                                     {{ form_row(form.groupes) }}
                                     {{ form_row(form.categories) }}
 
@@ -78,7 +78,7 @@
                                 </form>
 
                             </div>
-                            <a href="{{ path('reduction_show') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
+                            <a href="{{ path('coefficient_show') }}"><button class="btn btn-space btn-secondary">Retour</button></a>
                         </div>
                     </div>
                 </div>

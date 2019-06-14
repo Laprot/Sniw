@@ -114,9 +114,25 @@ class Commande
      */
     private $email;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Produit", inversedBy="commande")
+     */
+    private $produits;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeTypeProduits", mappedBy="commande")
+     */
+    private $commandetypeproduits;
+
+
+
+
+
     public function __construct()
     {
-        $this->commandeTypeProduits = new ArrayCollection();
+        $this->produits = new ArrayCollection();
+        $this->commandetypeproduits = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -356,6 +372,67 @@ class Commande
 
     public function __toString()
     {
-        return 'Réf : '.$this->getReference().' - '.$this->getCommande()['prixHT'].'€';
+        return 'Réf : '.$this->getReference();
     }
+
+    /**
+     * @return Collection|Produit[]
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): self
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        if ($this->produits->contains($produit)) {
+            $this->produits->removeElement($produit);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommandeTypeProduits[]
+     */
+    public function getCommandetypeproduits(): Collection
+    {
+        return $this->commandetypeproduits;
+    }
+
+    public function addCommandetypeproduit(CommandeTypeProduits $commandetypeproduit): self
+    {
+        if (!$this->commandetypeproduits->contains($commandetypeproduit)) {
+            $this->commandetypeproduits[] = $commandetypeproduit;
+            $commandetypeproduit->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandetypeproduit(CommandeTypeProduits $commandetypeproduit): self
+    {
+        if ($this->commandetypeproduits->contains($commandetypeproduit)) {
+            $this->commandetypeproduits->removeElement($commandetypeproduit);
+            // set the owning side to null (unless already changed)
+            if ($commandetypeproduit->getCommande() === $this) {
+                $commandetypeproduit->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
 }

@@ -2,6 +2,9 @@
 
 {% block title %} Les catégories {% endblock %}
 
+
+{% set totalHT = 0 %}
+
 {% block stylesheets %}
     <head>
         <!-- Required meta tags -->
@@ -73,22 +76,78 @@
                                             <th>Référence</th>
                                             <th style="width:100px">Image</th>
                                             <th>Désignation</th>
-                                            <th>Prix unitaire</th>
                                             <th>Quantité</th>
+                                            <th>Prix unitaire</th>
+
                                             <th>Total</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+
+                                        {% if commande.commande.produit is not defined %}
+
+                                            {% for produit in commande.produits %}
+
+                                                <tr>
+                                                    <td> {{ produit.reference }} </td>
+                                                    <td>   {% if produit.image|length > 0 %}
+                                                            <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                                        {% else %}
+                                                            <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
+                                                        {% endif %}
+
+                                                    </td>
+                                                    <td> {{ produit.nom }}</td>
+
+                                                    <td> {{ produit.quantite }}</td>
+                                                    <td> {{ produit.getPrixFinal()|number_format(2,'.','') }}€</td>
+                                                    {% set prixTotal = produit.getPrixFinal() * produit.quantite %}
+
+                                                    <td>  {{ prixTotal|number_format(2,'.','') }}€</td>
+
+                                                </tr>
+
+
+
+                                                {% set totalHT = totalHT + prixTotal %}
+
+                                            {% endfor %}
+
+
+
+
+                                        {% else %}
+
+
                                         {% for produit in commande.commande.produit %}
 
                                             <tr>
-                                                <td>{{ produit.reference }}</td>
-                                                <td>
+                                                <td> {{ produit.reference }} </td>
+                                                <td>   {% if produit.image|length > 0 %}
+                                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                                    {% else %}
+                                                        <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
+                                                    {% endif %}
+
+                                                </td>
+                                                <td> {{ produit.nom }}</td>
+
+                                                <td> {{ produit.quantite }}</td>
+                                                <td> {{ produit.prixUnitaire|number_format(2,'.','') }}€</td>
+                                                {% set prixTotal = produit.prixUnitaire * produit.quantite %}
+
+                                                <td>  {{ prixTotal|number_format(2,'.','') }}€</td>
 
                                             </tr>
 
 
+
+                                            {% set totalHT = totalHT + prixTotal %}
+
                                         {% endfor %}
+
+
+                                        {% endif %}
                                         </tbody>
                                     </table>
 
@@ -97,7 +156,8 @@
 
                                          </div>
                                          <div class="col" style="margin-left:300px">
-                                             Total :
+
+                                             Total : {{ totalHT|number_format(2,'.','') }} €
                                                 </div>
                                      </div>
 

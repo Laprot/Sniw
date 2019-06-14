@@ -4,20 +4,20 @@ namespace App\Form;
 
 use App\Entity\Categorie;
 use App\Entity\Groupe;
-use App\Entity\Reduction;
+use App\Entity\Coefficient;
 use App\Repository\CategorieRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReductionType extends AbstractType
+class CoefficientType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('new_reduction',null , [
-                'label' => 'Ajouter une réduction en respectant le format (21,56% ==> 0.2156)'
+            ->add('new_coeff',null , [
+                'label' => 'Ajouter un coefficient'
             ])
             ->add('groupes', EntityType::class, [
                 'class' => Groupe::class,
@@ -45,7 +45,7 @@ class ReductionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Reduction::class,
+            'data_class' => Coefficient::class,
         ]);
     }
 }

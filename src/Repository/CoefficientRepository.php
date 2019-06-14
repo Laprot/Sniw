@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Reduction;
+use App\Entity\Coefficient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Reduction|null find($id, $lockMode = null, $lockVersion = null)
- * @method Reduction|null findOneBy(array $criteria, array $orderBy = null)
- * @method Reduction[]    findAll()
- * @method Reduction[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Coefficient|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Coefficient|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Coefficient[]    findAll()
+ * @method Coefficient[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ReductionRepository extends ServiceEntityRepository
+class CoefficientRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Reduction::class);
+        parent::__construct($registry, Coefficient::class);
     }
 
     // /**
-    //  * @return Reduction[] Returns an array of Reduction objects
+    //  * @return Coefficient[] Returns an array of Coefficient objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ReductionRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Reduction
+    public function findOneBySomeField($value): ?Coefficient
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')

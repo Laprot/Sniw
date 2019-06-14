@@ -29,14 +29,14 @@ class Groupe
     private $created_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="id_groupe")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="id_groupe")
      */
     private $id_client;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reduction", mappedBy="groupes")
+     * @ORM\OneToMany(targetEntity="App\Entity\Coefficient", mappedBy="groupes")
      */
-    private $reductions;
+    private $coefficients;
 
 
 
@@ -125,17 +125,17 @@ class Groupe
     /**
      * @return mixed
      */
-    public function getReductions()
+    public function getCoefficients()
     {
-        return $this->reductions;
+        return $this->coefficients;
     }
 
     /**
-     * @param mixed $reductions
+     * @param mixed $coefficients
      */
-    public function setReductions($reductions)
+    public function setCoefficients($coefficients)
     {
-        $this->reductions = $reductions;
+        $this->coefficients = $coefficients;
     }
 
 

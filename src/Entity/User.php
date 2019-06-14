@@ -129,7 +129,7 @@ class User implements UserInterface,NotificationInterface
     private $telephone;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Groupe", inversedBy="id_client")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Groupe", inversedBy="id_client")
      */
     private $id_groupe;
 
@@ -153,11 +153,18 @@ class User implements UserInterface,NotificationInterface
      */
     private $superficieMagasin;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CommandeTypeProduits", mappedBy="user")
+     */
+    private $commandeTypeProduits;
+
+
+
     public function __construct() {
         $this->roles = array('ROLE_USER');
-        $this->id_groupe = new ArrayCollection();
         $this->nouvelleAdresses = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->commandeTypeProduits = new ArrayCollection();
     }
 
     // other properties and methods
@@ -438,37 +445,12 @@ class User implements UserInterface,NotificationInterface
         // TODO: Implement removeNotifiableNotification() method.
     }
 
-    /**
-     * @return Collection|Groupe[]
-     */
-    public function getIdGroupe(): Collection
-    {
-        return $this->id_groupe;
-    }
 
-    public function addIdGroupe(Groupe $idGroupe): self
-    {
-        if (!$this->id_groupe->contains($idGroupe)) {
-            $this->id_groupe[] = $idGroupe;
-            $idGroupe->addIdClient($this);
-        }
 
-        return $this;
-    }
-
-    public function removeIdGroupe(Groupe $idGroupe): self
-    {
-        if ($this->id_groupe->contains($idGroupe)) {
-            $this->id_groupe->removeElement($idGroupe);
-            $idGroupe->removeIdClient($this);
-        }
-
-        return $this;
-    }
 
     public function __toString()
     {
-        $s = ' '.$this->nom;
+        $s = ' '.$this->nom.' '.$this->prenom.' - '.$this->email;
         return $s;
     }
 
@@ -480,6 +462,16 @@ class User implements UserInterface,NotificationInterface
         $this->roles = $roles;
     }
 
+
+
+    /**
+     * @return mixed
+     */
+    public function getIdGroupe()
+    {
+        return $this->id_groupe;
+    }
+
     /**
      * @param mixed $id_groupe
      */
@@ -487,6 +479,7 @@ class User implements UserInterface,NotificationInterface
     {
         $this->id_groupe = $id_groupe;
     }
+
 
     public function getNomAdresse(): ?string
     {
@@ -578,5 +571,37 @@ class User implements UserInterface,NotificationInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|CommandeTypeProduits[]
+     */
+    public function getCommandeTypeProduits(): Collection
+    {
+        return $this->commandeTypeProduits;
+    }
+
+    public function addCommandeTypeProduit(CommandeTypeProduits $commandeTypeProduit): self
+    {
+        if (!$this->commandeTypeProduits->contains($commandeTypeProduit)) {
+            $this->commandeTypeProduits[] = $commandeTypeProduit;
+            $commandeTypeProduit->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandeTypeProduit(CommandeTypeProduits $commandeTypeProduit): self
+    {
+        if ($this->commandeTypeProduits->contains($commandeTypeProduit)) {
+            $this->commandeTypeProduits->removeElement($commandeTypeProduit);
+            // set the owning side to null (unless already changed)
+            if ($commandeTypeProduit->getUser() === $this) {
+                $commandeTypeProduit->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }

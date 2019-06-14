@@ -206,10 +206,19 @@ class Produit
      */
     private $commandeImport;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Commande", mappedBy="produits")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $commande;
+
+
+
     public function __construct()
     {
         $this->features = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->commande = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -629,6 +638,34 @@ class Produit
     public function setCommandeImport(?CommandeImport $commandeImport): self
     {
         $this->commandeImport = $commandeImport;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommande(): Collection
+    {
+        return $this->commande;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commande->contains($commande)) {
+            $this->commande[] = $commande;
+            $commande->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commande->contains($commande)) {
+            $this->commande->removeElement($commande);
+            $commande->removeProduit($this);
+        }
 
         return $this;
     }

@@ -106,8 +106,8 @@ class CompteClientController extends AbstractController
 
        // $commandeUser = $commande->getUtilisateur()->getId();
 
-
        $this->denyAccessUnlessGranted(AppAccess::COMMANDE_EDIT, $commande);
+
 
         return $this->render('compte/details-commande.html.twig', [
             'user'=>$user,

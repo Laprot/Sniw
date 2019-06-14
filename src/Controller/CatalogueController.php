@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
+use App\Entity\Coefficient;
 use App\Entity\Filtre;
+use App\Entity\Groupe;
 use App\Entity\Produit;
 use App\Entity\Search;
 use App\Form\FiltreType;
@@ -47,6 +49,7 @@ class CatalogueController extends AbstractController
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
+
         $limit = 32 ;
 
         $filtre= new Filtre();
@@ -88,6 +91,82 @@ class CatalogueController extends AbstractController
         $categories = $this->em->getRepository(Categorie::class)->findAll();
 
 
+
+       //---------------------
+       //Groupe clients
+
+        $coeff_cat = 1;
+
+        //Current user
+        $user = $this->getUser();
+
+        //Si l'utilisateur est connecté
+        if($user instanceof Groupe) {
+
+            $user_groupe = $user->getIdGroupe()->toArray();
+
+            foreach($user_groupe as $groupe) {
+                $coeffs = $groupe->getCoefficients()->toArray();
+
+                //dump($coeffs->getNewCoeff());
+
+                if(sizeof($coeffs) > 0 ) {
+                    foreach ($coeffs as $coeff) {
+                        $coeff_cat = $coeff->getNewCoeff();
+                        $categorie_coeff = $coeff->getCategories()->getId();
+                        $categorie_coefftest = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['id' => $categorie_coeff]);
+
+                        //dump($categorie_coefftest);
+
+
+                       // dump($coeff_cat);
+
+/*
+                        foreach ($categorie_coefftest as $coeffs) {
+
+
+                            //dump($coeffs);
+                            $produits_cat = $coeffs->getProduits()->toArray();
+
+                            dump($produits_cat);
+
+                            /*
+                            foreach ($produits_cat as $prod) {
+                                //MULTIPLIE PAR LE COEFF DU GROUPE CLIENT
+                                if(!$user instanceof Groupe) {
+                                    $findProduits = $prod->setPrixUnite($prod->getPrixUnite() * $coeff_cat);
+
+                                   // dump($findProduits);
+                                }
+                                //DIVISE PAR LE COEFF DU GROUPE CLIENT POUR RECUPERER LE PRIX INITIAL LORS DE LA DECONNECTION
+                                else {
+                                    //dump($prod->setPrixUnite($prod->getPrixUnite() / $coeff_cat));
+                                }
+
+                            }
+
+                        }
+                        */
+                    }
+
+
+
+                }
+            }
+            //dump($findProduits);
+            //die();
+
+
+        }
+        else {
+            $coeff_cat = 1;
+            $categorie_coefftest= 0;
+        }
+
+
+
+        $coefficients = $this->getDoctrine()->getRepository(Coefficient::class)->findBy(['new_coeff' => $coeff_cat]);
+
         return $this->render('catalogue/catalogue.html.twig', [
             'produits' => $produits,
             'count' => $produits->getTotalItemCount(),
@@ -95,7 +174,9 @@ class CatalogueController extends AbstractController
             'formFiltre'=>$formFiltre->createView(),
             'categories'=>$categories,
             'search' => $search->getRechercher(),
-            'limit' => $limit
+            'limit' => $limit,
+            'coeff_cat' => $coeff_cat,
+            'coefficients' => $coefficients
         ]);
     }
 
@@ -128,13 +209,15 @@ class CatalogueController extends AbstractController
 
      * */
     /**
-     * @Route("/display_cat/allproducts/{categorie}", name="catalogue_voirtout_cat")
+     * @Route("/display_cat/allproducts/{id}", name="catalogue_voirtout_cat", requirements={"id"="\d+"})
      */
     public function toutvoirparcategorie(Request $request, Categorie $categorie) {
 
         $findProduits = $this->repository->byCategorie($categorie->getId());
 
+
         $produits = $findProduits;
+
 
         //$count = $this->repository->countProduitsCategorie();
 
@@ -216,7 +299,6 @@ class CatalogueController extends AbstractController
             if ($filtre->getIsBelleFrance() == true || $filtre->getIsBio() == true) {
                 $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre, $categorie),
                     $request->query->getInt('page', 1), $limit);
-
             }
             else {
                 $produits = $paginator->paginate($findProduits,

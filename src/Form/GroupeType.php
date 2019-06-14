@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Categorie;
 use App\Entity\Groupe;
-use App\Entity\Reduction;
+use App\Entity\Coefficient;
 use App\Repository\CategorieRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

@@ -93,10 +93,24 @@
                                     <td> {{ commande.nom }} {{ commande.prenom }}</td>
                                     <td> {{ commande.reference }} </td>
                                     <td> {{ commande.date|date('d/m/Y') }}</td>
+
+                                {% if commande.commande.prixHT is defined %}
                                     <td> {{ commande.commande.prixHT }}€</td>
+                                        {% else %}
+                                        <td> </td>
+                                    {% endif %}
                                     <td> Virement bancaire</td>
-                                    <td> <a href="{{ path('commande_export', {id:commande.id}) }}"><i class="fa fa-download"></i></a> </td>
+
+                                    {% if commande.commande.prixHT is defined %}
                                     <td>
+                                        <a href="{{ path('commande_export', {id:commande.id}) }}"><i class="fa fa-download"></i></a> </td>
+
+
+                                    {% else %}
+                                        <td> </td>
+                                    {% endif %}
+
+                                <td>
                                         <a href="{{ path('commande_details', {id: commande.id}) }}">
                                             <i class="fa fa-search-plus">
                                             </i> Afficher

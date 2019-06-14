@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Produit;
 use App\Entity\Upload;
+use App\Form\UploadCommandeType;
 use App\Form\UploadImageType;
 use App\Form\UploadType;
 use App\Import\ImportProduit;
@@ -115,8 +116,6 @@ class AdministrationController extends AbstractController
                         $this->em->persist($prod);
                         $this->em->flush();
                     }
-
-
                 }
 
 
@@ -136,6 +135,39 @@ class AdministrationController extends AbstractController
         ]);
     }
 
+
+    /**
+     *@Route("/admin/upload_commandes",name="admin_upload_commandes")
+     */
+    public function uploadCommandes(Request $request){
+        $upload = new Upload();
+        $form = $this->createForm(UploadCommandeType::class,$upload);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $file = $upload->getName();
+            // $fileName = '1'.md5(uniqid()).'.'.$file->guessExtension();
+
+            $fileName = $upload->getName()->getClientOriginalName();
+
+
+            if($file->guessExtension() != "txt") {
+                $this->addFlash('error','Ficher CSV demandé');
+            }
+            else {
+                $file->move($this->getParameter('upload_commandes_directory'),$fileName);
+                $this->addFlash('success','Votre fichier a bien été uploadé');
+            }
+            return $this->redirectToRoute('admin_upload_commandes', [
+                'fileName' => $fileName,
+            ]);
+        }
+
+        return $this->render('admin/administration/import-commandes.html.twig', [
+            'formUpload'=>$form->createView(),
+
+        ]);
+    }
 
 
 

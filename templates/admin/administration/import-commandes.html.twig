@@ -1,13 +1,13 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %} Import images {% endblock %}
+{% block title %} Import commandes {% endblock %}
 
 {% block stylesheets %}
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Import images</title>
+        <title> Import commandes</title>
         <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
 
         <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/dataTables.bootstrap4.css">
@@ -60,10 +60,18 @@
 
 
 
-            <h1><i class="fas fa-file-import"></i> Fonction d'import images produits</h1>
+            <h1><i class="fas fa-file-import"></i> Fonction d'import commandes</h1>
+
 
             <hr>
-            <h2>Importer les images </h2>
+            <h2>Etape 1 : Vérifier que tous les champs sont bien écrits et valides. Exemple :   </h2>
+
+
+            <img src="{{ asset('images/exempleImportCommande.png') }}" style="width:15%">
+
+
+            <hr>
+            <h2>Etape 2 : Importer le fichier CSV </h2>
             {{ form_start(formUpload) }}
             <div class="input-group" style="margin-bottom:20px;margin-top:20px">
                 <div class="input-group-prepend" style="height: 38px;">
@@ -72,12 +80,25 @@
                 <div class="custom-file">
                     {{ form_widget(formUpload.name, {
                         attr: {
-                            'placeholder': 'Choisir plusieurs images',
+                            'placeholder': 'Choisir une commande en CSV',
                             'class' : 'custom-file-input'
                         }}) }}
                 </div>
             </div>
             {{ form_end(formUpload) }}
+
+
+            <hr>
+            <h2> Etape 3 : copier la commande <span style="font-style:italic;text-decoration:underline">csv:import:commande</span> et accéder à la console Admin </h2>
+
+
+            <a class="btn btn-primary" href="/admin/_console"> Accèder à la console Admin </a>
+            <span> Les commandes importées auront pour référence : i_REFERENCE</span>
+
+            <hr>
+            <h2> Etape 4 : Assigner une commande à un utilisateur </h2>
+
+            <a class="btn btn-primary" href="{{ path('commandes_type') }}"> Accèder aux commandes types </a>
 
 
 
@@ -106,10 +127,9 @@
     <script>
         $('.custom-file-input').on('change', function(event) {
             let inputFile = event.currentTarget;
-            let numFiles = $(this).get(0).files.length
             $(inputFile).parent()
                 .find('.custom-file-label')
-                .html(numFiles + ' images');
+                .html(inputFile.files[0].name);
         });
     </script>
 {% endblock %}

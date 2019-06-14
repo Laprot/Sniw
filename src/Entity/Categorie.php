@@ -76,16 +76,15 @@ class Categorie
     private $produits;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Reduction", mappedBy="categories")
+     * @ORM\OneToMany(targetEntity="App\Entity\Coefficient", mappedBy="categories")
      */
-    private $reductions;
+    private $coefficient;
 
 
     public function __construct()
     {
         $this->id_produit = new ArrayCollection();
         $this->produits = new ArrayCollection();
-        $this->reductions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -270,31 +269,20 @@ class Categorie
     }
 
     /**
-     * @return Collection|Reduction[]
+     * @return mixed
      */
-    public function getReductions(): Collection
+    public function getCoefficient()
     {
-        return $this->reductions;
+        return $this->coefficient;
     }
 
-    public function addReduction(Reduction $reduction): self
+    /**
+     * @param mixed $coefficient
+     */
+    public function setCoefficient($coefficient)
     {
-        if (!$this->reductions->contains($reduction)) {
-            $this->reductions[] = $reduction;
-            $reduction->addCategorie($this);
-        }
-
-        return $this;
+        $this->coefficient = $coefficient;
     }
 
-    public function removeReduction(Reduction $reduction): self
-    {
-        if ($this->reductions->contains($reduction)) {
-            $this->reductions->removeElement($reduction);
-            $reduction->removeCategorie($this);
-        }
-
-        return $this;
-    }
 
 }

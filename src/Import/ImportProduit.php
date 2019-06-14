@@ -70,7 +70,7 @@ class ImportProduit extends Command
             break;
         }
 
-        //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/produits-import.csv');
+        //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/test-import.csv');
 
         $reader = Reader::createFromStream(fopen($file,'r+'));
 

@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ReductionRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CoefficientRepository")
  */
-class Reduction
+class Coefficient
 {
     /**
      * @ORM\Id()
@@ -21,15 +21,15 @@ class Reduction
     /**
      * @ORM\Column(type="decimal", precision=10, scale=4)
      */
-    private $new_reduction;
+    private $new_coeff;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Groupe", inversedBy="reductions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Groupe", inversedBy="coefficients")
      */
     private $groupes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="reductions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="coefficients")
      */
     private $categories;
 
@@ -52,17 +52,17 @@ class Reduction
     /**
      * @return mixed
      */
-    public function getNewReduction()
+    public function getNewCoeff()
     {
-        return $this->new_reduction;
+        return $this->new_coeff;
     }
 
     /**
-     * @param mixed $new_reduction
+     * @param mixed $new_coeff
      */
-    public function setNewReduction($new_reduction)
+    public function setNewCoeff($new_coeff)
     {
-        $this->new_reduction = $new_reduction;
+        $this->new_coeff = $new_coeff;
     }
 
     /**
@@ -101,6 +101,6 @@ class Reduction
 
     public function __toString()
     {
-        return $this->getNewReduction();
+        return $this->getNewCoeff();
     }
 }

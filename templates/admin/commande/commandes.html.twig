@@ -104,8 +104,10 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for commande in commandes %}
 
+
+
+                                        {% for commande in commandes %}
                                             <tr>
                                                 <td>{{ commande.id }}</td>
                                                 <td>
@@ -116,6 +118,11 @@
                                                 <td> {{ commande.nom }}</td>
                                                 <td> {{ commande.email }}</td>
                                                 <td> {{ commande.societe }}</td>
+                                                {% if commande.commande.prixHT is defined %}
+                                                    <td> {{ commande.commande.prixHT }}€</td>
+                                                {% else %}
+                                                    <td> </td>
+                                                {% endif %}
                                                 <td> {{ commande.etat }}</td>
                                                 <td> {{ commande.date|date('Y-m-d H:i:s') }}</td>
                                                 <td>
@@ -142,8 +149,9 @@
                                                 </td>
                                             </tr>
 
-
                                         {% endfor %}
+
+
                                         </tbody>
                                     </table>
 

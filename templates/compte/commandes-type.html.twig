@@ -89,7 +89,12 @@
                             <tr style="text-align:center">
                                     <td> {{ commande.reference }} </td>
                                     <td> {{ commande.date|date('d/m/Y') }}</td>
-                                    <td> {{ commande.commande.prixHT }}€</td>
+
+                                    {% if commande.commande.prixHT is defined %}
+                                        <td> {{ commande.commande.prixHT }}€</td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
 
                                     <td>
                                         <a href="{{ path('commande_details', {id: commande.id}) }}">
@@ -117,7 +122,7 @@
                     <div class="col-md-6 text-center" style="margin-left:80px">
                         {{ form_row(form.nom) }}
                         {{ form_row(form.commande) }}
-                        {{ form_row(form.superficie) }}
+                        {{ form_row(form.user) }}
                     </div>
                     <div class="col-md-6" style="margin-left:30px;margin-top:20px">
                         <button id="review_submit"  style="margin-left:80px" class="red_button message_submit_btn trans_300"  > Créer</button>
@@ -158,6 +163,7 @@
                         <tr style="text-align:center">
                             <th> Nom de la commande Type</th>
                             <th> Référence</th>
+                            <th> Client associé</th>
                             <th> Détails commande</th>
                             {% if is_granted('ROLE_ADMIN') %}
                             <th> Supprimer </th>
@@ -172,10 +178,13 @@
                                 <td colspan="6" class="text-center"> Pas de commandes Types </td>
                             </tr>
                         {% endif %}
+
+
                         {% for commande in commandeTypes  %}
                                 <tr style="text-align:center">
                                     <td> {{ commande.nom }} </td>
                                     <td> {{ commande.commande.reference }}</td>
+                                    <td> {{ commande.user.nom }}</td>
                                     <td>
                                         <a href="{{ path('commandes-type_details', {id: commande.commande.id}) }}">
                                             <i class="fa fa-search-plus">
@@ -189,6 +198,7 @@
 
 
                                 </tr>
+
                         {% endfor %}
 
 
@@ -240,7 +250,7 @@
                         </tr>
                     {% endif %}
                     {% for commande in commandeTypes  %}
-                        {% if app.user.superficieMagasin == commande.superficie %}
+                        {% if app.user.id == commande.user.id %}
                             <tr style="text-align:center">
                                 <td> {{ commande.nom }} </td>
                                 <td> {{ commande.commande.reference }}</td>
@@ -255,11 +265,13 @@
                                 <td>
                                     <a href="{{ path('commandes_type_delete' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
                                 </td>
-                                {% endif %}
+
 
                             </tr>
 
 
+
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
 

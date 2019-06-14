@@ -200,7 +200,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a style="color:black" href="{{ path('catalogue_voirtout_cat',{categorie:categorie.id}) }}"> Afficher tout</a>
+                                                <a style="color:black" href="{{ path('catalogue_voirtout_cat',{id:categorie.id}) }}"> Afficher tout</a>
                                             </li>
                                             <li style="border:none;">
                                                 {{ count }} produit(s)
@@ -546,13 +546,13 @@
                 </script>
                 <script>
                     $(document).ready( function() {
-                        $('.is_bf').change(function() {
+                        $('.is_bf').click(function() {
                             // to get the selected value
                             $( ".form-checkbox" ).submit();
 
                             // do your magic pony stuff
                         });
-                        $('.is_bio').change(function() {
+                        $('.is_bio').click(function() {
                             // to get the selected value
                             $( ".form-checkbox" ).submit();
 

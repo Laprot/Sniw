@@ -8,6 +8,7 @@ parameters:
     app.category.form.type.class: App\Form\CategoryType
     upload_directory: '%kernel.project_dir%/public/file_produits'
     images_directory: '%kernel.project_dir%/public/produits/images'
+    upload_commandes_directory: '%kernel.project_dir%/public/file_commandes'
     images_import_directory: '%kernel.project_dir%/public/file_images'
 
 services:

@@ -64,21 +64,84 @@
                 </div>
 
                 <h5 class="mt-4"> Date de commande : {{ commande.date|date('d-m-Y') }}</h5>
+
+
                 {% endif %}
+
+
                 <table class="table mt-5 table-responsive">
                     <thead>
                     <tr style="text-align:center">
                         <th style="width:100px"> Produit </th>
                         <th>Référence</th>
                         <th>Description</th>
+
                         <th>Nb de carton(s)</th>
+
+
+
                         <th> Prix / Carton</th>
+
                         <th> Prix Total</th>
-                        <th> Re-commander</th>
+
+
+
+                        {% if commande.commande.produit is defined  %}
+                            <th> Re-commander</th>
+                        {% else %}
+                            <th> Ajouter au panier</th>
+                        {% endif %}
 
                     </tr>
                     </thead>
                     <tbody>
+
+
+                    {% if commande.commande.produit is not defined  %}
+                        {% for produit in commande.produits %}
+                            <tr style="text-align:center">
+                                <td>
+
+                                    {% if produit.image|length > 0 %}
+                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                    {% else %}
+                                        <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
+                                    {% endif %}
+
+
+
+                                </td>
+                                <td style="display:none"> <span id="id-prod">{{ produit.id }} </span></td>
+                                <td> {{ produit.reference }} </td>
+                                <td> {{ produit.nom }}</td>
+                                <td> <input onchange="modifQte({{ produit.id }},'/recommander/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ produit.quantite }}" >
+                                </td>
+                                <td> <span id="prixCarton_{{ produit.id }}">{{ produit.getPrixFinal()|number_format(2,'.','') }} </span>€</td>
+
+                                {% set prixTotal = produit.getPrixFinal() * produit.quantite %}
+                                <td>  <span id="prixTotal_{{ produit.id }}">{{ prixTotal|number_format(2,'.','') }} </span>€</td>
+
+
+                                <td>
+                                    <ul class="navbar_user">
+                                        <li class="checkout" style="margin-right:30px" >
+                                            <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/recommander/ajax/'+ {{ produit.id }})">
+                                                <i class="fa fa-cart-plus" aria-hidden="true">
+                                                </i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+                        {% endfor %}
+
+                    {% else %}
 
                     {% for produit in commande.commande.produit  %}
                         <tr style="text-align:center">
@@ -93,17 +156,20 @@
 
 
                             </td>
+                            <td style="display:none"> <span id="id-prod">{{ produit.id }} </span></td>
                             <td> {{ produit.reference }} </td>
                             <td> {{ produit.nom }}</td>
-                            <td> {{ produit.quantite }}</td>
-                            <td> {{ produit.prixUnitaire|number_format(2,'.','') }}€</td>
+                            <td> <input onchange="modifQte({{ produit.id }},'/recommander/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ produit.quantite }}" >
+
+                            <td> <span id="prixCarton_{{ produit.id }}">{{ produit.prixUnitaire|number_format(2,'.','') }} </span>€</td>
                             {% set prixTotal = produit.prixUnitaire * produit.quantite %}
-                            <td>  {{ prixTotal|number_format(2,'.','') }}€</td>
+                            <td>  <span id="prixTotal_{{ produit.id }}">{{ prixTotal|number_format(2,'.','') }} </span>€</td>
 
                             <td>
                                 <ul class="navbar_user">
                                     <li class="checkout" style="margin-right:30px" >
-                                        <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/ajouter/ajax/'+ {{ produit.id }})">
+                                        <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/recommander/ajax/'+ {{ produit.id }})">
+
                                             <i class="fa fa-cart-plus" aria-hidden="true">
                                             </i>
                                         </a>
@@ -115,6 +181,8 @@
 
 
                     {% endfor %}
+
+                    {% endif %}
 
 
                     </tbody>
@@ -132,16 +200,60 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>
 
-        function refreshAjax(id,changePath) {
+        function modifQte(id,changePath) {
+
+            $response = parseInt($('#qte').text());
             $.ajax({
                 type: "POST",
                 url: changePath,
                 data : {
+                    quantite: $('#submitid_' + id).val(),
                 },
                 dataType: "json",
                 success: function(response) {
                     let txt = parseInt($('#checkout_items').text());
                     $('#checkout_items').text(txt+1);
+
+                    //Quantité
+                    let qte = $('#submitid_' +id).val();
+
+                    //Prix du carton
+                    let prixCarton = parseFloat($('#prixCarton_' + id).text()).toFixed(2);
+
+
+
+                    if($.isNumeric(qte) && qte > 0 ) {
+                        let pQte = qte * prixCarton;
+                        parseFloat($('#prixTotal_' + id).text(pQte.toFixed(2)));
+
+                    }
+                    else {
+                        location.reload();
+                    }
+
+                }
+            });
+        }
+
+        function refreshAjax(id,changePath) {
+
+            $response = parseInt($('#qte').text());
+            $.ajax({
+                type: "POST",
+                url: changePath,
+                data : {
+                    quantite: $('#submitid_' + id).val(),
+                },
+                dataType: "json",
+                success: function(response) {
+                    let txt = parseInt($('#checkout_items').text());
+                    $('#checkout_items').text(txt+1);
+
+                    //Quantité
+
+
+
+                    //qte.text($('#submitid_'+'#id-prod').text());
                 }
             });
         }

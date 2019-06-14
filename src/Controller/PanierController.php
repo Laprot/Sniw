@@ -123,6 +123,43 @@ class PanierController extends AbstractController
         return new Response('this is not ajax', 400);
     }
 
+
+    /**
+     * @Route("/recommander/ajax/{id}", name="recommander_ajax")
+     */
+    public function recommanderActionAjax($id, Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $session = $request->getSession();
+
+            //$produit = $this->getDoctrine()->getRepository(Produit::class)->findBy(['id'=> $id]);
+
+            if (!$session->has('panier')) {
+                $session->set('panier', []);
+            }
+            $panier = $session->get('panier');
+
+            if (array_key_exists($id, $panier)) {
+                if ($request->request->getInt('quantite') != null) {
+                    $panier[$id] = $request->request->getInt('quantite') ;
+
+                }
+            } else {
+                if ($request->request->getInt('quantite') != null) {
+                    $panier[$id] = $request->request->getInt('quantite');
+
+                } else {
+                    $panier[$id] = 1  ;
+                }
+            }
+            $session->set('panier', $panier);
+
+            return new JsonResponse(['data' => 'this is a json response']);
+        }
+
+        return new Response('this is not ajax', 400);
+    }
+
     /**
      * @Route("/supprimer/{id}", name="supprimer")
      */

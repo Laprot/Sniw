@@ -28,15 +28,10 @@ class SuperficieMagasin
      */
     private $user;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CommandeTypeProduits", mappedBy="superficie")
-     */
-    private $commandeTypeProduits;
-
     public function __construct()
     {
         $this->user = new ArrayCollection();
-        $this->commandeTypeProduits = new ArrayCollection();
+
     }
 
 
@@ -82,37 +77,6 @@ class SuperficieMagasin
             // set the owning side to null (unless already changed)
             if ($user->getSuperficieMagasin() === $this) {
                 $user->setSuperficieMagasin(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|CommandeTypeProduits[]
-     */
-    public function getCommandeTypeProduits(): Collection
-    {
-        return $this->commandeTypeProduits;
-    }
-
-    public function addCommandeTypeProduit(CommandeTypeProduits $commandeTypeProduit): self
-    {
-        if (!$this->commandeTypeProduits->contains($commandeTypeProduit)) {
-            $this->commandeTypeProduits[] = $commandeTypeProduit;
-            $commandeTypeProduit->setSuperficie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommandeTypeProduit(CommandeTypeProduits $commandeTypeProduit): self
-    {
-        if ($this->commandeTypeProduits->contains($commandeTypeProduit)) {
-            $this->commandeTypeProduits->removeElement($commandeTypeProduit);
-            // set the owning side to null (unless already changed)
-            if ($commandeTypeProduit->getSuperficie() === $this) {
-                $commandeTypeProduit->setSuperficie(null);
             }
         }
 

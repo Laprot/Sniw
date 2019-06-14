@@ -207,8 +207,6 @@ class ProduitRepository extends ServiceEntityRepository
                 ->andWhere('ca.id = :categorie_id')
                 ->setParameters(['filtre' => $filtre->getIsBio() , 'categorie_id' => $categorie]);
         }
-
-
         return $query->getQuery();
     }
 
@@ -224,19 +222,12 @@ class ProduitRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere("u.produit_belle_france like :filtre")
                 ->setParameter('filtre', $filtre->getIsBelleFrance());
-
-
         }
         if($filtre->getIsBio()) {
             $query = $query
                 ->andWhere("u.produit_bio like :filtre")
                 ->setParameter('filtre',$filtre->getisBio());
         }
-
         return $query->getQuery();
     }
-
-
-
-
 }

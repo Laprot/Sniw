@@ -9,7 +9,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommandeTypeProduitsRepository")
- * @UniqueEntity(fields="commande", message="Commande déjà utilisé")
  */
 class CommandeTypeProduits
 {
@@ -31,20 +30,19 @@ class CommandeTypeProduits
     private $produits;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Commande")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="commandetypeproduits")
      */
     private $commande;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\SuperficieMagasin", inversedBy="commandeTypeProduits")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="commandeTypeProduits")
      */
-    private $superficie;
+    private $user;
 
 
     public function __construct()
     {
         $this->produits = new ArrayCollection();
-        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,6 +93,8 @@ class CommandeTypeProduits
         return $this;
     }
 
+
+
     public function getCommande(): ?Commande
     {
         return $this->commande;
@@ -107,17 +107,21 @@ class CommandeTypeProduits
         return $this;
     }
 
-    public function getSuperficie(): ?SuperficieMagasin
+
+
+    public function getUser(): ?User
     {
-        return $this->superficie;
+        return $this->user;
     }
 
-    public function setSuperficie(?SuperficieMagasin $superficie): self
+    public function setUser(?User $user): self
     {
-        $this->superficie = $superficie;
+        $this->user = $user;
 
         return $this;
     }
+
+
 
 
 }
