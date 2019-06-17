@@ -29,7 +29,7 @@ class Coefficient
     private $groupes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="coefficients")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="coefficient")
      */
     private $categories;
 

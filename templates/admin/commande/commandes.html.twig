@@ -129,9 +129,11 @@
                                                     <div class="btn btn-group justified">
 
 
+                                                        {% if commande.commande.prixHT is defined %}
                                                         <a class="ml-2 mr-2" href="{{ path('commande_export', {id:commande.id}) }}" onclick="return confirm('Exporter cette comande ?');">
                                                             <button class="btn"><i class="fa fa-download"></i></button>
                                                         </a>
+                                                        {% endif %}
 
                                                         <a class="ml-2 mr-2" href="{{ path('commande_edit', {id: commande.id}) }}">
                                                             <button class="btn btn-warning"><i class="fas fa-pen"></i></button>

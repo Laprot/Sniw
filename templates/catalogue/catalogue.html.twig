@@ -295,43 +295,20 @@
 
                                                         <div class="product_info desc_bloc3" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
 
+                                                            {% for categorie in produit.categories %}
+                                                                {% if loop.first %}
+                                                                    {% for coeff in categorie.coefficient %}
+                                                                        {% set coeff_cat = coeff.getNewCoeff() %}
+                                                                        {% set coeff_groupes = coeff.getGroupes() %}
 
-
-
-
-
-                                                        {#
-                                                        {% for categorie in produit.categories %}
-
-                                                            {% if loop.first %}
-                                                                {{ categorie.nom }}
-
-
-                                                                {% for coeff in categorie.coefficient %}
-
-
-                                                                    {% set coeff = coeff.getNewCoeff() %}
-
-                                                                    {{ coeff }}
-
-                                                                    {{ app.user.getIdGroupe() }}
-
-                                                                    <div class="product_price unit-price">{{ produit.getPrixUnite()|number_format(2, '.', ',') * coeff }}€/UC HT</div>
-
-                                                                {% endfor %}
-
-
-
-                                                            {% endif %}
-
-                                                        {% endfor %}
-
-                                                       #}
-                                                        <div class="product_price unit-price">{{ produit.getPrixUnite()|number_format(2, '.', ',') }}€/UC HT</div>
-
-
-
-
+                                                                        {% if app.user.getIdGroupe().getId() == coeff_groupes.getId() %}
+                                                                            <div class="product_price unit-price">{{ ((produit.getPrixUnite() * coeff_cat)|number_format(2, '.', ',')) }}€/UC HT</div>
+                                                                        {% else %}
+                                                                            <div class="product_price unit-price">{{ produit.getPrixUnite()|number_format(2, '.', ',') }}€/UC HT</div>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                {% endif %}
+                                                            {% endfor %}
 
                                                         <div class="product_info price-condi"> Carton de {{ produit.getUniteParCarton() }} produit(s)</div>
                                                     </div>

@@ -49,7 +49,7 @@ class UserType extends AbstractType
             ->add('id_groupe', EntityType::class, [
                 'class'=> Groupe::class,
                 'label' => 'Accès groupe(s) *',
-                'multiple'=>true,
+                'multiple'=>false,
                 'expanded'=>true,
                 'choice_label' => 'nom',
             ])

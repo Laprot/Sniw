@@ -95,73 +95,15 @@ class CatalogueController extends AbstractController
        //---------------------
        //Groupe clients
 
+        //Si pas de groupe, coeff à 1
         $coeff_cat = 1;
 
         //Current user
         $user = $this->getUser();
 
-        //Si l'utilisateur est connecté
-        if($user instanceof Groupe) {
-
-            $user_groupe = $user->getIdGroupe()->toArray();
-
-            foreach($user_groupe as $groupe) {
-                $coeffs = $groupe->getCoefficients()->toArray();
-
-                //dump($coeffs->getNewCoeff());
-
-                if(sizeof($coeffs) > 0 ) {
-                    foreach ($coeffs as $coeff) {
-                        $coeff_cat = $coeff->getNewCoeff();
-                        $categorie_coeff = $coeff->getCategories()->getId();
-                        $categorie_coefftest = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['id' => $categorie_coeff]);
-
-                        //dump($categorie_coefftest);
+        //Si l'utilisateur est connecté et appartient à un groupe
 
 
-                       // dump($coeff_cat);
-
-/*
-                        foreach ($categorie_coefftest as $coeffs) {
-
-
-                            //dump($coeffs);
-                            $produits_cat = $coeffs->getProduits()->toArray();
-
-                            dump($produits_cat);
-
-                            /*
-                            foreach ($produits_cat as $prod) {
-                                //MULTIPLIE PAR LE COEFF DU GROUPE CLIENT
-                                if(!$user instanceof Groupe) {
-                                    $findProduits = $prod->setPrixUnite($prod->getPrixUnite() * $coeff_cat);
-
-                                   // dump($findProduits);
-                                }
-                                //DIVISE PAR LE COEFF DU GROUPE CLIENT POUR RECUPERER LE PRIX INITIAL LORS DE LA DECONNECTION
-                                else {
-                                    //dump($prod->setPrixUnite($prod->getPrixUnite() / $coeff_cat));
-                                }
-
-                            }
-
-                        }
-                        */
-                    }
-
-
-
-                }
-            }
-            //dump($findProduits);
-            //die();
-
-
-        }
-        else {
-            $coeff_cat = 1;
-            $categorie_coefftest= 0;
-        }
 
 
 
@@ -175,8 +117,7 @@ class CatalogueController extends AbstractController
             'categories'=>$categories,
             'search' => $search->getRechercher(),
             'limit' => $limit,
-            'coeff_cat' => $coeff_cat,
-            'coefficients' => $coefficients
+            'user' => $user
         ]);
     }
 
