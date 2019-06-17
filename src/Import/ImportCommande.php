@@ -15,12 +15,14 @@ use App\Entity\User;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Id\AssignedGenerator;
 use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Exception;
 use League\Csv\Reader;
 use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
@@ -60,8 +62,6 @@ class ImportCommande extends Command
         //EN DEV
         $finder->in(__DIR__.'/../../public/file_commandes');
 
-
-
         //EN PROD
         //$finder->in('/homepages/10/d783107477/htdocs/sniw/public/file_commandes');
 
@@ -69,14 +69,9 @@ class ImportCommande extends Command
             break;
         }
 
-
         //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/commande_csv/commandes.csv');
 
-
-
         $reader = Reader::createFromStream(fopen($file,'r+'));
-
-
 
         $reader->setDelimiter(';');
         $results = $reader->fetchAssoc();
@@ -106,57 +101,35 @@ class ImportCommande extends Command
         $commande->setEmail($user->getEmail());
         $commande->setUtilisateur($user);
 
-
-
-
         foreach($results as $row) {
+            $produit = $this->em->getRepository(Produit::class)->findOneBy(['reference' => $row['Reference']]);
 
-            $produit = $this->em->getRepository(Produit::class)->findOneBy(['reference' => $row['Référence']]);
-
-            $produit_id = $produit->getId();
-
-            //Ne push que le dernier produit
-            //$tab = [$row['Référence'],$row['Produit'],$row['Prix unitaire'],$row['Quantité']];
-            //dump($tab);
-
-            /*$tab =
-                [$produit_id =>
-                    ['reference' => intval($row['Référence']), 'nom' => $row['Produit'], 'prixUnitaire' => intval($row['Prix unitaire']), 'quantite' => intval($row['Quantité'])]
-                ];
-            */
-            //dump($tab);
-
-            $produit->setQuantite($row['Quantité']);
+            if($produit === null){
+                //crée un produit provisoire
+                $produit = new Produit();
+                $produit->setEtat(0);
+                $produit->setReference($row['Reference']);
 
 
-            $commande->addProduit($produit);
+                //Affiche les références produits manquantes
+               $output->writeln([
+                    PHP_EOL.'>> Référence manquante : '.$produit->getReference()
+                ]);
+
+                //Supprime le produit crée provisoirement
+                $this->em->remove($produit);
+
+            }else {
+                $produit->setQuantite($row['Quantite']);
 
 
-            /*
-            $this->em->persist( $commande->setCommande(
-                ['produit' =>
-                    [$produit_id =>
-                        ['reference' => intval($row['Référence']), 'nom' => $row['Produit'], 'prixUnitaire' => intval($row['Prix unitaire']), 'quantite' => intval($row['Quantité'])]
-                    ]
-                ]));
+                $commande->addProduit($produit);
 
-            */
 
-            $io->progressAdvance();
+                $io->progressAdvance();
+
+               }
         }
-
-
-
-
-        /*
-
-        dump($commande->setCommande(['produit' => $tab ]));
-
-        foreach($commande->getCommande() as $com) {
-            dump($com);
-        }
-*/
-
         $this->em->persist($commande);
 
         $io->progressFinish();
