@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Cocci News - SNIW, centrale d'achat export. {% endblock %}
+
+{% block body %}
+    <body>
+    <div class="background ">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+                <div class="row">
+                    <div class="container" style="margin-top:40px">
+                        <div class="col-xs-12 col-sm-12 ">
+                            <h3><span>&nbsp;Les Cocci News
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('cocci_news_new') }}"> <span style="float:right;text-decoration: underline;font-weight:normal;font-size:14px"> AJOUTER UNE COCCI NEWS</span></a>
+                                    {% endif %}
+                            <hr></span></h3>
+                        </div>
+                    </div>
+                    {% if app.session.flashBag.has('success')  %}
+                        <div class="form-group col-md-6">
+                            {% for message in app.flashes('success') %}
+
+                                <div class="alert alert-success">
+                                    {{ message }}
+                                </div>
+
+                            {% endfor%}
+                        </div>
+                        <div class="form-group col-md-6"></div>
+
+                    {% endif %}
+
+                    {% for message in app.flashes('error') %}
+                        <div class="form-group col-md-6">
+                            <div class="alert alert-danger">
+                                {{ message }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6"></div>
+                    {% endfor %}
+                    <div class="text-center">
+                        <img src="{{ asset('images/coccinews.jpg') }}" style="max-width:80%;">
+                    </div>
+
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-12 col-md-3 list-type3">
+                                {% for upload in uploads %}
+                                    <ul>
+                                        <li class="mt-4">
+                                            </i> <a href="{{ asset('cocci_news/' ~ upload.picture) }}" style="color:white;font-size:18px"> {{ upload.name }}</a>
+
+                                            {% if is_granted('ROLE_ADMIN') %}
+                                            <form style="position: absolute;margin-left: 315px;" method="post" action="{{ path('cocci_news_delete', {'id': upload.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer la brochure ?');">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ upload.id) }}">
+                                                <button class="btn btn-danger" style="cursor:pointer;font-size:12px"><i class="fa fa-times"></i></button>
+                                            </form>
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

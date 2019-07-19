@@ -55,10 +55,10 @@ class ProduitRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('p')
             ->select('p')
             ->leftJoin('p.categories', 'C')
-            ->where(' C.id = :categorie_id ')
+            ->andWhere(' C.id = :categorie_id  ')
             ->andWhere('p.etat = 1')
             ->orderBy('p.id')
-            ->setParameter('categorie_id', $categorie);
+            ->setParameter('categorie_id',$categorie);
         return $qb->getQuery()->getResult();
     }
     public function countProduits()
@@ -113,13 +113,12 @@ class ProduitRepository extends ServiceEntityRepository
         return $query->getQuery();
     }
 
-
     /**
      * @return Query
      */
     public function findAllVisibleQueryAdmin(Search $search): Query
     {
-        $query= $this->findProduitASC();
+        $query= $this->findProduitAdminASC();
 
         if($search->getRechercher()) {
             $query = $query
@@ -131,7 +130,16 @@ class ProduitRepository extends ServiceEntityRepository
         }
         return $query->getQuery();
     }
+    /**
+     * @return QueryBuilder
+     */
 
+    private function findProduitAdminASC(): QueryBuilder
+    {
+        //Retourne les produits dans l'odre croissant par ID , du plus ancien au plus récent
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.id','ASC');
+    }
 
     /**
      * @return QueryBuilder
@@ -141,10 +149,9 @@ class ProduitRepository extends ServiceEntityRepository
     {
         //Retourne les produits dans l'odre croissant par ID , du plus ancien au plus récent
         return $this->createQueryBuilder('u')
+            ->andWhere('u.etat = 1')
             ->orderBy('u.id','ASC');
     }
-
-
 
     public function findAllAvailable() {
         return $this->createQueryBuilder('u')
@@ -168,9 +175,7 @@ class ProduitRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
 */
-
     public function recherche($chaine) {
         return $this->createQueryBuilder('u')
             ->andWhere("u.nom like :chaine")
@@ -183,8 +188,6 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
-
     //Filtre produit belle france ou produit bio
     /**
      * @return Query
@@ -193,22 +196,81 @@ class ProduitRepository extends ServiceEntityRepository
     {
         $query= $this->findAllAvailableCatalogue();
 
-        if($filtre->getIsBelleFrance()) {
-            $query = $query
-                ->where("u.produit_belle_france like :filtre")
-                ->leftJoin('u.categories','C')
-                ->andWhere('C.id = :categorie_id')
-                ->setParameters(['filtre' => $filtre->getIsBelleFrance() , 'categorie_id' => $categorie]);
-        }
         if($filtre->getIsBio()) {
             $query = $query
-                ->where("u.produit_bio like :filtre")
-                ->leftJoin('u.categories','ca')
-                ->andWhere('ca.id = :categorie_id')
+                ->andWhere("u.produit_bio like :filtre")
+                ->leftJoin('u.categories','cat')
+                ->andWhere('cat.id = :categorie_id')
                 ->setParameters(['filtre' => $filtre->getIsBio() , 'categorie_id' => $categorie]);
         }
+
+        if($filtre->getIsBelleFrance()) {
+            $query = $query
+                ->andWhere("u.produit_belle_france like :filtre")
+                ->leftJoin('u.categories','cate')
+                ->andWhere('cate.id = :categorie_id')
+                ->setParameters(['filtre' => $filtre->getIsBelleFrance() , 'categorie_id' => $categorie]);
+        }
+
+
         return $query->getQuery();
     }
+
+    //Filtre marques sous-categorie
+    /**
+     * @return Query
+     */
+    public function findProduitCheckboxMarque(Filtre $filtre, Categorie $categorie): Query
+    {
+        $query= $this->findAllAvailableCatalogue();
+
+        if($filtre->getMarque()->count() > 0) {
+            $query = $query
+                ->leftJoin("u.id_manufacturer", 'manu')
+                ->andWhere('manu.id = u.id_manufacturer')
+                ->andWhere("manu IN (:manu)")
+                ->leftJoin('u.categories', "ca")
+                ->andWhere("ca.id = :categorie_id")
+                ->setParameters(["manu" => $filtre->getMarque() , 'categorie_id' => $categorie ]);
+        }
+
+        return $query->getQuery();
+    }
+
+    public function findProduitCheckboxDisplayMarque(Filtre $filtre, Categorie $categorie) {
+        return $this->createQueryBuilder('u')
+            ->leftJoin("u.id_manufacturer", 'manu')
+            ->andWhere('manu.id = u.id_manufacturer')
+            ->andWhere("manu IN (:manu)")
+            ->leftJoin('u.categories', "ca")
+            ->andWhere("ca.id = :categorie_id")
+            ->setParameters(["manu" => $filtre->getMarque() , 'categorie_id' => $categorie ])
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    //Filtres marques catalogue
+    /**
+     * @return Query
+     */
+    public function findAllMarque(Filtre $filtre): Query
+    {
+        $query= $this->findAllAvailableCatalogue();
+
+        if($filtre->getMarque()->count() > 0) {
+            $query = $query
+                ->leftJoin("u.id_manufacturer", 'manu')
+                ->andWhere('manu.id = u.id_manufacturer')
+                ->andWhere("manu IN (:manu)")
+                ->setParameter("manu" ,$filtre->getMarque());
+        }
+
+        return $query->getQuery();
+
+    }
+
+
 
     //Filtre tous les produits belle france ou produit bio
     /**
@@ -230,4 +292,10 @@ class ProduitRepository extends ServiceEntityRepository
         }
         return $query->getQuery();
     }
+
+
+
+
+
+
 }

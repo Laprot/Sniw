@@ -32,12 +32,12 @@ class Produit
     {
         return $this->image;
     }
+
     public function setImage($image)
     {
         $this->image = $image;
         return $this;
     }
-
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
@@ -121,10 +121,9 @@ class Produit
      */
     private $upc;
 
-
-
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Manufacturer", inversedBy="produits")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $id_manufacturer;
 
@@ -212,6 +211,12 @@ class Produit
      */
     private $commande;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\QteProduitCommande", mappedBy="produit",cascade={"persist"})
+     */
+    private $qteProduitCommandes;
+
+
 
 
     public function __construct()
@@ -219,6 +224,7 @@ class Produit
         $this->features = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->commande = new ArrayCollection();
+        $this->qteProduitCommandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -670,6 +676,35 @@ class Produit
         return $this;
     }
 
+    /**
+     * @return Collection|QteProduitCommande[]
+     */
+    public function getQteProduitCommandes(): Collection
+    {
+        return $this->qteProduitCommandes;
+    }
 
+    public function addQteProduitCommande(QteProduitCommande $qteProduitCommande): self
+    {
+        if (!$this->qteProduitCommandes->contains($qteProduitCommande)) {
+            $this->qteProduitCommandes[] = $qteProduitCommande;
+            $qteProduitCommande->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQteProduitCommande(QteProduitCommande $qteProduitCommande): self
+    {
+        if ($this->qteProduitCommandes->contains($qteProduitCommande)) {
+            $this->qteProduitCommandes->removeElement($qteProduitCommande);
+            // set the owning side to null (unless already changed)
+            if ($qteProduitCommande->getProduit() === $this) {
+                $qteProduitCommande->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

@@ -28,14 +28,16 @@ class CoefficientType extends AbstractType
             ->add('categories', EntityType::class, [
                 'class' => Categorie::class,
                 'label' => 'Pour la catégorie',
-                'multiple'=>false,
-                'expanded'=>false,
+                'multiple'=>true,
+                'expanded'=>true,
                 'choice_label' => 'nom',
                 'query_builder' => function (CategorieRepository $c) {
                     $queryBuilder =$c->createQueryBuilder('c');
                     $query = $queryBuilder
                         ->where($queryBuilder->expr()->isNull('c.id_parent'))
                         ->orderBy('c.id','ASC');
+                    dump($query);
+                    die();
                     return $query;
                 }
             ])

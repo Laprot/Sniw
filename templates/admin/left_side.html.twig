@@ -47,6 +47,16 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9"><i class="fas fa-shopping-cart"></i>Paniers</a>
+                        <div id="submenu-9" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('panier_show') }}">Paniers enregistrés</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link {% if 'client_show'   in app.request.attributes.get('_route') %} active {% endif %}" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-users"></i>Clients</a>
                         <div id="submenu-5" class="collapse submenu" style="">
@@ -82,31 +92,17 @@
                                     <a class="nav-link" href="{{ path('admin_upload') }}">Import Produits CSV</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('admin_upload_images') }}">Import Images produits CSV</a>
+                                    <a class="nav-link" href="{{ path('admin_upload_images') }}">Import Images produits</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('maj_prix') }}">Mise à jours prix produits </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('maj_etat') }}">Mise à jours état produits</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link   " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-chart-bar"></i>Statistiques</a>
-                        <div id="submenu-7" class="collapse submenu" style="">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link  " href="#"> Stats</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Stats</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Stats</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-
                 </ul>
             </div>
         </nav>

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <!-- Main STYLESHEETS -->
-
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
@@ -18,33 +16,26 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('plugins/OwlCarousel2-2.2.1/animate.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('styles/main_styles.css?v=4') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles/main_styles.css?v=5') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('styles/responsive.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jquery-ui-1.12.1.custom/jquery-ui.css') }}">
 
         <!-- Catégories Stylsheets -->
 
-        <link rel="stylesheet" type="text/css" href="{{ asset('styles/categories_styles.css?v=4') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles/categories_styles.css?v=9') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('styles/categories_responsive.css?v=1') }}">
-
         <!-- Contact Stylesheets -->
-
-        <link rel="stylesheet" type="text/css" href="{{ asset ('styles/contact_styles.css?v=6') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset ('styles/contact_styles.css?v=10') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset ('styles/contact_responsive.css') }}">
-
-
     </head>
     <body>
     <div class="super_container">
 
-
         {% include 'partiels/header.html.twig' %}
-
 
         {% block body %}{% endblock %}
 
         <!-- FOOTER Template -->
-
 
         {% block javascripts %}{% endblock %}
 
@@ -60,7 +51,7 @@
 
         <script src="/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 
-
+        <
         <!-- Catégories scripts -->
 
         <script src="/js/custom.js"></script>

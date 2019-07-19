@@ -1989,3 +1989,12 @@ slideshow {
 		font-size:8px !important;
 	}
 }
+
+@media (max-width:767px) and (min-width: 481px) {
+	.img-responsive {
+		display: block;
+		width: 37%;
+		height: auto;
+		max-width: 100%;
+	}
+}

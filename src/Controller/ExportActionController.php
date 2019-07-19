@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Commande;
 use App\Entity\Contact;
+use App\Entity\Panier;
 use App\Entity\User;
 use App\Form\ContactType;
 use App\Notification\ContactNotification;
@@ -26,24 +27,46 @@ class ExportActionController extends Controller
         //Délimiter ; et pas une virgule
         $csv->setDelimiter(";");
 
-        $csv->insertOne(['Référence','Produit','Prix unitaire','Quantité','Prix total']);
-        $prixTotal = $commande->getCommande()['prixHT'];
+        $csv->insertOne(['Reference','Quantite']);
 
         foreach($commande->getCommande() as $value) {
             if (is_array($value) || is_object($value))
                 foreach($value as $produit) {
                     $reference = $produit['reference'];
-                    $nom = $produit['nom'];
                     $quantite= $produit['quantite'];
-                    $prixUnitaire = $produit['prixUnitaire'];
+                    $csv->insertOne($reference.";".$quantite);
                 }
-        }
 
-        $csv->insertOne($reference.";".$nom.";".$prixUnitaire.";".$quantite.";".$prixTotal);
+
+        }
         $csv->output('Facture_'.$commande->getReference().'.csv');
         die;
     }
 
+    /**
+     * @Route("infos/{id}/panier/export", name="panier_export")
+     */
+    public function exportActionPanier(Panier $commande, FileExport $fileExport)
+    {
+        $csv = $fileExport::createFromFileObject(new \SplTempFileObject());
+
+        //Délimiter ; et pas une virgule
+        $csv->setDelimiter(";");
+
+        $csv->insertOne(['Reference','Quantite']);
+
+        foreach($commande->getCommande() as $value) {
+            if (is_array($value) || is_object($value))
+                foreach($value as $produit) {
+                    $reference = $produit['reference'];
+                    $quantite= $produit['quantite'];
+                    $csv->insertOne($reference.";".$quantite);
+                }
+        }
+
+        $csv->output('Panier_'.$commande->getReference().'.csv');
+        die;
+    }
 
     /**
      * @Route("admin/{id}/client/show", name="client_export")

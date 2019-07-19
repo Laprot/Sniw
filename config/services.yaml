@@ -10,6 +10,9 @@ parameters:
     images_directory: '%kernel.project_dir%/public/produits/images'
     upload_commandes_directory: '%kernel.project_dir%/public/file_commandes'
     images_import_directory: '%kernel.project_dir%/public/file_images'
+    upload_etat_directory: '%kernel.project_dir%/public/file_etat_produits'
+    upload_prix_directory: '%kernel.project_dir%/public/file_prix_produits'
+    upload_cocci_news_directory: '%kernel.project_dir%/public/cocci_news'
 
 services:
     # default configuration for services in *this* file
@@ -96,6 +99,25 @@ services:
 
     console_command.csv_importcommande:
               class: App\Import\ImportCommande
+              arguments:
+                - "@doctrine.orm.entity_manager"
+              tags:
+                - { name : console.command }
+    console_command.csv_importetat:
+              class: App\Import\ImportEtatProduit
+              arguments:
+                - "@doctrine.orm.entity_manager"
+              tags:
+                - { name : console.command }
+    console_command.csv_importprix:
+              class: App\Import\ImportPrixProduit
+              arguments:
+                - "@doctrine.orm.entity_manager"
+              tags:
+                - { name : console.command }
+
+    console_command.csv_importmaj:
+              class: App\Import\ImportMAJ
               arguments:
                 - "@doctrine.orm.entity_manager"
               tags:

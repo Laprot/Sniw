@@ -124,15 +124,16 @@ class Commande
      */
     private $commandetypeproduits;
 
-
-
-
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\QteProduitCommande", mappedBy="commande",cascade={"persist","remove"})
+     */
+    private $commandeProduit;
 
     public function __construct()
     {
         $this->produits = new ArrayCollection();
         $this->commandetypeproduits = new ArrayCollection();
-
+        $this->commandeProduit = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -432,7 +433,35 @@ class Commande
         return $this;
     }
 
+    /**
+     * @return Collection|QteProduitCommande[]
+     */
+    public function getCommandeProduit(): Collection
+    {
+        return $this->commandeProduit;
+    }
 
+    public function addCommandeProduit(QteProduitCommande $commandeProduit): self
+    {
+        if (!$this->commandeProduit->contains($commandeProduit)) {
+            $this->commandeProduit[] = $commandeProduit;
+            $commandeProduit->setCommande($this);
+        }
 
+        return $this;
+    }
+
+    public function removeCommandeProduit(QteProduitCommande $commandeProduit): self
+    {
+        if ($this->commandeProduit->contains($commandeProduit)) {
+            $this->commandeProduit->removeElement($commandeProduit);
+            // set the owning side to null (unless already changed)
+            if ($commandeProduit->getCommande() === $this) {
+                $commandeProduit->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

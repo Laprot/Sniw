@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% set totalHT = 0 %}
-
+{% set coeff_cat = 0 %}
 
 {% block title %}Commande - SNIW , centrale d'achat export.{% endblock %}
 
@@ -35,7 +35,6 @@
                 <table class="table mt-5 border border-bottom table-responsive">
                     <thead>
                     <tr>
-                        <th style="width:100px;border: 1px solid #e9ecef">Produit</th>
                         <th style="width:450px;border: 1px solid #e9ecef">Description</th>
                         <th style="border: 1px solid #e9ecef;width:100px">Prix/Carton</th>
                         <th style="border: 1px solid #e9ecef;width:140px">Nb de carton(s)</th>
@@ -56,30 +55,54 @@
                         {% set prixTotalProduit =  produit.getPrixFinal() * panier[produit.id] %}
 
                         <tr>
-                            <td>
-
-                                {% if produit.image|length > 0 %}
-                                    <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
-                                {% else %}
-                                    <img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}">
-                                {% endif %}
-
-                            </td>
 
                             <form action="{{ path('ajouter',  {'id' : produit.id}) }}" method="get">
-                                <td style="border: 1px solid #e9ecef;text-transform: uppercase"> {{ produit.nom }}
-                                    <p style="font-size:11px;text-transform: none"> Référence : {{ produit.reference }}</p>
+                                <td style="border: 1px solid #e9ecef;text-transform: uppercase"> {{ produit.reference }}
+
                                 </td>
-                                <td style="border: 1px solid #e9ecef">{{ produit.getPrixFinal()|number_format(2, '.', ',') }}€</td>
+                                <td style="border: 1px solid #e9ecef"> {% for categorie in produit.categories %}
+                                        {% if loop.first %}
+                                            {% for coeff in categorie.coefficients %}
+                                                {% set coeff_cat = coeff.getNewCoeff() %}
+                                                {% set coeff_groupes = coeff.getGroupes() %}
+
+                                                {% if app.user.getIdGroupe().getId() == coeff_groupes.getId() %}
+                                                    {{ ((produit.getPrixFinal() * coeff_cat)|number_format(2, '.', '')) }}€
+                                                {% else %}
+                                                    {# L'utilisateur doit être associé à un groupe pour voir les prix #}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}</td>
                                 <td style="border: 1px solid #e9ecef">
                                     {{ panier[produit.id] }}
                                 </td>
 
-                                <td style="border: 1px solid #e9ecef">{{ prixTotalProduit|number_format(2, '.', ',') }}€</td>
+                                <td style="border: 1px solid #e9ecef">   {% for categorie in produit.categories %}
+                                        {% if loop.first %}
+                                            {% for coeff in categorie.coefficients %}
+                                                {% set coeff_cat = coeff.getNewCoeff() %}
+                                                {% set coeff_groupes = coeff.getGroupes() %}
+
+                                                {% if app.user.getIdGroupe().getId() == coeff_groupes.getId() %}
+                                                    {{ (((produit.getPrixFinal() * coeff_cat) *  panier[produit.id])|number_format(2, '.', '')) }}
+
+
+                                                    {% set totalHT = totalHT + (produit.getPrixFinal() * coeff_cat) *  panier[produit.id] %}
+
+
+                                                {% else %}
+                                                    {# L'utilisateur doit être associé à un groupe pour voir les prix #}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+
+
+                                    {% endfor %}
+                                    €</td>
                             </form>
                         </tr>
 
-                        {% set totalHT = totalHT + (produit.getPrixFinal() * panier[produit.id]) %}
 
 
                     {% endfor %}
@@ -104,7 +127,7 @@
 
                                 <tr>
                                     <td class="border">Total HT</td>
-                                    <td style="font-weight: bold;font-size:22px"> {{ totalHT |number_format(2, '.', ',') }}€</td>
+                                    <td style="font-weight: bold;font-size:22px"> {{ (totalHT)|number_format(2, '.', '') }}€</td>
                                 </tr>
                             </table>
 

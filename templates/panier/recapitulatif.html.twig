@@ -3,6 +3,7 @@
 {% set totalHT = 0 %}
 {% set volume = 0 %}
 {% set poids = 0 %}
+{% set coeff_cat = 0 %}
 
 {% block title %}Commande - SNIW , centrale d'achat export.{% endblock %}
 
@@ -27,6 +28,10 @@
                     </ul>
                 </div>
                 <h2> Récapitulatif de la commande </h2>
+
+                {% if produits|length > 0  %}
+                    <a href="{{ path('save_panier') }}" style="text-decoration: underline;float:right;margin-bottom:10px"> ENREGISTRER CE PANIER </a>
+                {% endif %}
                 <table class="table mt-5 table-responsive">
                     <thead>
                     <tr>
@@ -42,7 +47,7 @@
 
                         <th style="width:140px;border: 1px solid #e9ecef;display:none">Poids produit(s)</th>
                         <th style="width:140px;border: 1px solid #e9ecef;display:none">Volume produit(s)</th>
-                        <th style="width:90px;border: 1px solid #e9ecef">Total</th>
+                        <th style="width:120px;border: 1px solid #e9ecef">Total</th>
                         <th style="width:140px;border: 1px solid #e9ecef"> Supprimer</th>
                     </tr>
                     </thead>
@@ -63,20 +68,39 @@
                                 {% else %}
                                     <img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}">
                                 {% endif %}
-
                             </td>
-
-                            {% set prixTotalProduit =  produit.getPrixFinal() * panier[produit.id] %}
-                            {% set poidsP = produit.weight * panier[produit.id] %}
-                            {% set volumeP = produit.profondeur * panier[produit.id] %}
+                                {% set prixTotalProduit =  produit.getPrixFinal() * panier[produit.id] %}
+                                {% set poidsP = produit.weight * panier[produit.id] %}
+                                {% set volumeP = produit.profondeur * panier[produit.id] %}
                             <form  id="form-qte">
-
                                 <td style="border: 1px solid #e9ecef;text-transform: uppercase"> {{ produit.nom }}
                                     <p style="font-size:11px;text-transform: none"> Référence
                                         : {{ produit.reference }}</p>
                                 </td>
                                 <td style="border: 1px solid #e9ecef"><span
-                                            id="prixProd_{{ produit.id }}">{{ produit.getPrixFinal()|number_format(2, '.','') }}</span>€
+                                            id="prixProd_{{ produit.id }}">
+
+                                        {% for categorie in produit.categories %}
+
+                                            {% if loop.first %}
+
+
+                                                {% for coeff in categorie.coefficients %}
+                                                    {% set coeff_cat = coeff.getNewCoeff() %}
+                                                    {% set coeff_groupes = coeff.getGroupes() %}
+
+                                                    {% if app.user.getIdGroupe().getId() == coeff_groupes.getId() %}
+                                                        {{ ((produit.getPrixFinal() * coeff_cat)|number_format(2, '.', ',')) }}
+                                                    {% else %}
+                                                        {# L'utilisateur doit être associé à un groupe pour voir les prix #}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+
+
+
+                                    </span>
                                 </td>
                                 <td style="border: 1px solid #e9ecef;display:none"><span
                                             id="poidsProd_{{ produit.id }}">{{ produit.weight|number_format(2, '.','') }}</span>
@@ -96,7 +120,40 @@
                                             id="volumeTotal_{{ produit.id }}">{{ volumeP|number_format(2, '.','') }}</span>  m3
                                 </td>
                                 <td style="border: 1px solid #e9ecef"><span class="priceall"
-                                            id="prixTotal_{{ produit.id }}">{{ prixTotalProduit|number_format(2, '.','') }} </span>€
+                                            id="prixTotal_{{ produit.id }}">
+
+
+                                        {% for categorie in produit.categories %}
+                                            {% if loop.first %}
+
+
+                                                {% for coeff in categorie.coefficients %}
+                                                    {% set coeff_cat = coeff.getNewCoeff() %}
+                                                    {% set coeff_groupes = coeff.getGroupes() %}
+
+                                                    {% if app.user.getIdGroupe().getId() == coeff_groupes.getId() %}
+                                                        {{ (((produit.getPrixFinal() * coeff_cat) *  panier[produit.id])|number_format(2, '.', '')) }}
+
+
+                                                        {% set totalHT = totalHT + (produit.getPrixFinal() * coeff_cat) *  panier[produit.id] %}
+
+
+                                                    {% else %}
+                                                        {# L'utilisateur doit être associé à un groupe pour voir les prix #}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+
+
+                                        {% endfor %}
+
+
+
+
+
+
+
+                                    </span>€
                                 </td>
                                 <td style="border: 1px solid #e9ecef">
                                     <img onclick="suppAjax({{ produit.id }},'/supprimer/ajax/'+{{ produit.id }})" src="{{ asset('images/supprimer.png') }}" style="width:30px;margin-left: 30px;margin-top: 20px;" >
@@ -104,13 +161,13 @@
 
                             </form>
                         </tr>
-                        {% set totalHT = totalHT + (produit.getPrixFinal() * panier[produit.id]) %}
+
+
                         {% set volume = volume + (produit.profondeur) * panier[produit.id] %}
                         {% set poids = poids + (produit.weight) * panier[produit.id] %}
                         {% set poidsProduit = produit.weight %}
 
                     {% endfor %}
-
 
                     </tbody>
                 </table>
@@ -129,12 +186,12 @@
                                 <tr>
                                     <td style="border: 1px solid #e9ecef"> Poids</td>
 
-                                    <td style="border: 1px solid #e9ecef"> <span id="poidsFinal" >{{ poids|number_format(2, '.','')}} </span> kg </td>
+                                    <td style="border: 1px solid #e9ecef"> <span id="poidsFinal" >{{ poids|number_format(2, '.','') }} </span> kg </td>
                                 </tr>
 
                                 <tr>
                                     <td style="border: 1px solid #e9ecef">Total HT</td>
-                                    <td style="font-weight: bold;font-size:22px;border: 1px solid #e9ecef" ><span id="prixFinal"> {{ totalHT|number_format(2, '.', '') }} </span>
+                                    <td style="font-weight: bold;font-size:22px;border: 1px solid #e9ecef" ><span id="prixFinal"> {{ (totalHT)|number_format(2, '.', '') }} </span>
                                         €
                                     </td>
                                 </tr>
@@ -180,8 +237,6 @@
 
 
 
-
-
                     //Poids produit
                     let poidsProduit = parseFloat($('#poidsProd_'+id).text()).toFixed(2);
 
@@ -191,22 +246,27 @@
                     //Prix produit
                     let prixProduit = parseFloat($('#prixProd_'+id).text()).toFixed(2);
 
+
+
+
                     //Si la quantité entrée est un nombre et est supérieure à 0
 
                     if($.isNumeric(qte) && qte > 0 ) {
                         //_________________PRIX
 
+
                         //prix produit * quantite
                         let pQte = qte * prixProduit;
                         parseFloat($('#prixTotal_' + id).text(pQte.toFixed(2)));
 
-                        //Prix Total HT
-                        let totalPrix = 0;
-                        $(".priceall").each(function (index) {
-                            totalPrix = totalPrix + parseFloat($(this).text());
 
+                        //Prix Total HT
+                        let totalPrix = 0.0;
+                        $(".priceall").each(function (index) {
+                            totalPrix  += parseFloat($(this).text());
+                            parseFloat($('#prixFinal').text(totalPrix.toFixed(2)));
                         });
-                        parseFloat($('#prixFinal').text(totalPrix.toFixed(2)));
+
 
                         //__________________VOLUME
 
@@ -220,6 +280,38 @@
                             volume = volume + parseFloat($(this).text());
                         });
                         parseFloat($('#volumeFinal').text(volume.toFixed(2)));
+
+                        $('.sp-voll').text((volume).toFixed(1));
+
+                        let volume_secP = '#30a852';
+
+                        let volume_sec_max = 70;
+
+                        if(volume >= 56) {
+                            volume_secP = '#eb671c';
+                        }
+                        if(volume >= 69.3)  {
+                           volume_secP = '#ed2338';
+                        }
+
+                        $('#push-container-top .bloc-sec .curseur-v i').css('width',(volume/volume_sec_max) * 100+'%');
+                        $('#push-container-top .bloc-sec .curseur-v i').css('background-color',volume_secP);
+                        let volume_fraisP = '#30a852';
+
+                        let volume_frais_max = 46;
+
+                        if(volume >= 36.8) {
+                            volume_fraisP = '#eb671c';
+                        }
+
+                        if(volume >= 45.54) {
+                            volume_fraisP = '#ed2338';
+                        }
+
+                        $('#push-container-top .bloc-frais .curseur-v i').css('width',(volume/volume_frais_max) * 100+'%');
+                        $('#push-container-top .bloc-frais .curseur-v i').css('background-color',volume_fraisP);
+
+
 
 
                         //___________________POIDS
@@ -235,8 +327,38 @@
                         });
                         parseFloat($('#poidsFinal').text(poids.toFixed(2)));
 
+                        $('.sp-pdss').text((poids/1000).toFixed(1));
 
-                        $('.sp-pdss').text((poids/1000).toFixed(2));
+                        let color_secP = '#30a852';
+
+                        let  poids_sec_max = 24;
+
+                        if(  ((poids/1000) >= 19.2))  {
+                            color_secP = '#eb671c';
+                        }
+                        if(  ((poids/1000) >= 23.76))  {
+                            color_secP = '#ed2338';
+                        }
+
+                        $('#push-container-top .bloc-sec .curseur-p i').css('width',((poids/1000)/poids_sec_max) * 100+'%');
+                        $('#push-container-top .bloc-sec .curseur-p i').css('background-color',color_secP);
+
+                        let color_fraisP = '#30a852';
+
+                        let poids_frais_max = 21;
+
+                        if(  ((poids/1000) >= 16.8))  {
+                            color_fraisP = '#eb671c';
+                        }
+                        if(  ((poids/1000) >= 20.79))  {
+                            color_fraisP = '#ed2338';
+                        }
+                        $('#push-container-top .bloc-frais .curseur-p i').css('width',((poids/1000)/poids_frais_max) * 100+'%');
+                        $('#push-container-top .bloc-frais .curseur-p i').css('background-color',color_fraisP);
+
+
+
+
                     }
                     //Sinon on refresh la page
                     else {
@@ -257,6 +379,8 @@
                 },
                 dataType: "json",
                 success: function(response) {
+
+                    let qte = $('#submitid_' +id).val();
 
                     //Supprime avec un effet
                     $('#produit_' +id).fadeOut(300,function() { $("this").remove() });
@@ -284,20 +408,92 @@
                     let prixFinal = parseFloat($('#prixFinal').text()).toFixed(2);
 
 
+
                     //Si l'on supprime un produit du panier
                     if ( $('#produit_' +id).fadeOut(300,function() { $("this").remove() })) {
-                        let poidsF = poidsFinal - poidsProduit;
-                        parseFloat($('#poidsFinal').text(poidsF.toFixed(2)));
-                        $('.sp-pdss').text((poidsF/1000).toFixed(2));
+                        let poidsF = poidsFinal - (poidsProduit * qte);
+                        parseFloat($('#poidsFinal').text(poidsF.toFixed(1)));
+                        $('.sp-pdss').text((poidsF/1000).toFixed(1));
 
-                        let volumeF = volumeFinal - volumeProduit;
-                        parseFloat($('#volumeFinal').text(volumeF.toFixed(2)));
+                        //Container update
+                        //produits secs
+                        let color_secP = '#30a852';
+
+                        let  poids_sec_max = 24;
+
+                        if(  ((poidsF/1000) >= 19.2))  {
+                            color_secP = '#eb671c';
+                        }
+                        if(  ((poidsF/1000) >= 23.76))  {
+                            color_secP = '#ed2338';
+                        }
+
+                        $('#push-container-top .bloc-sec .curseur-p i').css('width',((poidsF/1000)/poids_sec_max) * 100+'%');
+                        $('#push-container-top .bloc-sec .curseur-p i').css('background-color',color_secP);
+
+                        //produit frais
+                        let color_fraisP = '#30a852';
+
+                        let poids_frais_max = 21;
+
+                        if(  ((poidsF/1000) >= 16.8))  {
+                            color_fraisP = '#eb671c';
+                        }
+                        if(  ((poidsF/1000) >= 20.79))  {
+                            color_fraisP = '#ed2338';
+                        }
+                        $('#push-container-top .bloc-frais .curseur-p i').css('width',((poidsF/1000)/poids_frais_max) * 100+'%');
+                        $('#push-container-top .bloc-frais .curseur-p i').css('background-color',color_fraisP);
+
+
+                        let volumeF = volumeFinal - volumeProduit ;
+                        parseFloat($('#volumeFinal').text(volumeF.toFixed(1)));
+                        $('.sp-voll').text((volumeF).toFixed(1));
+
+                        //Container update
+                        //Produits secs
+
+                        let volume_secP = '#30a852';
+
+                        let volume_sec_max = 70;
+
+                        if(volumeF >= 56) {
+                            volume_secP = '#eb671c';
+                        }
+                        if(volumeF >= 69.3)  {
+                            volume_secP = '#ed2338';
+                        }
+
+                        $('#push-container-top .bloc-sec .curseur-v i').css('width',(volumeF/volume_sec_max) * 100+'%');
+                        $('#push-container-top .bloc-sec .curseur-v i').css('background-color',volume_secP);
+
+                        //Produits frais
+                        let volume_fraisP = '#30a852';
+
+                        let volume_frais_max = 46;
+
+                        if(volumeF >= 36.8) {
+                            volume_fraisP = '#eb671c';
+                        }
+
+                        if(volumeF >= 45.54) {
+                            volume_fraisP = '#ed2338';
+                        }
+
+                        $('#push-container-top .bloc-frais .curseur-v i').css('width',(volumeF/volume_frais_max) * 100+'%');
+                        $('#push-container-top .bloc-frais .curseur-v i').css('background-color',volume_fraisP);
+
+
+
+
+
 
                         let prixF = prixFinal - prixProduit;
                         parseFloat($('#prixFinal').text(prixF.toFixed(2)));
 
+
                         //Rafraichit la page lorsque tout est supprimé (marge d'erreur de soustraction à 0.2 près)
-                        if( parseFloat($('#volumeFinal').text()) >= 0 &&  parseFloat($('#volumeFinal').text()) <= 0.20 ){
+                        if( (parseFloat($('#volumeFinal').text()) >= 0 &&  (parseFloat($('#volumeFinal').text())) <= 0.20 || (parseFloat($('#volumeFinal').text()) <= 0 && parseFloat($('#volumeFinal').text()) >= -0.20 )) ){
                             location.reload();
                         }
                     }

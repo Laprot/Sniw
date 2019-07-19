@@ -86,10 +86,10 @@
                                 {{ form_row(form.superficieMagasin) }}
                             </div>
                             <div class="form-group col-md-6">
-                                {{ form_row(form.plainPassword.first, { 'label' : 'Nouveau mot de passe', 'required' : false , 'attr': { 'placeholder': false} }) }}
+                                {{ form_row(form.plainPassword.first, { 'label' : 'Mot de passe', 'required' : false , 'attr': { 'placeholder': false} }) }}
                             </div>
                             <div class="form-group col-md-6">
-                                {{ form_row(form.plainPassword.second, {'label' : 'Répéter le nouveau mot de passe','required': false }) }}
+                                {{ form_row(form.plainPassword.second, {'label' : 'Confirmer le mot de passe','required': false ,'attr': { 'placeholder': false} }) }}
                             </div>
                             {% if is_granted('ROLE_ADMIN') %}
                                 <div class="form-group col-md-6">

@@ -1,0 +1,183 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Les paniers enregistrés {% endblock %}
+
+{% set totalHT = 0 %}
+
+{% block stylesheets %}
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Commandes</title>
+        <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/buttons.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/select.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+    </head>
+
+{% endblock %}
+
+
+{% block body %}
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+
+        {% include 'admin/left_side.html.twig' %}
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Données paniers enregistrés   </h2>
+
+                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Paniers</li>
+                                    </ol>
+                                </nav>
+                            </div>
+
+                            <div class="mt-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        {{ form_start(form) }}
+                                        <div class="form-row align-items-end ">
+                                            <div class="col">
+                                                {{ form_row(form.rechercher) }}
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <button class="btn" style="padding:6px 0px">
+                                                        <i class="fa fa-search" aria-hidden="true" style="font-size: 17px;"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{ form_end(form) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- ============================================================== -->
+                    <!-- basic table  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Toutes les commandes -  {{ count }} résultat(s)
+                            </h5>
+
+                            <div class="card-body">
+                                <div class="table-responsive"  >
+                                    <table class="table table-bordered first" >
+                                        <thead>
+                                        <tr style="background-color:lightgrey">
+                                            <th>ID</th>
+                                            <th>Référence</th>
+                                            <th>Prénom</th>
+                                            <th>Nom</th>
+                                            <th>Date</th>
+                                            <th>Exporter / Détails / Supprimer</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+
+                                        {% for commande in commandes %}
+                                            <tr>
+                                                <td>{{ commande.id }}</td>
+                                                <td>
+                                                    {{ commande.reference }}
+                                                </td>
+                                                <td> {{ commande.prenom }}</td>
+                                                <td> {{ commande.nom }}</td>
+                                                <td> {{ commande.date|date('Y-m-d H:i:s') }}</td>
+                                                <td>
+                                                    <div class="btn btn-group justified">
+
+                                                        <a class="ml-2 mr-2" href="{{ path('panier_export', {id:commande.id}) }}" onclick="return confirm('Exporter cette comande ?');">
+                                                                <button class="btn"><i class="fa fa-download"></i></button>
+                                                        </a>
+
+
+
+                                                        <a class="ml-2 mr-2" href="{{ path('panier_edit', {id: commande.id}) }}">
+                                                            <button class="btn btn-warning"><i class="fas fa-pen"></i></button>
+                                                        </a>
+
+                                                        <form method="post" action="{{ path('panier_delete_dashboard', {'id': commande.id}) }}" onsubmit="return confirm('Êtes-vous sur de vouloir supprimer ce panier ?');">
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commande.id) }}">
+                                                            <button class="btn btn-danger" ><i class="fas fa-trash"></i></button>
+                                                        </form>
+
+
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+
+                                    <div class="mt-4">
+                                        Affichage : {{ commandes | length  }} / {{ count }} résultats
+                                    </div>
+                                    <div class="" style="float:right">
+
+                                        {{ knp_pagination_render(commandes) }}
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end data table multiselects  -->
+                    <!-- ============================================================== -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/admin/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="/admin/assets/libs/js/main-js.js"></script>
+
+{% endblock %}

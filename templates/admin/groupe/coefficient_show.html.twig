@@ -75,6 +75,7 @@
                                         <tr style="background-color:lightgrey">
                                             <th>Groupes</th>
                                             <th>Coefficient</th>
+                                            <th> Catégories </th>
                                             <th>Actions (Modifier / Supprimer)</th>
                                         </tr>
                                         </thead>
@@ -82,11 +83,14 @@
                                         {% for coefficient in coefficients %}
                                             <tr>
                                                 <td> {{ coefficient.groupes }}</td>
+                                                <td> {{ coefficient.getNewCoeff() }} </td>
                                                 <td>
                                                     <ul>
-                                                        <li>
-                                                            {{ coefficient.categories }} : {{  coefficient.getNewCoeff() }} </li>
+                                                        {% for categorie in coefficient.categories %}
+                                                            <li style="font-size:10px"> {{ categorie.nom }} </li>
+                                                        {% endfor %}
                                                     </ul>
+                                                </td>
                                                 </td>
                                                 <td>
                                                     <div class="btn btn-group justified">

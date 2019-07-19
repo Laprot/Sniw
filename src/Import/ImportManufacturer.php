@@ -10,6 +10,7 @@ namespace App\Import;
 
 
 use App\Entity\Manufacturer;
+use App\Entity\Produit;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Id\AssignedGenerator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,7 +46,13 @@ class ImportManufacturer extends Command
         $io = new SymfonyStyle($input,$output);
         $io->title('Import du flux ...');
 
-        $reader = Reader::createFromPath('%kernel.dir_dir%/../public/manufacturer_csv/ps_manufacturer.csv');
+
+        //EN DEV
+        //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/manufacturer_csv/maj-produit02072019.csv');
+
+
+        //EN PROD
+        $reader = Reader::createFromPath('/homepages/10/d783107477/htdocs/sniw/public/manufacturer_csv/maj-produit02072019.csv');
 
         $reader->setDelimiter(';');
         $results = $reader->fetchAssoc();
@@ -53,19 +60,32 @@ class ImportManufacturer extends Command
         $io->progressStart(iterator_count($results));
 
         foreach($results as $row) {
-            $manufacturer = new Manufacturer();
+            $produit_ref = $this->em->getRepository(Produit::class)->findBy(['reference' => $row['reference']]);
 
-            $manufacturer->setId($row['id']);
-            $manufacturer->setNom($row['nom']);
-            $this->em->persist($manufacturer);
+            $marque = $this->em->getRepository(Manufacturer::class)->findOneBy(['nom' => $row['marque']]);
 
+            if($marque !== null) {
+                $idManu = $this->em->getRepository(Manufacturer::class)->findOneBy(['id' => $marque->getId()]);
+            }
+            else {
+                $idManu = new Manufacturer();
+                $idManu->setNom($row['marque']);
+                $this->em->persist($idManu);
+            }
 
-            $metadata = $this->em->getClassMetaData(get_class($manufacturer));
-            $metadata->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
-            $metadata->setIdGenerator(new AssignedGenerator());
+            foreach($produit_ref as $prod) {
 
-
-
+                if($prod == null ) {
+                    $produits = new Produit();
+                    $produits->setEtat(0);
+                    $output->writeln([
+                        PHP_EOL.'>> Référence manquante : '.$prod->getReference()
+                    ]);
+                    $this->em->remove($prod);
+                } else {
+                    $prod->setIdManufacturer($idManu);
+                }
+            }
             $io->progressAdvance();
         }
 

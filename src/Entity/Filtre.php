@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,6 +17,13 @@ class Filtre
      */
     private $id;
 
+
+    /**
+     * @var ArrayCollection
+     */
+    private $marque;
+
+
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
@@ -25,6 +33,13 @@ class Filtre
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $isBio;
+
+
+    public function __construct()
+    {
+        $this->marque = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -54,4 +69,23 @@ class Filtre
 
         return $this;
     }
+
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMarque(): ArrayCollection
+    {
+        return $this->marque;
+    }
+
+    /**
+     * @param ArrayCollection $marque
+     */
+    public function setMarque(ArrayCollection $marque)
+    {
+        $this->marque = $marque;
+    }
+
+
 }

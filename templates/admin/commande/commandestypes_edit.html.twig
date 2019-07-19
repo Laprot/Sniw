@@ -73,13 +73,11 @@
                                             <th>Référence</th>
                                             <th style="width:100px">Image</th>
                                             <th>Désignation</th>
-                                            <th>Prix unitaire</th>
                                             <th>Quantité</th>
-                                            <th>Total</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for produit in commandeType.commande.commande.produit %}
+                                        {% for produit in commandeType.commande.produits %}
 
                                             <tr>
                                                 <td>{{ produit.reference }}</td>
@@ -92,9 +90,13 @@
                                                 </td>
 
                                                 <td> {{ produit.nom }} </td>
-                                                <td> {{ produit.prixUnitaire }}€</td>
-                                                <td> {{ produit.quantite }}</td>
-                                                <td>  {{ produit.prixUnitaire * produit.quantite }}€</td>
+                                                <td>
+                                                    {% for p in produit.qteProduitCommandes %}
+                                                        {% if commandeType.commande.id == p.commande.id %}
+                                                            {{ p.quantite }}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </td>
 
                                             </tr>
 
@@ -107,10 +109,7 @@
                                         <div class="col">
 
                                         </div>
-                                        <div class="col" style="margin-left:300px">
-                                            Total :
-                                            <strong style="font-size:20px"> {{ commandeType.commande.commande.prixHT }}€ </strong>
-                                        </div>
+
                                     </div>
 
 

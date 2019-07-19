@@ -1,0 +1,191 @@
+nom_categorie1;nom_categorie2;nom_categorie3;nom;Conditionnement;marque;BF;BIO;upc;reference;gencod;Unite par carton;prix_unite;prix_final;weight;Hauteur ;Longueur ;Largeur ;profondeur;Nb de cartons par couche;Nb de couche par palette;NB carton/palette;DLV Theorique;DLV Garantie;etat
+EPICERIE;Biscuits apéritifs;Les extrudes;Chips crevette;Le sachet de 50g;BELLE FRANCE;BF; ;2107130;46243;3258561239958;18;0.2831;5.0958;1.33;35;40;30;0.042;8;3;24;60;115;1
+EPICERIE;Biscuits apéritifs;Les extrudes;Chips Rice Fusion Indian Tandoori Chiken Masala;Le tube 160g;PRINGLES;NAT; ;2109100;19547;5053990149971;9;1.2778;11.5002;1.95;24;24;24;0.013824;15;7;105;180;360;1
+EPICERIE;Biscuits apéritifs;Les extrudes;Chips Rice Fusion Malaysian Red Curry;Le tube 160g;PRINGLES;NAT; ;2109110;19745;5053990149513;9;1.2778;11.5002;1.95;24;24;24;0.013824;15;7;105;180;360;1
+EPICERIE;Pâtisserie industrielle;Les minis gâteaux;10 TAM-TAM Au bon chocolat l'Original;Le paquet 275g;ST MICHEL;NAT; ;2663410;5280;3178530416848;12;1.2862;15.4344;2.883;21;39;29;0.023751;8;5;40;55;80;1
+EPICERIE;Biscuiterie;Les biscuits secs;Sablés Anglais;Le lot 2 paquets x 400g;MC VITIE'S;NAT; ;2720000;29363;5000168198491;12;1.1504;13.8048;9.31;32;40;24;0.03072;10;3;30;180;270;1
+EPICERIE;Biscuiterie;Les galettes et palets;Galette Au bon Chocolat;Le paquet 121g;ST MICHEL;NAT; ;2804730;104083;3178530416527;20;0.7568;15.136;3.17;18;37;27;0.017982;9;6;54;120;210;1
+EPICERIE;Chocolat;"Le chocolat ""spécialités adultes""";Chocolat noir 72%;La tablette 100g;VILLARS;NAT; ;6133020;103986;7610036002737;16;1.1747;18.7952;1.85;19;10;10;0.0019;27;12;324;120;270;1
+EPICERIE;Confiserie;"La confiserie chocolatée ""format familial""";Les Tuiles chocolat noir extra-fin;L'étui 125g;LINDT EXCELLENCE;NAT; ;6413160;101360;3046920078306;12;2.6641;31.9692;2.07;15;38;24;0.01368;10;11;110;180;270;1
+EPICERIE;Chocolat;"Le chocolat ""spécialités adultes""";Chocolat au lait suisse;La tablette 100g;VILLARS;NAT; ;6413170;103945;7610036002751;16;1.0336;16.5376;1.85;19;10;10;0.0019;27;12;324;120;270;1
+EPICERIE;Confiserie;"La confiserie chocolatée ""format familial""";Billes Coeur croustillant céréales oufflées Enrobé de chocolat lait;Le sachet 140g;LINDT;NAT; ;6515150;101386;3046920047852;18;2.1641;38.9538;3.06;19;40;30;0.0228;18;8;144;180;270;1
+EPICERIE;Féculents;Les riz du monde;Riz parfumé Le Kamâlis;Le paquet 500g;TAUREAU AILE;NAT; ;12321770;187682;3038359009044;12;1.5283;18.3396;6.2;15;34;16;0.00816;17;6;102;120;360;1
+EPICERIE;Condiments;Les mayonnaises;Mayonnaise American Style;Le flacon souple 215g;HEINZ;NAT; ;14300650;266726;87157857;10;1.1052;11.052;2.5;15;25;14;0.00525;28;8;224;120;300;1
+EPICERIE;Sauces;Les sauces condimentaires flacons;Sauce Burger;Le flacon souple 448g;AMORA;NAT; ;14503627;769422;8712566377664;12;1.462;17.544;6.1;20;33;18;0.01188;14;7;98;120;300;1
+EPICERIE;Sauces;Les ketchup;Tomato Ketchup sans sucres ni sel ajoutés;Le flacon souple 425g;HEINZ;NAT; ;14506860;266866;8715700112596;10;1.4557;14.557;4.7;18;30;17;0.00918;19;7;133;120;300;1
+EPICERIE;Huiles & vinaigres;Les vinaigres;Vinaigre de Vin Rouge Français;La bouteille 60cl;AMORA;NAT; ;18301070;244343;8711200451739;12;1.1778;14.1336;11.1;26;34;25;0.0221;9;4;36;120;360;1
+EPICERIE;Conserves de légumes;Les petits pois;Petits pois Extra-fins;La boite 4/4 560g;D'AUCY;NAT; ;21115560;408286;3017800000793;12;1.0357;12.4284;1.2;12;41;30;0.01476;7;12;84;120;360;1
+EPICERIE;Conserves de légumes;Les carottes & petits pois/carottes;Petits pois Extra-fins et carottes;La boite 4/4 - 530g;D'AUCY;NAT; ;21142020;472027;3017800003558;12;1.0357;12.4284;1.2;12;41;30;0.01476;7;12;84;120;360;1
+EPICERIE;Conserves de légumes;Les légumes crudités;Asperges Blanches BIO;Le bocal 205g;ROCHEFONTAINE;NAT;BIO;21515250;461046;3255691008201;6;2.3399;14.0394;8.1;18;21;13;0.004914;26;7;182;120;360;1
+EPICERIE;Conserves de poissons;Les thons;Thon Entier Grillé au Piment;La boîte 160g;SAUPIQUET;NAT; ;22221160;532507;3165950219913;12;1.8694;22.4328;2;8;26;18;0.003744;19;18;342;120;360;1
+EPICERIE;Conserves de poissons;Les thons;Thon Entier Grillé avec un trait d'Huile d'Olive;La boîte 115g;SAUPIQUET;NAT; ;22221170;533729;3165950219890;12;1.8694;22.4328;2;8;26;18;0.003744;19;18;342;120;360;1
+EPICERIE;Conserves de poissons;Les thons;Thon à l'huile d'olive et à l'origan;La boite 1/5;PETIT NAVIRE;NAT; ;22230510;536946;3019081240127;12;1.3431;16.1172;1.7;4;36;27;0.003888;9;34;306;120;360;1
+EPICERIE;Conserves de poissons;Les thons;Thon tomates séchées;La boite 1/5;PETIT NAVIRE;NAT; ;22230520;536961;3019081235611;12;1.3431;16.1172;1.7;4;36;27;0.003888;9;34;306;120;360;1
+EPICERIE;Conserves de poissons;Les autres conserves de poissons;Colin de l'Alaska au basilic;La boite 1/5;PETIT NAVIRE;NAT; ;22335700;537027;3019081238414;12;1.3368;16.0416;1.7;4;36;27;0.003888;9;34;306;120;360;1
+EPICERIE;Biscuits apéritifs;Les chips à l'ancienne;Chips La Vicoise de Picardie Nature;Le sachet 150g;VICO;NAT; ;24105050;534081;3336971806066;14;1.0673;14.9422;2.49;27;40;40;0.0432;6;4;24;90;150;1
+EPICERIE;Plats cuisinés;Les plats cuisinés italiens;Ravioli pur bœuf;La boite 1/2;PANZANI;NAT; ;24601540;501783;3038352880206;12;1.0526;12.6312;5.5;11;31;23;0.007843;12;7;84;120;360;1
+EPICERIE;Produits animaux;"Les produits ""snacks"" pour chats";Friandises Dentalife pour chat au saumon savoureux;Le sachet 40g;PURINA;NAT; ;27205300;560383;7613036724258;8;0.7873;6.2984;0.47;18;20;10;0.0036;48;6;288;120;360;1
+EPICERIE;Produits animaux;"Les produits ""snacks"" pour chats";Friandises Dentalife pour chat au poulet savoureux;Le sachet 40g;PURINA;NAT; ;27205310;560409;7613036724272;8;0.7873;6.2984;0.47;18;20;10;0.0036;48;6;288;120;360;1
+LIQUIDES;Jus fruits & sirops;Les jus de légumes;Boisson au jus de tomate concentré, salé et épicé;La bouteille 75cl;TABASCO;NAT; ;30310500;570705;8710296114702;6;2.122;12.732;4.5;28;23;16;0.010304;25;4;100;90;360;1
+LIQUIDES;Jus fruits & sirops;Les sirops;Sirop Ice Tea Pêche/Abricot;La bouteille 75cl;OASIS;NAT; ;30500020;608422;3217690057499;6;2.0957;12.5742;6.26;26;22;15;0.00858;25;5;125;90;300;1
+LIQUIDES;Jus fruits & sirops;Les sirops;Sirop Ice Tea Mangue/Ananas;La bouteille 75cl;OASIS;NAT; ;30500030;608448;3217690057512;6;2.0957;12.5742;6.26;26;22;15;0.00858;25;5;125;90;300;1
+LIQUIDES;Jus fruits & sirops;Les sirops;Sirop Ice Tea Framboise/Cassis;La bouteille 75cl;OASIS;NAT; ;30500040;608463;3217690057505;6;2.0957;12.5742;6.26;26;22;15;0.00858;25;5;125;90;300;1
+LIQUIDES;Jus fruits & sirops;Les sirops;Sirop de grenadine Bio;La bouteille 50cl;BELLE FRANCE;BF;BIO;30503610;607382;3258561301099;6;1.3768;8.2608;6.2;27;21;14;0.007938;26;5;130;90;360;1
+LIQUIDES;Jus fruits & sirops;Les sirops;Sirop de menthe Bio;La bouteille 50cl;BELLE FRANCE;BF;BIO;30503620;607408;3258561301075;6;1.2052;7.2312;6.2;27;21;14;0.007938;26;5;130;90;360;1
+LIQUIDES;Bières;Les packs de bières d'abbaye;Bière blonde;Le pack 12 bouteilles x 25cl;ABBAYE DE LEFFE;NAT; ;31310200;650408;5410228258698;1;6.8187;6.8187;5;18;24;18;0.007776;26;8;208;120;300;1
+LIQUIDES;Bières;Les boîtes de bières 50cl/pet;Bière Triple d'Abbaye;La boîte 50cl;GRIMBERGEN;NAT; ;31342410;616821;3080216052212;12;1.4999;17.9988;7.5;17;40;27;0.01836;22;5;110;120;300;1
+LIQUIDES;Bières;Les bières sans alcool;Bière sans alcool aux notes de Cranberry & Romarin;Le pack 6 bouteilles x 27,5cl;TOURTEL BOTANICS;NAT; ;31540350;619809;3080216053073;4;3.7567;15.0268;11.7;22;36;24;0.019008;13;6;78;120;300;1
+LIQUIDES;Bières;Les bières sans alcool;Bière sans alcool aux notes de citron vert & fleur de sureau;Le pack 6 bouteilles x 27,5cl;TOURTEL BOTANICS;NAT; ;31540360;620088;3080216053035;4;3.7567;15.0268;11.7;22;36;24;0.019008;13;6;78;120;300;1
+LIQUIDES;Vin table, pays & étranger;Grands contenants;Vin gris de Pays d'Oc;Le Bib 3L;BELLE FRANCE;BF; ;33100140;634964;3258561330471;4;5.0209;20.0836;12.8;21;35;21;0.015435;11;5;55;0;0;1
+LIQUIDES;Vin table, pays & étranger;IGP rosé;Terres du Midi I.G.P.;La bouteille 75cl;LES CAVES DU SOELIL 2018;NAT; ;33400310;613844;3198129886616;6;1.4062;8.4372;7.2;31;23;15;0.010695;24;5;120;0;0;1
+LIQUIDES;Vin table, pays & étranger;IGP rosé;Ile de Beauté I.G.P.;La bouteille 75cl;DOMAINE DISERTO 2018;NAT; ;33400320;613869;3198129876655;6;1.9399;11.6394;7.2;31;23;15;0.010695;24;5;120;0;0;1
+LIQUIDES;Vins roses;Provence rose/corse;Côtes de Provence;La bouteille 75cl;ESPRIT D'AZUR 2018;NAT; ;33420060;621243;3347600004678;6;4.0209;24.1254;8;32;24;16;0.012288;25;4;100;0;0;1
+LIQUIDES;Vins roses;Provence rose/corse;Côtes de Provence;La bouteille 75cl;LE PASSE TEMPS 2018;NAT; ;33420070;626747;3760051309541;6;3.8683;23.2098;7.1;30;23;16;0.01104;25;4;100;0;0;1
+LIQUIDES;Vins roses;Provence rose/corse;Côteaux d'Aix en Provence;La bouteille 75cl;EXPRESSION DE NOTRE TERROIR 2018;NAT; ;33420100;613885;3342760000126;6;3.2904;19.7424;7.5;30;24;16;0.01152;25;4;100;0;0;1
+LIQUIDES;Vins roses;Provence rose/corse;Côtes de Provence;La bouteille 75cl;LE JAS DE PARETTE 2018;NAT; ;33420600;627208;3760051308704;6;3.8683;23.2098;7.1;30;23;16;0.01104;25;4;100;0;0;1
+LIQUIDES;Vins roses;Provence rose/corse;Coteaux d'Aix en Provence;La bouteille 75cl;DOMAINE DALMA 2018;NAT; ;34237300;626762;3452790006538;6;3.1599;18.9594;8;31;23;16;0.011408;25;4;100;0;0;1
+LIQUIDES;Mousseux & champagnes;Les champagnes;Champagne brut;La bouteille 75cl;VRANKEN DEMOISELLE;NAT; ;35111500;530345;3253958000012;6;17.6531;105.9186;10.6;21;33;25;0.017325;10;7;70;0;0;1
+LIQUIDES;Mousseux & champagnes;Les mousseux;Prosecco;Le pack 3 bouteilles x 20cl;RICCADONNA;NAT; ;35300110;590562;8000368918742;8;5.5093;44.0744;10.2;23;34;24;0.018768;10;7;70;0;0;1
+LIQUIDES;Alcools & spiritueux;Les cocktails & liqueurs;Cognac 40°;La boiteille 70cl;HENNESSY;NAT; ;37123230;645267;3245990250203;6;20.1198;120.7188;7.6;27;31;21;0.017577;12;6;72;0;0;1
+LIQUIDES;Alcools & spiritueux;Les whisky d'âge & pur malt;Single Malt Scotch Whisky;La bouteille 70cl + ETUI;BOWMORE;NAT; ;37700030;640029;5010496004685;6;10.2632;61.5792;9.9;33;27;18;0.016038;18;5;90;0;0;1
+LIQUIDES;Alcools & spiritueux;Les whisky d'âge & pur malt;Single Malt Scotch Whisky;La bouteille 70cl;TALISKER SKYE;NAT; ;37700510;756247;5000281038094;6;17.9557;107.7342;7.9;32;30;20;0.0192;11;5;55;0;0;1
+PRODUITS FRAIS;Panification;Les americains;4 pains Burger Création Nature;L'étui 260g;JACQUET;NAT; ;40100220;724021;3029330070054;5;1.1599;5.7995;1.96;24;30;24;0.01728;8;7;56;40;50;1
+PRODUITS FRAIS;Panification;Pain de mie;Pain de mie nature L'Original;Le paquet 450g;JACQUET;NAT; ;40100320;660027;3029330001010;8;0.6262;5.0096;2.9;20;28;30;0.0168;8;9;72;10;13;1
+PRODUITS FRAIS;Panification;Les americains;Pain de mie Nature;Le paquet 550g;JACQUET;NAT; ;40100660;660068;3029330003403;6;0.862;5.172;3.62;20;40;30;0.024;8;8;64;10;13;1
+PRODUITS FRAIS;Panification;Les americains;Pain de mie Complet;Le paquet 550g;JACQUET;NAT; ;40100680;660084;3029330003458;6;0.9041;5.4246;7.1;20;39;30;0.0234;8;8;64;9;11;1
+PRODUITS FRAIS;Panification;Les americains;4 pains Burger Géant Nature;Le paquet 330g;JACQUET;NAT; ;40100840;660381;3029330066484;10;0.7883;7.883;2.8;20;39;30;0.0234;8;10;80;42;45;1
+PRODUITS FRAIS;Panification;Les allemands;Vollkornbrot (pain complet);Le pain de 500g;JACQUET;NAT; ;40101200;660704;3029330004233;6;1.0589;6.3534;2.8;13;40;30;0.0156;8;15;120;9;11;1
+PRODUITS FRAIS;Panification;Pain de mie;36 Toasts ronds Nature;Le sachet 250g;JACQUET;NAT; ;40101460;660787;3029330011040;10;0.922;9.22;2.9;15;40;20;0.012;8;13;104;9;12;1
+PRODUITS FRAIS;Panification;Pain de mie;La Boule à la farine Complète;Le sachet 350g;JACQUET;NAT; ;40101540;519488;3029330068273;6;1.1831;7.0986;2.2;14;60;16;0.01344;6;12;72;38;40;1
+PRODUITS FRAIS;Panification;Les campagnes;Le Pain spécial à la farine de seigle BON AP';Le paquet 500g;JACQUET;NAT; ;40101550;660928;3029330004240;5;0.9957;4.9785;2.8;15;39;30;0.01755;8;11;88;9;11;1
+PRODUITS FRAIS;Panification;Pain de mie;36 Toasts ronds Briochés;Le sachet 250g;JACQUET;NAT; ;40102200;661405;3029330001652;10;0.9694;9.694;2.7;14;40;30;0.0168;8;13;104;15;18;1
+PRODUITS FRAIS;Panification;Les americains;Crousti Moelleux Nature;Le sachet 730g;JACQUET;NAT; ;40102350;661504;3029330003526;7;1.1241;7.8687;5.35;14;60;40;0.0336;4;12;48;10;13;1
+PRODUITS FRAIS;Panification;Pain de mie;4 Baguettines Viennoise Nature;Le sachet 340g;JACQUET;NAT; ;40102500;530881;3029330067054;8;0.9631;7.7048;2.9;20;28;30;0.0168;8;9;72;17;19;1
+PRODUITS FRAIS;Panification;Les autres pains;Baguette précuite ;La baguette 250g;JACQUET;NAT; ;40300060;661884;3029330002406;12;0.5715;6.858;2.34;25;40;24;0.024;10;7;70;25;30;1
+PRODUITS SURGELES;Glace detente-specialite;-;"""Extrême"" Conne Vanille";La boite de 4;NESTLÉ;NAT; ;41200780;999300;7613036833929;6;2.2294;13.3764;1.7;12;40;30;0.0144;10;15;150;180;360;1
+PRODUITS SURGELES;Glace detente-specialite;-;6 mini glaces à l'eau Pirulo Mix;L'étui 300g;NESTLE;NAT; ;41200790;999326;3274667005341;10;1.7788;17.788;3;15;40;30;0.018;7;10;70;180;360;1
+PRODUITS SURGELES;Glace detente-specialite;-;5 glaces à l'eau Pirulo Happy;L'étui 350g;NESTLE;NAT; ;41204200;995167;7613034522146;6;1.601;9.606;2.5;20;26;20;0.0104;16;8;128;180;360;1
+PRODUITS SURGELES;Glace detente-specialite;-;10 Bâtonnets Sorbet Multifruits;L'étui 400g;OASIS;NAT; ;41207510;993485;3251512810008;10;1.7262;17.262;4;33;28;23;0.021252;14;5;70;180;360;1
+PRODUITS SURGELES;Snacks;-;Pizza Ristorante Piccola Mozzarella;L'étui 2 x 155g;DR OETKER;NAT; ;41457210;590604;4001724834205;5;1.8852;9.426;1.97;18;18;26;0.008424;19;9;171;180;360;1
+PRODUITS SURGELES;Snacks;-;Pizza Ristorante Piccola Salame;L'étui 2 x 140g;DR OETKER;NAT; ;41457220;590687;4001724834007;5;1.8852;9.426;1.8;18;18;26;0.008424;19;9;171;180;360;1
+PRODUITS SURGELES;Frites-garnitures&purees;-;Churros de pomme de terre Nature;Le sachet 600g;FINDUS;NAT; ;41622010;947325;3599741004967;8;1.9167;15.3336;5.2;25;40;26;0.026;9;7;63;180;360;1
+ENTRETIEN;Insecticides;-;6 Stickers Vitres Anti-Mouches;Le paquet;PYREL;NAT; ;41624350;741967;5000204707939;24;2.5862;62.0688;1.1;16;12;22;0.004224;42;4;168;0;0;1
+PRODUITS SURGELES;Entrees;-;Tartes du Monde L'Italienne Tomates cerises Mozzarella Pesto;L'étui 370g;MARIE;NAT; ;41800970;941385;3248830000044;6;2.262;13.572;2.8;19;27;27;0.013851;18;6;108;180;360;1
+PRODUITS FRAIS;Yaourt nature;-;Yaourt nature SKYR;Le pack 2 pots x 140g;LES DANONE DU MONDE;NAT; ;42210150;665208;3033491270864;5;1.3715;6.8575;1.65;8;40;8;0.00256;14;22;308;15;21;1
+PRODUITS FRAIS;Ultra frais bio;-;Yaourt brassé à la Grecque;Le pot 450g;LES 300 & BIO;NAT; ;42213450;829846;3523230046886;6;1.2347;7.4082;2.9;14;31;20;0.00868;16;9;144;15;21;1
+PRODUITS FRAIS;Ultra frais bio;-;Yaourt Nature 0% M.G;Le pack 4 pots x 125g;LES 300 & BIO;NAT;BIO;42213460;713040;3523230046688;6;0.7241;4.3446;3.3;7;39;27;0.007371;9;20;180;15;21;1
+PRODUITS FRAIS;Yaourt aux fruits;Yaourt fruits lait 1/2 ecreme;Yaourt à la Grecque OIKOS Ananas Fruit de la Passion;Le pack 2 pots x 115g;DANONE;NAT; ;42230700;671586;3033491348617;6;1.2073;7.2438;1.6;10;27;20;0.0054;18;18;324;15;21;1
+PRODUITS FRAIS;Yaourt aux fruits;Yaourt fruits lait 1/2 ecreme;Yaourt à la Grecque OIKOS Figue Pomme Canelle;Le pack 2 pots x 115g;DANONE;NAT; ;42230710;671644;3033491348501;6;1.2073;7.2438;1.6;10;27;20;0.0054;18;18;324;15;21;1
+PRODUITS FRAIS;Yaourt aux fruits;Yaourt fruits lait 1/2 ecreme;Le Liégois au Yaourt lit de Fraises LA LAITIERE;Le pack 4 pots x 100g;NESTLE;NAT; ;42235700;670828;3023290013267;6;1.4346;8.6076;2.5;9;40;27;0.00972;9;17;153;15;21;1
+PRODUITS FRAIS;Yaourt aux fruits;Yaourt fruits lait 1/2 ecreme;Le Liégois au Yaourt lit de Pêches LA LAITIERE;Le pack 4 pots x 100g;NESTLE;NAT; ;42235710;670927;3023290013281;6;1.4346;8.6076;2.5;9;40;27;0.00972;9;17;153;15;21;1
+PRODUITS FRAIS;Yaourt aux fruits;Yaourt fruits lait 1/2 ecreme;Le Liégois au Yaourt lit de Cerises LA LAITIERE;Le pack 4 pots x 100g;NESTLE;NAT; ;42235720;670943;3023290024133;6;1.4346;8.6076;2.5;9;40;27;0.00972;9;17;153;15;21;1
+PRODUITS FRAIS;Ultra frais bio;-;Yaourt brassé Abricot Pêche;Le pack 4 pots x 125g;LES 300 & BIO;NAT;BIO;42236300;570721;3523230046749;6;1.1452;6.8712;3.3;7;39;27;0.007371;9;20;180;15;21;1
+PRODUITS FRAIS;Ultra frais bio;-;Yaourt brassé Mûre Myrtille;Le pack 4 pots x 125g;LES 300 & BIO;NAT;BIO;42236310;570747;3523230046725;6;1.1452;6.8712;3.3;7;39;27;0.007371;9;20;180;15;21;1
+PRODUITS FRAIS;Yaourt aux fruits;Yaourt fruits lait 1/2 ecreme;Yaourts au fruits panachés Fraise/Ananas/Cerise/Pèche;le pack de 4x125g;BELLE FRANCE;BF; ;42238590;680264;3258561420486;12;0.7736;9.2832;6.5;14;40;27;0.01512;9;12;108;15;21;1
+PRODUITS FRAIS;Yaourt a boire;-;Nature;Le pack 6 x 100g;ACTIMEL;NAT; ;42250090;534222;3033491460869;4;1.8083;7.2332;2.7;11;30;20;0.0066;16;16;256;16;21;1
+PRODUITS FRAIS;Yaourt a boire;-;Saveur Fraise;Le pack 6 x 100g;ACTIMEL;NAT; ;42250100;534347;3033491460852;4;1.8083;7.2332;2.7;11;30;20;0.0066;16;16;256;16;21;1
+PRODUITS FRAIS;Ultra frais bio;-;Crème dessert au Chocolat;Le pack 4 pots x 95g;LES 300 & BIO;NAT;BIO;42260800;756981;3523230046800;6;1.0568;6.3408;2.55;6;40;30;0.0072;8;26;208;15;21;1
+PRODUITS FRAIS;Ultra frais bio;-;Crème dessert saveur Vanille;Le pack 4 pots x 95g;LES 300 & BIO;NAT;BIO;42260810;757005;3523230046824;6;1.0568;6.3408;2.55;6;40;30;0.0072;8;26;208;15;21;1
+PRODUITS FRAIS;Creme fraiche;-;CREME FRAICHE 200G BURGOS CREME FRAICHE 200G  FLOR BURGOS;Le pot de 200g;FLOR DE BURGOS;NAT; ;42310900;676940;8436039431355;12;0.5673;6.8076;2.4;10;35;26;0.0091;9;14;126;40;60;1
+PRODUITS FRAIS;Fromage frais;-;Fromage frais aux Fraises;Le pot 500g;ISIGNY STE MERE;NAT; ;42354600;548420;3254550047535;6;1.6167;9.7002;3.2;9;39;27;0.009477;9;16;144;15;21;1
+PRODUITS FRAIS;Fromage frais;-;Fromage Frais aux Framboises;Le pot 500g;ISIGNY STE MERE;NAT; ;42354610;548446;3254550047528;6;1.6167;9.7002;3.2;9;39;27;0.009477;9;16;144;15;21;1
+PRODUITS FRAIS;Fromage pate fraiche aromatisee;-;Bouchées de fromage à l'Ail et aux Fines Herbes;L'étui 100g;APERIVRAIS;NAT; ;42401960;683581;3480341000261;6;1.5799;9.4794;0.84;14;19;16;0.004256;30;10;300;16;28;1
+PRODUITS FRAIS;Fromage chevre et brebis;-;Chèvre & Salade;L'étui 120g;SOIGNON;NAT; ;43361530;683540;3523230049252;8;1.4052;11.2416;1.5;10;39;25;0.00975;9;14;126;30;40;1
+PRODUITS FRAIS;Fromage chevre et brebis;-;Chèvre & Salade Ail et fines herbes;L'étui 120g;SOIGNON;NAT; ;43361540;683565;3523230049238;8;1.4052;11.2416;1.5;10;39;25;0.00975;9;14;126;30;40;1
+PRODUITS FRAIS;Fromage chevre et brebis;-;Fromage 100% Brebis Herbes de Provence;Le bocal 300g;SALAKIS;NAT; ;43361690;591487;3023260005872;6;2.0452;12.2712;2;11;29;20;0.00638;24;12;288;60;80;1
+PRODUITS FRAIS;Fromage chevre et brebis;-;Fromage 100% Brebis - 25% de sel;La barquette 180g;SALAKIS;NAT; ;43370040;756841;3023260027751;12;1.6388;19.6656;2.8;15;23;20;0.0069;20;8;160;35;50;1
+PRODUITS FRAIS;Fromage chevre et brebis;-;Dés Nature 100% Brebis;La box fraîcheur 150g;SALAKIS;NAT; ;43370460;599621;3023260030867;6;1.6841;10.1046;1.4;11;29;20;0.00638;24;12;288;30;50;1
+PRODUITS FRAIS;Jus fruit;-;Pur Jus de Pomme Kiwi Concombre;La bouteille 90cl;TROPICANA;NAT; ;44900800;949941;3168930156628;6;2.1673;13.0038;5.853;24;25;16;0.0096;24;6;144;21;28;1
+PRODUITS FRAIS;Jus fruit;-;"Jus de fruits ""Pulpissimo Tropical""";La bouteille de 90cl;TROPICANA;NAT; ;44900850;950444;3168930156710;6;1.8799;11.2794;5.853;24;25;16;0.0096;24;6;144;21;28;1
+PRODUITS FRAIS;Fruits et legumes;Fruits & legumes bio;Pommes de terre Grenaille Spunta Bio d'Italie 28/35;Le sac de 1kg; ;NAT;BIO;45100110;531442;3700530902917;6;2.1788;13.0728;6;12;40;30;0.0144;6;12;72;0;0;1
+PRODUITS FRAIS;Fruits et legumes;Pomme de terre;Pomme de Terre Europa;Le filet 2,5 kg;Cat.1, Cal.40/60;NAT; ;45101040;726406;3000165040085;6;2.9272;17.5632;15;20;60;40;0.048;8;10;80;0;0;1
+PRODUITS FRAIS;Fruits et legumes;Pomme de terre;Pomme de Terre Nouvelle Lady Christelle;Le sachet 1 kilo;Cat.1;NAT; ;45102050;714584;3283322509193;12;2.3851;28.6212;12;20;60;40;0.048;8;8;64;0;0;1
+PRODUITS FRAIS;4eme gamme;Crudites;Plateau Apéro Sauce fromage blanc et fines herbes;Le plateau 350g;FLORETTE;NAT; ;45200300;599704;3280220510184;4;2.5988;10.3952;1.712;13;40;30;0.0156;8;15;120;4;5;1
+PRODUITS FRAIS;Fruits et legumes;Legumes;Oignon jaune de Terroir;le filet de 12; ;NAT; ;45402300;979849;3000010041182;12;1.9557;23.4684;12;20;60;40;0.048;4;10;40;0;0;1
+PRODUITS FRAIS;Fruits et legumes;Fruits & legumes bio;Concombre BIO Filmé;La pièce;Cal.4/5;NAT;BIO;45500340;712521;3700323892555;12;0.8631;10.3572;2;20;60;40;0.048;8;10;80;0;0;1
+PRODUITS FRAIS;4eme gamme;Salades;Salade mélangée;Le sachet 250g;EP;1P; ;45600050;900688;3258565470098;14;0.5884;8.2376;1.5;22;59;39;0.050622;5;9;45;4;5;1
+PRODUITS FRAIS;4eme gamme;Salades;Salade Extra Gourmande;Le sachet 160g;BONDUELLE;NAT; ;45600240;939801;3083680590815;6;0.8894;5.3364;1.38;13;59;39;0.029913;5;14;70;5;7;1
+PRODUITS FRAIS;4eme gamme;Salades;Coeur de laitue;Le sachet 160g;BONDUELLE;NAT; ;45600300;940148;3083680482196;6;0.8789;5.2734;1.25;180;50;40;0.36;4;20;80;5;6;1
+PRODUITS FRAIS;4eme gamme;Salades;Mâche;Le sachet 100g;BONDUELLE;NAT; ;45600350;940122;3083680482417;6;0.7094;4.2564;0.96;11;59;39;0.025311;5;6;30;6;7;1
+PRODUITS FRAIS;4eme gamme;Salades;Roquette;Le sachet 100g;BONDUELLE;NAT; ;45600370;940403;3083680482233;6;0.7936;4.7616;1;13;59;39;0.029913;5;16;80;6;7;1
+PRODUITS FRAIS;4eme gamme;Salades;Feuille de chêne;Le sachet 125g;BONDUELLE;NAT; ;45600500;940528;3083680482332;6;0.8947;5.3682;1.11;11;59;39;0.025311;5;14;70;4;5;1
+PRODUITS FRAIS;4eme gamme;Salades;Mélange Mâche-Roquette;Le sachet 100g;BELLE FRANCE;BF; ;45601080;955104;3258561449937;4;0.5915;2.366;0.85;11;60;40;0.0264;4;17;68;4;5;1
+PRODUITS FRAIS;Charcuterie libre service;Saucissons et saucisses secs;Saucisson Fuetec Ibérico;La pièce 150g;ELPOZO;NAT; ;46220790;957340;8410843105152;10;2.0673;20.673;1.5;4;33;35;0.00462;13;17;221;45;60;1
+PRODUITS FRAIS;Charcuterie libre service;Les jambons cuits;Le Jambon Zéro Nitrite;Le blister 120g;FLEURY MICHON;NAT; ;46321080;761809;3302740025136;4;1.8504;7.4016;0.7;8;39;24;0.007488;10;21;210;10;15;1
+PRODUITS FRAIS;Charcuterie libre service;Les jambons cuits;Jambon Le Bon Paris à l'étouffée sans nitrite;Le blister 210g;HERTA;NAT; ;46322740;844308;7613035989566;6;2.563;15.378;1.3;6;40;24;0.00576;10;18;180;13;18;1
+PRODUITS FRAIS;Charcuterie libre service;Les jambons cuits;Jambom Bio à la Broche sans nitrite;Le blister 4 tranches - 120g;HERTA;NAT;BIO;46322830;844340;7613036900836;6;3.9388;23.6328;1.3;6;40;24;0.00576;10;18;180;13;18;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Canard gras & confits;Confit de foie de volaille;300g;MAITRE COQ;NAT; ;46420260;880765;3230890015595;8;1.5915;12.732;2.3;9;40;30;0.0108;8;11;88;24;30;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille entiere;Poule Classe A PAC; ;MAITRE COQ;NAT; ;46511000;878041;215531000003;1;2.2251;2.2251;4.7;16;30;40;0.0192;8;10;80;6;7;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille entiere;Poulet Classe A; ;1er PRIX;1P; ;46530300;877985;215861000001;1;2.5904;2.5904;6.5;16;30;40;0.0192;8;12;96;5;7;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille entiere;Poulet fermier jaune d'Auvergne Label Rouge;x4; ;NAT; ;46532440;877647;220311000005;1;3.9325;3.9325;5.2;15;30;40;0.018;13;8;104;6;7;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Decoupe de poulet lib.serv.;Escalopes de poulet;La barquette de 2;1er PRIX;1P; ;46540500;878801;215498000009;1;7.2397;7.2397;1.95;9;30;40;0.0108;8;11;88;10;11;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Decoupe de poulet lib.serv.;4 cuisses de poulet;La barquette 1 kilo;MAITRE COQ;NAT; ;46540590;576181;3230890026553;4;2.5851;10.3404;4;16;40;30;0.0192;8;11;88;6;7;1
+PRODUITS FRAIS;Volaille gamme ete;-;Morceaux choisis de Poulet recette Mexicaine;La barquette 500g;MAÎTRE COQ;NAT; ;46540700;855460;3230890795114;4;2.6136;10.4544;2;15;40;30;0.018;8;12;96;9;10;1
+PRODUITS FRAIS;Volaille gamme ete;-;Spécial Fiesta! Mini brochettes, Merguez, Saucisses Cocktail;La barquette 400g;MAÎTRE COQ;NAT; ;46540710;855486;3230890001888;4;4.8577;19.4308;1.6;15;40;30;0.018;8;12;96;8;9;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille cuite-grignotage;Emincés de Filet de Poulet rôti sauce Barbecue;La barquette 180g;LE GAULOIS;NAT; ;46541800;880120;3266980887391;6;2.2767;13.6602;1.2;15;40;30;0.018;8;12;96;13;14;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille cuite-grignotage;Emincés de Cuisse de Poulet rôti;La barquette 180g;LE GAULOIS;NAT; ;46541810;880146;3266980134556;6;1.7904;10.7424;1.2;15;40;30;0.018;8;12;96;13;14;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Decoupe de poulet lib.serv.;Ailes de poulet;x6;MAITRE COQ;NAT; ;46542030;879809;215895000008;1;3.1914;3.1914;2.74;10;40;30;0.012;8;18;144;6;7;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille cuite-grignotage;Le poulet du Rôtisseur;Le sachet spécial micro-onde;MAÎTRE COQ;NAT; ;46550000;880625;215231000006;1;4.9903;4.9903;4;16;40;30;0.0192;8;10;80;9;10;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille cuite-grignotage;Poulet cuit fumé au bois de hêtre;Le kilo;MAÎTRE COQ;NAT; ;46550030;880682;215015000000;1;3.7525;3.7525;5.2;16;40;30;0.0192;8;11;88;14;21;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille cuite-grignotage;CoQ' Ailes Nature;Le sachet 250g;MAÎTRE COQ;NAT; ;46551130;880708;3230890016752;6;1.7683;10.6098;1.5;10;39;30;0.0117;8;20;160;12;16;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille cuite-grignotage;CoQ'Ailes Mexicain;Le sachet 250g;MAÎTRE COQ;NAT; ;46551140;880724;3230890016806;6;1.7683;10.6098;1.5;10;39;30;0.0117;8;20;160;12;16;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Decoupe de lapin lib.serv.;Morceaux choisis de lapin;Le kilo;MAÎTRE COQ;NAT; ;46635220;877829;215932000008;1;6.8924;6.8924;4.14;10;30;40;0.012;8;13;104;6;7;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Decoupe de lapin lib.serv.;2 cuisses de lapin sous atmosphère;Le kilo;-;NAT; ;46635320;877886;215423000005;1;9.0828;9.0828;2.87;9;30;40;0.0108;8;13;104;9;10;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille entiere;"Pintade ""Eleveurs de nos régions""";x4;MAITRE COQ;NAT; ;46662000;879205;215110000004;1;4.5314;4.5314;4.8;15;40;40;0.024;10;10;100;6;7;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Decoupe de dinde lib.serv;Blanquette de dinde avec Os ;x4;MAITRE COQ;NAT; ;46671080;878504;215176000000;1;2.0104;2.0104;5.83;10;30;40;0.012;8;8;64;6;7;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Decoupe de dinde lib.serv;Escalope de dinde;La barquette de 2;1er PRIX;1P; ;46671520;878884;215510000000;1;7.3292;7.3292;2.7;9;40;30;0.0108;8;8;64;10;11;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Decoupe de dinde lib.serv;Escalopes de dinde;La barquette de 6;1er PRIX;1P; ;46672240;879486;217978000004;1;5.8987;5.8987;3.06;15;40;30;0.018;8;13;104;6;7;1
+PRODUITS FRAIS;Volaille coupe;-;Filets de dinde; ; ;NAT; ;46675000;877266;215031000008;1;6.7661;6.7661;6.33;10;30;40;0.012;8;16;128;9;11;1
+PRODUITS FRAIS;Volaille-lapin libre-service;Volaille entiere;Coquelet Blanc élevé en région; ; ;NAT; ;46691000;878181;215312000000;1;3.5693;3.5693;3.17;16;30;40;0.0192;8;12;96;10;13;1
+PRODUITS FRAIS;Traiteur libre service;Salades repas lib.serv;Salade de lentilles corail aux noisettes;La barquette 150g;MARTINET;NAT; ;47101500;962241;3281780892604;4;1.2483;4.9932;0.7;7;25;25;0.004375;12;10;120;9;10;1
+PRODUITS FRAIS;Traiteur libre service;Salades repas lib.serv;Salade La Grecque;L'étui 280g;BONDUELLE;NAT; ;47101940;546747;3083681061178;4;1.7199;6.8796;1.4;6;38;27;0.006156;9;25;225;8;9;1
+PRODUITS FRAIS;Traiteur libre service;Salades repas lib.serv;La Parisienne Jambon, Farfalles, Emmental, Oeufs, Carotte, vinaigrette;L'étui 280g;FLEURY MICHON;NAT; ;47102040;917880;3302749665029;3;2.3272;6.9816;1.2;15;39;15;0.008775;16;10;160;9;10;1
+PRODUITS FRAIS;Traiteur libre service;Salades repas lib.serv;La Nordique Saumon, Pâtes, Carottes, Fèves sauce Fromage blanc Aneth;L'étui 280g;FLEURY MICHON;NAT; ;47102050;918128;3302740018060;3;2.3272;6.9816;1.2;15;39;15;0.008775;16;10;160;9;10;1
+PRODUITS FRAIS;Traiteur libre service;Salades traiteur lib.serv;Carottes rapées;La barquette 180g;BONDUELLE;NAT; ;47102070;568949;3083680643542;4;0.6315;2.526;0.8;15;25;20;0.0075;8;12;96;8;9;1
+PRODUITS FRAIS;Traiteur libre service;Salades traiteur lib.serv;Taboulet oriental avec fourchette;La barquette 180g;BONDUELLE;NAT; ;47102110;568964;3083681019308;4;0.8683;3.4732;0.8;15;25;20;0.0075;8;12;96;8;9;1
+PRODUITS FRAIS;Traiteur libre service;Salades traiteur lib.serv;Taboulé au poulet;La barquette 180g;BONDUELLE;NAT; ;47102140;568782;3083681055306;4;0.9462;3.7848;0.8;8;25;24;0.0048;15;18;270;8;9;1
+PRODUITS FRAIS;Traiteur libre service;Salades repas lib.serv;Taboulé aux baies de Goji et badiane;La barquette 140g;MARTINET;NAT; ;47102190;961904;3281780892611;4;1.2483;4.9932;0.7;7;25;25;0.004375;12;10;120;9;10;1
+PRODUITS FRAIS;Traiteur libre service;Salades repas lib.serv;Salad'Bowl Touareg Semoule, pois chiche, Falafels, mousse carotte;L'étui 315g;SODEBO;NAT; ;47104890;840967;3242275003554;4;2.6609;10.6436;1.5;16;40;23;0.01472;10;9;90;5;6;1
+PRODUITS FRAIS;Traiteur libre service;Sandwich;Sandwich mini-baguette thon/fromage frais;2x65g;DAUNAT;NAT; ;47108600;980128;3367651008104;6;1.0599;6.3594;1;15;40;15;0.009;16;10;160;10;11;1
+PRODUITS FRAIS;Traiteur libre service;Sandwich;Sandwich Tartinade Poulet/Fromage frais;135g;DAUNAT;NAT; ;47108610;980300;3367651008081;6;1.0315;6.189;1;15;40;15;0.009;16;10;160;10;11;1
+PRODUITS FRAIS;Traiteur libre service;Sandwich;Sandwich Le Méga Arizona Poulet Bacon sauce BBQ Ranch;L'étui 200g;SODEBO;NAT; ;47109060;945667;3242272951056;4;1.2399;4.9596;0.8;8;40;30;0.0096;8;18;144;5;6;1
+PRODUITS FRAIS;Traiteur libre service;Sandwich;Sandwich Le Gourmand Jambon/Cheddar;La pièce 190g;SODEBO;NAT; ;47109330;973602;3242272845058;6;1.2104;7.2624;1.2;17;30;27;0.01377;12;10;120;7;8;1
+PRODUITS FRAIS;Traiteur libre service;Sandwich;Sandwich Le Gourmand Pain au Pavot Saumon/pointe de Citron;La pièce 190g;SODEBO;NAT; ;47109380;873968;3242272845256;6;1.2104;7.2624;1.2;17;30;27;0.01377;9;12;108;7;8;1
+PRODUITS FRAIS;Traiteur libre service;Sandwich;Sandwich Le Méga Viennois Thon/Oeuf/Tomate;La pièce 270g;SODEBO;NAT; ;47109600;969949;3242272922056;6;1.0989;6.5934;1.7;8;40;30;0.0096;8;18;144;7;8;1
+PRODUITS FRAIS;Traiteur libre service;Salades traiteur lib.serv;Préparation Américain;Le pot 150g;SIMON DUTRIAUX;NAT; ;47203690;942847;3164060766669;6;1.2757;7.6542;1.1;10;28;13;0.00364;24;15;360;14;18;1
+PRODUITS FRAIS;Traiteur libre service;Pizzas traiteur lib.serv;Pizza chèvre affiné lardons L'Ovale;La pièce 200g;SODEBO;NAT; ;47302330;928564;3242273200054;6;0.9915;5.949;1.2;9;40;30;0.0108;8;18;144;11;13;1
+PRODUITS FRAIS;Traiteur libre service;Crepes et galettes traiteur lib.serv;Galette au blé noir lardons/champignons/emmental;Le blister 195g;SODEBO;NAT; ;47302490;928762;3242271732557;6;1.0968;6.5808;1.4;9;40;30;0.0108;8;20;160;11;13;1
+PRODUITS FRAIS;4eme gamme;Crudites;Haricots Mungo;La barquette 250g;LES CRUDETTES;NAT; ;47401750;511568;3061430003228;3;1.1536;3.4608;0.882;6;40;30;0.0072;8;25;200;5;6;1
+PRODUITS FRAIS;4eme gamme;Crudites;Salade l'Originale;Le sachet 200g;LES CRUDETTES;NAT; ;47401840;556787;3061430008254;6;0.9536;5.7216;1.45;11;60;40;0.0264;4;17;68;5;6;1
+PRODUITS FRAIS;Pates fraiches simples;-;Tagliatelles aux Carottes;La barquette 280g;FLEURY MICHON;NAT; ;47402850;849489;3302749871024;4;1.3178;5.2712;1.5;15;40;30;0.018;8;10;80;16;21;1
+PRODUITS FRAIS;Pates fraiches simples;-;Tagliatelles aux Courgettes;La barquette 280g;FLEURY MICHON;NAT; ;47402860;849505;3302749874025;4;1.3178;5.2712;1.5;15;40;30;0.018;8;10;80;16;21;1
+PRODUITS FRAIS;Traiteur libre service;Plats cuisines barquettes;Parmentier de Cabillaud;La barquette 300g;MARIE;NAT; ;47500940;863704;3248830000136;4;2.1946;8.7784;1.5;10;34;19;0.00646;12;15;180;18;22;1
+PRODUITS FRAIS;Traiteur libre service;Plats cuisines box;BOX & BALLS Pipe Rigate Tomate Boeuf & Basilic;La box 400g;SODEBO;NAT; ;47501710;700807;3242272200055;4;1.8957;7.5828;1.9;12;8;14;0.001344;15;11;165;16;19;1
+PRODUITS FRAIS;Traiteur libre service;Plats cuisines box;Pasta Box Fusilli à la Bolognaise;La box 300g;SODEBO;NAT; ;47501770;693580;3242272252054;4;1.5694;6.2776;1.3;15;30;27;0.01215;1;11;11;16;17;1
+PRODUITS FRAIS;Traiteur libre service;Plats cuisines box;Pasta Box BOX Raclette aux lardons;La Box 400g;SODEBO;NAT; ;47501810;853101;3242272262558;4;1.8799;7.5196;1.6;14;27;24;0.009072;15;11;165;15;16;1
+PRODUITS FRAIS;Traiteur libre service;Plats cuisines barquettes;Merlu à la Basquaise & Riz;La barquette micro-ondable 280g;FLEURY MICHON;NAT; ;47501880;932848;3302740018770;4;2.0178;8.0712;1.4;5;40;30;0.006;8;32;256;19;24;1
+PRODUITS FRAIS;Panification;Les autres pains;6 Pains suédois;Le sachet 180g;LA BOULANGERE;NAT; ;47700020;938381;3760049791266;9;1.201;10.809;3.618;17;40;60;0.0408;6;7;42;26;34;1
+PRODUITS FRAIS;Boucherie libre service;Viandes marinees charal;4 Brochettes de Boeuf à la Provençale Plein Grill;La barquette 400g;SOCOPA;NAT; ;48100320;854422;3039050049247;4;3.6388;14.5552;1.928;7;40;30;0.0084;10;8;80;5;6;1
+PRODUITS FRAIS;Boucherie libre service;Hebdopack charal;2 steaks hachés pur boeuf 5% M.G;L'hebdopack 260g;CHARAL;NAT; ;48100600;925503;3181232220286;12;3.1472;37.7664;3.12;7;26;30;0.00546;12;23;276;7;8;1
+PRODUITS FRAIS;Boucherie libre service;Hebdopack charal;2 steaks hachés pur boeuf 15% M.G.;L'hebdopack 260g;CHARAL;NAT; ;48100620;925529;3181232220538;12;2.6957;32.3484;3.12;7;26;30;0.00546;12;23;276;7;8;1
+PRODUITS FRAIS;Boucherie libre service;Hebdopack charal;Bifteck haché 15%;Le doypack 130g;CHARAL;NAT; ;48100640;925685;3181232220125;12;1.4883;17.8596;2.02;13;30;26;0.01014;12;12;144;7;8;1
+PRODUITS FRAIS;Boucherie libre service;Hebdopack charal bio;2 steaks hachés BIO 15% M.G;L'hebdopack 200g;CHARAL;NAT;BIO;48100650;925586;3181232220163;8;2.5536;20.4288;1.6;8;40;30;0.0096;8;23;184;7;8;1
+PRODUITS FRAIS;Boucherie libre service;Barquette sous atmosphere viandes hachees;Viande hachée pur boeuf 15% M.G.;La barquette 350g;CHARAL;NAT; ;48100670;927863;3181232127714;12;3.0262;36.3144;4.2;9;28;30;0.00756;8;15;120;6;7;1
+PRODUITS FRAIS;Boucherie libre service;Hebdopack charal;Tartare pur boeuf 5% M.G. et sa sauce;L'hebdopack 180g;CHARAL;NAT; ;48100840;925545;3181232220279;8;3.0599;24.4792;2;8;40;30;0.0096;12;12;144;9;10;1
+PRODUITS FRAIS;Boucherie libre service;Barquette sous atmosphere viandes hachees;"4 steaks hachés 15% M.G. ""Tendrement bon""";La barquette 400g;SOCOPA;NAT; ;48300070;959767;3039050149480;4;2.763;11.052;1.6;8;40;30;0.0096;8;14;112;6;7;1
+PRODUITS FRAIS;Boucherie libre service;Porc frais;3 côtes de porc sans os;La barquette 300g;TRADIVAL;NAT; ;48400190;583823;3608568042189;6;2.4041;14.4246;1.8;30;19;14;0.00798;8;8;64;8;9;1
+PRODUITS FRAIS;Boucherie libre service;Porc frais;Rôti de porc épaule;Le kilo;TRADIVAL;NAT; ;48400230;873463;2633416022304;1;4.9282;4.9282;2.2;18;40;30;0.0216;8;10;80;7;8;1
+PRODUITS FRAIS;Boucherie libre service;Porc frais;Lomo Filet de Porc Ail & Persil;La barquette 300g;TRADIVAL;NAT; ;48401540;861625;3608568400637;6;2.6767;16.0602;1.8;10;40;30;0.012;8;12;96;11;12;1
+PRODUITS FRAIS;Boucherie libre service;Porc frais;Lomo Filet de Porc saveurs Méditerranéennes;La barquette 300g;TRADIVAL;NAT; ;48401570;861724;3608568400644;6;2.6767;16.0602;1.8;10;40;30;0.012;8;12;96;11;12;1
+PRODUITS FRAIS;Boucherie libre service;Saucisserie;6 Chipolatas nature;La barquette 330g;BELLE FRANCE;BF; ;48402130;521484;3258561466132;6;1.7315;10.389;2.28;16;40;30;0.0192;8;8;64;8;9;1
+PRODUITS FRAIS;Boucherie libre service;Saucisserie;6 Chipolatas aux herbes;La barquette 330g;BELLE FRANCE;BF; ;48402140;524942;3258561466149;6;1.7304;10.3824;1.99;16;39;30;0.01872;8;8;64;8;9;1
+ENTRETIEN;Lessives;-;Lessive en poudre;La boîte 1,625kg;GAMA;NAT; ;50230220;720383;8435495806165;4;3.6051;14.4204;6.5;17;12;8;0.001632;12;8;96;0;0;1
+ENTRETIEN;Lessives;Lessives liquides;Lessive liquide;Le bidon 1,43 litre;GAMA;NAT; ;50344290;592667;8435495806240;4;2.6736;10.6944;6;16;12;8;0.001536;18;5;90;0;0;1
+ENTRETIEN;Lessives;Lessives liquides;Lessive liquide au savon Marseille & Lotus;Le bidon 1,43 litre;GAMA;NAT; ;50344350;592683;8435495808015;4;2.7851;11.1404;6;16;12;8;0.001536;18;5;90;0;0;1
+ENTRETIEN;Assouplisseurs;-;Assouplissant Peaux sensible;Le bidon 750ml;RAINETT ZERO%;NAT; ;50352220;495564;4009175944092;8;1.2641;10.1128;6;25;26;19;0.01235;18;3;54;0;0;1
+ENTRETIEN;Nettoyant menager;-;Détachant;Le spray 750ml;GAMA ACTIVE;NAT; ;50553200;760587;8435495809050;8;1.9009;15.2072;6.5;16;12;8;0.001536;15;5;75;0;0;1
+ENTRETIEN;Produits vaisselle mains;-;Liquide vaisselle écologique à l'Amande;Le flacon 750ml;RAINETT;NAT; ;50735880;532481;4009175946782;10;0.8083;8.083;7.5;28;19;28;0.014896;16;3;48;0;0;1
+ENTRETIEN;Produits desodorisants;-;Spray détecteur de mouvement aux fruits rouges; ;BRISE;NAT; ;51611170;747469;5000204809015;4;4.4051;17.6204;1.24;17;10;24;0.00408;37;5;185;0;0;1
+ENTRETIEN;Gamme brosserie;-;Pelle/Balayette bitouch; ; ;NAT; ;51851110;738047;3543534965317;6;2.7504;16.5024;3.5;20;30;25;0.015;10;6;60;0;0;1
+EPICERIE;Univers bebe;Les couches & culottes bébés;Changes bébé;Le paquet T4 (9-14KG) x 19;PAMPERS HARMONIE;NAT; ;67424420;861427;4015400835332;4;6.7303;26.9212;3;25;38;25;0.02375;9;7;63;0;0;1
+EPICERIE;Univers bebe;Les couches & culottes bébés;Changes bébé;La paquet T5 (+11kg) x 17;PAMPERS HARMONIE;NAT; ;67424430;861708;4015400835370;4;6.7303;26.9212;4;27;40;35;0.0378;6;6;36;0;0;1

@@ -45,20 +45,20 @@ class AdminCoefficientController extends AbstractController
     }
 
 
+
     /**
      * @Route("/admin/coefficient/show", name="coefficient_show")
      */
-    public function show( Request $request)
+    public function showGroupe( Request $request)
     {
         // Récupère tous les groupes
-         $coefficients = $this->repository->findAll();
+        $coefficients = $this->repository->findAll();
 
 
         return $this->render('admin/groupe/coefficient_show.html.twig', [
             'coefficients' => $coefficients
         ]);
     }
-
 
 
 
@@ -101,14 +101,11 @@ class AdminCoefficientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // 4) save the group
+            // 4) save the coeff
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($coefficient);
             $entityManager->flush();
 
-
-            // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
 
             return $this->redirectToRoute('coefficient_show');
         }

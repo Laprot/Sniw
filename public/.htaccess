@@ -55,6 +55,8 @@ DirectoryIndex index.php
 
     # Rewrite all other queries to the front controller.
     RewriteRule ^ %{ENV:BASE}/index.php [L]
+    AddDefaultCharset UTF-8
+    AddCharset UTF-8 .html .css .js .csv
 </IfModule>
 
 <IfModule !mod_rewrite.c>

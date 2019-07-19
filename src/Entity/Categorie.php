@@ -76,15 +76,18 @@ class Categorie
     private $produits;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Coefficient", mappedBy="categories")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Coefficient", mappedBy="categories")
      */
-    private $coefficient;
+    private $coefficients;
+
+
 
 
     public function __construct()
     {
         $this->id_produit = new ArrayCollection();
         $this->produits = new ArrayCollection();
+        $this->coefficients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -269,20 +272,32 @@ class Categorie
     }
 
     /**
-     * @return mixed
+     * @return Collection|Coefficient[]
      */
-    public function getCoefficient()
+    public function getCoefficients(): Collection
     {
-        return $this->coefficient;
+        return $this->coefficients;
     }
 
-    /**
-     * @param mixed $coefficient
-     */
-    public function setCoefficient($coefficient)
+    public function addCoefficient(Coefficient $coefficient): self
     {
-        $this->coefficient = $coefficient;
+        if (!$this->coefficients->contains($coefficient)) {
+            $this->coefficients[] = $coefficient;
+        }
+
+        return $this;
     }
+
+    public function removeCoefficient(Coefficient $coefficient): self
+    {
+        if ($this->coefficients->contains($coefficient)) {
+            $this->coefficients->removeElement($coefficient);
+        }
+
+        return $this;
+    }
+
+
 
 
 }

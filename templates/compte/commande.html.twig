@@ -2,6 +2,9 @@
 
 {% block title %}Historique des commandes - SNIW , centrale d'achat export.{% endblock %}
 
+{% set totalHT = 0 %}
+{% set prixF = 0 %}
+
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
 {% endblock %}
@@ -79,7 +82,6 @@
                             <th> Auteur </th>
                             <th>Référence </th>
                             <th>Date</th>
-                            <th>Prix total</th>
                             <th> Paiement</th>
                             <th>Exporter</th>
                             <th> Détails </th>
@@ -93,12 +95,6 @@
                                     <td> {{ commande.nom }} {{ commande.prenom }}</td>
                                     <td> {{ commande.reference }} </td>
                                     <td> {{ commande.date|date('d/m/Y') }}</td>
-
-                                {% if commande.commande.prixHT is defined %}
-                                    <td> {{ commande.commande.prixHT }}€</td>
-                                        {% else %}
-                                        <td> </td>
-                                    {% endif %}
                                     <td> Virement bancaire</td>
 
                                     {% if commande.commande.prixHT is defined %}
@@ -141,7 +137,6 @@
                             <tr style="text-align:center">
                                 <th>Référence de la commande</th>
                                 <th>Date</th>
-                                <th>Prix total</th>
                                 <th> Paiement</th>
                                 <th>Etat</th>
                                 <th> Détails commande</th>
@@ -154,7 +149,6 @@
                                 <tr style="text-align:center">
                                     <td> {{ commande.reference }} </td>
                                     <td> {{ commande.date|date('d/m/Y') }}</td>
-                                    <td> {{ commande.commande.prixHT }}€</td>
                                     <td> Virement bancaire</td>
                                     <td> {{ commande.etat }}</td>
                                     <td>
@@ -165,6 +159,8 @@
                                     </td>
                                 </tr>
                             {% endfor %}
+
+
                             </tbody>
                         </table>
                 {% endif %}

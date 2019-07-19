@@ -1,5 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
+{% set prixTotal = 0 %}
+
+
+{% set totalHT = 0 %}
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -389,12 +395,18 @@
                                     <td class="title-dark" width="163" style="text-align:center;border-style: solid;border-width:1px">
                                         Prix unitaire
                                     </td>
+
+
+
                                     <td class="title-dark" width="97" style="text-align:center;border-style: solid;border-width:1px">
                                         Quantité
                                     </td>
+
                                     <td class="title-dark" width="163" style="text-align:center;border-style: solid;border-width:1px">
                                         Prix total
                                     </td>
+
+
                                 </tr>
 
 
@@ -410,15 +422,48 @@
                                         {{ produit.nom }}
                                     </td>
                                     <td style="text-align:center;border-style: solid;border-width:1px">
-                                        {{ produit.prixUnitaire }}€
+
+                                        {% for categorie in categories %}
+
+                                            {% if loop.first %}
+
+
+
+
+
+
+                                                {% for coeff in categorie.coefficients %}
+
+                                                    {% set coeff_cat = coeff.getNewCoeff() %}
+                                                    {% set coeff_groupes = coeff.getGroupes() %}
+
+                                                    {% if id_groupe == coeff_groupes.getId() %}
+                                                        {{ (((produit.prixUnitaire * coeff_cat))|number_format(2, '.', '')) }}
+
+                                                        {% set prixTotal = (produit.prixUnitaire * coeff_cat) * produit.quantite %}
+
+                                                    {% else %}
+                                                        <!-- L'utilisateur doit être associé à un groupe pour voir les prix -->
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+
+
+                                        {% endfor %}
+
+
+                                        {# {{ produit.prixUnitaire|number_format(2,'.','') }} #}
+                                        </span>€
+
+
                                     </td>
                                     <td style="ttext-align:center;border-style: solid;border-width:1px">
                                         {{ produit.quantite }}
                                     </td>
                                     <td style="text-align:center;border-style: solid;border-width:1px">
-                                        {{ produit.prixUnitaire * produit.quantite }}€
+                                        {{ prixTotal|number_format(2,'.','') }}€
                                     </td>
-
+                                    {% set totalHT = totalHT + prixTotal %}
                                 </tr>
                                 {% endfor %}
 
@@ -436,10 +481,10 @@
                                     <td class="item-col item">
                                     </td>
                                     <td class="item-col quantity" style="text-align:right; padding-right: 10px; border-top: 1px solid #cccccc;">
-                                        <span class="total-space" style="font-weight: bold; color: #4d4d4d">Total payé : </span>
+                                        <span class="total-space" style="font-weight:bold;color:#4d4d4d">Total payé : </span>
                                     </td>
                                     <td class="item-col price" style="text-align: left; border-top: 1px solid #cccccc;">
-                                        <span class="total-space" style="font-weight:bold; color: #4d4d4d">{{ commande.commande.prixHT }}€</span>
+                                        <span class="total-space" style="font-weight:bold;color:#4d4d4d">  {{ totalHT|number_format(2,'.','') }} € </span>
                                     </td>
                                 </tr>
                             </table>

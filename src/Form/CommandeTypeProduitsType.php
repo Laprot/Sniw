@@ -37,11 +37,11 @@ class CommandeTypeProduitsType extends AbstractType
                     return $query;
                 }
             ])
-            ->add('user',EntityType::class, [
+            ->add('users',EntityType::class, [
                 'class'=> User::class,
-                'label' => 'Utilisateur (Nom/Prénom) :',
-                'multiple' => false,
-                'expanded' => false,
+                'label' => 'Utilisateur (Nom - Prénom - Mail) :',
+                'multiple' => true,
+                'expanded' => true,
                 'query_builder' => function (EntityRepository $u) {
                     $queryBuilder = $u->createQueryBuilder('u');
                     $query = $queryBuilder

@@ -36,8 +36,8 @@ class OuvertureCompteNotification
     public function notify(DemandeCompte $demandeCompte){
         $message= (new \Swift_Message('Agence : ' . $demandeCompte->getSociete()))
             ->setFrom($demandeCompte->getEmail())
-            ->setTo($demandeCompte->getEmail())
-            ->setReplyTo($demandeCompte->getEmail())
+            ->setTo('fievet.pierro@hotmail.fr')
+            ->setReplyTo('fievet.pierro@hotmail.fr')
             ->setBody($this->renderer->render('emails/demande_compte.html.twig', [
                 'contact'=>$demandeCompte
             ]),'text/html');

@@ -1,0 +1,366 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique de vos paniers - SNIW , centrale d'achat export.{% endblock %}
+
+{% block stylesheet %}
+
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+{% set totalHT = 0 %}
+{% set quantite = 0 %}
+{% set prixTotal = 0 %}
+
+{% block body %}
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li><i class="fa fa-angle-right" aria-hidden="true"></i><a href="{{ path('panier_view', {id:app.user.id}) }}">Vos paniers </a></li>
+
+                        <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Détails</li>
+
+                    </ul>
+                </div>
+
+                <h2> Détail du panier {{ commande.reference }} </h2
+
+
+                <hr>
+
+
+                <table class="table mt-5 table-responsive">
+                    <thead>
+                    <tr style="text-align:center">
+                        <th style="width:100px"> Produit </th>
+                        <th>Référence</th>
+                        <th>Description</th>
+
+                        <th>Nb de carton(s)</th>
+
+
+
+                        <th> Prix / Carton</th>
+
+                        <th> Prix Total</th>
+
+
+
+                        {% if commande.commande.produit is defined  %}
+                            <th> Ajouter au panier</th>
+                        {% else %}
+                            <th> Ajouter au panier</th>
+                        {% endif %}
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    {% if commande.commande.produit is not defined  %}
+                        {% for produit in commande.produits %}
+                            <tr style="text-align:center">
+                                <td>
+
+                                    {% if produit.image|length > 0 %}
+                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                    {% else %}
+                                        <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
+                                    {% endif %}
+
+
+
+                                </td>
+                                <td style="display:none"> <span id="id-prod">{{ produit.id }} </span></td>
+                                <td> {{ produit.reference }} </td>
+
+                                <td style="border: 1px solid #e9ecef;display:none"><span
+                                            id="poidsProd_{{ produit.id }}">{{ produit.weight|number_format(3, '.','') }}</span>
+                                </td>
+                                <td style="border: 1px solid #e9ecef;display:none"><span
+                                            id="volumeProd_{{ produit.id }}">{{ produit.profondeur|number_format(3, '.','') }}</span>
+                                </td>
+
+
+                                <td style="width:20px"> {{ produit.nom }}</td>
+                                {% for p in produit.qteProduitCommandes %}
+
+                                    {% if commande.id == p.commande.id %}
+                                        {% set quantite = p.quantite %}
+                                    {% endif %}
+
+                                    {% set prixTotal = produit.getPrixFinal() * p.quantite %}
+
+                                {% endfor %}
+                                <td> <input onchange="modifQte({{ produit.id }},'/ajouter/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ quantite }}" >
+                                </td>
+                                <td> <span id="prixCarton_{{ produit.id }}">{{ produit.getPrixFinal()|number_format(2,'.','') }} </span>€</td>
+
+
+                                <td>  <span id="prixTotal_{{ produit.id }}">{{ prixTotal|number_format(2,'.','') }} </span>€</td>
+
+
+                                <td>
+                                    <ul class="navbar_user">
+                                        <li class="checkout" style="margin-right:30px" >
+                                            <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/ajouter/ajax/'+ {{ produit.id }})">
+                                                <i class="fa fa-cart-plus" aria-hidden="true">
+                                                </i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    {% else %}
+
+                        {% for produit in commande.commande.produit  %}
+                            <tr style="text-align:center">
+                                <td>
+
+                                    {% if produit.image|length > 0 %}
+                                        <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                    {% else %}
+                                        <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
+                                    {% endif %}
+
+                                </td>
+                                <td style="display:none"> <span id="id-prod">{{ produit.id }} </span></td>
+                                <td> {{ produit.reference }} </td>
+                                <td style="border: 1px solid #e9ecef;display:none"><span
+                                            id="poidsProd_{{ produit.id }}">{{ produit.poids|number_format(3, '.','') }}</span>
+                                </td>
+                                <td style="border: 1px solid #e9ecef;display:none"><span
+                                            id="volumeProd_{{ produit.id }}">{{ produit.volume|number_format(3, '.','') }}</span>
+                                </td>
+
+                                <td style="width:20px">  {{ produit.nom }}</td>
+
+                                <td> <input onchange="modifQte({{ produit.id }},'/ajouter/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ produit.quantite }}" >
+
+                                <td> <span id="prixCarton_{{ produit.id }}">
+                                {% for categorie in categories %}
+                                    {% if loop.first %}
+                                        {% for coeff in categorie.coefficients %}
+
+                                            {% set coeff_cat = coeff.getNewCoeff() %}
+                                            {% set coeff_groupes = coeff.getGroupes() %}
+
+                                            {% if app.user.getIdGroupe().getId() == coeff_groupes.getId() %}
+                                                {{ (((produit.prixUnitaire * coeff_cat))|number_format(2, '.', '')) }}
+
+
+
+                                            {% else %}
+                                                <!-- L'utilisateur doit être associé à un groupe pour voir les prix -->
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+
+
+                                {% endfor %}
+                                        {# {{ produit.prixUnitaire|number_format(2,'.','') }} #}
+                                </span>€
+                                </td>
+                                {% set prixTotal = produit.prixUnitaire * produit.quantite %}
+                                <td>  <span id="prixTotal_{{ produit.id }}">
+                                    {% for categorie in categories %}
+                                        {% if loop.first %}
+                                            {% for coeff in categorie.coefficients %}
+
+                                                {% set coeff_cat = coeff.getNewCoeff() %}
+                                                {% set coeff_groupes = coeff.getGroupes() %}
+
+                                                {% if app.user.getIdGroupe().getId() == coeff_groupes.getId() %}
+                                                    {{ (((produit.prixUnitaire * coeff_cat) * produit.quantite)|number_format(2, '.', '')) }}
+
+
+                                                    {% set totalHT = totalHT + (produit.prixUnitaire * coeff_cat) *  produit.quantite %}
+
+                                                {% else %}
+                                                    <!-- L'utilisateur doit être associé à un groupe pour voir les prix -->
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+
+
+                                    {% endfor %}
+                                </span>€</td>
+
+                                <td>
+                                    <ul class="navbar_user">
+                                        <li class="checkout" style="margin-right:30px" >
+                                            <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/ajouter/ajax/'+ {{ produit.id }})">
+
+                                                <i class="fa fa-cart-plus" aria-hidden="true">
+                                                </i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <h3 class="mt-4"> Total HT : {{ totalHT|number_format(2, '.', '') }}€</h3>
+                    {% endif %}
+
+
+                        <a href="{{ path('recommander_savepanier', {id:commande.id}) }}" style="text-decoration: underline;float:right;margin-bottom:10px"> RECOMMANDER LE PANIER ENTIER </a>
+
+
+                    </tbody>
+                </table>
+
+
+
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+
+        function modifQte(id,changePath) {
+
+            $response = parseInt($('#qte').text());
+            $.ajax({
+                type: "POST",
+                url: changePath,
+                data : {
+                    quantite: $('#submitid_' + id).val(),
+                },
+                dataType: "json",
+                success: function(response) {
+
+                    //Quantité
+                    let qte = $('#submitid_' +id).val();
+
+                    //Prix du carton
+                    let prixCarton = parseFloat($('#prixCarton_' + id).text()).toFixed(2);
+
+                    if($.isNumeric(qte) && qte > 0 ) {
+                        let pQte = qte * prixCarton;
+                        parseFloat($('#prixTotal_' + id).text(pQte.toFixed(2)));
+                    }
+                    else {
+                        location.reload();
+                    }
+
+                }
+            });
+        }
+
+        function refreshAjax(id,changePath) {
+
+            $response = parseInt($('#qte').text());
+            $.ajax({
+                type: "POST",
+                url: changePath,
+                data : {
+                    quantite: $('#submitid_' + id).val(),
+                },
+                dataType: "json",
+                success: function(response) {
+                    //On récupère la quantité du produit
+                    let qte = $('#submitid_' + id).val();
+
+                    //----POIDS
+                    //On récupère le poids du produit
+                    let poidsProduit = parseFloat($('#poidsProd_' + id).text());
+                    //Poids x la quantité du produit
+                    let poidsQte = qte * poidsProduit;
+                    //On ajoute les poids des produits commandés
+                    let poidsContainer = parseFloat($('.sp-pdss').text());
+                    //Poids courant du container + le poids du produit
+                    let poidsFinal = poidsContainer + (poidsQte/1000);
+
+                    //----VOLUME
+                    //On récupère le volume du produit
+                    let volumeProduit = parseFloat($('#volumeProd_' + id).text());
+                    //Volume x la quantité du produit
+                    let volumeQte = qte * volumeProduit;
+                    //On ajoute les volumes des produits commandés
+                    let volumeContainer = parseFloat($('.sp-voll').text());
+                    //Volume courant du container + le volume du produit
+                    let volumeFinal = volumeContainer + volumeQte;
+
+
+                    //Remplissage du container
+                    parseFloat($('.sp-pdss').text(parseFloat(poidsFinal).toFixed(3)));
+                    parseFloat($('.sp-voll').text(parseFloat(volumeFinal).toFixed(3)));
+
+
+                    //Couleur container
+
+                    //----POIDS
+                    //produits secs
+                    let color_secP = '#30a852';
+                    let  poids_sec_max = 24;
+                    if(  ((poidsFinal) >= 19.2))  {
+                        color_secP = '#eb671c';
+                    }
+                    if(  ((poidsFinal) >= 23.76))  {
+                        color_secP = '#ed2338';
+                    }
+
+                    $('#push-container-top .bloc-sec .curseur-p i').css('width',((poidsFinal)/poids_sec_max) * 100+'%');
+                    $('#push-container-top .bloc-sec .curseur-p i').css('background-color',color_secP);
+
+                    //produit frais
+                    let color_fraisP = '#30a852';
+                    let poids_frais_max = 21;
+
+                    if(  ((poidsFinal) >= 16.8))  {
+                        color_fraisP = '#eb671c';
+                    }
+                    if(  ((poidsFinal) >= 20.79))  {
+                        color_fraisP = '#ed2338';
+                    }
+                    $('#push-container-top .bloc-frais .curseur-p i').css('width',((poidsFinal)/poids_frais_max) * 100+'%');
+                    $('#push-container-top .bloc-frais .curseur-p i').css('background-color',color_fraisP);
+
+
+                    //____VOLUME
+                    //Produits secs
+                    let color_secV = '#30a852';
+                    let volume_sec_max = 70;
+                    if(  ((volumeFinal) >= 56))  {
+                        color_secV = '#eb671c';
+                    }
+                    if(  ((volumeFinal) >= 69.3))  {
+                        color_secV = '#ed2338';
+                    }
+                    $('#push-container-top .bloc-sec .curseur-v i').css('width',((volumeFinal)/volume_sec_max) * 100+'%');
+                    $('#push-container-top .bloc-sec .curseur-v i').css('background-color',color_secV);
+
+                    //Produits frais
+                    let color_fraisV = '#30a852';
+                    let volume_frais_max = 46;
+                    if(  ((volumeFinal) >= 36.8))  {
+                        color_fraisV = '#eb671c';
+                    }
+                    if(  ((volumeFinal) >= 45.54))  {
+                        color_fraisV = '#ed2338';
+                    }
+                    $('#push-container-top .bloc-frais .curseur-v i').css('width',((volumeFinal)/volume_frais_max) * 100+'%');
+                    $('#push-container-top .bloc-frais .curseur-v i').css('background-color',color_fraisV);
+
+                }
+            });
+        }
+    </script>
+
+{% endblock %}
+
+
+
+
+

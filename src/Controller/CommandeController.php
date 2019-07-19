@@ -55,9 +55,14 @@ class CommandeController extends AbstractController
                 'prixHT' => round($produit->getPrixFinal(), 2),
                 'image' => $produit->getImage(),
                 'imageImport' => $produit->getImageImport(),
-                'id' => $produit->getId()
+                'id' => $produit->getId(),
+                'categories' =>$produit->getCategories()->toArray(),
+                'volume' => $produit->getProfondeur(),
+                'poids' => $produit->getWeight()
             ];
+
         }
+
         $commande['nom'] = $session->get('nom');
         $commande['prixHT'] = round($totalHT, 2);
         $commande['token'] = bin2hex($generator);

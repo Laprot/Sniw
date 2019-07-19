@@ -311,7 +311,7 @@ jQuery(document).ready(function($)
     function initIsotopeFiltering()
     {
     	var sortTypes = $('.type_sorting_btn');
-    	var sortNums = $('.num_sorting_btn');
+        var sortNums = $('.num_sorting_btn');
     	var sortTypesSelected = $('.sorting_type .item_sorting_btn is-checked span');
     	var filterButton = $('.filter_button');
 
@@ -325,7 +325,8 @@ jQuery(document).ready(function($)
 	            		var priceEle = $(itemElement).find('.product_price').text().replace( '$', '' );
 	            		return parseFloat(priceEle);
 	            	},
-	            	name: '.product_name'
+	            	name: '.product_name',
+					marque: '.product_marque'
 	            },
 	            animationOptions: {
 	                duration: 750,
@@ -357,6 +358,8 @@ jQuery(document).ready(function($)
     				$('.product-grid').isotope({filter: numFilter });
 	        	});
 	        });
+
+
 
 	        // Filter based on the price range slider
 	        filterButton.on('click', function()

@@ -38,19 +38,20 @@ class ImportProduit extends Command
 
     }
 
-    protected function configure() {
+    protected function configure()
+    {
         $this
             ->setName('csv:import')
-            ->setDescription('Imports CSV file')
-        ;
+            ->setDescription('Imports CSV file');
     }
 
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
      */
-    protected function execute (InputInterface $input, OutputInterface $output) {
-        $io = new SymfonyStyle($input,$output);
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $io = new SymfonyStyle($input, $output);
         $io->title('Import du flux ...');
 
 
@@ -59,21 +60,20 @@ class ImportProduit extends Command
         $finder = new Finder();
 
         //EN DEV
-        $finder->in(__DIR__.'/../../public/file_produits');
-
+        //$finder->in(__DIR__ . '/../../public/file_produits');
 
 
         //EN PROD
-        //$finder->in('/homepages/10/d783107477/htdocs/sniw/public/file_produits');
+        $finder->in('/homepages/10/d783107477/htdocs/sniw/public/file_produits');
 
-        foreach($finder as $file) {
+        foreach ($finder as $file) {
             break;
         }
 
+
         //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/test-import.csv');
 
-        $reader = Reader::createFromStream(fopen($file,'r+'));
-
+        $reader = Reader::createFromStream(fopen($file, 'r+'));
 
         $reader->setDelimiter(';');
         $results = $reader->fetchAssoc();
@@ -81,7 +81,7 @@ class ImportProduit extends Command
         $io->progressStart(iterator_count($results));
 
 
-        foreach($results as $row) {
+        foreach ($results as $row) {
             $produit = new Produit();
 
 
@@ -107,14 +107,8 @@ class ImportProduit extends Command
 
             $manu = $this->em->getRepository(Manufacturer::class)->findOneBy(['nom' => [$row['marque']]]);
             //Avec l'id
-            if($manu !== null) {
-                $idManu = $this->em->getRepository(Manufacturer::class)->findOneBy(['id' => $manu->getId()]);
-            }
 
-            $produit->setIdManufacturer($idManu);
-
-
-
+            $produit->setIdManufacturer($manu);
 
 
             //Import id catégorie
@@ -126,7 +120,7 @@ class ImportProduit extends Command
             //$categorie = $this->em->getRepository(Categorie::class)->findOneBy(['nom' => [$row['nom_categorie']]]);
 
             //Import id catégorie en fonction du nom
-           // $idCategorie = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie->getId()]);
+            // $idCategorie = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie->getId()]);
 
             //$produit->setIdCategorie($idCategorie);
 
@@ -147,51 +141,49 @@ class ImportProduit extends Command
             //strpos pour trouver le mot dans la colonne
             //Si mot trouvé, on remplace le mot avec le "-"  par rien pour récupérer juste la valeur
             // /!\ toujours vérifier le fichier ps_products.csv
-           foreach ($row as $k=>$v ) {
-               //produit bio
-               if(\strpos($row[$k],'BIO') !== false) {
-                   $bio = str_replace("BIO",true,$row[$k]);
-                   $produit->setProduitBio($bio);
-               }
+            foreach ($row as $k => $v) {
+                //produit bio
+                if (\strpos($row[$k], 'BIO') !== false) {
+                    $bio = str_replace("BIO", true, $row[$k]);
+                    $produit->setProduitBio($bio);
+                }
 
-               //produit belle france
-               if(\strpos($row[$k],'BF') !== false ) {
-                   $bf = str_replace("BF",true,$row[$k]);
-                   $produit->setProduitBelleFrance($bf);
-               }
+                //produit belle france
+                if (\strpos($row[$k], 'BF') !== false) {
+                    $bf = str_replace("BF", true, $row[$k]);
+                    $produit->setProduitBelleFrance($bf);
+                }
 
-               //Conditionnement
-               if (\strpos($row[$k], 'Conditionnement') !== false) {
-                   $cond = str_replace("Conditionnement-", "",$row[$k]);
-                   $produit->setConditionnement($cond);
-               }
-               //Unité par carton
-               if (\strpos($row[$k], 'Unite par carton') !== false) {
-                   $cond1 = str_replace("Unite par carton-", "",$row[$k]);
-                   $produit->setUniteparCarton($cond1);
-               }
-               //Nombre carton palette
-               if (\strpos($row[$k], 'NB carton/palette') !== false) {
-                   $cond2 = str_replace("NB carton/palette-", "",$row[$k]);
-                   $produit->setNbCartonPalette($cond2);
-               }
-               //DLV garantie
-               if (\strpos($row[$k], 'DLV Garantie') !== false) {
-                   $cond3 = str_replace("DLV Garantie-", "",$row[$k]);
-                   $produit->setDlvGarantie($cond3);
-               }
-               //DLV théorique
-               if (\strpos($row[$k], 'DLV Théorique') !== false) {
-                   $cond4 = str_replace("DLV Théorique-", "",$row[$k]);
-                   $produit->setDlvTheorique($cond4);
-               }
-
-
+                //Conditionnement
+                if (\strpos($row[$k], 'Conditionnement') !== false) {
+                    $cond = str_replace("Conditionnement-", "", $row[$k]);
+                    $produit->setConditionnement($cond);
+                }
+                //Unité par carton
+                if (\strpos($row[$k], 'Unite par carton') !== false) {
+                    $cond1 = str_replace("Unite par carton-", "", $row[$k]);
+                    $produit->setUniteparCarton($cond1);
+                }
+                //Nombre carton palette
+                if (\strpos($row[$k], 'NB carton/palette') !== false) {
+                    $cond2 = str_replace("NB carton/palette-", "", $row[$k]);
+                    $produit->setNbCartonPalette($cond2);
+                }
+                //DLV garantie
+                if (\strpos($row[$k], 'DLV Garantie') !== false) {
+                    $cond3 = str_replace("DLV Garantie-", "", $row[$k]);
+                    $produit->setDlvGarantie($cond3);
+                }
+                //DLV théorique
+                if (\strpos($row[$k], 'DLV Théorique') !== false) {
+                    $cond4 = str_replace("DLV Théorique-", "", $row[$k]);
+                    $produit->setDlvTheorique($cond4);
+                }
 
 
-               //reste à faire
+                //reste à faire
 
-               //...........
+                //...........
             }
 
             //Import catégorie1, catégorie2 et catégorie3
@@ -199,17 +191,11 @@ class ImportProduit extends Command
             //Nom catégorie
             $categorie_nom = $this->em->getRepository(Categorie::class)->findOneBy(['nom' => $row['nom_categorie1']]);
             $categorie_nom1 = $this->em->getRepository(Categorie::class)->findOneBy(['nom' => $row['nom_categorie2']]);
-
-
             $categorie_nom2 = $this->em->getRepository(Categorie::class)->findOneBy(['nom' => $row['nom_categorie3']]);
-
 
             //id catégorie en fonction du nom
             $categorie1 = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie_nom->getId()]);
             $categorie2 = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie_nom1->getId()]);
-
-
-
 
 
             //$produit->addCategorie($row['nom_categorie1']);
@@ -219,20 +205,13 @@ class ImportProduit extends Command
             $produit->addCategorie($categorie1);
             $produit->addCategorie($categorie2);
 
-
-
-
-            if(\strpos($row['nom_categorie3'],'-') !== false ) {
-
+            if (\strpos($row['nom_categorie3'], '-') !== false) {
             } else {
                 $categorie3 = $this->em->getRepository(Categorie::class)->findOneBy(['id' => $categorie_nom2->getId()]);
                 $produit->addCategorie($categorie3);
             }
 
-
-
-
-           // $allproduit = $this->em->getRepository(Produit::class)->findAll();
+            // $allproduit = $this->em->getRepository(Produit::class)->findAll();
             //$this->em->remove($allproduit);
             $this->em->persist($produit);
 
@@ -252,7 +231,5 @@ class ImportProduit extends Command
 
         $filesystem->remove($file);
     }
-
-
 
 }

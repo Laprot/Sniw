@@ -3,6 +3,8 @@
 
 {% block title %} Dashboard Admin - S.N.I.W {% endblock %}
 
+
+{% set totalHT = 0 %}
 {% block stylesheets %}
 
     <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
@@ -57,42 +59,7 @@
                     <div class="ecommerce-widget">
 
                         <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total revenue des commandes</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1"> {{ somme }}€ </h1>
-                                        </div>
 
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Plus grosses commandes</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1"> 0€ </h1>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Produits les plus vendus</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">Produit 1</h1>
-                                        </div>
-
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="text-muted"> 2e :</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1"> Produit 2</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-body">
@@ -147,7 +114,6 @@
                                                     <th>Nom</th>
                                                     <th>Email</th>
                                                     <th>Société</th>
-                                                    <th>Total</th>
                                                     <th>Etat</th>
                                                     <th>Date</th>
                                                     <th>Exporter / Détails / Supprimer</th>
@@ -167,12 +133,7 @@
                                                         <td> {{ commande.nom }}</td>
                                                         <td> {{ commande.email }}</td>
                                                         <td> {{ commande.societe }}</td>
-                                                        {% if commande.commande.prixHT is defined %}
-                                                            <td> {{ commande.commande.prixHT }}€</td>
-                                                        {% else %}
-                                                            <td> </td>
-                                                        {% endif %}
-                                                        <td> {{ commande.etat }}</td>
+                                                           <td> {{ commande.etat }}</td>
                                                         <td> {{ commande.date|date('Y-m-d H:i:s') }}</td>
                                                         <td>
                                                             <div class="btn btn-group justified">
@@ -336,29 +297,7 @@
                             <!-- ============================================================== -->
                             <!-- sales traffic country source  -->
                             <!-- ============================================================== -->
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <div class="card">
-                                    <h5 class="card-header">Ventes par pays</h5>
-                                    <div class="card-body p-0">
-                                        <ul class="country-sales list-group list-group-flush">
-                                            <li class="country-sales-content list-group-item"><span class="mr-2"><i class="flag-icon flag-icon-us" title="us" id="us"></i> </span>
-                                                <span class="">United States</span><span class="float-right text-dark">78%</span>
-                                            </li>
-                                            <li class="list-group-item country-sales-content"><span class="mr-2"><i class="flag-icon flag-icon-ca" title="ca" id="ca"></i></span><span class="">Canada</span><span class="float-right text-dark">7%</span>
-                                            </li>
-                                            <li class="list-group-item country-sales-content"><span class="mr-2"><i class="flag-icon flag-icon-ru" title="ru" id="ru"></i></span><span class="">Russia</span><span class="float-right text-dark">4%</span>
-                                            </li>
-                                            <li class="list-group-item country-sales-content"><span class=" mr-2"><i class="flag-icon flag-icon-in" title="in" id="in"></i></span><span class="">India</span><span class="float-right text-dark">12%</span>
-                                            </li>
-                                            <li class="list-group-item country-sales-content"><span class=" mr-2"><i class="flag-icon flag-icon-fr" title="fr" id="fr"></i></span><span class="">France</span><span class="float-right text-dark">16%</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a href="#" class="btn-primary-link">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
+
                             <!-- ============================================================== -->
                             <!-- end sales traffice country source  -->
                             <!-- ============================================================== -->

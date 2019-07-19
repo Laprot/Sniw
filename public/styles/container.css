@@ -92,6 +92,7 @@
 #push-container-top .bloc-resume p.data-resume {
     background: #ffffff;
     color: #eb671c;
+    font-size:12px;
     padding: 0 8px;
     font-weight: bold;
     font-family: Roboto,sans-serif;
@@ -261,5 +262,26 @@
         font-size: 13px;
         margin: -7px 5px 0 4px;
         /* background-image: url(https://centraleachatexport.com/themes/theme1279/css/../img/container/bg-container-2.jpg); */
+    }
+}
+
+@media screen and (max-width: 992px) and (min-width: 767px) {
+    #push-container-top {
+        top:-12px;
+        left:18.5em;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    #push-container-top.mobile-teo {
+        display: block;
+        position: absolute;
+        left: 8em;
+        top:-12px;
+        width: 381px;
+        clear: both;
+        height: 95px;
+        background-position-y: -65px;
+        background-repeat: no-repeat;
     }
 }

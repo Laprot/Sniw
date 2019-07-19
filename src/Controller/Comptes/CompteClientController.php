@@ -2,8 +2,10 @@
 
 namespace App\Controller\Comptes;
 
+use App\Entity\Categorie;
 use App\Entity\Commande;
 use App\Entity\CommandeTypeProduits;
+use App\Entity\Produit;
 use App\Entity\Search;
 use App\Entity\User;
 use App\Form\AdresseUserType;
@@ -89,11 +91,28 @@ class CompteClientController extends AbstractController
             $request->query->getInt('page', 1), 10
         );
 
+
+        $categories =0;
+            foreach ($commandes as $commande) {
+                if($commande->getCommande() != null)
+                    foreach ($commande->getCommande()['produit'] as $categorie) {
+
+                        $c = $categorie['categories'][0]->getNom();
+
+                        $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $c]);
+
+                    }
+            }
+
+
+
+
         return $this->render('compte/commande.html.twig', [
             'user' => $user,
             'commandes' => $commandes,
             'form' => $form->createView(),
-            'count' => $commandes->getTotalItemCount()
+            'count' => $commandes->getTotalItemCount(),
+            'categories' => $categories
         ]);
     }
 
@@ -108,10 +127,21 @@ class CompteClientController extends AbstractController
 
        $this->denyAccessUnlessGranted(AppAccess::COMMANDE_EDIT, $commande);
 
+       //$categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $commande->getCommande()['categories']])
 
+        $categories = 0;
+
+        if($commande->getCommande() != null) {
+           foreach ($commande->getCommande()['produit'] as $categorie) {
+               $c = $categorie['categories'][0]->getNom();
+               $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $c ]);
+
+           }
+        }
         return $this->render('compte/details-commande.html.twig', [
             'user'=>$user,
-            'commande'=>$commande
+            'commande'=>$commande,
+            'categories' => $categories
         ]);
     }
 
@@ -120,13 +150,14 @@ class CompteClientController extends AbstractController
     /**
      * @Route("/infos/{id}/commande-type/detail", name="commandes-type_details")
      */
-    public function detailsCommandeType(User $user,Commande $commande) {
+    public function detailsCommandeType(CommandeTypeProduits $commande) {
 
-        //$commande = $this->getDoctrine()->getRepository(Commande::class)->findByUser($user);
+        //$commande = $this->getDoctrine()->getRepository(Commande::class)->findByUser($user)
+
+       $this->denyAccessUnlessGranted(AppAccess::COMMANDETYPE_EDIT, $commande);
 
         return $this->render('compte/details-commandes-types.html.twig', [
-            'user'=>$user,
-            'commande'=>$commande
+            'commande'=>$commande,
         ]);
     }
 

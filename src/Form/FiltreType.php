@@ -2,7 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Filtre;
+use App\Entity\Manufacturer;
+use App\Repository\ManufacturerRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,6 +16,7 @@ class FiltreType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('isBelleFrance', CheckboxType::class, [
                 'label' => 'PRODUITS BELLE FRANCE',
@@ -32,4 +37,5 @@ class FiltreType extends AbstractType
             'csrf_protection' => false
         ]);
     }
+
 }

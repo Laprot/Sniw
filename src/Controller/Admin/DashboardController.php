@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Categorie;
 use App\Entity\Commande;
 use App\Entity\User;
 use App\Form\UserType;
@@ -44,8 +45,20 @@ class DashboardController extends AbstractController
         //Récupère les 5 dernières inscriptions
         $users = $this->repository->getLastFiveUsers();
 
+        $categories = 0;
         $commandes = $this->getDoctrine()->getRepository(Commande::class)->getLastFiveCommandes();
 
+        foreach($commandes as $commande){
+            if($commande->getCommande() != null)
+                foreach ($commande->getCommande()['produit'] as $categorie) {
+                    $c = $categorie['categories'][0]->getNom();
+                    $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $c ]);
+                }
+                $user_commandes = $this->getDoctrine()->getRepository(User::class)->findBy(['nom' => $commande->getNom()]);
+                foreach($user_commandes as $user_commande) {
+                    $id_groupe = $user_commande->getIdGroupe()->getId();
+                }
+        }
 
         $qb = $this->repository->createQueryBuilder('entity');
         $qb->select('COUNT(entity) ');
@@ -57,6 +70,8 @@ class DashboardController extends AbstractController
 
         //Récupère les commandes user
         $commandesUser = $this->getDoctrine()->getRepository(Commande::class)->getCommandesUser();
+
+
 
         //Instancie un tableau contenu les commandes user
         $tableau[] = $commandesUser;
@@ -90,7 +105,9 @@ class DashboardController extends AbstractController
             'countCommandes' => $countcommandes,
             'commandes'=> $commandes,
             'somme' => $somme,
-            'maxPrix' => $max
+            'maxPrix' => $max,
+            'categories' => $categories,
+            'id_groupe' => $id_groupe
         ]);
     }
 

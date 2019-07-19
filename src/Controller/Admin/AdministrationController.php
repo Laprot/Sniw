@@ -93,12 +93,13 @@ class AdministrationController extends AbstractController
 
                 $file->move($uploadDir, $fileName);
 
+
                 $gencod = explode(".",$fileName);
 
                 $produits = $this->em->getRepository(Produit::class)->findBy(['Gencod' => $gencod[0]]);
 
                 foreach($produits as $prod) {
-                    if((sizeof($prod->getImage()) > 0 ) && sizeof($prod->getImageImport() > 0)) {
+                    if((sizeof($prod->getImage()) == 0 ) && sizeof($prod->getImageImport() > 0)) {
                         $prod->setImage('/' . $gencod[0] . '.' . $gencod[1]);
                         $prod->setImageImport(null);
                         $this->em->persist($prod);
@@ -135,7 +136,6 @@ class AdministrationController extends AbstractController
         ]);
     }
 
-
     /**
      *@Route("/admin/upload_commandes",name="admin_upload_commandes")
      */
@@ -147,6 +147,7 @@ class AdministrationController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $file = $upload->getName();
             // $fileName = '1'.md5(uniqid()).'.'.$file->guessExtension();
+
 
             $fileName = $upload->getName()->getClientOriginalName();
 
@@ -169,9 +170,126 @@ class AdministrationController extends AbstractController
         ]);
     }
 
+    /**
+     *@Route("/admin/importImageMassif",name="admin_import_images")
+     */
+    public function importImages(){
+        $finder = new Finder();
+
+
+        //EN DEV
+        //$finder->in(__DIR__.'/../../../public/produits/images');
+
+
+        //EN PROD
+        $finder->in('/homepages/10/d783107477/htdocs/sniw/public/produits/images');
+
+
+        foreach($finder as $file) {
+            $fileName = $file->getFilename();
+            $gencod = explode(".",$fileName);
+            $produits = $this->em->getRepository(Produit::class)->findBy(['Gencod' => $gencod[0]]);
+            foreach($produits as $prod) {
+                /*
+                if(($prod->getImage() > 0 ) && ($prod->getImageImport() > 0)) {
+                    $prod->setImage('/' . $gencod[0] . '.' . $gencod[1]);
+                    $prod->setImageImport(null);
+                    $this->em->persist($prod);
+                    $this->em->flush();
+                }*/
+
+                //Permet d'envoyer les images s'il n'y a pas d'image
+
+                if(($prod->getImage()) == 0  || ($prod->getImageImport() > 0)) {
+                    $prod->setImage('/' . $gencod[0] . '.' . $gencod[1]);
+                    $prod->setImageImport(null);
+                    $this->em->persist($prod);
+                    $this->em->flush();
+                }
+                if(($prod->getImage() == 0 ) && ($prod->getImageImport() == 0)) {
+                    $prod->setImage('/' . $gencod[0] . '.' . $gencod[1]);
+                    $prod->setImageImport(null);
+                    $this->em->persist($prod);
+                    $this->em->flush();
+                }
+            }
+        }
+
+
+        $this->addFlash('success', 'Vos fichiers ont bien été importés');
+
+        return $this->redirectToRoute('admin_upload_images', [
+            'fileName' => $fileName,
+        ]);
+    }
 
 
 
+    /**
+     *@Route("/admin/maj_etat",name="maj_etat")
+     */
+    public function majEtat(Request $request) {
+        $upload = new Upload();
+        $form = $this->createForm(UploadType::class,$upload);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $file = $upload->getName();
+            // $fileName = '1'.md5(uniqid()).'.'.$file->guessExtension();
+
+            $fileName = $upload->getName()->getClientOriginalName();
+
+
+            if($file->guessExtension() != "txt") {
+                $this->addFlash('error','Ficher CSV demandé');
+            }
+            else {
+                $file->move($this->getParameter('upload_etat_directory'),$fileName);
+                $this->addFlash('success','Votre fichier a bien été uploadé');
+            }
+            return $this->redirectToRoute('maj_etat', [
+                'fileName' => $fileName,
+            ]);
+        }
+
+        return $this->render('admin/administration/maj-etat-produits.html.twig', [
+            'formUpload'=>$form->createView(),
+
+        ]);
+    }
+
+    /**
+     *@Route("/admin/maj_prix",name="maj_prix")
+     */
+    public function majPrix(Request $request) {
+        $upload = new Upload();
+        $form = $this->createForm(UploadType::class,$upload);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $file = $upload->getName();
+            // $fileName = '1'.md5(uniqid()).'.'.$file->guessExtension();
+
+            $fileName = $upload->getName()->getClientOriginalName();
+
+
+            if($file->guessExtension() != "txt") {
+                $this->addFlash('error','Ficher CSV demandé');
+            }
+            else {
+                $file->move($this->getParameter('upload_prix_directory'),$fileName);
+                $this->addFlash('success','Votre fichier a bien été uploadé');
+            }
+            return $this->redirectToRoute('maj_prix', [
+                'fileName' => $fileName,
+            ]);
+        }
+
+        return $this->render('admin/administration/maj-prix-produits.html.twig', [
+            'formUpload'=>$form->createView(),
+
+        ]);
+    }
 
 
 

@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des paniers - SNIW , centrale d'achat export.{% endblock %}
+
+{% set totalHT = 0 %}
+{% set prixF = 0 %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" type="text/css" href="/styles/pagination.css">
+    <body>
+    <div class="background">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="{{ path('home') }}">Home</a></li>
+                        <li class="active"><i class="fa fa-angle-right" aria-hidden="true"></i>Vos paniers</li>
+                    </ul>
+                </div>
+                {% if is_granted("ROLE_ADMIN")  %}
+                    <h2> Historique des paniers </h2>
+                    <div class="row">
+
+                        <div class="col">
+                            {% if app.session.flashBag.has('success')  %}
+                                <div class="form-group col-md-6">
+                                    {% for message in app.flashes('success') %}
+
+                                        <div class="alert alert-success">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor%}
+                                </div>
+                            {% else %}
+                                <div class="form-group col-md-6">
+                                    {% for message in app.flashes('error') %}
+                                        <div class="alert alert-danger">
+                                            {{ message }} <a href="{{ path('commandes_type') }}"> Voir </a>
+                                        </div>
+                                    {% endfor%}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="container mt-4">
+                        <div class="row">
+
+                            <div class="pages d-flex flex-row align-items-center ">
+                                {{ knp_pagination_render(commandes) }}
+                            </div>
+                            <div class="col">
+                                <div style="float: right">
+                                    {% if count <= 10 %}
+                                        Résultats 1 - {{ count }} sur {{ count }}.
+                                    {% else %}
+                                        Résultats 1 - 10 sur {{ count }}.
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <table class="table mt-3 table-responsive">
+                        <thead>
+                        <tr style="text-align:center">
+                            <th>Référence </th>
+                            <th>Date</th>
+                            <th> Détails du panier </th>
+                            <th> Supprimer</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for commande in commandes  %}
+                            <tr style="text-align:center">
+                                <td> {{ commande.reference }} </td>
+                                <td> {{ commande.date|date('d/m/Y H:i:s') }}</td>
+
+
+                                <td>
+                                    <a href="{{ path('panier_details', {id: commande.id}) }}">
+                                        <i class="fa fa-search-plus">
+                                        </i> Afficher
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ path('panier_delete' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                {% else %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group col-md-6">
+                                {% for message in app.flashes('success') %}
+
+                                    <div class="alert alert-success">
+                                        {{ message }}
+                                    </div>
+                                {% endfor%}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h2> Historique de vos paniers </h2>
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="pages d-flex flex-row align-items-center ">
+                                {{ knp_pagination_render(commandes) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table mt-5 table-responsive">
+                        <thead>
+                        <tr style="text-align:center">
+                            <th>Référence du panier</th>
+                            <th>Date</th>
+                            <th> Détails du panier</th>
+                            <th> Supprimer</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for commande in commandes  %}
+                            <tr style="text-align:center">
+                                <td> {{ commande.reference }} </td>
+                                <td> {{ commande.date|date('d/m/Y H:i:s') }}</td>
+                                <td>
+                                    <a href="{{ path('panier_details', {id: commande.id}) }}">
+                                        <i class="fa fa-search-plus">
+                                        </i> Afficher
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="{{ path('panier_delete' , {'id' : commande.id}) }}"><i class="fa fa-trash" style="font-size:20px;margin-left:20px"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

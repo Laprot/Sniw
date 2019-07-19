@@ -33,11 +33,12 @@ class ContactNotification
         $this->renderer = $renderer;
     }
 
+
     public function notify(Contact $contact){
         $message= (new \Swift_Message('Agence : ' . $contact->getSociete()))
             ->setFrom($contact->getEmail())
-            ->setTo($contact->getEmail())
-            ->setReplyTo($contact->getEmail())
+            ->setTo('fievet.pierro@hotmail.fr')
+            ->setReplyTo('fievet.pierro@hotmail.fr')
             ->setBody($this->renderer->render('emails/contact.html.twig', [
                 'contact'=>$contact
             ]),'text/html');

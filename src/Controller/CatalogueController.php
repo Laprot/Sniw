@@ -6,8 +6,11 @@ use App\Entity\Categorie;
 use App\Entity\Coefficient;
 use App\Entity\Filtre;
 use App\Entity\Groupe;
+use App\Entity\Manufacturer;
 use App\Entity\Produit;
 use App\Entity\Search;
+use App\Form\FiltreAllMarqueType;
+use App\Form\FiltreMarqueType;
 use App\Form\FiltreType;
 use App\Form\RechercheProduitType;
 use App\Form\SearchType;
@@ -48,67 +51,49 @@ class CatalogueController extends AbstractController
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
-
-
         $limit = 32 ;
-
-        $filtre= new Filtre();
-        $formFiltre = $this->createForm(FiltreType::class,$filtre);
-        $formFiltre->handleRequest($request);
 
         if ($categorie != null)
             $findProduits = $this->repository->byCategorie($categorie);
         else
             $findProduits = $this->repository->findBy(['etat' => 1]);
 
-        //si on utilise la barre de recherche
-       if ($form->isSubmitted() && $form->isValid()) {
-           //si on ne tape rien dans la barre de recherche,on affiche tous les produits
-           if ($search->getRechercher() == null) {
-               $produits = $paginator->paginate($this->repository->findAllAvailable(),
-                   $request->query->getInt('page', 1), $limit);
-           }
-           else {
-               //Sinon on affiche les produits recherchés
-               $produits = $paginator->paginate($this->repository->findAllVisibleQuery($search),
-                   $request->query->getInt('page', 1), $limit);
-           }
 
+        $produits = $paginator->paginate($this->repository->findAllVisibleQuery($search),
+                $request->query->getInt('page', 1), $limit);
+
+
+        //Récupère les produits du panier
+        $session = $request->getSession();
+        $panier = $session->get('panier');
+
+        if(!empty($panier)) {
+            $produits_panier = $this->getDoctrine()->getRepository(Produit::class)->findArray(array_keys($session->get('panier')));
         }
-       //sinon on utilise le filtre des produits catégories
-       else {
-           $produits = $paginator->paginate($findProduits,
-               $request->query->getInt('page', 1), $limit);
-       }
+        else {
+            $produits_panier = 0;
+        }
 
+
+        //sinon on utilise le filtre des produits catégories
+
+
+        $filtre= new Filtre();
+        $formFiltre = $this->createForm(FiltreType::class,$filtre);
+        $formFiltre->handleRequest($request);
         //Filtre par checkboxe bio et produit belle france
         if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
             $produits = $paginator->paginate($this->repository->findAllProduitCheckbox($filtre),
                 $request->query->getInt('page', 1), $limit);
+
         }
+
 
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
 
-
-
-       //---------------------
-       //Groupe clients
-
-        //Si pas de groupe, coeff à 1
-        $coeff_cat = 1;
-
         //Current user
         $user = $this->getUser();
-
-        //Si l'utilisateur est connecté et appartient à un groupe
-
-
-
-
-
-        $coefficients = $this->getDoctrine()->getRepository(Coefficient::class)->findBy(['new_coeff' => $coeff_cat]);
-
         return $this->render('catalogue/catalogue.html.twig', [
             'produits' => $produits,
             'count' => $produits->getTotalItemCount(),
@@ -117,7 +102,9 @@ class CatalogueController extends AbstractController
             'categories'=>$categories,
             'search' => $search->getRechercher(),
             'limit' => $limit,
-            'user' => $user
+            'user' => $user,
+            'produits_panier' => $produits_panier,
+            'panier' => $session->get('panier'),
         ]);
     }
 
@@ -150,31 +137,74 @@ class CatalogueController extends AbstractController
 
      * */
     /**
-     * @Route("/display_cat/allproducts/{id}", name="catalogue_voirtout_cat", requirements={"id"="\d+"})
+     * @Route("/display_cat/allproducts/{id}", name="catalogue_voirtout_cat")
      */
     public function toutvoirparcategorie(Request $request, Categorie $categorie) {
 
-        $findProduits = $this->repository->byCategorie($categorie->getId());
+        $produits = $this->repository->byCategorie($categorie->getId());
 
+        $bf = [];
+        $bio = [];
+        $both = [];
 
-        $produits = $findProduits;
+        foreach($produits as $prod) {
+            if ($prod->getProduitBelleFrance() == true) {
+                array_push($bf, $prod);
+            }
+            if($prod->getProduitBio() == true) {
+                array_push($bio,$prod);
+            }
+            if($prod->getProduitBelleFrance() == true && $prod->getProduitBio() == true) {
+                array_push($both,$prod);
+            }
+        }
 
-
-        //$count = $this->repository->countProduitsCategorie();
-
+        /*
+        foreach($produits as $prod) {
+            array_push($marques,$prod->getIdManufacturer()->getId());
+            $marque_prod = array_unique($marques);
+        }
+        */
         $filtre= new Filtre();
         $formFiltre = $this->createForm(FiltreType::class,$filtre);
         $formFiltre->handleRequest($request);
 
         //Filtre par checkboxe bio et produit belle france
         if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
-            if ($filtre->getIsBelleFrance() == true || $filtre->getIsBio() == true) {
-                $produits = $this->repository->findProduitCheckbox($filtre, $categorie);
+            if($filtre->getIsBelleFrance() == true) {
+                $produits = $bf;
+            }
+            if($filtre->getIsBio() == true) {
+                $produits = $bio;
+            }
+            if($filtre->getIsBio() == true && $filtre->getIsBelleFrance() == true){
+                $produits = $both;
+            }
+         }
 
+        $filtre_marque= new Filtre();
+        $formFiltreMarque = $this->createForm(FiltreMarqueType::class,$filtre_marque,['categorie' => $categorie]);
+        $formFiltreMarque->handleRequest($request);
+        $marques = [];
+        //Filtre par marque
+        /*
+
+       if($formFiltreMarque->isSubmitted() && $formFiltreMarque->isValid()) {
+            foreach($formFiltreMarque->getData()->getMarque() as $k => $data) {
+                foreach ($produits as $prod) {
+                    if ($prod->getIdManufacturer()->getId() == $data->getId()) {
+                        array_push($marques, $prod);
+                        $produits = $marques;
+                    }
+                }
             }
-            else {
-                $produits = $findProduits;
-            }
+        }
+        */
+
+
+        //Filtre par marque
+        if($formFiltreMarque->isSubmitted() && $formFiltreMarque->isValid()) {
+            $produits = $this->repository->findProduitCheckboxDisplayMarque($filtre_marque, $categorie);
         }
 
         $categories = $this->em->getRepository(Categorie::class)->findAll();
@@ -185,14 +215,9 @@ class CatalogueController extends AbstractController
             'categorie' => $categorie,
             'count'=>count($produits),
             'formFiltre'=>$formFiltre->createView(),
+            'formFiltreMarque' => $formFiltreMarque->createView()
         ]);
     }
-
-
-
-
-
-
 
     /**
      * @Route("/catalogue/sous-cat/{id}", name="catalogue_sous-cat", requirements={"id"="\d+"})
@@ -205,15 +230,11 @@ class CatalogueController extends AbstractController
 
         $limit = 32;
 
-        $filtre= new Filtre();
-        $formFiltre = $this->createForm(FiltreType::class,$filtre);
-        $formFiltre->handleRequest($request);
 
         if ($categorie != null)
             $findProduits = $this->repository->byCategorie($categorie->getId());
         else
             $findProduits = $this->repository->findBy(array('etat' => 1));
-
 
         //si on utilise la barre de recherche
         if ($form->isSubmitted() && $form->isValid()) {
@@ -235,18 +256,28 @@ class CatalogueController extends AbstractController
                 $request->query->getInt('page', 1), $limit);
         }
 
-        //Filtre par checkboxe bio et produit belle france
+        $filtre= new Filtre();
+        $formFiltre = $this->createForm(FiltreType::class,$filtre);
+        $formFiltre->handleRequest($request);
+
+
+        //Filtre par checkboxe bio,produit belle france
         if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
-            if ($filtre->getIsBelleFrance() == true || $filtre->getIsBio() == true) {
-                $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre, $categorie),
-                    $request->query->getInt('page', 1), $limit);
-            }
-            else {
-                $produits = $paginator->paginate($findProduits,
-                    $request->query->getInt('page', 1), $limit);
-            }
+            $produits = $paginator->paginate($this->repository->findProduitCheckbox($filtre, $categorie),
+                $request->query->getInt('page', 1), $limit);
         }
 
+
+        $filtre_marque= new Filtre();
+        $formFiltreMarque = $this->createForm(FiltreMarqueType::class,$filtre_marque,['categorie' => $categorie]);
+        $formFiltreMarque->handleRequest($request);
+
+
+        //Filtre par marque
+        if($formFiltreMarque->isSubmitted() && $formFiltreMarque->isValid()) {
+            $produits = $paginator->paginate($this->repository->findProduitCheckboxMarque($filtre_marque, $categorie),
+                $request->query->getInt('page', 1), $limit);
+        }
         //Catégories
         $categories = $this->em->getRepository(Categorie::class)->findAll();
 
@@ -259,13 +290,9 @@ class CatalogueController extends AbstractController
             'categories'=>$categories,
             'search' => $search->getRechercher(),
             'categorie' =>$categorie,
+            'formFiltreMarque' => $formFiltreMarque->createView()
         ]);
-
     }
-
-
-
-
     public function rechercheAction() {
         $form = $this->createForm(SearchType::class);
         return $this->render('partiels/recherche.html.twig',[
@@ -273,7 +300,6 @@ class CatalogueController extends AbstractController
             ]
         );
     }
-
     public function rechercheActionCatalogue() {
         $form = $this->createForm(SearchType::class);
         return $this->render('partiels/recherche_catalogue.html.twig',[
@@ -282,13 +308,10 @@ class CatalogueController extends AbstractController
         );
     }
 
-
-
     /**
      * @Route("/catalogue/recherche", name="recherche")
      */
-
-/*
+    /*
     public function rechercheTraitementAction(Request $request)
     {
         $search = new Search();
@@ -300,13 +323,10 @@ class CatalogueController extends AbstractController
         dump($produits);
         dump($form->getData());
         die();
-
-
         return $this->render('catalogue/catalogue.html.twig',[
                 'produits' => $produits,
                 'form' => $form->createView(),
             ]
         );
-
     }*/
 }

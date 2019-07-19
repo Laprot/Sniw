@@ -1,9 +1,15 @@
-{% set volume = 0 %}
-{% set qte = 222 %}
+{% set volumeTotal1 = 0 %}
+{% set volumeTotal2 = 0 %}
+{% set volumeTotal3 = 0 %}
+{% set poidsTotal1 = 0 %}
+{% set poidsTotal2 = 0 %}
+{% set poidsTotal3 = 0 %}
 
 {% block stylesheets %}
     <head>
-        <link rel="stylesheet" type="text/css" href="/styles/container.css?v=2">
+        <link rel="stylesheet" type="text/css" href="/styles/container.css?v=4">
+        <link href="{{ asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
     </head>
 {% endblock %}
         {% if is_granted('ROLE_USER') %}
@@ -47,9 +53,15 @@
 
 
 
-                        <a class="cta-resume" href="{{ path('panier') }}" title="> Commander" target="_self">&gt; Commander</a>
+                        <a class="cta-resume" href="{{ path('panier') }}" title="> Commander" target="_self">P</a>
                     </div>
                 </div>
+
+
+            {% for produit in produits %}
+                {% set poidsTotal1 = (poidsTotal1 + (produit.weight * panier[produit.id]))|number_format(3, '.','') %}
+                {% set volumeTotal1 = volumeTotal1 + produit.profondeur * panier[produit.id]|number_format(3, '.','') %}
+            {% endfor %}
 
 
             <div id="push-container-top" class="mobile-teo" data-current_volume="0" data-current_poids="0">
@@ -64,8 +76,74 @@
                         <p class="container-texte">Poids max : <span style="font-weight:bold">24T</span> /Ctr </p>
                     </div>
                     <div class="container-right">
-                        <div class="curseur-v curseur"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Volume : <span class="sp-vol">0</span>m³ </p></div>
-                       <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Poids :  <span class="sp-pds"> </span>T </p></div>
+
+                        {# Volume produits secs #}
+
+                        {% for produit in produits %}
+                            {% set volumeTotal3 = volumeTotal3 + produit.profondeur * panier[produit.id]|number_format(1, '.','') %}
+                        {% endfor %}
+
+                        {% set volumeMaxProduitSecs = 70 %}
+
+                        {% set pourcentage_volume_secs = (volumeTotal3|number_format(1, '.','') / volumeMaxProduitSecs) * 100 %}
+
+                        {% if volumeTotal3|number_format(1, '.','') <= 56 %}
+                            <div class="curseur-v curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_secs }}%; max-width: 97%; background-color: #30a852;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+
+                                        {{ volumeTotal3|number_format(1,'.','') }}
+                                        </span>m³ </p>
+                            </div>
+                        {% endif %}
+
+                        {% if volumeTotal3|number_format(1, '.','') >= 56 and volumeTotal3|number_format(1, '.','') <= 69.3 %}
+                            <div class="curseur-v curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_secs }}%; max-width: 97%; background-color: #eb671c;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+                                        {{ volumeTotal3|number_format(1,'.','') }}
+                                        </span>m³ </p>
+                            </div>
+                        {% endif %}
+
+                        {% if volumeTotal3|number_format(1, '.','') >= 69.3 %}
+                            <div class="curseur-v curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_secs }}%; max-width: 97%; background-color: #ed2338;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+
+                                        {{ volumeTotal3|number_format(1,'.','') }}
+                                        </span>m³ </p>
+                            </div>
+                        {% endif %}
+
+
+
+                        {# Poids produits secs #}
+
+                        {% for produit in produits %}
+                            {% set poidsTotal3 = (poidsTotal3 + (produit.weight * panier[produit.id]))|number_format(1, '.','') %}
+                        {% endfor %}
+
+                        {% set poidsMaxProduitsSecs = 24 %}
+
+                        {% set pourcentage_poids_secs = ((poidsTotal3/1000)|number_format(1, '.','') / poidsMaxProduitsSecs) * 100 %}
+
+
+                        {% if (poidsTotal3/1000)|number_format(1, '.','') <= 19.2  %}
+                            <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_secs }}%; max-width: 97%; background-color: #30a852;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                                            {{ (poidsTotal3/1000)|number_format(1, '.','') }}
+                                    </span>T </p>
+                            </div>
+                        {% endif %}
+
+                        {% if (poidsTotal3/1000)|number_format(1, '.','') >= 19.2 and (poidsTotal3/1000)|number_format(1, '.','') <= 23.76 %}
+                            <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_secs }}%; max-width: 97%; background-color: #eb671c;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                                            {{ (poidsTotal3/1000)|number_format(1, '.','') }}
+                                    </span>T </p>
+                            </div>
+                        {% endif %}
+
+                        {% if (poidsTotal3/1000)|number_format(1, '.','') >= 23.76 %}
+                            <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_secs }}%; max-width: 97%; background-color: #ed2338;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                                            {{ (poidsTotal3/1000)|number_format(1, '.','') }}
+                                    </span>T </p>
+                            </div>
+                        {% endif %}
+
 
                     </div>
                 </div>
@@ -77,15 +155,85 @@
                     </div>
                     <div class="container-right">
                         <em>&nbsp;</em>
-                        <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Volume : <span class="sp-vol">0</span>m³ </p></div>
-                        <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:0%; max-width: 97%; background-color: #30a852;"></i><p>Poids : <span class="sp-pds">0</span>T </p></div>
+                        {# Volume Produits frais #}
+
+                        {% for produit in produits %}
+                            {% set volumeTotal2 = volumeTotal2 + produit.profondeur * panier[produit.id]|number_format(1, '.','') %}
+                        {% endfor %}
+
+                        {% set volumeMaxProduitFrais = 46 %}
+
+                        {% set pourcentage_volume_frais = (volumeTotal2|number_format(1, '.','') / volumeMaxProduitFrais) * 100 %}
+
+                        {% if volumeTotal2|number_format(1, '.','') <= 36.8 %}
+                            <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_frais }}%; max-width: 97%; background-color: #30a852;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+
+                                        {{ volumeTotal2|number_format(1,'.','') }}
+                                        </span>m³ </p>
+                            </div>
+                        {% endif %}
+
+                        {% if volumeTotal2|number_format(1, '.','') >= 36.8 and volumeTotal2|number_format(1, '.','') <= 45.54 %}
+                            <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_frais }}%; max-width: 97%; background-color: #eb671c;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+
+                                        {{ volumeTotal2|number_format(1,'.','') }}
+                                        </span>m³ </p>
+                            </div>
+                        {% endif %}
+
+                        {% if volumeTotal2|number_format(1, '.','') >= 45.54 %}
+                            <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_frais }}%; max-width: 97%; background-color: #ed2338;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+
+                                        {{ volumeTotal2|number_format(1,'.','') }}
+                                        </span>m³ </p>
+                            </div>
+                        {% endif %}
+
+                        {# Poids Produits frais #}
+
+                        {% for produit in produits %}
+                             {% set poidsTotal2 = (poidsTotal2 + (produit.weight * panier[produit.id]))|number_format(1, '.','') %}
+                         {% endfor %}
+
+                        {% set poidsMaxProduitFrais = 21 %}
+
+                        {% set pourcentage_poids_frais = ((poidsTotal2/1000)|number_format(1, '.','') / poidsMaxProduitFrais) * 100 %}
+
+                        {% if (poidsTotal2/1000)|number_format(1, '.','') <= 16.8  %}
+                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_frais }}%; max-width: 97%; background-color: #30a852;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                                            {{ (poidsTotal2/1000)|number_format(1, '.','') }}
+                                    </span>T </p>
+                            </div>
+                        {% endif %}
+
+                        {% if (poidsTotal2/1000)|number_format(1, '.','') >= 16.8 and (poidsTotal2/1000)|number_format(1, '.','') <= 20.79 %}
+                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_frais }}%; max-width: 97%; background-color: #eb671c;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                                            {{ (poidsTotal2/1000)|number_format(1, '.','') }}
+                                    </span>T </p>
+                            </div>
+                        {% endif %}
+
+                        {% if (poidsTotal2/1000)|number_format(1, '.','') >= 20.79 %}
+                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_frais }}%; max-width: 97%; background-color: #ed2338;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                                            {{ (poidsTotal2/1000)|number_format(1, '.','') }}
+                                    </span>T </p>
+                            </div>
+                        {% endif %}
+
+
+
                     </div>
                 </div>
                 <div class="bloc-resume">
                     <p class="cta-title"><span class="cta-open" onclick="openBloc()">+</span><span class="cta-close" onclick="closeBloc()">-</span></p>
-                    <p class="data-resume">Volume : <span class="sp-vol">0</span>m³</p>
-                    <p class="data-resume">Poids : <a href="{{ path('panier') }}"><span class="sp-pdss">{{ articles }}</span></a>T</p>
-                    <a class="cta-resume" href="{{ path('panier') }}" title="> Commander" target="_self">&gt; Commander</a>
+                    <p class="data-resume">Volume : <span class="sp-voll">
+                            {{ (volumeTotal1)|number_format(1,'.','') }}
+                        </span>m³</p>
+                    <p class="data-resume">Poids : <span class="sp-pdss" id="sp-pdss">
+                            {{ (poidsTotal1/1000)|number_format(1, '.','') }}
+                        </span>T</p>
+                    <a class="cta-resume" href="{{ path('panier') }}" title="> Commander" target="_self"> > COMMANDER</a>
+
                 </div>
             </div>
 

@@ -149,14 +149,21 @@ class User implements UserInterface,NotificationInterface
     private $commandes;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Panier", mappedBy="utilisateur",orphanRemoval=true)
+     */
+    private $paniers;
+
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\SuperficieMagasin", inversedBy="user")
      */
     private $superficieMagasin;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\CommandeTypeProduits", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="App\Entity\CommandeTypeProduits", mappedBy="users")
      */
     private $commandeTypeProduits;
+
 
 
 
@@ -164,6 +171,7 @@ class User implements UserInterface,NotificationInterface
         $this->roles = array('ROLE_USER');
         $this->nouvelleAdresses = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->paniers= new ArrayCollection();
         $this->commandeTypeProduits = new ArrayCollection();
     }
 
@@ -555,6 +563,39 @@ class User implements UserInterface,NotificationInterface
         return $this;
     }
 
+
+
+    /**
+     * @return Collection|Panier[]
+     */
+    public function getPaniers(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addPanier(Panier $panier): self
+    {
+        if (!$this->paniers->contains($panier)) {
+            $this->paniers[] = $panier;
+            $panier->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removePanier(Panier $panier): self
+    {
+        if ($this->paniers->contains($panier)) {
+            $this->paniers->removeElement($panier);
+            // set the owning side to null (unless already changed)
+            if ($panier->getUtilisateur() === $this) {
+                $panier->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
     public function isGranted($role)
     {
         return in_array($role, $this->getRoles());
@@ -584,7 +625,7 @@ class User implements UserInterface,NotificationInterface
     {
         if (!$this->commandeTypeProduits->contains($commandeTypeProduit)) {
             $this->commandeTypeProduits[] = $commandeTypeProduit;
-            $commandeTypeProduit->setUser($this);
+            $commandeTypeProduit->addUser($this);
         }
 
         return $this;
@@ -594,10 +635,7 @@ class User implements UserInterface,NotificationInterface
     {
         if ($this->commandeTypeProduits->contains($commandeTypeProduit)) {
             $this->commandeTypeProduits->removeElement($commandeTypeProduit);
-            // set the owning side to null (unless already changed)
-            if ($commandeTypeProduit->getUser() === $this) {
-                $commandeTypeProduit->setUser(null);
-            }
+            $commandeTypeProduit->removeUser($this);
         }
 
         return $this;

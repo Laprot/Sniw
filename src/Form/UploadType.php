@@ -18,7 +18,7 @@ class UploadType extends AbstractType
                 'label'=>'Choisissez votre fichier'
             ])
             ->add('submit',SubmitType::class,[
-                'label'=>'Envoyez le fichier'
+                'label'=>'Envoyez'
             ])
         ;
     }

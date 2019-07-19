@@ -29,9 +29,14 @@ class Coefficient
     private $groupes;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="coefficient")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Categorie", inversedBy="coefficients")
      */
     private $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -81,26 +86,37 @@ class Coefficient
         $this->groupes = $groupes;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCategories()
-    {
-        return $this->categories;
-    }
 
-    /**
-     * @param mixed $categories
-     */
-    public function setCategories($categories)
-    {
-        $this->categories = $categories;
-    }
 
 
 
     public function __toString()
     {
         return $this->getNewCoeff();
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addCoefficient($this);
+        }
+        return $this;
+    }
+    public function removeCategory(Categorie $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+            $category->removeCoefficient($this);
+        }
+        return $this;
     }
 }

@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 
+use App\Entity\Categorie;
 use App\Entity\Commande;
+use App\Entity\CommandeTypeProduits;
 use App\Entity\NouvelleAdresse;
+use App\Entity\Panier;
 use App\Entity\Produit;
+use App\Entity\Search;
 use App\Entity\User;
 use App\Form\AdresseUserType;
 use App\Form\ChoixAdresseType;
@@ -24,10 +28,17 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+
+
 
 class PanierController extends AbstractController
 {
 
+
+    private $securityChecker;
+    private $token;
 
     /**
      * @var ProduitRepository
@@ -38,15 +49,19 @@ class PanierController extends AbstractController
      */
     private $em;
 
-    public function __construct(ProduitRepository $repository, ObjectManager $em)
+    public function __construct(ProduitRepository $repository, ObjectManager $em,AuthorizationCheckerInterface $securityChecker, TokenStorageInterface $token)
     {
 
         $this->repository = $repository;
         $this->em = $em;
+        $this->securityChecker = $securityChecker;
+        $this->token = $token;
     }
+
 
     public function menu(Request $request) {
         $session = $request->getSession();
+
         if(!$session->has('panier')) {
             $articles = 0;
         }
@@ -55,10 +70,18 @@ class PanierController extends AbstractController
         }
         $panier = $session->get('panier');
 
+        if (!empty($panier)) {
+            $produits = $this->getDoctrine()->getRepository(Produit::class)->findArray(array_keys($session->get('panier')));
+        }
+        else {
+            $produits = 0;
+        }
+
 
         return $this->render('panier/affichage.html.twig', [
             'articles' => $articles,
             'panier' => $session->get('panier'),
+            'produits' =>$produits
         ]);
     }
 
@@ -85,6 +108,7 @@ class PanierController extends AbstractController
             }
         $session->set('panier',$panier);
 
+
         return $this->redirect($this->generateUrl('panier'));
     }
 
@@ -104,13 +128,14 @@ class PanierController extends AbstractController
 
             if (array_key_exists($id, $panier)) {
                 if ($request->request->getInt('quantite') != null) {
-                    $panier[$id] = $request->request->getInt('quantite') ;
-
+                    $panier[$id] += $request->request->getInt('quantite') ;
+                }
+                else {
+                    $panier[$id] += 1 ;
                 }
             } else {
                 if ($request->request->getInt('quantite') != null) {
                     $panier[$id] = $request->request->getInt('quantite');
-
                 } else {
                     $panier[$id] = 1 ;
                 }
@@ -197,63 +222,205 @@ class PanierController extends AbstractController
     }
 
 
+    //Recommande une commande passée par l'utilisateur
     /**
-     * @Route("/recommander/{id}", name="recommander")
+     * @Route("/recommander/{id}", name="recommander_panier")
      */
-    public function recommander($id, Request $request)
+    public function recommander(Commande $commande, Request $request)
+    {
+        foreach ($commande->getCommande()['produit'] as $com) {
+            $id = $com['id'];
+            $quantite = $com['quantite'];
+
+            $session = $request->getSession();
+            if (!$session->has('panier')) {
+                $session->set('panier', []);
+            }
+
+            $panier = $session->get('panier');
+            if (array_key_exists($id, $panier)) {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $quantite;
+                }
+            } else {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $quantite;
+                } else {
+                    $panier[$id] = $quantite;
+                }
+            }
+            $session->set('panier',$panier);
+        }
+
+
+        return $this->redirect($this->generateUrl('panier'));
+    }
+
+
+    //Pour recommander une commande importée par l'admin (peu utile)
+    /**
+     * @Route("/recommander/commandeImport/{id}", name="recommander_commandeimport_panier")
+     */
+    public function recommanderCommandeImport(Commande $commande,Request $request)
+    {
+        foreach ($commande->getProduits() as $produit) {
+            $id = $produit->getId();
+
+            foreach($produit->getQteProduitCommandes() as $p) {
+                if($commande->getId() == $p->getCommande()->getId()) {
+                    $quantite = $p->getQuantite();
+                }
+            }
+
+            $session = $request->getSession();
+            if (!$session->has('panier')) {
+                $session->set('panier', []);
+            }
+
+            $panier = $session->get('panier');
+            if (array_key_exists($id, $panier)) {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $quantite;
+                }
+            } else {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $quantite;
+                } else {
+                    $panier[$id] = $quantite;
+                }
+            }
+            $session->set('panier',$panier);
+        }
+        return $this->redirect($this->generateUrl('panier'));
+    }
+
+
+
+    //Pour recommander une commande type proposée par l'admin
+
+    /**
+     * @Route("/recommander/commandeType/{id}", name="recommander_commandeType_panier")
+     */
+    public function recommanderCommandeType(CommandeTypeProduits $commande,Request $request)
+    {
+        foreach ($commande->getCommande()->getProduits() as $produit) {
+            $id = $produit->getId();
+
+            foreach($produit->getQteProduitCommandes() as $p) {
+                if($commande->getCommande()->getId() == $p->getCommande()->getId()) {
+                    $quantite = $p->getQuantite();
+                }
+            }
+
+            $session = $request->getSession();
+            if (!$session->has('panier')) {
+                $session->set('panier', []);
+            }
+
+            $panier = $session->get('panier');
+            if (array_key_exists($id, $panier)) {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $quantite;
+                }
+            } else {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $quantite;
+                } else {
+                    $panier[$id] = $quantite;
+                }
+            }
+            $session->set('panier',$panier);
+        }
+        return $this->redirect($this->generateUrl('panier'));
+    }
+
+
+
+    //Enregistrer le panier
+
+    public function panier(Request $request)
     {
         $session = $request->getSession();
-        if (!$session->has('panier')) {
-            $session->set('panier', []);
-        }
+        $em = $this->getDoctrine()->getManager();
+        //génère un token
+        $generator = random_bytes(20);
         $panier = $session->get('panier');
-        if (array_key_exists($id, $panier)) {
-            if ($request->query->getInt('quantite') != null) {
-                $panier[$id] = $request->query->getInt('quantite');
-            }
-        } else {
-            if ($request->query->getInt('quantite') != null) {
-                $panier[$id] = $request->query->getInt('quantite');
-            } else {
-                $panier[$id] = 1;
-            }
-        }
-        $session->set('panier',$panier);
+        $commande = [];
+        $totalHT = 0;
+        $produits = $em->getRepository(Produit::class)->findArray(array_keys($session->get('panier')));
 
-        return $this->redirect($this->generateUrl('panier'));
+        //On rentre le prix et recapitulatif des produits achetés dans le tableau commande
+        foreach($produits as $produit) {
+            $prixHT = ($produit->getPrixFinal() * $panier[$produit->getId()]);
+            $totalHT += $prixHT;
+
+            $commande['produit'][$produit->getId()] = [
+                'reference' => $produit->getReference(),
+                'nom' => $produit->getNom(),
+                'prixUnitaire' => $produit->getPrixFinal(),
+                'quantite' => $panier[$produit->getId()],
+                'prixHT' => round($produit->getPrixFinal(), 2),
+                'image' => $produit->getImage(),
+                'imageImport' => $produit->getImageImport(),
+                'id' => $produit->getId(),
+                'categories' =>$produit->getCategories()->toArray(),
+                'volume' => $produit->getProfondeur(),
+                'poids' => $produit->getWeight()
+            ];
+
+        }
+
+        $commande['nom'] = $session->get('nom');
+        $commande['prixHT'] = round($totalHT, 2);
+        $commande['token'] = bin2hex($generator);
+
+        return $commande;
     }
 
 
-
-    /*
-    public function recommander($id,Commande $commande, Request $request) {
-
+    public function savePanier(Request $request){
         $session = $request->getSession();
-        if (!$session->has('panier')) {
-            $session->set('panier', []);
+        $em = $this->getDoctrine()->getManager();
+
+        $commande = new Panier();
+
+
+        $commande->setDate(new \DateTime('now'));
+
+
+        //On récupère l'utilisateur
+        $user = $this->token->getToken()->getUser();
+
+        //Informations clients adresse
+
+        $commande->setPrenom($user->getPrenom());
+        $commande->setNom($user->getNom());
+        $commande->setUtilisateur($user);
+
+
+        // Référence aléatoire de 8 lettres
+        $characts = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $code_aleatoire = '';
+        for($i=0;$i<8;$i++){
+            $code_aleatoire .= $characts[ rand() % strlen($characts) ];
+            $commande->setReference($code_aleatoire);
         }
 
+        //On ajoute le tableau commande via la fonction facture() situé au dessus
+        $commande->setCommande($this->panier($request));
 
-        $panier = $session->get('panier');
+        $em->persist($commande);
+        $session->set('commande',$commande);
 
-        foreach($commande->getCommande() as $value) {
-            if (is_array($value) || is_object($value))
-                foreach($value as $produit) {
-                    $panier[$id] = $produit;
-                }
-        }
+        $em->flush();
 
-        //$produits = $this->getDoctrine()->getRepository(Commande::class)->findBy($commande['produit']);
+        $this->get('session')->getFlashBag()->add('success','Votre panier a bien été enregistrée.');
 
-        $panier = $session->set('panier', $panier);
+        return new Response($commande->getId());
 
-        $session->set('panier',$panier[$id]);
-
-        dump($panier);
-        die();
-        return $this->redirect($this->generateUrl('panier'));
     }
-    */
+
+
 
     /**
      * @Route("/panier", name="panier")
@@ -270,8 +437,139 @@ class PanierController extends AbstractController
 
         return $this->render('panier/recapitulatif.html.twig', [
             'produits' => $produits,
-            'panier' => $session->get('panier'),
+            'panier' => $session->get('panier')
         ]);
+    }
+
+
+
+    /**
+     * @Route("/panier/save", name="save_panier")
+     */
+    public function save(Request $request) {
+        //on prépare la commande
+        $savePanier = $this->savePanier($request);
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->getRepository(Panier::class)->find($savePanier->getContent());
+
+
+        $user = $this->token->getToken()->getUser();
+
+        return $this->redirectToRoute('panier_view', [
+            'id' => $user->getId()
+        ]);
+    }
+
+
+    /**
+     * @Route("/panier/{id}/paniers", name="panier_view")
+     */
+    public function gestionPanier(PaginatorInterface $paginator,User $user,Request $request){
+        $this->denyAccessUnlessGranted(AppAccess::USER_EDIT, $user);
+
+        $search = new Search();
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
+
+        $commandes = $paginator->paginate(
+            $this->getDoctrine()->getRepository(Panier::class)->findBy(['nom' => $user->getNom()],['id' => 'DESC']),
+            $request->query->getInt('page', 1), 10
+        );
+
+        $categories =0;
+        foreach ($commandes as $commande) {
+            if($commande->getCommande() != null)
+                foreach ($commande->getCommande()['produit'] as $categorie) {
+
+                    $c = $categorie['categories'][0]->getNom();
+
+                    $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $c]);
+
+                }
+        }
+
+        return $this->render('panier/historique.html.twig', [
+            'user' => $user,
+            'commandes' => $commandes,
+            'form' => $form->createView(),
+            'count' => $commandes->getTotalItemCount(),
+            'categories' => $categories
+        ]);
+    }
+
+
+    /**
+     * @Route("/panier/{id}/panier/detail", name="panier_details")
+     */
+    public function detailssavePanier(Panier $commande) {
+
+        $user = $this->token->getToken()->getUser();
+
+
+        $this->denyAccessUnlessGranted(AppAccess::PANIER_EDIT, $commande);
+        $categories = 0;
+
+        if($commande->getCommande() != null) {
+            foreach ($commande->getCommande()['produit'] as $categorie) {
+                $c = $categorie['categories'][0]->getNom();
+                $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $c ]);
+
+            }
+        }
+        return $this->render('panier/savepanier_details.html.twig', [
+            'user'=>$user,
+            'commande'=>$commande,
+            'categories' => $categories
+        ]);
+    }
+
+    //Recommande une commande passée par l'utilisateur
+    /**
+     * @Route("/recommander_paniersave/{id}", name="recommander_savepanier")
+     */
+    public function recommandersavePanier(Panier $commande, Request $request)
+    {
+        foreach ($commande->getCommande()['produit'] as $com) {
+            $id = $com['id'];
+            $quantite = $com['quantite'];
+
+            $session = $request->getSession();
+            if (!$session->has('panier')) {
+                $session->set('panier', []);
+            }
+
+            $panier = $session->get('panier');
+            if (array_key_exists($id, $panier)) {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $quantite;
+                }
+            } else {
+                if ($request->query->getInt('quantite') != null) {
+                    $panier[$id] = $quantite;
+                } else {
+                    $panier[$id] = $quantite;
+                }
+            }
+            $session->set('panier',$panier);
+        }
+
+
+        return $this->redirect($this->generateUrl('panier'));
+    }
+
+    /**
+     * @Route("/panier/{id}/panier/delete", name="panier_delete")
+     */
+    public function deletePanier(Request $request, Panier $commande)
+    {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($commande);
+            $em->flush();
+            $this->addFlash('success', 'Votre panier enregistré a bien été supprimée.');
+
+            return $this->redirectToRoute('panier_view', [
+                'id' => $this->getUser()->getId()
+            ]);
     }
 
     /**

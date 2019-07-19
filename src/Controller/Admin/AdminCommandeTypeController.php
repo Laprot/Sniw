@@ -58,10 +58,10 @@ class AdminCommandeTypeController extends AbstractController
     /**
      * @Route("/admin/{id}/commandetype/edit", name="commandetype_edit", methods="GET|POST")
      */
-    public function edit(Request $request, CommandeTypeProduits $commandeTypeProduits)
+    public function edit(Request $request, CommandeTypeProduits $commandeType)
     {
         return $this->render('admin/commande/commandestypes_edit.html.twig', [
-            'commandeType' => $commandeTypeProduits
+            'commandeType' => $commandeType
         ]);
     }
 

@@ -79,6 +79,8 @@ class ImportProduitImage extends Command
             if($produits == null ) {
                 $produits = new Produit();
                 $produits->setEtat(0);
+
+                $this->em->remove($produits);
             } else {
                 $produits->setImageImport($row['image']);
             }

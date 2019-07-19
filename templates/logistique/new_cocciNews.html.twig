@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Cocci News - SNIW, centrale d'achat export. {% endblock %}
+
+{% block body %}
+    <body>
+    <div class="background ">
+        <div class="columns-container container carriere-container">
+            <div class="rte">
+                <div class="row">
+                    <div class="container" style="margin-top:40px">
+                        <div class="col-xs-12 col-sm-12 ">
+                            <h3><span>&nbsp;Ajouter une Cocci News<hr></span></h3>
+                        </div>
+                    </div>
+
+
+
+
+                    {% if is_granted('ROLE_ADMIN') %}
+
+                        {{ form_start(formUpload) }}
+
+                        {{ form_widget(formUpload.name, {
+                            attr: {
+                                'placeholder' : 'Nom de la CocciNews'
+                            }}) }}
+
+                        <div class="custom-file mt-4">
+                            {{ form_widget(formUpload.picture, {
+                                attr: {
+                                    'class' : 'opacity'
+                                }}) }}
+                        </div>
+
+                        <div class="mt-4">
+                            {{ form_widget(formUpload.submit, {
+                                attr: {
+                                    'placeholder': 'Envoyez',
+                                    'class' : 'red_button message_submit_btn trans_300'
+                                }}) }}
+                        </div>
+
+
+                        {{ form_end(formUpload) }}
+
+
+
+                    {% endif %}
+                </div>
+                {% include 'partiels/footer.html.twig' %}
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

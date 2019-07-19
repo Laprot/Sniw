@@ -2454,3 +2454,51 @@ h5 > span {
 	padding-bottom: 19px;
 	margin-bottom: 20px;
 }
+
+@media screen and (max-width: 360px) and (min-width: 360px) {
+	.fa-angle-down:before {
+		margin-left:40px;
+	}
+}
+
+.scrollable-menu {
+	height: auto;
+	max-height: 200px;
+	overflow-x: hidden;
+}
+
+@media screen and (max-width: 992px) and (min-width: 767px) {
+	.row-resp {
+		margin-right: -100px;
+	}
+	.account > a {
+		display: block;
+		color: #b5aec4;
+		font-weight: 400;
+		height: 50px;
+		line-height: 50px;
+		font-size: 13px;
+		margin-right: 70px;
+	}
+}
+
+
+
+
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+	.navbar {
+		width: auto;
+		height: 100px;
+		float: right;
+		padding-left: 0px;
+		padding-right: 0px;
+		font-size: 1.1rem;
+	}
+}
+
+@media screen and (max-width:481px) {
+	h3 {
+		font-size:23px;
+	}
+}

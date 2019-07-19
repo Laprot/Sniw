@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\CommandeController;
+use App\Entity\Categorie;
 use App\Entity\Commande;
 use App\Entity\Produit;
 use App\Entity\Search;
@@ -56,10 +57,30 @@ class AdminCommandeController extends AbstractController
             $request->query->getInt('page', 1), 10
         );
 
+        foreach($commandes as $commande){
+
+            if($commande->getCommande() != null)
+            foreach ($commande->getCommande()['produit'] as $categorie) {
+                $c = $categorie['categories'][0]->getNom();
+                $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $c ]);
+
+            }
+
+            $user_commandes = $this->getDoctrine()->getRepository(User::class)->findBy(['nom' => $commande->getNom()]);
+
+            foreach($user_commandes as $user_commande) {
+                $id_groupe = $user_commande->getIdGroupe()->getId();
+            }
+        }
+
+
+
         return $this->render('admin/commande/commandes.html.twig', [
             'commandes' => $commandes,
             'count' => $commandes->getTotalItemCount(),
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'categories' => $categories,
+            'id_groupe' => $id_groupe
         ]);
     }
 
@@ -68,8 +89,25 @@ class AdminCommandeController extends AbstractController
      */
     public function edit(Request $request, Commande $commande)
     {
+
+        $categories = 0;
+
+        if($commande->getCommande() != null)
+            foreach ($commande->getCommande()['produit'] as $categorie) {
+                $c = $categorie['categories'][0]->getNom();
+                $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $c ]);
+            }
+
+            $user_commandes = $this->getDoctrine()->getRepository(User::class)->findBy(['nom' => $commande->getNom()]);
+
+            foreach($user_commandes as $user_commande) {
+                $id_groupe = $user_commande->getIdGroupe()->getId();
+            }
+
         return $this->render('admin/commande/commande_edit.html.twig', [
-            'commande' => $commande
+            'commande' => $commande,
+            'categories' => $categories,
+            'id_groupe' => $id_groupe
         ]);
     }
 

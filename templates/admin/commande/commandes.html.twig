@@ -2,6 +2,8 @@
 
 {% block title %} Les commandes {% endblock %}
 
+{% set totalHT = 0 %}
+
 {% block stylesheets %}
     <head>
         <!-- Required meta tags -->
@@ -97,7 +99,6 @@
                                             <th>Nom</th>
                                             <th>Email</th>
                                             <th>Société</th>
-                                            <th>Total</th>
                                             <th>Etat</th>
                                             <th>Date</th>
                                             <th>Exporter / Détails / Supprimer</th>
@@ -118,11 +119,6 @@
                                                 <td> {{ commande.nom }}</td>
                                                 <td> {{ commande.email }}</td>
                                                 <td> {{ commande.societe }}</td>
-                                                {% if commande.commande.prixHT is defined %}
-                                                    <td> {{ commande.commande.prixHT }}€</td>
-                                                {% else %}
-                                                    <td> </td>
-                                                {% endif %}
                                                 <td> {{ commande.etat }}</td>
                                                 <td> {{ commande.date|date('Y-m-d H:i:s') }}</td>
                                                 <td>

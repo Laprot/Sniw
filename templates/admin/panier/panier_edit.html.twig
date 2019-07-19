@@ -1,0 +1,196 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Les paniers enregistrés {% endblock %}
+
+{% set prixTotal = 0 %}
+{% set totalHT = 0 %}
+
+{% block stylesheets %}
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Commandes</title>
+        <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/buttons.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/select.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+    </head>
+{% endblock %}
+
+
+{% block body %}
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+
+        {% include 'admin/left_side.html.twig' %}
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Détails panier   </h2>
+
+                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="{{ path('admin_dashboard') }}" class="breadcrumb-link">Dashboard</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Paniers</li>
+                                    </ol>
+                                </nav>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- ============================================================== -->
+                    <!-- basic table  -->
+                    <!-- ============================================================== -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Panier {{ commande.reference }} de {{ commande.nom }} {{ commande.prenom }}
+                            </h5>
+
+                            <div class="card-body">
+                                <div class="table-responsive"  >
+                                    <table class="table table-bordered first" >
+                                        <thead>
+                                        <tr style="background-color:lightgrey">
+                                            <th>Référence</th>
+                                            <th style="width:100px">Image</th>
+                                            <th>Désignation</th>
+                                            <th>Quantité</th>
+                                            <th>Prix unitaire</th>
+                                            <th>Total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        {% if commande.commande.produit is not defined %}
+
+                                            {% for produit in commande.produits %}
+
+                                                <tr>
+                                                    <td> {{ produit.reference }} </td>
+                                                    <td>   {% if produit.image|length > 0 %}
+                                                            <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                                        {% else %}
+                                                            <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
+                                                        {% endif %}
+
+                                                    </td>
+                                                    <td> {{ produit.nom }}</td>
+
+                                                    <td> {% for p in produit.qteProduitCommandes %}
+                                                            {% if commande.id == p.commande.id %}
+                                                                {{ p.quantite }}
+                                                            {% endif %}
+                                                            {% set prixTotal = produit.getPrixFinal() * p.quantite %}
+                                                        {% endfor %}
+                                                    </td>
+
+                                                    <td> {{ produit.getPrixFinal()|number_format(2,'.','') }}€</td>
+
+
+                                                    <td>  {{ prixTotal|number_format(2,'.','') }}€</td>
+
+                                                </tr>
+
+                                                {% set totalHT = totalHT + prixTotal %}
+                                            {% endfor %}
+
+                                        {% else %}
+                                            {% for produit in commande.commande.produit %}
+
+                                                <tr>
+                                                    <td> {{ produit.reference }} </td>
+                                                    <td>   {% if produit.image|length > 0 %}
+                                                            <img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}">
+                                                        {% else %}
+                                                            <img src="http://{{ produit.imageImport }}" style="width:90%;" alt="{{ produit.nom }}">
+                                                        {% endif %}
+
+                                                    </td>
+                                                    <td> {{ produit.nom }}</td>
+
+                                                    <td> {{ produit.quantite }}</td>
+                                                    <td>
+                                                        {% for categorie in categories %}
+                                                            {% if loop.first %}
+                                                                {% for coeff in categorie.coefficients %}
+
+                                                                    {% set coeff_cat = coeff.getNewCoeff() %}
+                                                                    {% set coeff_groupes = coeff.getGroupes() %}
+
+                                                                    {% if id_groupe == coeff_groupes.getId() %}
+                                                                        {{ (((produit.prixUnitaire * coeff_cat))|number_format(2, '.', '')) }}
+
+                                                                        {% set prixTotal = (produit.prixUnitaire * coeff_cat) * produit.quantite %}
+
+                                                                    {% else %}
+                                                                        <!-- L'utilisateur doit être associé à un groupe pour voir les prix -->
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        {% endfor %}
+
+                                                        {# {{ produit.prixUnitaire|number_format(2,'.','') }} #}
+                                                        </span>€
+                                                    </td>
+                                                    <td>  {{ prixTotal|number_format(2,'.','') }}€</td>
+
+                                                </tr>
+                                                {% set totalHT = totalHT + prixTotal %}
+
+                                            {% endfor %}
+                                        {% endif %}
+                                        </tbody>
+                                    </table>
+                                    <div class="row mt-4 mb-4">
+                                        <div class="col">
+                                        </div>
+                                        <div class="col" style="margin-left:300px">
+                                            Total : {{ totalHT|number_format(2,'.','') }} €
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end data table multiselects  -->
+                    <!-- ============================================================== -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/admin/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="/admin/assets/libs/js/main-js.js"></script>
+{% endblock %}

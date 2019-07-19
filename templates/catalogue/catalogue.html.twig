@@ -30,7 +30,7 @@
                                 {% for categorie in categories %}
                                 {% if categorie.getIdParent() == null  %}
                                 <li class="li-niveau1 advtm_menu_3 menuHaveNoMobileSubMenu">
-                                    <a  href="{{ path('catalogue_sous-cat',{id:categorie.id}) }}" title="Animalerie"  class=" a-niveau1 {% if app.request.attributes.get('catalogue') %} advtm_menu_actif {% endif %}"  data-type="category" data-id="6262"><span class="advtm_menu_span advtm_menu_span_3">{{ categorie.nom }}</span></a>
+                                    <a  href="{{ path('catalogue_sous-cat',{id:categorie.id}) }}" title="{{ categorie.nom }}"  class=" a-niveau1 {% if app.request.attributes.get('catalogue') %} advtm_menu_actif {% endif %}"  data-type="category" data-id="6262"><span class="advtm_menu_span advtm_menu_span_3">{{ categorie.nom }}</span></a>
                                 </li>
                                 {% endif %}
                                 {% endfor %}
@@ -77,8 +77,6 @@
                             {{ form_end(formFiltre) }}
 
 
-                           {{ form_end(formFiltre) }}
-                       </li>
                         </ul>
 
 
@@ -163,6 +161,7 @@
 
                                                 {% endif %}
                                                 <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Nom </span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "marque"}'><span> Marque</span></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -235,7 +234,7 @@
                                                                             </div>
                                                                             <div class="col-md-7 col-md-offset-4">
 
-                                                                                <p style="text-align:left;color:#f2bf00;font-size:15px"> {{ produit.getIdManufacturer() }}</p>
+                                                                                <p style="text-align:left;color:#f2bf00;font-size:15px" class="product_marque"> {{ produit.getIdManufacturer() }}</p>
                                                                                 <p style="text-align:left;color:#777777;font-size:12px"> Référence :  {{ produit.reference }}</p>
                                                                                 <p style="text-align:left;color:#777777;font-size:12px"> Gencod : {{ produit.gencod }}</p>
                                                                                 <table id="customers">
@@ -253,11 +252,12 @@
                                                                                         <td> NB carton/palette</td>
                                                                                         <td> {{ produit.getNbCartonPalette() }}</td>
                                                                                         <td style="border: 1px solid #e9ecef;display:none"><span
-                                                                                                    id="poidsProd_{{ produit.id }}">{{ produit.weight|number_format(2, '.','') }}</span>
+                                                                                                    id="poidsProd_{{ produit.id }}">{{ produit.weight|number_format(3, '.','') }}</span>
                                                                                         </td>
-                                                                                        <td style="border: 1px solid #e9ecef;display:none"><span class="poidsall"
-                                                                                                                                                 id="poidsTotal_{{ produit.id }}">{{ poidsP|number_format(2, '.','') }} </span> kg
+                                                                                        <td style="border: 1px solid #e9ecef;display:none"><span
+                                                                                                    id="volumeProd_{{ produit.id }}">{{ produit.profondeur|number_format(3, '.','') }}</span>
                                                                                         </td>
+
 
                                                                                     </tr>
                                                                                     <tr>
@@ -282,7 +282,22 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <div class="col">
-                                                                        <p class="text-center "> Prix unitaire : <strong>{{ produit.getPrixUnite()|number_format(2, '.', ',') }}€ </strong></p>
+                                                                        <p class="text-center "> Prix unitaire : <strong>
+                                                                                {% for categorie in produit.categories %}
+                                                                                    {% if loop.first %}
+                                                                                        {% for coeff in categorie.coefficients %}
+                                                                                            {% set coeff_cat = coeff.getNewCoeff() %}
+                                                                                            {% set coeff_groupes = coeff.getGroupes() %}
+
+                                                                                            {% if app.user.getIdGroupe().getId() == coeff_groupes.getId() %}
+                                                                                                {{ ((produit.getPrixUnite() * coeff_cat)|number_format(2, '.', '')) }}€/UC HT
+                                                                                            {% else %}
+                                                                                                {# L'utilisateur doit être associé à un groupe pour voir les prix #}
+                                                                                            {% endif %}
+                                                                                        {% endfor %}
+                                                                                    {% endif %}
+                                                                                {% endfor %}
+                                                                            </strong></p>
                                                                         </div>
                                                                     </div>
                                                                 </div><!-- /.modal-content -->
@@ -295,20 +310,26 @@
 
                                                         <div class="product_info desc_bloc3" style="text-align:left;font-size:10px;color:#777777;font-size:11px"> {{ produit.conditionnement() }}</div>
 
+
+
                                                             {% for categorie in produit.categories %}
                                                                 {% if loop.first %}
-                                                                    {% for coeff in categorie.coefficient %}
+                                                                    {% for coeff in categorie.coefficients %}
                                                                         {% set coeff_cat = coeff.getNewCoeff() %}
                                                                         {% set coeff_groupes = coeff.getGroupes() %}
 
                                                                         {% if app.user.getIdGroupe().getId() == coeff_groupes.getId() %}
-                                                                            <div class="product_price unit-price">{{ ((produit.getPrixUnite() * coeff_cat)|number_format(2, '.', ',')) }}€/UC HT</div>
+                                                                            <div class="product_price unit-price">{{ ((produit.getPrixUnite() * coeff_cat)|number_format(2, '.', '')) }}€/UC HT</div>
                                                                         {% else %}
-                                                                            <div class="product_price unit-price">{{ produit.getPrixUnite()|number_format(2, '.', ',') }}€/UC HT</div>
+                                                                            {# L'utilisateur doit être associé à un groupe pour voir les prix #}
                                                                         {% endif %}
                                                                     {% endfor %}
                                                                 {% endif %}
                                                             {% endfor %}
+
+
+
+                                                       {# <div class="product_price unit-price">{{ produit.getPrixUnite()|number_format(2, '.', ',') }}€/UC HT</div> #}
 
                                                         <div class="product_info price-condi"> Carton de {{ produit.getUniteParCarton() }} produit(s)</div>
                                                     </div>
@@ -385,7 +406,7 @@
                                                                                 </div>
                                                                                 <div class="col-md-7 col-md-offset-4">
 
-                                                                                    <p style="text-align:left;color:#f2bf00;font-size:15px"> {{ produit.getIdManufacturer() }}</p>
+                                                                                    <p style="text-align:left;color:#f2bf00;font-size:15px" class="product_marque"> {{ produit.getIdManufacturer() }}</p>
                                                                                     <p style="text-align:left;color:#777777;font-size:12px"> Référence :  {{ produit.reference }}</p>
                                                                                     <p style="text-align:left;color:#777777;font-size:12px"> Gencod : {{ produit.gencod }}</p>
                                                                                     <table id="customers">
@@ -514,64 +535,111 @@
 <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="plugins/easing/easing.js"></script>
 <script src="plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-<script src="js/categories_custom.js"></script>
+<script src="js/categories_custom.js?v=1"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
     function refreshAjax(id,changePath) {
         $.ajax({
-           type: "POST",
-           url: changePath,
-           data : {
-               quantite: $('#submitid_' +id).val()
+            type: "POST",
+            url: changePath,
+            data: {
+                quantite: $('#submitid_' + id).val()
             },
             dataType: "json",
-            success: function(response) {
+            success: function (response) {
+                let current_volume = $('.mobile-teo').data('current_volume');
+                let current_poids = $('.mobile-teo').data('current_poids');
 
-               //let qte =  +$('#submitid_' +id).val() +1 ;
+                //On récupère la quantité du produit
+                let qte = $('#submitid_' + id).val();
 
-                //$('#submitid_' +id).val(qte);
+                //----POIDS
+                //On récupère le poids du produit
+                let poidsProduit = parseFloat($('#poidsProd_' + id).text()) ;
 
+                //Poids x la quantité du produit
+                let poidsQte = (qte * poidsProduit);
 
-
-                let txt = 0;
-
-
-
-                //txt = parseInt($('#').text()) +1;
-
-                //$('#').text(parseFloat($('#poidsFinal').text(poids.toFixed(2))));
-
-
-               // $('.sp-pdss').text(poids);
-
-
-                let qte = $('#submitid_' +id).val();
+                //On ajoute les poids des produits commandés
+                let poidsContainer = parseFloat($('.sp-pdss').text());
+                //Poids courant du container + le poids du produit
+                let poidsFinal = poidsContainer + (poidsQte/1000);
 
 
+                //----VOLUME
+                //On récupère le volume du produit
+                let volumeProduit = parseFloat($('#volumeProd_' + id).text());
+                //Volume x la quantité du produit
+                let volumeQte = (qte * volumeProduit);
+                //On ajoute les volumes des produits commandés
+                let volumeContainer = parseFloat($('.sp-voll').text());
+                //Volume courant du container + le volume du produit
+                let volumeFinal = volumeContainer + volumeQte;
 
-                //Poids produit
-                let poidsProduit = parseFloat($('#poidsProd_'+id).text()).toFixed(2);
 
-                //___________________POIDS
+                //Remplissage du container
+                parseFloat($('.sp-pdss').text(parseFloat(poidsFinal).toFixed(3)));
+                parseFloat($('.sp-voll').text(parseFloat(volumeFinal).toFixed(3)));
 
-                //poids produit * quantite
-                let poidsQte = qte * poidsProduit;
-                parseFloat($('#poidsTotal_' + id).text(poidsQte.toFixed(2)));
 
-                //Poids Total
-                let poids = 0;
-                $(".poidsall").each(function (index) {
-                    poids = poids + parseFloat($(this).text());
-                });
-                parseFloat($('#poidsFinal').text(poids.toFixed(2)));
+                //Couleur container
+
+                //----POIDS
+                //produits secs
+                let color_secP = '#30a852';
+                let  poids_sec_max = 24;
+                if(  ((poidsFinal) >= 19.2))  {
+                    color_secP = '#eb671c';
+                }
+                if(  ((poidsFinal) >= 23.76))  {
+                    color_secP = '#ed2338';
+                }
+
+                $('#push-container-top .bloc-sec .curseur-p i').css('width',((poidsFinal)/poids_sec_max) * 100+'%');
+                $('#push-container-top .bloc-sec .curseur-p i').css('background-color',color_secP);
+
+                //produit frais
+                let color_fraisP = '#30a852';
+                let poids_frais_max = 21;
+
+                if(  ((poidsFinal) >= 16.8))  {
+                    color_fraisP = '#eb671c';
+                }
+                if(  ((poidsFinal) >= 20.79))  {
+                    color_fraisP = '#ed2338';
+                }
+                $('#push-container-top .bloc-frais .curseur-p i').css('width',((poidsFinal)/poids_frais_max) * 100+'%');
+                $('#push-container-top .bloc-frais .curseur-p i').css('background-color',color_fraisP);
+
+
+                //____VOLUME
+                //Produits secs
+                let color_secV = '#30a852';
+                let volume_sec_max = 70;
+                if(  ((volumeFinal) >= 56))  {
+                    color_secV = '#eb671c';
+                }
+                if(  ((volumeFinal) >= 69.3))  {
+                    color_secV = '#ed2338';
+                }
+                $('#push-container-top .bloc-sec .curseur-v i').css('width',((volumeFinal)/volume_sec_max) * 100+'%');
+                $('#push-container-top .bloc-sec .curseur-v i').css('background-color',color_secV);
+
+                //Produits frais
+                let color_fraisV = '#30a852';
+                let volume_frais_max = 46;
+                if(  ((volumeFinal) >= 36.8))  {
+                    color_fraisV = '#eb671c';
+                }
+                if(  ((volumeFinal) >= 45.54))  {
+                    color_fraisV = '#ed2338';
+                }
+                $('#push-container-top .bloc-frais .curseur-v i').css('width',((volumeFinal)/volume_frais_max) * 100+'%');
+                $('#push-container-top .bloc-frais .curseur-v i').css('background-color',color_fraisV);
             }
-
-
-
-
-        });
+        })
     }
 
 
@@ -592,6 +660,7 @@
 
                         // do your magic pony stuff
                     });
+
                 });
 
             </script>

@@ -1,0 +1,126 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Mettre à jour les prix {% endblock %}
+
+{% block stylesheets %}
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Import produits</title>
+        <link rel="stylesheet" type="text/css" href="/styles/font-awesome/all.css">
+
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/buttons.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/select.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="/admin/assets/vendor/datatables/css/fixedHeader.bootstrap4.css">
+    </head>
+
+{% endblock %}
+
+
+{% block body %}
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+
+    {% include 'admin/left_side.html.twig' %}
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+        <div class="container-fluid  dashboard-content">
+            <!-- ============================================================== -->
+            <!-- pageheader -->
+            <!-- ============================================================== -->
+
+            {% if app.session.flashBag.has('success')  %}
+                <div class="form-group col-md-6">
+                    {% for message in app.flashes('success') %}
+
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+
+                    {% endfor%}
+                </div>
+                <div class="form-group col-md-6"></div>
+
+            {% endif %}
+
+            {% for message in app.flashes('error') %}
+                <div class="form-group col-md-6">
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                </div>
+                <div class="form-group col-md-6"></div>
+            {% endfor %}
+
+
+
+            <h1><i class="fas fa-file-import"></i> Mettre à jour les prix</h1>
+
+
+            <hr>
+            <h2>Etape 1 : Vérifier que tous les champs sont bien écrits et valides. Exemple :   </h2>
+
+            <img src="{{ asset('images/majprix.png') }}" style="width:30%">
+
+            <hr>
+            <h2>Etape 2 : Importer le fichier CSV </h2>
+            {{ form_start(formUpload) }}
+            <div class="input-group" style="margin-bottom:20px;margin-top:20px">
+                <div class="input-group-prepend" style="height: 38px;">
+                    <span class="input-group-text" id="inputGroupFileAddon01"> Télécharger</span>
+                </div>
+                <div class="custom-file">
+                    {{ form_widget(formUpload.name, {
+                        attr: {
+                            'placeholder': 'Choisir un fichier CSV',
+                            'class' : 'custom-file-input'
+                        }}) }}
+                </div>
+            </div>
+            {{ form_end(formUpload) }}
+
+
+            <hr>
+            <h2> Etape 3 : copier la commande <span style="font-style:italic;text-decoration:underline">csv:import:prix_produit</span> et accéder à la console Admin </h2>
+
+            <a class="btn btn-primary" href="/admin/_console"> Accèder à la console Admin </a>
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/admin/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/admin/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/admin/assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="/admin/assets/libs/js/main-js.js"></script>
+
+    <script>
+        $('.custom-file-input').on('change', function(event) {
+            let inputFile = event.currentTarget;
+            $(inputFile).parent()
+                .find('.custom-file-label')
+                .html(inputFile.files[0].name);
+        });
+    </script>
+{% endblock %}
