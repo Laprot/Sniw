@@ -113,12 +113,18 @@ class CatalogueController extends AbstractController
 
     /**
      * @Route("/display/allproducts", name="catalogue_voirtout")
-     * /
+     */
 
     public function toutvoir(Request $request, Categorie $categorie=null) {
         $produits = $this->repository->findAll();
 
         $count = $this->repository->countProduits();
+
+        $data = $_POST['name'];
+
+        dump($data);
+        die();
+
 
         $filtre= new Filtre();
         $formFiltre = $this->createForm(FiltreType::class,$filtre);
@@ -134,8 +140,6 @@ class CatalogueController extends AbstractController
         ]);
     }
 
-
-     * */
     /**
      * @Route("/display_cat/allproducts/{id}", name="catalogue_voirtout_cat")
      */
@@ -295,6 +299,7 @@ class CatalogueController extends AbstractController
     }
     public function rechercheAction() {
         $form = $this->createForm(SearchType::class);
+
         return $this->render('partiels/recherche.html.twig',[
                 'form' => $form->createView()
             ]

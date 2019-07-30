@@ -2,9 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 {% set prixTotal = 0 %}
+{% set volumeP = 0 %}
+{% set poidsP = 0 %}
 
 
 {% set totalHT = 0 %}
+{% set volumeTotal = 0 %}
+{% set poidsTotal = 0 %}
+
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -312,6 +317,7 @@
                                                                 <br />
                                                                 <hr>
                                                                 {{ commande.nom }} {{ commande.prenom }} <br />
+                                                                {{ commande.societe }} <br />
                                                                 {{ commande.adresse }} <br />
                                                                 {{ commande.getCodePostal() }} {{ commande.ville }} <br />
                                                                 {{ commande.pays }} <br />
@@ -334,6 +340,7 @@
                                                                 <br />
                                                                 <hr>
                                                                 {{ commande.nom }} {{ commande.prenom }} <br />
+                                                                {{ commande.societe }} <br />
                                                                 {{ commande.adresse }} <br />
                                                                 {{ commande.getCodePostal() }} {{ commande.ville }} <br />
                                                                 {{ commande.pays }} <br />
@@ -380,29 +387,34 @@
     <tr>
         <td align="center" valign="top" width="100%" style="background-color: #ffffff;  border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;">
             <center>
-                <table cellpadding="0" cellspacing="0" width="600" class="w320">
+                <table cellpadding="0" cellspacing="0" width="800" class="w320">
                     <tr>
                         <td class="item-table">
                             <table cellspacing="0" cellpadding="0" width="100%" >
 
                                 <tr>
-                                    <td class="title-dark" width="115" style="text-align:center;border-style: solid;border-width:1px">
+                                    <td class="title-dark" width="80" style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
                                         Référence
                                     </td>
-                                    <td class="title-dark" width="350" style="text-align:center;border-style: solid;border-width:1px">
+                                    <td class="title-dark" width="130" style="text-align:center;border-style: solid;border-width:1px;font-size:10px">
+                                        Nb carton
+                                    </td>
+
+
+                                    <td class="title-dark" width="300" style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
                                         Produit
                                     </td>
-                                    <td class="title-dark" width="163" style="text-align:center;border-style: solid;border-width:1px">
-                                        Prix unitaire
+                                    <td class="title-dark" width="130" style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
+                                        Marque
                                     </td>
 
 
 
-                                    <td class="title-dark" width="97" style="text-align:center;border-style: solid;border-width:1px">
-                                        Quantité
+                                    <td class="title-dark" width="115" style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
+                                        Prix carton
                                     </td>
 
-                                    <td class="title-dark" width="163" style="text-align:center;border-style: solid;border-width:1px">
+                                    <td class="title-dark" width="163" style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
                                         Prix total
                                     </td>
 
@@ -415,22 +427,36 @@
 
                                 <tr style="border-style: solid;border-width:1px">
 
-                                    <td style="text-align:center;border-style: solid;border-width:1px">
+                                    <td style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
                                         {{ produit.reference }}
                                     </td>
-                                    <td style="text-align:center;border-style: solid;border-width:1px">
+
+                                    <td style="display:none">
+                                        {{ produit.volume }}
+                                    </td>
+                                    <td style="display:none">
+                                        {{ produit.poids }}
+                                    </td>
+
+                                    <td style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
+                                        {{ produit.quantite }}
+                                    </td>
+                                    <td style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
                                         {{ produit.nom }}
                                     </td>
-                                    <td style="text-align:center;border-style: solid;border-width:1px">
+
+                                    <td style="text-align:center;border-style: solid;border-width:1px;font-size:10px">
+                                        {{ produit.marque }}
+                                    </td>
+
+                                    {% set volumeP = produit.volume * produit.quantite %}
+                                    {% set poidsP = produit.poids * produit.quantite %}
+
+                                    <td style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
 
                                         {% for categorie in categories %}
 
                                             {% if loop.first %}
-
-
-
-
-
 
                                                 {% for coeff in categorie.coefficients %}
 
@@ -457,14 +483,17 @@
 
 
                                     </td>
-                                    <td style="ttext-align:center;border-style: solid;border-width:1px">
-                                        {{ produit.quantite }}
-                                    </td>
-                                    <td style="text-align:center;border-style: solid;border-width:1px">
+
+                                    <td style="text-align:center;border-style: solid;border-width:1px;font-size:11px">
                                         {{ prixTotal|number_format(2,'.','') }}€
                                     </td>
                                     {% set totalHT = totalHT + prixTotal %}
                                 </tr>
+
+
+
+                                    {% set volumeTotal = volumeTotal + (produit.volume) * produit.quantite %}
+                                    {% set poidsTotal = poidsTotal + (produit.poids) * produit.quantite %}
                                 {% endfor %}
 
 
@@ -477,14 +506,23 @@
                                 </tr>
 
 
+
                                 <tr>
                                     <td class="item-col item">
                                     </td>
                                     <td class="item-col quantity" style="text-align:right; padding-right: 10px; border-top: 1px solid #cccccc;">
-                                        <span class="total-space" style="font-weight:bold;color:#4d4d4d">Total payé : </span>
+
+                                        <span class="total-space" style="color:#4d4d4d">Volume total  </span>
+                                        <span class="total-space" style="color:#4d4d4d">Poids total  </span>
+
+                                        <span class="total-space" style="font-weight:bold;color:#4d4d4d">TOTAL payé  </span>
                                     </td>
                                     <td class="item-col price" style="text-align: left; border-top: 1px solid #cccccc;">
-                                        <span class="total-space" style="font-weight:bold;color:#4d4d4d">  {{ totalHT|number_format(2,'.','') }} € </span>
+
+                                        <span class="total-space" style="color:#4d4d4d"> : {{ volumeTotal|number_format(2,'.','') }} m3  </span> <br />
+                                        <span class="total-space" style="color:#4d4d4d"> : {{ poidsTotal|number_format(2,'.','') }} kg  </span> <br />
+
+                                        <span class="total-space" style="font-weight:bold;color:#4d4d4d">  : {{ totalHT|number_format(2,'.','') }} € </span>
                                     </td>
                                 </tr>
                             </table>

@@ -1,2 +1,2 @@
 #!/bin/sh
-rsync -av ./ -e 'ssh -p 2222' devcentachat@164.132.241.75:~/www --include=config --include=vendor/coresphere --include=public/build --include=public/styles --include=public/.htaccess --exclude=public/produits/images --exclude-from=.gitignore --exclude=".*"
+rsync -av ./ -e 'ssh -p 2222' centralacexpcom@centraleachatexport.com:~/www --include=config --include=vendor/coresphere --include=public/build --include=public/styles --include=public/.htaccess --exclude=public/produits/images --exclude-from=.gitignore --exclude=".*"

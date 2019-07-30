@@ -182,7 +182,7 @@ class AdministrationController extends AbstractController
 
 
         //EN PROD
-        $finder->in('/homepages/10/d783107477/htdocs/sniw/public/produits/images');
+        $finder->in('/home/centralacexpcom/www/public/produits/images');
 
 
         foreach($finder as $file) {

@@ -58,7 +58,8 @@ class CommandeController extends AbstractController
                 'id' => $produit->getId(),
                 'categories' =>$produit->getCategories()->toArray(),
                 'volume' => $produit->getProfondeur(),
-                'poids' => $produit->getWeight()
+                'poids' => $produit->getWeight(),
+                'marque' => $produit->getIdManufacturer()
             ];
 
         }

@@ -54,8 +54,10 @@ class CommandeNotification
 
         $message= (new \Swift_Message('[SNIW, centrale d\'achat export.] New order : ' . $commande->getReference()))
             ->setFrom($commande->getUtilisateur()->getEmail())
-            ->setTo('fievet.pierro@hotmail.fr')
-            ->setReplyTo('fievet.pierro@hotmail.fr')
+            ->addTo('fdelhaye@sniw.fr')
+            ->addTo('chanda@sniw.fr')
+            ->addTo('Sandrine@sniw.fr')
+            ->setReplyTo('centrale.sniw@gmail.com')
             ->setBody($this->renderer->render('emails/commande.html.twig', [
                 'commande'=>$commande,
                 'categories' => $categories,

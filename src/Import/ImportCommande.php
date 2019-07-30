@@ -65,75 +65,86 @@ class ImportCommande extends Command
         //$finder->in(__DIR__ . '/../../public/file_commandes');
 
         //EN PROD
-        $finder->in('/homepages/10/d783107477/htdocs/sniw/public/file_commandes');
+        $finder->in('/home/centralacexpcom/www/public/file_commandes');
 
         foreach ($finder as $file) {
             break;
         }
 
-        //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/commande_csv/commandes.csv');
+        try {
+            //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/commande_csv/commandes.csv');
 
-        $reader = Reader::createFromStream(fopen($file, 'r+'));
+            $reader = Reader::createFromStream(fopen($file, 'r+'));
 
-        $reader->setDelimiter(';');
-        $results = $reader->fetchAssoc();
-
-        $io->progressStart(iterator_count($results));
-
-        //$commande = new Commande();
-
-        // Référence aléatoire de 8 lettres
-        $commande = new Commande();
-
-        $characts = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $code_aleatoire = '';
-        for ($i = 0; $i < 8; $i++) {
-            $code_aleatoire .= $characts[rand() % strlen($characts)];
-            $commande->setReference('i_' . $code_aleatoire);
-        }
-        $commande->setDate(new \DateTime('now'));
-        $commande->setNom('admin');
-        $commande->setPrenom('admin');
-
-        $user = $this->em->getRepository(User::class)->findOneBy(['nom' => $commande->getNom()]);
-
-        $commande->setSociete($user->getSociete());
-        $commande->setEmail($user->getEmail());
-        $commande->setUtilisateur($user);
-
-        foreach ($results as $row) {
-            $produit = $this->em->getRepository(Produit::class)->findOneBy(['reference' => $row['Reference']]);
-
-
-            if ($produit === null) {
-                //crée un produit provisoire
-                $produit = new Produit();
-                $produit->setEtat(0);
-                $produit->setReference($row['Reference']);
-
-
-                //Affiche les références produits manquantes
-                $output->writeln([
-                    PHP_EOL . '>> Référence manquante : ' . $produit->getReference()
-                ]);
-                //Supprime le produit crée provisoirement
-                $this->em->remove($produit);
-            } else {
-                $qte = new QteProduitCommande();
-                $qte->setQuantite($row['Quantite']);
-                $qte->setProduit($produit);
-                $produit->addQteProduitCommande($qte);
-
-                $qte->setCommande($commande);
-                //$produit->setQuantite($row['Quantite']);
-                $commande->addProduit($produit);
-                $io->progressAdvance();
+            if(http_response_code(500)) {
+                $filesystem->remove($file);
             }
+
+            $reader->setDelimiter(';');
+            $results = $reader->fetchAssoc();
+
+            $io->progressStart(iterator_count($results));
+
+            //$commande = new Commande();
+
+            // Référence aléatoire de 8 lettres
+            $commande = new Commande();
+
+            $characts = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $code_aleatoire = '';
+            for ($i = 0; $i < 8; $i++) {
+                $code_aleatoire .= $characts[rand() % strlen($characts)];
+                $commande->setReference('i_' . $code_aleatoire);
+            }
+            $commande->setDate(new \DateTime('now'));
+            $commande->setNom('admin');
+            $commande->setPrenom('admin');
+
+            $user = $this->em->getRepository(User::class)->findOneBy(['nom' => $commande->getNom()]);
+
+            $commande->setSociete($user->getSociete());
+            $commande->setEmail($user->getEmail());
+            $commande->setUtilisateur($user);
+
+            foreach ($results as $row) {
+                $produit = $this->em->getRepository(Produit::class)->findOneBy(['reference' => $row['Reference']]);
+
+                if ($produit === null) {
+                    //crée un produit provisoire
+                    $produit = new Produit();
+                    $produit->setEtat(0);
+                    $produit->setReference($row['Reference']);
+
+
+                    //Affiche les références produits manquantes
+                    $output->writeln([
+                        PHP_EOL . '>> Référence manquante : ' . $produit->getReference()
+                    ]);
+                    //Supprime le produit crée provisoirement
+                    $this->em->remove($produit);
+                } else {
+                    $qte = new QteProduitCommande();
+                    $qte->setQuantite($row['Quantite']);
+                    $qte->setProduit($produit);
+                    $produit->addQteProduitCommande($qte);
+
+                    $qte->setCommande($commande);
+                    //$produit->setQuantite($row['Quantite']);
+                    $commande->addProduit($produit);
+                    $io->progressAdvance();
+                }
+            }
+            $this->em->persist($commande);
+            $io->progressFinish();
+            $this->em->flush();
+            $io->success('Import de la commande complété !');
+            $filesystem->remove($file);
         }
-        $this->em->persist($commande);
-        $io->progressFinish();
-        $this->em->flush();
-        $io->success('Import de la commande complété !');
-        $filesystem->remove($file);
+        catch(\Exception $e) {
+            $output->writeln([
+                PHP_EOL . $e->getMessage() . PHP_EOL . 'Erreur Import, veuillez corriger les erreurs et ré-upload le fichier'
+            ]);
+            $filesystem->remove($file);
+        }
     }
 }

@@ -94,7 +94,7 @@
                             <tr style="text-align:center">
                                     <td> {{ commande.nom }} {{ commande.prenom }}</td>
                                     <td> {{ commande.reference }} </td>
-                                    <td> {{ commande.date|date('d/m/Y') }}</td>
+                                    <td> {{ commande.date|date('Y-m-d H:i:s') }}</td>
                                     <td> Virement bancaire</td>
 
                                     {% if commande.commande.prixHT is defined %}
@@ -148,7 +148,7 @@
                             {% for commande in commandes  %}
                                 <tr style="text-align:center">
                                     <td> {{ commande.reference }} </td>
-                                    <td> {{ commande.date|date('d/m/Y') }}</td>
+                                    <td> {{ commande.date|date('Y-m-d H:i:s') }}</td>
                                     <td> Virement bancaire</td>
                                     <td> {{ commande.etat }}</td>
                                     <td>

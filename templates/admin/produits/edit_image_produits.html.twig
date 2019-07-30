@@ -61,14 +61,8 @@
                                     Image
                                 </p>
                                 <div class="text-center">
-                                    {% if produit.imageImport|length > 0  %}
-                                        <a href="{{ path('produits_edit', {id: produit.id}) }}"><img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}"></a>
-                                    {% else %}
                                         <a href="{{ path('produits_edit', {id: produit.id}) }}"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></a>
-                                    {% endif %}
                                 </div>
-
-
 
                                 <div class="input-group" style="margin-bottom:20px;margin-top:20px">
                                     <div class="input-group-prepend" style="height: 38px;">

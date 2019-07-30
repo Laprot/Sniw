@@ -36,8 +36,6 @@ class CoefficientType extends AbstractType
                     $query = $queryBuilder
                         ->where($queryBuilder->expr()->isNull('c.id_parent'))
                         ->orderBy('c.id','ASC');
-                    dump($query);
-                    die();
                     return $query;
                 }
             ])

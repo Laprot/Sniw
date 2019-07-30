@@ -30,7 +30,13 @@
                 <h2> Récapitulatif de la commande </h2>
 
                 {% if produits|length > 0  %}
-                    <a href="{{ path('save_panier') }}" style="text-decoration: underline;float:right;margin-bottom:10px"> ENREGISTRER CE PANIER </a>
+                    <a href="{{ path('vider_panier') }}" style="text-decoration: underline;float:right;margin-bottom:10px"> VIDER LE PANIER </a>
+
+                    {{ form_start(form) }}
+
+
+                    <button type="submit" style="text-decoration: underline;margin-left:10px;-webkit-appearance:none;border:none;cursor:pointer;color:#007BFF;background:none"> ENREGISTRER CE PANIER </button>
+                    {{ form_end(form) }}
                 {% endif %}
                 <table class="table mt-5 table-responsive">
                     <thead>
@@ -40,11 +46,7 @@
                         <th style="width:100px;border: 1px solid #e9ecef">Prix/Carton</th>
                         <th style="width:100px;border: 1px solid #e9ecef;display:none">Poids/Carton</th>
                         <th style="width:100px;border: 1px solid #e9ecef;display:none">Volume/Carton</th>
-
-
-
                         <th style="width:140px;border: 1px solid #e9ecef">Nb de carton(s)</th>
-
                         <th style="width:140px;border: 1px solid #e9ecef;display:none">Poids produit(s)</th>
                         <th style="width:140px;border: 1px solid #e9ecef;display:none">Volume produit(s)</th>
                         <th style="width:120px;border: 1px solid #e9ecef">Total</th>
@@ -79,12 +81,8 @@
                                 </td>
                                 <td style="border: 1px solid #e9ecef"><span
                                             id="prixProd_{{ produit.id }}">
-
                                         {% for categorie in produit.categories %}
-
                                             {% if loop.first %}
-
-
                                                 {% for coeff in categorie.coefficients %}
                                                     {% set coeff_cat = coeff.getNewCoeff() %}
                                                     {% set coeff_groupes = coeff.getGroupes() %}
@@ -97,9 +95,6 @@
                                                 {% endfor %}
                                             {% endif %}
                                         {% endfor %}
-
-
-
                                     </span>
                                 </td>
                                 <td style="border: 1px solid #e9ecef;display:none"><span
@@ -109,7 +104,7 @@
                                             id="volumeProd_{{ produit.id }}">{{ produit.profondeur|number_format(2, '.','') }}</span>
                                 </td>
                                 <td style="border: 1px solid #e9ecef">
-                                    <input onchange="modifQte({{ produit.id }},'/ajouter/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ panier[produit.id] }}" >
+                                    <input onchange="modifQte({{ produit.id }},'/modifQte/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ panier[produit.id] }}" >
                                 </td>
                                 <td style="border: 1px solid #e9ecef;display:none"><span class="poidsall"
                                             id="poidsTotal_{{ produit.id }}">{{ poidsP|number_format(2, '.','') }} </span> kg
@@ -233,6 +228,7 @@
                 dataType: "json",
                 success: function(response) {
                     //Quantité produit
+                    console.log($('#submitid_' +id).val());
                     let qte = $('#submitid_' +id).val();
 
 
@@ -264,9 +260,9 @@
                         let totalPrix = 0.0;
                         $(".priceall").each(function (index) {
                             totalPrix  += parseFloat($(this).text());
+
                             parseFloat($('#prixFinal').text(totalPrix.toFixed(2)));
                         });
-
 
                         //__________________VOLUME
 

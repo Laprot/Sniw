@@ -702,6 +702,7 @@ section
 .account > a > i
 {
 	margin-left: 8px;
+	font-size: 27px;
 }
 .account:hover .account_selection
 {
@@ -1776,7 +1777,7 @@ ul.list-organisation li {
 }
 
 .cms-sniw {
-	background-image: url(https://centraleachatexport.com/themes/theme1279/css/../../../img/cms/cms-services/banner-services.jpg);
+	background-image: url(/images/banner-services.jpg);
 	-webkit-background-size: 100% auto;
 	background-size: 100% auto;
 	background-repeat: no-repeat;
@@ -1854,7 +1855,7 @@ ul.list-organisation li {
 	}
 }
 .cms-sniw-1 {
-	background-image: url(https://centraleachatexport.com/themes/theme1279/css/../../../img/cms/cms-conseil/banner-conseil.jpg);
+	background-image: url(/images/banner-conseil.jpg);
 	-webkit-background-size: 100% auto;
 	background-size: 100% auto;
 	background-repeat: no-repeat;
@@ -2182,7 +2183,7 @@ ul.tabs {
 	.top_nav_left{
 		height: 50px;
 		line-height: 50px;
-		font-size: 10px;
+		font-size: 9px;
 		color: #b5aec4;
 		text-transform: uppercase;
 	}

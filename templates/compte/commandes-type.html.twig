@@ -79,7 +79,6 @@
                         <tr style="text-align:center">
                             <th>Référence </th>
                             <th>Date</th>
-                            <th>Prix total</th>
                             <th> Détails </th>
 
                         </tr>
@@ -90,13 +89,8 @@
 
                             <tr style="text-align:center">
                                     <td> {{ commande.reference }} </td>
-                                    <td> {{ commande.date|date('d/m/Y') }}</td>
+                                    <td> {{ commande.date|date('Y-m-d H:i:s') }}</td>
 
-                                    {% if commande.commande.prixHT is defined %}
-                                        <td> {{ commande.commande.prixHT }}€</td>
-                                    {% else %}
-                                        <td></td>
-                                    {% endif %}
 
                                     <td>
                                         <a href="{{ path('commande_details', {id: commande.id}) }}">

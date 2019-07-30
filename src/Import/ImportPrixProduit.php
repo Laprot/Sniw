@@ -62,7 +62,7 @@ class ImportPrixProduit extends Command
             //$finder->in(__DIR__.'/../../public/file_prix_produits');
 
             //EN PROD
-            $finder->in('/homepages/10/d783107477/htdocs/sniw/public/file_prix_produits');
+            $finder->in('/home/centralacexpcom/www/public/file_prix_produits');
 
             foreach ($finder as $file) {
                 break;
@@ -70,8 +70,13 @@ class ImportPrixProduit extends Command
 
             //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/test-import.csv');
 
+        try {
             $reader = Reader::createFromStream(fopen($file, 'r+'));
 
+
+            if(http_response_code(500)) {
+                $filesystem->remove($file);
+            }
 
             $reader->setDelimiter(';');
             $results = $reader->fetchAssoc();
@@ -117,6 +122,13 @@ class ImportPrixProduit extends Command
             $io->success('Mise à jour des prix complétée !');
 
             $filesystem->remove($file);
-        }
 
+        }
+            catch(\Exception $e) {
+                    $output->writeln([
+                        PHP_EOL . $e->getMessage() . PHP_EOL . 'Erreur Import, veuillez corriger les erreurs et ré-upload le fichier'
+                    ]);
+                    $filesystem->remove($file);
+            }
+        }
 }

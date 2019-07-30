@@ -49,9 +49,8 @@ class ImportProduitImage extends Command
         $io->title('Import du flux ...');
 
 
-
-        $reader = Reader::createFromPath('%kernel.project_dir%/../public/produits_csv/exportimage-mai.csv');
-
+        //En dev
+        $reader = Reader::createFromPath('%kernel.project_dir%/../public/produits_csv/csv_import_produit_image.csv');
 
         $reader->setDelimiter(';');
         $results = $reader->fetchAssoc();
@@ -82,7 +81,9 @@ class ImportProduitImage extends Command
 
                 $this->em->remove($produits);
             } else {
-                $produits->setImageImport($row['image']);
+                if($produits->getImage() === null) {
+                    $produits->setImage($row['image']);
+                }
             }
 
             $this->em->persist($produits);

@@ -1,15 +1,15 @@
 swiftmailer:
-    url: '%env(MAILER_URL)%'
-    spool: { type: 'memory' }
-    #transport: gmail
-    #username: centrale.sniw@gmail.com
-    #password: Mada2000&
-    #host: smtp.gmail.com
-    #port: 465
-    #encryption: ssl
+    #url: '%env(MAILER_URL)%'
     #spool: { type: 'memory' }
-    #auth-mode: login
-    #stream_options:
-     # ssl:
-      #    verify_peer: false
-       #   verify_peer_name: false
+    transport: gmail
+    username: centrale.sniw@gmail.com
+    password: Mada2000&
+    host: smtp.gmail.com
+    port: 465
+    encryption: ssl
+    spool: { type: 'memory' }
+    auth-mode: login
+    stream_options:
+      ssl:
+          verify_peer: false
+          verify_peer_name: false

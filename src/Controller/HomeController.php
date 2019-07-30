@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Search;
 use App\Form\SearchType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route({
+     *     "fr": "/fr/",
+     *     "en": "/"
+     * }, name="home")
      */
     public function index(Request $request)
     {

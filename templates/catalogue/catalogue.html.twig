@@ -128,7 +128,6 @@
 
                                 <div class="container">
                                     <div class="row">
-
                                         <div class="pages d-flex flex-row align-items-center ">
                                             {{ knp_pagination_render(produits) }}
                                         </div>
@@ -142,12 +141,8 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <hr>
-
-
                                 <div class="product_sorting_container product_sorting_container_top mt-4">
                                     <ul class="product_sorting">
                                         <li>
@@ -176,17 +171,17 @@
                                             </ul>
                                         </li>
 
+                                        {#
+                                        <li>
+
+                                            <a style="color:black" href="{{ path('catalogue_voirtout') }}"> Afficher tout</a>
+                                        </li>
+                                        #}
                                         <li style="border:none">
                                             {{ count }} produit(s)
                                         </li>
                                     </ul>
-
-
-
-
                                 </div>
-
-
                                 <div class="product-grid mb-4">
 
                                     <!-- Products -->
@@ -359,19 +354,15 @@
 
                                                 {% else %}
 
-
                                                     <div class="product-item men" style="height:280px">
                                                         <div class="product discount product_filter" style="height:260px">
                                                             <div class="product_image text-center mt-2" data-toggle="modal" data-target="#{{ produit.id }}" >
                                                                 <span class="product_img_link">
-
                                                                        {% if produit.image|length > 0 %}
                                                                            <span class="product_img_link"><img src="{{ asset('produits/images/' ~ produit.image) }}" style="width:100%;" alt="{{ produit.nom }}"></span>
-                                                                    {% else %}
+                                                                       {% else %}
                                                                            <span class="product_img_link"><img src="http://{{ produit.getImageImport() }}" style="width:90%;" alt="{{ produit.nom }}"></span>
                                                                        {% endif %}
-
-
                                                                 </span>
                                                             </div>
                                                             <div class="product_info" style="cursor:auto !important">

@@ -7,7 +7,7 @@
 
 {% block stylesheets %}
     <head>
-        <link rel="stylesheet" type="text/css" href="/styles/container.css?v=4">
+        <link rel="stylesheet" type="text/css" href="/styles/container.css?v=9">
         <link href="{{ asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     </head>
@@ -16,7 +16,7 @@
 
                 <div id="push-container-top" class="desktop-teo" data-current_volume="0" data-current_poids="0">
                     <div class="push-container-small">
-                        <p>Cliquez sur&nbsp;<img src="https://centraleachatexport.com/themes/theme1279/img/container/btn-small.jpg"><br>pour consulter le remplissage de vos containers.</p>
+                        <p>Cliquez sur&nbsp;<img src="{{ asset('images/container/btn-small.jpg') }}"><br>pour consulter le remplissage de vos containers.</p>
                     </div>
                     <div class="bloc-sec">
                         <div class="container-left">
@@ -66,7 +66,7 @@
 
             <div id="push-container-top" class="mobile-teo" data-current_volume="0" data-current_poids="0">
                 <div class="push-container-small">
-                    <p>Cliquez sur&nbsp;<img src="https://centraleachatexport.com/themes/theme1279/img/container/btn-small.jpg"><br>pour consulter le remplissage de vos containers.</p>
+                    <p>Cliquez sur&nbsp;<img src="{{ asset('images/container/btn-small.jpg') }}"><br>pour consulter le remplissage de vos containers.</p>
                 </div>
                 <div class="bloc-sec">
 
@@ -88,7 +88,7 @@
                         {% set pourcentage_volume_secs = (volumeTotal3|number_format(1, '.','') / volumeMaxProduitSecs) * 100 %}
 
                         {% if volumeTotal3|number_format(1, '.','') <= 56 %}
-                            <div class="curseur-v curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_secs }}%; max-width: 97%; background-color: #30a852;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+                            <div class="curseur-v curseur"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_volume_secs }}%; max-width: 97%; background-color: #30a852;margin-top:10px"></i><p>Volume : <span class="sp-voll">
 
                                         {{ volumeTotal3|number_format(1,'.','') }}
                                         </span>m³ </p>
@@ -96,14 +96,14 @@
                         {% endif %}
 
                         {% if volumeTotal3|number_format(1, '.','') >= 56 and volumeTotal3|number_format(1, '.','') <= 69.3 %}
-                            <div class="curseur-v curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_secs }}%; max-width: 97%; background-color: #eb671c;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+                            <div class="curseur-v curseur"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_volume_secs }}%; max-width: 97%; background-color: #eb671c;margin-top:10px"></i><p>Volume : <span class="sp-voll">
                                         {{ volumeTotal3|number_format(1,'.','') }}
                                         </span>m³ </p>
                             </div>
                         {% endif %}
 
                         {% if volumeTotal3|number_format(1, '.','') >= 69.3 %}
-                            <div class="curseur-v curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_secs }}%; max-width: 97%; background-color: #ed2338;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+                            <div class="curseur-v curseur"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_volume_secs }}%; max-width: 97%; background-color: #ed2338;margin-top:10px"></i><p>Volume : <span class="sp-voll">
 
                                         {{ volumeTotal3|number_format(1,'.','') }}
                                         </span>m³ </p>
@@ -124,21 +124,21 @@
 
 
                         {% if (poidsTotal3/1000)|number_format(1, '.','') <= 19.2  %}
-                            <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_secs }}%; max-width: 97%; background-color: #30a852;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                            <div class="curseur-p curseur"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_poids_secs }}%; max-width: 97%; background-color: #30a852;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
                                             {{ (poidsTotal3/1000)|number_format(1, '.','') }}
                                     </span>T </p>
                             </div>
                         {% endif %}
 
                         {% if (poidsTotal3/1000)|number_format(1, '.','') >= 19.2 and (poidsTotal3/1000)|number_format(1, '.','') <= 23.76 %}
-                            <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_secs }}%; max-width: 97%; background-color: #eb671c;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                            <div class="curseur-p curseur"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_poids_secs }}%; max-width: 97%; background-color: #eb671c;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
                                             {{ (poidsTotal3/1000)|number_format(1, '.','') }}
                                     </span>T </p>
                             </div>
                         {% endif %}
 
                         {% if (poidsTotal3/1000)|number_format(1, '.','') >= 23.76 %}
-                            <div class="curseur-p curseur"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_secs }}%; max-width: 97%; background-color: #ed2338;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                            <div class="curseur-p curseur"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_poids_secs }}%; max-width: 97%; background-color: #ed2338;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
                                             {{ (poidsTotal3/1000)|number_format(1, '.','') }}
                                     </span>T </p>
                             </div>
@@ -166,7 +166,7 @@
                         {% set pourcentage_volume_frais = (volumeTotal2|number_format(1, '.','') / volumeMaxProduitFrais) * 100 %}
 
                         {% if volumeTotal2|number_format(1, '.','') <= 36.8 %}
-                            <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_frais }}%; max-width: 97%; background-color: #30a852;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+                            <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_volume_frais }}%; max-width: 97%; background-color: #30a852;margin-top:10px"></i><p>Volume : <span class="sp-voll">
 
                                         {{ volumeTotal2|number_format(1,'.','') }}
                                         </span>m³ </p>
@@ -174,7 +174,7 @@
                         {% endif %}
 
                         {% if volumeTotal2|number_format(1, '.','') >= 36.8 and volumeTotal2|number_format(1, '.','') <= 45.54 %}
-                            <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_frais }}%; max-width: 97%; background-color: #eb671c;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+                            <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_volume_frais }}%; max-width: 97%; background-color: #eb671c;margin-top:10px"></i><p>Volume : <span class="sp-voll">
 
                                         {{ volumeTotal2|number_format(1,'.','') }}
                                         </span>m³ </p>
@@ -182,7 +182,7 @@
                         {% endif %}
 
                         {% if volumeTotal2|number_format(1, '.','') >= 45.54 %}
-                            <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_volume_frais }}%; max-width: 97%; background-color: #ed2338;margin-top:10px"></i><p>Volume : <span class="sp-voll">
+                            <div class="curseur-v curseur" style="bottom:20px"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_volume_frais }}%; max-width: 97%; background-color: #ed2338;margin-top:10px"></i><p>Volume : <span class="sp-voll">
 
                                         {{ volumeTotal2|number_format(1,'.','') }}
                                         </span>m³ </p>
@@ -200,21 +200,21 @@
                         {% set pourcentage_poids_frais = ((poidsTotal2/1000)|number_format(1, '.','') / poidsMaxProduitFrais) * 100 %}
 
                         {% if (poidsTotal2/1000)|number_format(1, '.','') <= 16.8  %}
-                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_frais }}%; max-width: 97%; background-color: #30a852;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_poids_frais }}%; max-width: 97%; background-color: #30a852;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
                                             {{ (poidsTotal2/1000)|number_format(1, '.','') }}
                                     </span>T </p>
                             </div>
                         {% endif %}
 
                         {% if (poidsTotal2/1000)|number_format(1, '.','') >= 16.8 and (poidsTotal2/1000)|number_format(1, '.','') <= 20.79 %}
-                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_frais }}%; max-width: 97%; background-color: #eb671c;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_poids_frais }}%; max-width: 97%; background-color: #eb671c;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
                                             {{ (poidsTotal2/1000)|number_format(1, '.','') }}
                                     </span>T </p>
                             </div>
                         {% endif %}
 
                         {% if (poidsTotal2/1000)|number_format(1, '.','') >= 20.79 %}
-                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i style="width:{{ pourcentage_poids_frais }}%; max-width: 97%; background-color: #ed2338;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
+                            <div class="curseur-p curseur" style="bottom:20px"><em>&nbsp;</em><i class="max-width" style="width:{{ pourcentage_poids_frais }}%; max-width: 97%; background-color: #ed2338;margin-top:35px"></i><p>Poids : <span class="sp-pdss">
                                             {{ (poidsTotal2/1000)|number_format(1, '.','') }}
                                     </span>T </p>
                             </div>

@@ -24,7 +24,7 @@ class Coccinews
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="Please, select a PDF File.")
+     * @Assert\NotBlank(message="Please, select a File.")
      * @Assert\File(mimeTypes={"application/pdf"}, mimeTypesMessage="Please upload a valid PDF")
      */
     private $picture;

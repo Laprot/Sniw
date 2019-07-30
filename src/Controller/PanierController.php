@@ -14,6 +14,7 @@ use App\Entity\User;
 use App\Form\AdresseUserType;
 use App\Form\ChoixAdresseType;
 use App\Form\NouvelleAdresseType;
+use App\Form\PanierType;
 use App\Form\SearchType;
 use App\Repository\ProduitRepository;
 use App\Security\AppAccess;
@@ -106,13 +107,10 @@ class PanierController extends AbstractController
                     $panier[$id] = 1;
                 }
             }
+
         $session->set('panier',$panier);
-
-
         return $this->redirect($this->generateUrl('panier'));
     }
-
-
 
     /**
      * @Route("/ajouter/ajax/{id}", name="ajouter_ajax")
@@ -130,8 +128,8 @@ class PanierController extends AbstractController
                 if ($request->request->getInt('quantite') != null) {
                     $panier[$id] += $request->request->getInt('quantite') ;
                 }
-                else {
-                    $panier[$id] += 1 ;
+                else  {
+                    $panier[$id] = 1 ;
                 }
             } else {
                 if ($request->request->getInt('quantite') != null) {
@@ -147,6 +145,42 @@ class PanierController extends AbstractController
 
         return new Response('this is not ajax', 400);
     }
+
+    /**
+     * @Route("/modifQte/ajax/{id}", name="mdofifQte_ajax")
+     */
+    public function modifQteAjax($id, Request $request)
+    {
+        if($request->isXmlHttpRequest()) {
+            $session = $request->getSession();
+            if (!$session->has('panier')) {
+                $session->set('panier', []);
+            }
+            $panier = $session->get('panier');
+
+            if (array_key_exists($id, $panier)) {
+                if ($request->request->getInt('quantite') != null) {
+                    $panier[$id] = $request->request->getInt('quantite') ;
+                }
+                else  {
+                    $panier[$id] = 1 ;
+                }
+            } else {
+                if ($request->request->getInt('quantite') != null) {
+                    $panier[$id] = $request->request->getInt('quantite');
+                } else {
+                    $panier[$id] = 1 ;
+                }
+            }
+            $session->set('panier', $panier);
+
+            return new JsonResponse(['data' => 'this is a json response']);
+        }
+
+        return new Response('this is not ajax', 400);
+    }
+
+
 
 
     /**
@@ -334,6 +368,30 @@ class PanierController extends AbstractController
         return $this->redirect($this->generateUrl('panier'));
     }
 
+    //VIDER LA PANIER
+
+    /**
+     * @Route("/vider/panier", name="vider_panier")
+     */
+    public function viderPanier(Request $request){
+        $session = $request->getSession();
+        $session->remove('panier');
+
+        $paniers = $this->getDoctrine()->getRepository(Panier::class)->findAll();
+        $em = $this->getDoctrine()->getManager();
+
+        foreach($paniers as $pan) {
+            if ($pan->getReference() == null) {
+
+
+                $em->remove($pan);
+                $em->flush();
+            }
+        }
+        return $this->redirect($this->generateUrl('panier'));
+    }
+
+
 
 
     //Enregistrer le panier
@@ -382,7 +440,12 @@ class PanierController extends AbstractController
         $session = $request->getSession();
         $em = $this->getDoctrine()->getManager();
 
+
+
+
         $commande = new Panier();
+
+
 
 
         $commande->setDate(new \DateTime('now'));
@@ -399,12 +462,14 @@ class PanierController extends AbstractController
 
 
         // Référence aléatoire de 8 lettres
+
+        /*
         $characts = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $code_aleatoire = '';
         for($i=0;$i<8;$i++){
             $code_aleatoire .= $characts[ rand() % strlen($characts) ];
             $commande->setReference($code_aleatoire);
-        }
+        }*/
 
         //On ajoute le tableau commande via la fonction facture() situé au dessus
         $commande->setCommande($this->panier($request));
@@ -412,15 +477,12 @@ class PanierController extends AbstractController
         $em->persist($commande);
         $session->set('commande',$commande);
 
-        $em->flush();
 
-        $this->get('session')->getFlashBag()->add('success','Votre panier a bien été enregistrée.');
+        $em->flush();
 
         return new Response($commande->getId());
 
     }
-
-
 
     /**
      * @Route("/panier", name="panier")
@@ -435,13 +497,52 @@ class PanierController extends AbstractController
         }
         $produits = $this->repository->findArray(array_keys($session->get('panier')));
 
+
+        //on prépare la commande
+        $savePanier = $this->savePanier($request);
+        $em = $this->getDoctrine()->getManager();
+
+
+        $commande = $em->getRepository(Panier::class)->find($savePanier->getContent());
+
+        $paniers = $em->getRepository(Panier::class)->findAll();
+
+        foreach($paniers as $pan) {
+            if($pan->getReference() == null) {
+                $em->remove($pan);
+                $em->flush();
+            }
+        }
+        $form = $this->createForm(PanierType::class,$commande);
+        $form->handleRequest($request);
+
+        $user = $this->token->getToken()->getUser();
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em->persist($commande);
+
+            foreach($paniers as $pan) {
+                if($pan->getReference() == null) {
+                    $em->remove($pan);
+                    $em->flush();
+                }
+            }
+
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('success','Votre panier a bien été enregistrée.');
+
+            return $this->redirectToRoute('panier_view', [
+                'id' => $user->getId()
+            ]);
+        }
+
         return $this->render('panier/recapitulatif.html.twig', [
             'produits' => $produits,
-            'panier' => $session->get('panier')
+            'panier' => $session->get('panier'),
+            'form'=>$form->createView()
         ]);
     }
-
-
 
     /**
      * @Route("/panier/save", name="save_panier")
@@ -450,6 +551,7 @@ class PanierController extends AbstractController
         //on prépare la commande
         $savePanier = $this->savePanier($request);
         $em = $this->getDoctrine()->getManager();
+
         $commande = $em->getRepository(Panier::class)->find($savePanier->getContent());
 
 
@@ -466,7 +568,7 @@ class PanierController extends AbstractController
      */
     public function gestionPanier(PaginatorInterface $paginator,User $user,Request $request){
         $this->denyAccessUnlessGranted(AppAccess::USER_EDIT, $user);
-
+        $em = $this->getDoctrine()->getManager();
         $search = new Search();
         $form = $this->createForm(SearchType::class,$search);
         $form->handleRequest($request);
@@ -476,24 +578,19 @@ class PanierController extends AbstractController
             $request->query->getInt('page', 1), 10
         );
 
-        $categories =0;
-        foreach ($commandes as $commande) {
-            if($commande->getCommande() != null)
-                foreach ($commande->getCommande()['produit'] as $categorie) {
+        $paniers = $this->getDoctrine()->getRepository(Panier::class)->findAll();
 
-                    $c = $categorie['categories'][0]->getNom();
-
-                    $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $c]);
-
-                }
+        foreach($paniers as $pan) {
+            if($pan->getReference() == null) {
+                $em->remove($pan);
+            }
         }
 
         return $this->render('panier/historique.html.twig', [
             'user' => $user,
             'commandes' => $commandes,
             'form' => $form->createView(),
-            'count' => $commandes->getTotalItemCount(),
-            'categories' => $categories
+            'count' => $commandes->getTotalItemCount()
         ]);
     }
 
@@ -513,7 +610,6 @@ class PanierController extends AbstractController
             foreach ($commande->getCommande()['produit'] as $categorie) {
                 $c = $categorie['categories'][0]->getNom();
                 $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy(['nom' => $c ]);
-
             }
         }
         return $this->render('panier/savepanier_details.html.twig', [
@@ -537,7 +633,6 @@ class PanierController extends AbstractController
             if (!$session->has('panier')) {
                 $session->set('panier', []);
             }
-
             $panier = $session->get('panier');
             if (array_key_exists($id, $panier)) {
                 if ($request->query->getInt('quantite') != null) {
@@ -552,8 +647,6 @@ class PanierController extends AbstractController
             }
             $session->set('panier',$panier);
         }
-
-
         return $this->redirect($this->generateUrl('panier'));
     }
 
@@ -605,13 +698,6 @@ class PanierController extends AbstractController
         ]);
     }
 
-
-
-
-
-
-
-
     /**
      * @Route("/panier/nouvelle_Adresse/{id}", name="new_adresse", methods="GET|POST")
      */
@@ -656,7 +742,6 @@ class PanierController extends AbstractController
             $session->set('panier', []);
         }
 
-
         $produits = $this->repository->findArray(array_keys($session->get('panier')));
         return $this->render('panier/confirmation.html.twig', [
             'produits' => $produits,
@@ -665,5 +750,4 @@ class PanierController extends AbstractController
 
         ]);
     }
-
 }

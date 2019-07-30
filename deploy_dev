@@ -1,0 +1,2 @@
+#!/bin/sh
+rsync -av ./ -e 'ssh -p 2222' devcentachacom@54.36.18.205:~/www --include=config --include=vendor/coresphere --include=public/build --include=public/styles --include=public/.htaccess --include=public/produits/images --exclude-from=.gitignore --exclude=".*"

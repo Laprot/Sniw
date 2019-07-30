@@ -1,6 +1,6 @@
 #push-container-top {
     position: absolute;
-    background: url(https://centraleachatexport.com/themes/theme1279/css/../img/container/container-bg-1.png);
+    background: url(/images/container/container-bg-1.png);
     width: 381px;
     height: 95px;
     right: 0;
@@ -18,7 +18,7 @@
     font-family: Roboto,sans-serif;
     font-size: 13px;
     margin: -7px 5px 0 4px;
-    background-image: url(https://centraleachatexport.com/themes/theme1279/css/../img/container/bg-container-2.jpg);
+    background-image: url(/images/container/bg-container-2.jpg);
 }
 
 #push-container-top .push-container-small p {
@@ -108,7 +108,7 @@
 
 #cta-compte {
     position: absolute;
-    background: url(https://centraleachatexport.com/themes/theme1279/css/../img/container/bg-push-compte.jpg);
+    background: url(/images/container/bg-push-compte.jpg);
     width: 268px;
     height: 95px;
     right: 0;
@@ -221,7 +221,7 @@
 @media screen and (max-width: 1350px) and (min-width: 767px) {
         #push-container-top {
             position: absolute;
-            background: url(https://centraleachatexport.com/themes/theme1279/css/../img/container/container-bg-1.png);
+            background: url(/images/container/container-bg-1.png);
             /* width: 269px; */
             height: 95px;
             right: 0;
@@ -285,3 +285,59 @@
         background-repeat: no-repeat;
     }
 }
+
+
+@media screen and (max-width: 360px) and (min-width: 340px) {
+    #push-container-top .bloc-resume {
+        padding-top: 0px;
+        font-size:8px;
+        margin-right:42px;
+    }
+
+    #push-container-top {
+        background-size:97%;
+    }
+
+    #push-container-top.mobile-teo {
+        width:371px;
+    }
+
+    #push-container-top .curseur em {
+        position: absolute;
+        z-index: 0;
+        display: block;
+        height: 15px;
+        background-color: #ddd;
+        width: 91%;
+    }
+
+    #push-container-top .bloc-resume p.data-resume {
+        font-size:11px;
+    }
+
+}
+
+
+@media screen and (max-width: 320px) {
+    #push-container-top .bloc-resume {
+        padding-top: 7px;
+        font-size:8px;
+        margin-right:52px;
+    }
+    #push-container-top .curseur em {
+        position: absolute;
+        z-index: 0;
+        display: block;
+        height: 15px;
+        background-color: #ddd;
+        width: 73%;
+    }
+
+    #push-container-top .bloc-resume p.data-resume {
+        font-size:11px;
+    }
+
+
+
+}
+

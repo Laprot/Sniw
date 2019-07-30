@@ -32,10 +32,25 @@ class Produit
     {
         return $this->image;
     }
-
     public function setImage($image)
     {
         $this->image = $image;
+        return $this;
+    }
+
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $image_import;
+
+    public function getImageImport()
+    {
+        return $this->image_import;
+    }
+    public function setImageImport($image_import)
+    {
+        $this->image_import = $image_import;
         return $this;
     }
 
@@ -195,10 +210,6 @@ class Produit
      */
     private $categories;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $image_import;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CommandeImport", inversedBy="produits")
@@ -624,17 +635,7 @@ class Produit
         return $this;
     }
 
-    public function getImageImport(): ?string
-    {
-        return $this->image_import;
-    }
 
-    public function setImageImport(?string $image_import): self
-    {
-        $this->image_import = $image_import;
-
-        return $this;
-    }
 
     public function getCommandeImport(): ?CommandeImport
     {

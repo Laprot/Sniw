@@ -60,7 +60,7 @@ class ImportEtatProduit extends Command
             //$finder->in(__DIR__.'/../../public/file_etat_produits');
 
             //EN PROD
-            $finder->in('/homepages/10/d783107477/htdocs/sniw/public/file_etat_produits');
+            $finder->in('/home/centralacexpcom/www/public/file_etat_produits');
 
             foreach ($finder as $file) {
                 break;
@@ -68,7 +68,13 @@ class ImportEtatProduit extends Command
 
             //$reader = Reader::createFromPath('%kernel.dir_dir%/../public/produits_csv/test-import.csv');
 
+        try {
             $reader = Reader::createFromStream(fopen($file, 'r+'));
+
+            if(http_response_code(500)) {
+                $filesystem->remove($file);
+            }
+
             $reader->setDelimiter(';');
             $results = $reader->fetchAssoc();
             $io->progressStart(iterator_count($results));
@@ -99,5 +105,12 @@ class ImportEtatProduit extends Command
             $io->success('Mise à jour des produits complétée !');
             $filesystem->remove($file);
         }
+        catch(\Exception $e) {
+            $output->writeln([
+                PHP_EOL . $e->getMessage() . PHP_EOL . 'Erreur Import, veuillez corriger les erreurs et ré-upload le fichier'
+            ]);
+            $filesystem->remove($file);
+        }
+    }
 
 }

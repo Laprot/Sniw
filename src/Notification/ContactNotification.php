@@ -37,8 +37,8 @@ class ContactNotification
     public function notify(Contact $contact){
         $message= (new \Swift_Message('Agence : ' . $contact->getSociete()))
             ->setFrom($contact->getEmail())
-            ->setTo('fievet.pierro@hotmail.fr')
-            ->setReplyTo('fievet.pierro@hotmail.fr')
+            ->addTo('fdelhaye@sniw.fr')
+            ->setReplyTo('centrale.sniw@gmail.com')
             ->setBody($this->renderer->render('emails/contact.html.twig', [
                 'contact'=>$contact
             ]),'text/html');

@@ -8,11 +8,13 @@ parameters:
     app.category.form.type.class: App\Form\CategoryType
     upload_directory: '%kernel.project_dir%/public/file_produits'
     images_directory: '%kernel.project_dir%/public/produits/images'
+    images_tm_large_directory: '%kernel.project_dir%/public/produits/images_import'
     upload_commandes_directory: '%kernel.project_dir%/public/file_commandes'
     images_import_directory: '%kernel.project_dir%/public/file_images'
     upload_etat_directory: '%kernel.project_dir%/public/file_etat_produits'
     upload_prix_directory: '%kernel.project_dir%/public/file_prix_produits'
     upload_cocci_news_directory: '%kernel.project_dir%/public/cocci_news'
+    upload_formations_directory: '%kernel.project_dir%/public/formations'
 
 services:
     # default configuration for services in *this* file
@@ -123,6 +125,20 @@ services:
               tags:
                 - { name : console.command }
 
+    console_command.csv_importpoids:
+              class: App\Import\ImportProduitPoids
+              arguments:
+                - "@doctrine.orm.entity_manager"
+              tags:
+                - { name : console.command }
+
+    console_command.csv_importlibelle:
+              class: App\Import\ImportLibelleProduit
+              arguments:
+                - "@doctrine.orm.entity_manager"
+              tags:
+                - { name : console.command }
+
     app.form.type.about_users:
         class: App\Form\CategoryType
         arguments:
@@ -133,3 +149,5 @@ services:
     App\Service\FileUploader:
             arguments:
                 $targetDirectory: '%images_directory%'
+
+

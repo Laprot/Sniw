@@ -96,7 +96,7 @@
                                     {% set prixTotal = produit.getPrixFinal() * p.quantite %}
 
                                 {% endfor %}
-                                <td> <input onchange="modifQte({{ produit.id }},'/ajouter/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ quantite }}" >
+                                <td> <input onchange="modifQte({{ produit.id }},'/modifQte/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ quantite }}" >
                                 </td>
                                 <td> <span id="prixCarton_{{ produit.id }}">
                                 {% for categorie in produit.categories %}
@@ -151,7 +151,7 @@
                                 <td>
                                     <ul class="navbar_user">
                                         <li class="checkout" style="margin-right:30px" >
-                                            <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/ajouter/ajax/'+ {{ produit.id }})">
+                                            <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/modifQte/ajax/'+ {{ produit.id }})">
                                                 <i class="fa fa-cart-plus" aria-hidden="true">
                                                 </i>
                                             </a>
@@ -199,7 +199,7 @@
 
                                 {% endfor %}
                                 <td>
-                                    <input onchange="modifQte({{ produit.id }},'/ajouter/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ quantite }}" >
+                                    <input onchange="modifQte({{ produit.id }},'/modifQte/ajax/'+{{ produit.id }})" name="quantite" id="submitid_{{ produit.id }}" type="text" value="{{ quantite }}" >
 
                                 </td>
 
@@ -210,7 +210,7 @@
                                 <td>
                                     <ul class="navbar_user">
                                         <li class="checkout" style="margin-right:30px" >
-                                            <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/ajouter/ajax/'+ {{ produit.id }})">
+                                            <a style="cursor:pointer" onclick="refreshAjax({{ produit.id }},'/modifQte/ajax/'+ {{ produit.id }})">
 
                                                 <i class="fa fa-cart-plus" aria-hidden="true">
                                                 </i>
